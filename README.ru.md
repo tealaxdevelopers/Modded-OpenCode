@@ -1,6 +1,6 @@
 <div align="center">
   <h1>⚡ Modded OpenCode</h1>
-  <p>Требуется OpenCode Desktop.</p>
+  <p>Требуется OpenCode — Desktop, Terminal и CLI читают один и тот же конфиг.</p>
   <p><strong>68 навыков, автоустановка, свои правила — всё готово при запуске</strong></p>
   <p>
     <a href="README.md">🇬🇧 English</a> ·

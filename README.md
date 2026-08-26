@@ -1,6 +1,6 @@
 <div align="center">
   <h1>⚡ Modded OpenCode</h1>
-  <p>Requires OpenCode Desktop.</p>
+  <p>Requires OpenCode — Desktop, Terminal and the CLI all read the same config.</p>
   <p><strong>68 skills, auto setup, custom rules — everything ready at launch</strong></p>
   <p>
     <a href="README.tr.md">🇹🇷 Türkçe</a> ·
