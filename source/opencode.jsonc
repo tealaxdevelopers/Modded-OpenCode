@@ -1,0 +1,57 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    "C:\\Users\\{{USERNAME}}\\.config\\opencode\\rules.md"
+  ],
+  "plugin": [
+    "agents-opencode"
+  ],
+  "permission": {
+    "external_directory": "allow",
+    "doom_loop": "deny"
+  },
+  "mcp": {
+    "fetch": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-fetch"],
+      "enabled": true
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "enabled": true
+    },
+    "memory": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-memory"],
+      "enabled": true
+    },
+    "time": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-time"],
+      "enabled": true
+    },
+    "github": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-github"],
+      "enabled": true,
+      "environment": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_API_KEY}"
+      }
+    },
+    "filesystem": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "{env:PROJECT_ROOT}"],
+      "enabled": false
+    },
+    "brave-search": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-brave-search"],
+      "enabled": false,
+      "environment": {
+        "BRAVE_API_KEY": "{env:BRAVE_API_KEY}"
+      }
+    }
+  },
+  "provider": {}
+}
