@@ -48,7 +48,7 @@ jobs:
             url = ev.comment.html_url;
           }
           const payload = {
-            username: "Modded OpenCode",
+            username: "Github",
             embeds: [{
               title: repo,
               description: String(description).slice(0, 1900),
