@@ -1,15 +1,15 @@
 {
   "name": "opencode-local-setup",
-  "version": "2.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "description": "Secure, current OpenCode setup for local, LAN and OpenAI-compatible model servers.",
   "scripts": {
-    "check": "for file in scripts/*.mjs; do node --check \"$file\"; done && for file in scripts/*.sh; do bash -n \"$file\"; done",
+    "check": "node scripts/check.mjs",
     "test": "npm run test:node && npm run test:install",
     "validate": "npm run check && npm test",
     "test:node": "node --test tests/*.test.mjs",
-    "test:install": "bash tests/install.test.sh"
+    "test:install": "node scripts/run-install-test.mjs"
   },
   "engines": {
     "node": ">=18"
