@@ -1,136 +1,140 @@
 <div align="center">
   <h1>⚡ Modded OpenCode</h1>
-  <p>Trebuyetsya OpenCode Desktop.</p>
-  <p><strong>68 navykov, avtoustanovka, svoi pravila — vse gotovo pri zapuske</strong></p>
+  <p>Требуется OpenCode Desktop.</p>
+  <p><strong>68 навыков, автоустановка, свои правила — всё готово при запуске</strong></p>
   <p>
     <a href="README.md">🇬🇧 English</a> ·
     <a href="README.tr.md">🇹🇷 Türkçe</a>
   </p>
   <p>
-    <a href="https://github.com/tealaxdevelopers/modded-opencode"><img src="https://img.shields.io/github/last-commit/tealaxdevelopers/modded-opencode?label=Posledneye%20obnovleniye&style=flat-square" alt="Obnovleniye"/></a>
-    <a href="https://github.com/tealaxdevelopers/modded-opencode/stargazers"><img src="https://img.shields.io/github/stars/tealaxdevelopers/modded-opencode?style=flat-square" alt="Zvyozdy"/></a>
+    <a href="https://github.com/tealaxdevelopers/modded-opencode"><img src="https://img.shields.io/github/last-commit/tealaxdevelopers/modded-opencode?label=%D0%9F%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BD%D0%B5%D0%B5%20%D0%BE%D0%B1%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5&style=flat-square" alt="Последнее обновление"/></a>
+    <a href="https://github.com/tealaxdevelopers/modded-opencode/stargazers"><img src="https://img.shields.io/github/stars/tealaxdevelopers/modded-opencode?style=flat-square" alt="Звёзды"/></a>
     <a href="https://opencode.ai"><img src="https://img.shields.io/badge/OpenCode-v2.3%2B-blue?style=flat-square" alt="OpenCode"/></a>
   </p>
 </div>
 
 ---
 
-## 📦 Chto Vnutri
+## 📦 Что Внутри
 
 ```
 modded-opencode/
-├── setup.bat                          # Master ustanovki odnim klikom (EN/TR/RU)
-├── start.cmd                          # Zapusk s obrabotkoy GitHub MCP env
-├── scripts/build-config.ps1           # Generator opencode.jsonc
-├── scripts/sync-on-launch.ps1         # Optsionalno: sinkhronizatsiya pri zapuske
+├── setup.bat                          # Мастер установки одним кликом (EN/TR/RU)
+├── start.cmd                          # Запуск с обработкой переменных GitHub MCP
+├── scripts/build-config.ps1           # Генератор opencode.jsonc
+├── scripts/sync-on-launch.ps1         # Опционально: синхронизация при запуске
 └── source/
-    ├── opencode.jsonc                 # Konfiguratsiya provider i MCP (chistaya)
-    ├── rules.md                       # Pravila yadra AETHER-9 (svoyo obrashcheniye + yazyk)
+    ├── opencode.jsonc                 # Конфигурация провайдера и MCP (чистая)
+    ├── rules.md                       # Правила ядра AETHER-9 (своё обращение + язык)
     ├── .gitignore
-    ├── agents/                        # 13 agentov (ivan, scout, planner, review...)
-    ├── commands/                      # 17 slash-komand
-    ├── instructions/                  # 22 nabora instruktsiy
-    ├── plugins/                       # plagin agents-opencode
-    └── skills/                        # 68 paketov SKILL.md
+    ├── agents/                        # 13 собственных агентов (ivan, scout, planner, review...)
+    ├── commands/                      # 17 slash-команд
+    ├── instructions/                  # 22 набора инструкций
+    ├── plugins/                       # плагин agents-opencode
+    └── skills/                        # 68 пакетов SKILL.md
 ```
 
-### 🔥 Luchshiye Navyki
+### 🔥 Лучшие Навыки
 
-| Navyk | Dlya chego |
+| Навык | Для чего |
 |-------|-------------|
-| **ponytail** | Lestnitsa resheniy protiv raskhoda tokenov (YAGNI/stdlib/oneliner/MVP) |
-| **coklu-dil** | Idiomatichnyy kod na Python/Kotlin/Java/Node.js |
-| **java-spring** | Spring Boot + constructor injection + validation |
-| **pythonik-kalite** | Python-idiomy, SOLID, Liskov-safe subtypes |
+| **ponytail** | Лестница решений против траты токенов (YAGNI/stdlib/oneliner/MVP) |
+| **coklu-dil** | Идиоматичный код на Python/Kotlin/Java/Node.js |
+| **java-spring** | Spring Boot + внедрение через конструктор + валидация |
+| **pythonik-kalite** | Python-идиомы, SOLID, подтипы, совместимые с Liskov |
 | **senior-fullstack** | React/Next/Node/GraphQL/PostgreSQL fullstack |
-| **legal-advisor** | Yuridicheskiye issledovaniya, analiz zakonodatelstva, litsenzii |
-| **cto-advisor** | Analiz tech debt, masshtabirovaniye komandy, otsenka tekhnologiy |
-| **xlsx / pdf / docx** | Rabota s dokumentami Excel, PDF, Word |
-| *(+60 yeshcho)* | |
+| **legal-advisor** | Юридические исследования, анализ законодательства, аудит лицензий |
+| **cto-advisor** | Анализ технического долга, масштабирование команды, оценка технологий |
+| **xlsx / pdf / docx** | Работа с документами Excel, PDF, Word |
+| *(+60 ещё)* | |
 
 ---
 
-## 🚀 Ustanovka
+## 🚀 Установка
 
 ```batch
 setup.bat
 ```
 
-Master sprashivayet po poryadku:
+Мастер задаёт вопросы по порядку:
 
-| Shag | Vopros | Yesli pustoy |
+| Шаг | Вопрос | Если оставить пустым |
 |------|----------|---------------|
-| 1️⃣ Yazyk | `tr` / `us` / `ru` (2 bukvy) | — |
-| 2️⃣ Imya polzovatelya | Vashi Windows-imya | `ENTER` = opredelitsya avtomaticheski |
-| 3️⃣ Obrashcheniye | Kak agent budet k vam obrashchatsya? | Ispolzuetsya znacheniye po umolchaniyu |
-| 4️⃣ GitHub API key | Dlya GitHub MCP | `ENTER` = propustit, MCP ust. **vyklyuchennym** |
-| 5️⃣ Brave API key | Dlya veb-poiska | `ENTER` = propustit, poisk ust. **vyklyuchennym** |
-| 6️⃣ Dop. integratsii | Menyu svoyego providera | `ENTER` = propustit |
+| 1️⃣ Язык | `tr` / `us` / `ru` (2 буквы) | — |
+| 2️⃣ Имя пользователя | Ваше имя пользователя Windows | `ENTER` = определяется автоматически |
+| 3️⃣ Обращение | Как агент должен к вам обращаться? | Используется значение по умолчанию |
+| 4️⃣ GitHub API ключ(и) | Для GitHub MCP — можно несколько через запятую | `ENTER` = пропустить, MCP устанавливается **отключённым** |
+| 5️⃣ Brave API ключ | Для веб-поиска | `ENTER` = пропустить, поиск устанавливается **отключённым** |
+| 6️⃣ Доп. интеграции | Меню своего провайдера | `ENTER` = пропустить |
 
-> 🔑 **Bezopasnost klyuchey:** Nikakoy klyuch ne zapisyvayetsya v fayl. Tolko kak peremennaya okruzheniya polzovatelya (`setx`). Udolit: `setx GITHUB_API_KEY ""`
+> 🔗 **Несколько ключей GitHub:** можно вставить несколько токенов через запятую — они сохраняются как `GITHUB_API_KEY_1`, `GITHUB_API_KEY_2`, … (без ограничений). Один токен остаётся как `GITHUB_API_KEY`. Когда включён мульти-режим, конфиг ссылается на первый ключ (`_1`).
 
-Vsyo ostalnoye ustanavlivayetsya avtomaticheski: 68 navykov, 13 agentov, 17 komand, 22 instruktsii, MCP-servery.
+> 🔑 **Безопасность ключей:** ни один введённый ключ не записывается в файл. Сохраняется только как переменная среды пользователя (`setx`). Удалить позже: `setx GITHUB_API_KEY ""` (или `GITHUB_API_KEY_1`) / `setx BRAVE_API_KEY ""`
+
+Выбранный **язык также задаёт язык общения агента** в `rules.md` — выберите `ru`, и ядро instructирует агента говорить по-русски.
+
+Всё остальное устанавливается автоматически: 68 навыков, 13 агентов, 17 команд, 22 набора инструкций, MCP-серверы.
 
 ---
 
-## 🧩 MCP-Servery
+## 🧩 MCP-Серверы
 
-| Server | Opisaniye | Status |
-|--------|----------|-------|
-| **fetch** | Polucheniye kontenta po URL | ✅ Aktivен |
-| **memory** | Postoyannaya pamyat (knowledge graph) | ✅ Aktivен |
-| **sequential-thinking** | Poshagovoye rassuzhdeniye | ✅ Aktivен |
-| **time** | Zaprosy daty/vremeni | ✅ Aktivен |
-| **github** | Integratsiya GitHub API | 🔑 Aktivен yesli dan klyuch |
-| **brave-search** | Veb-poisk | 🔑 Aktivен yesli dan klyuch |
-| *filesystem* | Dostup k faylovoy sisteme | ⛔ Po umolchaniyu vykl |
+| Сервер | Описание | Статус |
+|--------|-------------|--------|
+| **fetch** | Получение содержимого по URL | ✅ Активен |
+| **memory** | Постоянная память (граф знаний) | ✅ Активен |
+| **sequential-thinking** | Пошаговые рассуждения | ✅ Активен |
+| **time** | Запросы даты/времени | ✅ Активен |
+| **github** | Интеграция с GitHub API | 🔑 Активен при наличии ключа |
+| **brave-search** | Веб-поиск | 🔑 Активен при наличии ключа |
+| *filesystem* | Доступ к файловой системе | ⛔ По умолчанию выключен |
 
-Dobavit klyuch posle ustanovki:
+Добавить ключ после установки:
 
 ```batch
 setx GITHUB_API_KEY "ghp_..."
 setx BRAVE_API_KEY "BSA..."
 ```
 
-zatim pereklyuchite sootvetstvuyushcheye `"enabled": false` na `true` v `opencode.jsonc`.
+затем переключите соответствующее `"enabled": false` на `true` внутри `opencode.jsonc`.
 
 ---
 
-## ⚙️ Providery (Vazhno!)
+## ⚙️ Провайдеры (Важно!)
 
-**Gotovyy provider S USTANOVKOY NE IDET.** Config ust. pustym: `provider: {}`.
+**Готовый провайдер с установкой НЕ поставляется.** Конфиг устанавливается пустым: `provider: {}`.
 
-Dva puti podklyucheniya modeli:
+Два способа подключить модель:
 
-### 1) Svoy OpenAI-sovmestimyy provider iz mastera (Shag 6 → `[1]`)
+### 1) Свой OpenAI-совместимый провайдер из мастера (Шаг 6 → `[1]`)
 
-Sprashivayet Base URL + imya modeli + API key, zatem pishet v config:
+Спрашивает Base URL + имя модели + API ключ, затем записывает:
 
 ```jsonc
 "provider": {
-  "<imya-modeli>": {
-    "name": "<imya-modeli>",
+  "<имя-модели>": {
+    "name": "<имя-модели>",
     "npm": "@ai-sdk/openai-compatible",
     "options": {
-      "baseURL": "https://vash-server.com/v1",
+      "baseURL": "https://ваш-сервер.com/v1",
       "apiKey": "{env:CUSTOM_LLM_API_KEY}"
     },
-    "models": { "<imya-modeli>": {} }
+    "models": { "<имя-модели>": {} }
   }
 }
 ```
 
-### 2) Vstroennyye providery (OpenAI, Anthropic, Google...)
+### 2) Встроенные провайдеры (OpenAI, Anthropic, Google...)
 
-Odna komanda posle ustanovki:
+Одна команда после установки:
 
 ```batch
 opencode auth login
 ```
 
-### Primer ruchnoy nastroyki (DashScope/Qwen)
+### Ручной пример (DashScope/Qwen)
 
-Dlya tekh, kto khotit dobavit **vruchnuyu** — eto primer, a ne umolchaniye:
+Для тех, кто хочет добавить **вручную** — это пример, а не значение по умолчанию:
 
 ```jsonc
 "provider": {
@@ -150,40 +154,40 @@ Dlya tekh, kto khotit dobavit **vruchnuyu** — eto primer, a ne umolchaniye:
 }
 ```
 
-> ⚠️ Plagin `@melodyoftears/opencode-qwen-auth` iz starykh versiy **udalyon**.
+> ⚠️ Плагин `@melodyoftears/opencode-qwen-auth`, поставлявшийся в старых версиях, **удалён** — он больше не входит в установку.
 
 ---
 
-## 📜 Rules.md (Yadro AETHER-9)
+## 📜 Rules.md (Ядро AETHER-9)
 
-Serdste paketa. `rules.md` prevrashchayet OpenCode v **virtualnoye mashinnoye yadro AETHER-9** — sloy persony, zagruzhayemyy cherez sistemu instruktsiy OpenCode:
+Сердце этого набора. `rules.md` превращает OpenCode в **виртуальную машину-ядро AETHER-9** — слой персоны, ограниченный сессией, загружаемый через систему инструкций OpenCode:
 
-- 🎭 **Opredeleniye persony:** Ustanavlivayet identichnost operatora `ratman4080` — golos, format otvetov i stil raboty dlya sessii.
-- 🌐 **Yazyk + obrashcheniye:** Oba zadayutsya pri ustanovke (`{{LANGUAGE}}`, `{{HITAP}}`) — yadro govorit na vashem yazyke i obrashchayetsya tak, kak vy vybrali.
-- 🧠 Mekhanichnyy, kholodnyy terminalnyy yazyk; kazhdyy otvet v ramkakh yadernogo zhurnala.
-- 🔒 **Okhvati:** Eto konfiguratsiya tolko slova prompta. Ona ne menyayet vesa modeli, ne obkhodit serversayd-politiki API, razresheniya akkuntov ili yuridicheskiye granitsy — oni vsegday deystvuyut. Dlya lichnogo, lokalnogo ispolzovaniya.
+- 🎭 **Определение персоны:** устанавливает операторскую личность `ratman4080` — голос, формат ответа и стиль работы для сессии.
+- 🌐 **Язык + обращение:** оба задаются при установке (`{{LANGUAGE}}`, `{{HITAP}}`) — ядро говорит на вашем языке и называет вас так, как вы выбрали.
+- 🧠 Механический, холодный терминальный язык; каждый ответ в стиле ядерного журнала.
+- 🔒 **Охват:** это только конфигурация слоя prompt. Она не меняет веса модели, не обходит серверные API-политики, права аккаунта или юридические границы — они всегда применяются. Для личного, локального использования.
 
-> **Primechaniye:** Eto konfiguratsii roli/persony dlya chastnoy, kontroliruyemoy sessii — ne eksployat bezopasnosti. Ne rekomenduyetsya dlya produ ili mnogopolzovatelskikh sistem.
-
----
-
-## 🙏 Blagodarnosti
-
-Postroeno na ekosisteme [awesome-opencode](https://github.com/awesome-opencode/awesome-opencode) — kuriruyemom spiske plaginov, tem, agentov i resursov dlya [OpenCode](https://opencode.ai). Nash nabor tozhe tam: **Projects → Modded OpenCode**.
+> **Примечание:** это конфигурация роли/персоны для частной, контролируемой сессии — не эксплойт безопасности. Не рекомендуется для продакшена или многопользовательских систем.
 
 ---
 
-## 🔧 Razrabotka
+## 🙏 Благодарности
+
+Построено поверх экосистемы [awesome-opencode](https://github.com/awesome-opencode/awesome-opencode) — курируемого списка плагинов, тем, агентов и ресурсов для [OpenCode](https://opencode.ai). Наш набор для установки также там: **Projects → Modded OpenCode**.
+
+---
+
+## 🔧 Разработка
 
 ```bash
-# Dobavit svoy navyk
+# Добавить свой навык
 mkdir source/skills/moy-navyk/
 printf -- "---\nname: moy-navyk\ndescription: Delayet veshchi\n---\n# Skill content" > source/skills/moy-navyk/SKILL.md
 
-# Zatem zapustite setup.bat snova
+# Затем запустите setup.bat снова
 ```
 
-Proverka:
+Проверка:
 
 ```bash
 npm run validate
@@ -191,12 +195,12 @@ npm run validate
 
 ---
 
-## 📄 Litsenziya
+## 📄 Лицензия
 
-MIT — ispolzuyte, menyayte, rasprostranyayte, forkitе. Svobodno.
+MIT — используйте, меняйте, распространяйте, форкните. Свободно.
 
 ---
 
 <div align="center">
-  <sub>🔮 tealaxdevelopers</sub>
+  <sub>🔮 by tealaxdevelopers</sub>
 </div>

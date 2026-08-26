@@ -63,11 +63,13 @@ Sihirbaz sırayla şunları sorar:
 | 1️⃣ Dil | `tr` / `us` / `ru` (2 harf) | — |
 | 2️⃣ Kullanıcı adı | Windows kullanıcı adın | `ENTER` = otomatik algılanır |
 | 3️⃣ Hitap | Agent sana nasıl hitap etsin? | Varsayılan kullanılır |
-| 4️⃣ GitHub API key | GitHub MCP için | `ENTER` = atlanır, MCP **kapalı** kurulur |
+| 4️⃣ GitHub API key(ler) | GitHub MCP için — virgülle birden fazla key desteklenir | `ENTER` = atlanır, MCP **kapalı** kurulur |
 | 5️⃣ Brave API key | Web araması için | `ENTER` = atlanır, arama **kapalı** kurulur |
 | 6️⃣ Ekstra entegrasyon | Özel provider menüsü | `ENTER` = geç |
 
-> 🔑 **Key güvenliği:** Girdiğin hiçbir anahtar dosyaya yazılmaz. Sadece kullanıcı ortam değişkeni olarak kaydedilir (`setx`). Silmek için: `setx GITHUB_API_KEY ""`
+> 🔗 **Birden fazla GitHub key:** Birden çok token'ı virgülle yapıştır — `GITHUB_API_KEY_1`, `GITHUB_API_KEY_2`, … olarak kaydedilir (üst sınır yok). Tek token `GITHUB_API_KEY` olarak kalır. Çoklu mod açıksa config ilk key'e (`_1`) bağlanır.
+
+> 🔑 **Key güvenliği:** Girdiğin hiçbir anahtar dosyaya yazılmaz. Sadece kullanıcı ortam değişkeni olarak kaydedilir (`setx`). Silmek için: `setx GITHUB_API_KEY ""` (veya `GITHUB_API_KEY_1`) / `setx BRAVE_API_KEY ""`
 
 Kalan her şey otomatik kurulur: 68 skill, 13 agent, 17 command, 22 instruction, MCP sunucuları.
 
@@ -178,7 +180,7 @@ Paketin kalbi. `rules.md`, OpenCode'u OpenCode'un instruction sistemiyle yüklen
 ```bash
 # Kendi skill'ini ekle
 mkdir source/skills/benim-skillim/
-printf -- "---\nname: benim-skillim\ndescription: Yapar bir seyler\n---\n# Skill icerigi" > source/skills/benim-skillim/SKILL.md
+printf -- "---\nname: benim-skillim\ndescription: Bir seyler yapar\n---\n# Skill icerigi" > source/skills/benim-skillim/SKILL.md
 
 # Sonra setup.bat'i tekrar calistir
 ```

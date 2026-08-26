@@ -63,13 +63,15 @@ The wizard asks, in order:
 | 1️⃣ Language | `tr` / `us` / `ru` (2 letters) | — |
 | 2️⃣ Username | Your Windows username | `ENTER` = auto-detected |
 | 3️⃣ Addressing | How should the agent address you? | Default is used |
-| 4️⃣ GitHub API key | For GitHub MCP | `ENTER` = skipped, MCP installed **disabled** |
+| 4️⃣ GitHub API key(s) | For GitHub MCP — comma-separated multiple keys supported | `ENTER` = skipped, MCP installed **disabled** |
 | 5️⃣ Brave API key | For web search | `ENTER` = skipped, search installed **disabled** |
 | 6️⃣ Extra integrations | Custom provider menu | `ENTER` = skip |
 
 The **language you pick also sets the agent's conversation language** in `rules.md` — pick `ru` and the kernel instructs the agent to speak Russian.
 
-> 🔑 **Key safety:** No key you enter is ever written to a file. Keys are saved only as user environment variables (`setx`). To remove later: `setx GITHUB_API_KEY ""` / `setx BRAVE_API_KEY ""`
+> 🔗 **Multiple GitHub keys:** Paste several tokens separated by commas — they save as `GITHUB_API_KEY_1`, `GITHUB_API_KEY_2`, … (no upper limit). A single token stays as `GITHUB_API_KEY`. When multi-mode is on, the config references the first key (`_1`).
+
+> 🔑 **Key safety:** No key you enter is ever written to a file. Keys are saved only as user environment variables (`setx`). To remove later: `setx GITHUB_API_KEY ""` (or `GITHUB_API_KEY_1`) / `setx BRAVE_API_KEY ""`
 
 Everything else installs automatically: 68 skills, 13 agents, 17 commands, 22 instruction sets, MCP servers.
 

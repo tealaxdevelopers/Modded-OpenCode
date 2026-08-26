@@ -7,6 +7,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 - **Trilingual setup wizard** (`tr` / `us` / `ru`, 2-letter prompt). The picked language also sets the agent's conversation language inside `rules.md` via the new `{{LANGUAGE}}` placeholder.
+- **Multiple GitHub API keys**: the wizard accepts comma-separated tokens, saved as `GITHUB_API_KEY_1..N` (no upper limit); a single token stays as `GITHUB_API_KEY`. `build-config.ps1` flags multi-mode with `OC_GH_MULTI` and the generated config references the first key (`_1`).
 - **Brave Search integration step**: wizard asks for a Brave API key; when provided, `BRAVE_API_KEY` is saved and the `brave-search` MCP server is enabled in the generated config.
 - **Custom OpenAI-compatible provider flow** (wizard option `[1]`): asks Base URL + model name + API key, writes a provider block into `opencode.jsonc` and saves `CUSTOM_LLM_API_KEY` as a user environment variable.
 - **READMEs in three languages**: English (primary), Turkish (`README.tr.md`), Russian (`README.ru.md`).
