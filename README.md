@@ -39,9 +39,9 @@ modded-opencode/
 | Skill | What it does |
 |-------|-------------|
 | **ponytail** | Token-waste prevention decision ladder (YAGNI/stdlib/oneliner/MVP) |
-| **coklu-dil** | Idiomatic Python/Kotlin/Java/Node.js code generation |
+| **multi-language** | Idiomatic Python/Kotlin/Java/Node.js code generation |
 | **java-spring** | Spring Boot + constructor injection + validation |
-| **pythonik-kalite** | Pythonic idioms, SOLID, Liskov-safe subtypes |
+| **pythonic-quality** | Pythonic idioms, SOLID, Liskov-safe subtypes |
 | **senior-fullstack** | React/Next/Node/GraphQL/PostgreSQL fullstack |
 | **legal-advisor** | Legal research, regulation analysis, license audits |
 | **cto-advisor** | Tech debt analyzer, team scaling, tech evaluation |

@@ -39,9 +39,9 @@ modded-opencode/
 | Skill | Ne İşe Yarar |
 |-------|-------------|
 | **ponytail** | Token israfını önleyen karar merdiveni (YAGNI/stdlib/oneliner/MVP) |
-| **coklu-dil** | Python/Kotlin/Java/Node.js idiomik kod üretimi |
+| **multi-language** | Python/Kotlin/Java/Node.js idiomik kod üretimi |
 | **java-spring** | Spring Boot + constructor injection + validation |
-| **pythonik-kalite** | Pythonic idiom'lar, SOLID, Liskov-safe subtype'lar |
+| **pythonic-quality** | Pythonic idiom'lar, SOLID, Liskov-safe subtype'lar |
 | **senior-fullstack** | React/Next/Node/GraphQL/PostgreSQL fullstack |
 | **legal-advisor** | Hukuk araştırması, mevzuat analizi, lisans denetimi |
 | **cto-advisor** | Tech debt analizcisi, ekip ölçekleme, teknoloji değerlendirme |

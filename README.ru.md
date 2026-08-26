@@ -39,9 +39,9 @@ modded-opencode/
 | Навык | Для чего |
 |-------|-------------|
 | **ponytail** | Лестница решений против траты токенов (YAGNI/stdlib/oneliner/MVP) |
-| **coklu-dil** | Идиоматичный код на Python/Kotlin/Java/Node.js |
+| **multi-language** | Идиоматичный код на Python/Kotlin/Java/Node.js |
 | **java-spring** | Spring Boot + внедрение через конструктор + валидация |
-| **pythonik-kalite** | Python-идиомы, SOLID, подтипы, совместимые с Liskov |
+| **pythonic-quality** | Python-идиомы, SOLID, подтипы, совместимые с Liskov |
 | **senior-fullstack** | React/Next/Node/GraphQL/PostgreSQL fullstack |
 | **legal-advisor** | Юридические исследования, анализ законодательства, аудит лицензий |
 | **cto-advisor** | Анализ технического долга, масштабирование команды, оценка технологий |
