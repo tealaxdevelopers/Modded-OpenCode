@@ -1,0 +1,81 @@
+{
+  "skill": "staging-fix",
+  "kind": "trigger-eval",
+  "how_to_run": "Build a catalog of every installed skill's name + description (this kit's skills plus the externals/companions a workspace normally has), mix all eval queries into one numbered list, and have 3 independent judges route each query using ONLY the catalog — no repo access. Majority vote per query. Pass = trigger queries route here; no-trigger queries route anywhere else ('route' names the expected sibling, diagnostic only). In this repo, tools/trigger-evals/ holds the checked-in harness.",
+  "queries": [
+    {
+      "q": "Fix this on staging — users can't log in on the staging server",
+      "expect": "trigger"
+    },
+    {
+      "q": "Staging is broken, checkout 500s there since yesterday",
+      "expect": "trigger"
+    },
+    {
+      "q": "There's a bug on the staging server: notification emails aren't sending",
+      "expect": "trigger"
+    },
+    {
+      "q": "Staging shows the wrong invoice totals — fix it and get it deployed to staging",
+      "expect": "trigger"
+    },
+    {
+      "q": "QA found a crash on staging, here are the logs — get a fix out",
+      "expect": "trigger"
+    },
+    {
+      "q": "Patch the staging bug via a PR to the staging branch",
+      "expect": "trigger"
+    },
+    {
+      "q": "The staging env is throwing 502s after the last merge — fix it the safe way",
+      "expect": "trigger"
+    },
+    {
+      "q": "Fix the search bug on staging and auto-merge so Actions redeploys",
+      "expect": "trigger"
+    },
+    {
+      "q": "Deploy to production",
+      "expect": "no-trigger",
+      "route": "none"
+    },
+    {
+      "q": "Fix this bug",
+      "expect": "no-trigger",
+      "route": "/diagnosing-bugs"
+    },
+    {
+      "q": "Ship this issue",
+      "expect": "no-trigger",
+      "route": "/commit-push-close"
+    },
+    {
+      "q": "Check the staging logs",
+      "expect": "no-trigger",
+      "route": "none"
+    },
+    {
+      "q": "Set up CI for this repo",
+      "expect": "no-trigger",
+      "route": "none"
+    },
+    {
+      "q": "Commit, push, and open a PR for this feature",
+      "expect": "no-trigger",
+      "route": "/commit-push-pr"
+    },
+    {
+      "q": "Diagnose why the API is slow in local dev",
+      "expect": "no-trigger",
+      "route": "/diagnosing-bugs"
+    }
+  ],
+  "last_run": {
+    "date": "2026-08-21",
+    "method": "3 independent catalog-routing judges over the 332-query mixed set (all sixteen eval files interleaved, deterministic shuffle), majority vote per query; judges saw only the catalog — no repo access, no SKILL.md",
+    "result": "15/15 pass — unanimous pick agreement on every query",
+    "judge_model": "claude-opus-5 (3 independent catalog-only runs)",
+    "catalog": "tools/trigger-evals/build-catalog.sh (kit descriptions read live 2026-08-21) + catalog-externals.md snapshot dated 2026-08-06 (mattpocock/skills v1.2.0)"
+  }
+}
