@@ -1,0 +1,45 @@
+name: Discord Notifications
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Discord message
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          COMMIT_MSG="${{ github.event.head_commit.message }}"
+          AUTHOR="${{ github.actor }}"
+          HASH="${{ github.event.head_commit.id }}"
+          URL="${{ github.event.head_commit.url }}"
+
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d "{
+            \"embeds\": [{
+              \"author\": {
+                \"name\": \"$AUTHOR\"
+              },
+              \"title\": \"1 new commit\",
+              \"url\": \"$URL\",
+              \"color\": 5814783,
+              \"fields\": [
+                {
+                  \"name\": \"hash\",
+                  \"value\": \"\`$HASH\`\"
+                },
+                {
+                  \"name\": \"commit\",
+                  \"value\": \"$COMMIT_MSG\"
+                }
+              ],
+              \"timestamp\": \"${{ github.event.head_commit.timestamp }}\"
+            }]
+          }" \
+          "$WEBHOOK"
