@@ -1,4 +1,0 @@
-name: Opencode Snippets
-repo: https://github.com/JosXa/opencode-snippets
-tagline: Instant inline text expansion
-description: "Instant inline text expansion for OpenCode. Type #snippet anywhere in your message and watch it transform. Brings DRY principles to prompt engineering with composable, shell-enabled snippets."

@@ -1,4 +1,0 @@
-name: Envsitter Guard
-repo: https://github.com/boxpositron/envsitter-guard
-tagline: Prevent .env leaks
-description: OpenCode plugin that prevents agents/tools from reading or editing sensitive .env* files, while still allowing safe inspection via EnvSitter (keys + deterministic fingerprints; never values).

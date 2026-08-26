@@ -1,4 +1,0 @@
-name: Opencode update notifier
-repo: https://github.com/tim-hilde/opencode-update-notifier
-tagline: Notify about plugin updates.
-description: Checks if your pinned plugins have newer versions available and shows a notification.

@@ -1,4 +1,0 @@
-name: Gemini Auth
-repo: https://github.com/jenslys/opencode-gemini-auth
-tagline: Google account auth
-description: Authenticate the Opencode CLI with your Google account so you can use your existing Gemini plan.

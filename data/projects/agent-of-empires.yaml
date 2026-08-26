@@ -1,4 +1,0 @@
-name: Agent of Empires
-repo: https://github.com/njbrake/agent-of-empires
-tagline: Multi-session TUI for OpenCode
-description: A terminal UI for managing multiple OpenCode sessions in tmux with git worktree integration and Docker sandboxing.

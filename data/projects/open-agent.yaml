@@ -1,4 +1,0 @@
-name: Open Agent
-repo: https://github.com/Th0rgal/openagent
-tagline: Self-hosted control plane
-description: Self-hosted control plane for OpenCode agents with isolated Linux workspaces (systemd-nspawn), git-backed Library configuration, and multi-platform dashboards (Next.js web, SwiftUI iOS).

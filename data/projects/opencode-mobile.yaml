@@ -1,9 +1,0 @@
-name: OpenCode Mobile
-repo: https://github.com/dzianisv/opencode-mobile
-tagline: Android client for OpenCode — drive your self-hosted agent from your phone
-description: Free, open-source (MIT) Android app that connects to an opencode server you run yourself. Stream coding sessions in real time, review file diffs, and approve tool calls from your phone. Install via the F-Droid repo or a signed APK.
-homepage: https://dzianisv.github.io/opencode-mobile/
-tags:
-  - android
-  - mobile
-  - client

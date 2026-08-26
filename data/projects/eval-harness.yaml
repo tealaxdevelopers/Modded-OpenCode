@@ -1,4 +1,0 @@
-name: eval-harness
-repo: https://github.com/nano-step/eval-harness
-tagline: Behavior-regression testing for OpenCode skills
-description: Detects when an OpenCode skill's behavior drifts from a baseline, attributes the cause across 4 classes (skill change / fixture stale / model change / unknown drift), and emits a 6-field FAIL schema with transcript-span and env-delta evidence. Ships a git pre-push hook, a composite GitHub Action, and a $-cost hard ceiling for CI safety. Bash + jq + python3 stdlib only; no daemon, no SaaS. MIT.

@@ -1,4 +1,0 @@
-name: Dynamic Context Pruning
-repo: https://github.com/Tarquinen/opencode-dynamic-context-pruning
-tagline: Optimize token usage
-description: Plugin that optimises token usage by pruning obsolete tool outputs from conversation context.

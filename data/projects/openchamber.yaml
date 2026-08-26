@@ -1,4 +1,0 @@
-name: OpenChamber
-repo: https://github.com/btriapitsyn/openchamber
-tagline: GUI for OpenCode
-description: A fan-made web and desktop interface for OpenCode with VS Code extension, multiple sessions, and git worktrees management.
