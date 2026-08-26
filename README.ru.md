@@ -19,10 +19,10 @@
 
 ```
 modded-opencode/
-├── setup.bat                          # Мастер установки одним кликом (EN/TR/RU)
+├── setup.bat                          # Мастер установки одним кликом (Windows, EN/TR/RU)
+├── setup.sh                           # Мастер установки одним кликом (macOS / Linux)
 ├── start.cmd                          # Запуск с обработкой переменных GitHub MCP
-├── scripts/build-config.ps1           # Генератор opencode.jsonc
-├── scripts/sync-on-launch.ps1         # Опционально: синхронизация при запуске
+├── scripts/build-config.mjs           # Кроссплатформенный генератор opencode.jsonc (Node)
 └── source/
     ├── opencode.jsonc                 # Конфигурация провайдера и MCP (чистая)
     ├── rules.md                       # Правила ядра AETHER-9 (своё обращение + язык)
@@ -30,7 +30,8 @@ modded-opencode/
     ├── agents/                        # 13 собственных агентов (ivan, scout, planner, review...)
     ├── commands/                      # 17 slash-команд
     ├── instructions/                  # 22 набора инструкций
-    ├── plugins/                       # плагин agents-opencode
+    ├── plugins/                       # плагины agents-opencode + auto-continue
+    │   └── opencode-continue.ts       # Авто-продолжение при простое / обрыве
     └── skills/                        # 68 пакетов SKILL.md
 ```
 
@@ -55,6 +56,15 @@ modded-opencode/
 ```batch
 setup.bat
 ```
+
+На **macOS / Linux** используйте аналогичный мастер в оболочке:
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+Оба мастера используют один движок (`scripts/build-config.mjs`) и задают одни и те же вопросы.
 
 Мастер задаёт вопросы по порядку:
 
@@ -97,6 +107,37 @@ setx BRAVE_API_KEY "BSA..."
 ```
 
 затем переключите соответствующее `"enabled": false` на `true` внутри `opencode.jsonc`.
+
+---
+
+## 🔁 Auto-Continue (авто-продолжение)
+
+**Включено по умолчанию.** Встроенный плагин (`source/plugins/opencode-continue.ts`) следит за сессиями: когда сессия **простаивает** (модель закончила, но вы не написали) **или связь обрывается посреди задачи** (`session.error`), он автоматически вставляет сообщение `continue`, и агент продолжает сам — без вашего или ИИ участия.
+
+- 🛡️ **Ограничено**: пауза (`cooldown_ms`) и максимум подряд (`max_consecutive`) предотвращают бесконечный цикл.
+- 🔄 **Самосброс**: как только вы отправите реальное сообщение, счётчик обнуляется.
+- 🌐 **Кроссплатформенно**: один плагин загружается в Windows, macOS и Linux.
+
+Настройте или отключите через `<проект>/.opencode/auto-continue.json`:
+
+```jsonc
+{
+  "enabled": true,
+  "message": "continue",
+  "cooldown_ms": 8000,
+  "max_consecutive": 8,
+  "continue_on_error": true
+}
+```
+
+Или переключайте глобально переменной среды — файл не нужен:
+
+```batch
+setx OC_AUTOCONTINUE 0   # выкл
+setx OC_AUTOCONTINUE 1   # вкл
+```
+
+> Ручная альтернатива: просто напишите `continue` в чате. Плагин только автоматизирует этот шаг. Настоящая кнопка «Continue» внутри чата и переключатель в настройках потребовали бы форка UI OpenCode — вне scope плагин-подхода.
 
 ---
 

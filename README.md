@@ -19,10 +19,10 @@
 
 ```
 modded-opencode/
-├── setup.bat                          # One-click setup wizard (EN/TR/RU)
+├── setup.bat                          # One-click setup wizard (Windows, EN/TR/RU)
+├── setup.sh                           # One-click setup wizard (macOS / Linux)
 ├── start.cmd                          # Launcher with GitHub MCP env handling
-├── scripts/build-config.ps1           # opencode.jsonc generator
-├── scripts/sync-on-launch.ps1         # Optional: sync on launch
+├── scripts/build-config.mjs           # Cross-platform opencode.jsonc generator (Node)
 └── source/
     ├── opencode.jsonc                 # Provider & MCP configuration (clean)
     ├── rules.md                       # AETHER-9 Kernel rules (custom addressing + language)
@@ -30,7 +30,8 @@ modded-opencode/
     ├── agents/                        # 13 custom agents (ivan, scout, planner, review...)
     ├── commands/                      # 17 slash commands
     ├── instructions/                  # 22 instruction sets
-    ├── plugins/                       # agents-opencode plugin
+    ├── plugins/                       # agents-opencode + auto-continue plugin
+    │   └── opencode-continue.ts       # Auto-resume on idle / disconnect
     └── skills/                        # 68 SKILL.md packs
 ```
 
@@ -55,6 +56,15 @@ modded-opencode/
 ```batch
 setup.bat
 ```
+
+On **macOS / Linux** use the equivalent shell wizard:
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+Both wizards share the same engine (`scripts/build-config.mjs`) and ask the same questions.
 
 The wizard asks, in order:
 
@@ -97,6 +107,37 @@ setx BRAVE_API_KEY "BSA..."
 ```
 
 then flip the matching `"enabled": false` to `true` inside `opencode.jsonc`.
+
+---
+
+## 🔁 Auto-Continue (auto-resume)
+
+Ships **on by default**. A bundled plugin (`source/plugins/opencode-continue.ts`) watches your sessions and, when a session goes **idle** (model finished but you didn't type) **or the connection drops mid-task** (`session.error`), it automatically injects a `continue` message so the agent resumes on its own — without you or the AI having to press anything.
+
+- 🛡️ **Bounded**: a cooldown (`cooldown_ms`) and a max consecutive count (`max_consecutive`) prevent infinite loops.
+- 🔄 **Self-resetting**: as soon as you send a real message, the counter resets.
+- 🌐 **Cross-platform**: same plugin loads on Windows, macOS and Linux.
+
+Tune or disable it via `<project>/.opencode/auto-continue.json`:
+
+```jsonc
+{
+  "enabled": true,
+  "message": "continue",
+  "cooldown_ms": 8000,
+  "max_consecutive": 8,
+  "continue_on_error": true
+}
+```
+
+Or toggle globally with an environment variable — no file needed:
+
+```batch
+setx OC_AUTOCONTINUE 0   # off
+setx OC_AUTOCONTINUE 1   # on
+```
+
+> Manual alternative: just type `continue` in the chat. The plugin only automates that step. A literal "Continue" button inside the chat box and an in-app settings toggle would require forking OpenCode's UI — out of scope for the plugin approach.
 
 ---
 

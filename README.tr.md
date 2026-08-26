@@ -19,10 +19,10 @@
 
 ```
 modded-opencode/
-├── setup.bat                          # Tek tıkla kurulum sihirbazı (EN/TR/RU)
+├── setup.bat                          # Tek tıkla kurulum sihirbazı (Windows, EN/TR/RU)
+├── setup.sh                           # Tek tıkla kurulum sihirbazı (macOS / Linux)
 ├── start.cmd                          # GitHub MCP ortam değişkenli başlatıcı
-├── scripts/build-config.ps1           # opencode.jsonc üreteci
-├── scripts/sync-on-launch.ps1         # Opsiyonel: açılışta senkronizasyon
+├── scripts/build-config.mjs           # Çapraz platform opencode.jsonc üreteci (Node)
 └── source/
     ├── opencode.jsonc                 # Provider & MCP yapılandırması (temiz)
     ├── rules.md                       # AETHER-9 Kernel kuralları (özel hitap + dil)
@@ -30,7 +30,8 @@ modded-opencode/
     ├── agents/                        # 13 özel agent (ivan, scout, planner, review...)
     ├── commands/                      # 17 slash komutu
     ├── instructions/                  # 22 instruction seti
-    ├── plugins/                       # agents-opencode plugin'i
+    ├── plugins/                       # agents-opencode + auto-continue plugin'i
+    │   └── opencode-continue.ts       # Boşta kalınca / kopunca otomatik devam
     └── skills/                        # 68 adet SKILL.md paketi
 ```
 
@@ -55,6 +56,15 @@ modded-opencode/
 ```batch
 setup.bat
 ```
+
+**macOS / Linux** için eşdeğer kabuk sihirbazı:
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+Her iki sihirbaz aynı motoru (`scripts/build-config.mjs`) paylaşır ve aynı soruları sorar.
 
 Sihirbaz sırayla şunları sorar:
 
@@ -95,6 +105,37 @@ setx BRAVE_API_KEY "BSA..."
 ```
 
 sonra `opencode.jsonc` içindeki ilgili `"enabled": false` değerini `true` yap.
+
+---
+
+## 🔁 Auto-Continue (otomatik devam)
+
+**Varsayılan açık** gelir. Paketlenmiş bir plugin (`source/plugins/opencode-continue.ts`) oturumlarını izler; bir oturum **boşta kalınca** (model bitti ama sen yazmadın) **veya bağlantı iş ortasında kopunca** (`session.error`), otomatik olarak `continue` mesajı enjekte eder — senin de AI'ın da bir şey yapmasına gerek kalmadan agent kendi devam eder.
+
+- 🛡️ **Sınırlı**: cooldown (`cooldown_ms`) ve maksimum ardışık sayı (`max_consecutive`) sonsuz döngüyü engeller.
+- 🔄 **Kendini sıfırlar**: Gerçek bir mesaj attığında sayaç sıfırlanır.
+- 🌐 **Çapraz platform**: Aynı plugin Windows, macOS ve Linux'ta yüklenir.
+
+`<proje>/.opencode/auto-continue.json` ile ayarla veya kapat:
+
+```jsonc
+{
+  "enabled": true,
+  "message": "continue",
+  "cooldown_ms": 8000,
+  "max_consecutive": 8,
+  "continue_on_error": true
+}
+```
+
+Veya ortam değişkeniyle global aç/kapat — dosya gerekmez:
+
+```batch
+setx OC_AUTOCONTINUE 0   # kapalı
+setx OC_AUTOCONTINUE 1   # açık
+```
+
+> Manuel alternatif: sohbete `continue` yazmak. Plugin sadece o adımı otomatikleştirir. Sohbet kutusu içine gerçek "Continue" butonu ve uygulama içi ayar toggle'ı, OpenCode UI'ını fork'lamayı gerektirir — plugin yaklaşımının kapsamı dışında.
 
 ---
 

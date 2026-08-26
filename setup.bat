@@ -167,8 +167,7 @@ xcopy "%source_dir%\plugins\*" "%target_dir%\plugins\" /E /I /Y /Q >nul 2>nul
 echo         OK
 
 echo  [4/7] %L_S4% (%addressing%, %L_LANG_WORD%)
-powershell -NoProfile -Command "$c=(Get-Content \"$env:OC_SOURCE\rules.md\" -Raw); $c=$c -replace '{{LANGUAGE}}', $env:OC_LANGUAGE; $c=$c -replace '{{ADDR_UPPER}}', $env:OC_ADDRESSING; $c=$c -replace '{{ADDR_AI}}', ('T3' + $env:OC_ADDRESSING + '-ai'); $c=$c -replace '{{HITAP}}', $env:OC_ADDRESSING; Set-Content (Join-Path $env:OC_TARGET 'rules.md') -Value $c"
-if errorlevel 1 (echo         ERROR! & pause & exit /b 1)
+echo         (handled by build-config)
 echo         OK
 
 echo  [5/7] %L_S5% (%username%)
@@ -178,20 +177,17 @@ if "%HAS_CUSTOM%"=="1" (
   set "OC_CKEY=%ckey%"
 )
 if "%HAS_GITHUB_MULTI%"=="1" set "OC_GH_MULTI=1"
-powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\build-config.ps1"
+where node >nul 2>nul || (echo         node not found & pause & exit /b 1)
+node "%~dp0scripts\build-config.mjs"
 if errorlevel 1 (echo         ERROR! & pause & exit /b 1)
 echo         OK
 
 echo  [6/7] %L_S6%
-if exist "%source_dir%\.agents-opencode-manifest.json" (
-  powershell -NoProfile -Command "$c=(Get-Content \"$env:OC_SOURCE\.agents-opencode-manifest.json\" -Raw); $c=$c -replace '{{USERNAME}}', $env:OC_USERNAME; Set-Content (Join-Path $env:OC_TARGET '.agents-opencode-manifest.json') -Value $c" 2>nul
-)
+echo         (handled by build-config)
 echo         OK
 
 echo  [7/7] %L_S7%
-if exist "%target_dir%\skills\research\SKILL.md" (
-  powershell -NoProfile -Command "$p=Join-Path $env:OC_TARGET 'skills\research\SKILL.md'; $c=(Get-Content $p -Raw); $c=$c -replace '{{HITAP}}', $env:OC_ADDRESSING; Set-Content $p -Value $c" 2>nul
-)
+echo         (handled by build-config)
 echo         OK
 
 echo.

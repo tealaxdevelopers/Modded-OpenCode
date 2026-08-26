@@ -3,6 +3,16 @@
 All notable changes to Modded OpenCode are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.1.1] - Unreleased
+
+### Added
+- **Cross-platform installer**: new `setup.sh` (macOS / Linux) mirrors the Windows wizard and both share one engine, `scripts/build-config.mjs` (Node, no PowerShell needed).
+- **Auto-Continue plugin** (`source/plugins/opencode-continue.ts`): watches sessions and automatically injects `continue` when a session goes idle or the connection drops mid-task (`session.idle` / `session.error`). Bounded by `cooldown_ms` + `max_consecutive`; resets on a real user message. On by default, tunable via `<project>/.opencode/auto-continue.json` or the `OC_AUTOCONTINUE` env var (0/1).
+- README sections (all 3 languages) documenting the macOS/Linux wizard and Auto-Continue behavior.
+
+### Changed
+- Config generator switched from `scripts/build-config.ps1` (PowerShell) to `scripts/build-config.mjs` (cross-platform Node). `setup.bat` now calls `node build-config.mjs`. The old `.ps1` engine is retired.
+
 ## [1.1.0] - 2026-08-26
 
 ### Added
