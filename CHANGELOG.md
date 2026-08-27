@@ -3,7 +3,15 @@
 All notable changes to Modded OpenCode are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [1.1.1] - Unreleased
+## [1.1.2] - 2026-08-27
+
+### Added
+- **Community skills bundle**: 26 skills imported from upstream OpenCode ecosystems, with attribution:
+  - From [`open-hax/opencode-skills`](https://github.com/open-hax/opencode-skills): `opencode-plugin-authoring`, `opencode-agent-authoring`, `opencode-command-authoring`, `opencode-configs`, `emergency-confusion-reset`, `break-edit-loop`, `git-safety-check`, `lint-gate`, `github-integration`, `mcp-server-integration`, `lsp-server-integration`, and the `devsecops-free-*` series (auth, cicd, cloud, discovery, dns, monitoring, security, storage).
+  - From [`devarfeen/agent-skills-kit`](https://github.com/devarfeen/agent-skills-kit): `tdd-loop`, `feature-discovery`, `agents-md`, `release-notes`, `commit-push-pr`, `pr-feedback`, `staging-fix`.
+- New skills live under `source/skills/` and load via OpenCode's standard `SKILL.md` discovery.
+
+## [1.1.1] - 2026-08-27
 
 ### Added
 - **Cross-platform installer**: new `setup.sh` (macOS / Linux) mirrors the Windows wizard and both share one engine, `scripts/build-config.mjs` (Node, no PowerShell needed).
