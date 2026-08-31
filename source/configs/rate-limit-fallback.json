@@ -7,7 +7,7 @@
   "fallbackModels": [
     { "providerID": "nvidia", "modelID": "deepseek-v4-flash-0731" },
     { "providerID": "nvidia", "modelID": "nemotron-3-nano-30b-a3b" },
-    { "providerID": "google", "modelID": "gemini-2.5-flash" }
+    { "providerID": "nvidia", "modelID": "mistral-nemotron" }
   ],
   "retryPolicy": {
     "maxRetries": 3,
