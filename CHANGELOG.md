@@ -3,12 +3,6 @@
 All notable changes to Modded OpenCode are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [Unreleased]
-
-### Added
-- **`/proxy-bridge` command**: finds the fastest free proxy and optionally configures OpenCode to route API traffic through it. Uses live-tested sources (Databay 63.9% alive, ProxyScrape 22k pool). Flags: `--json`, `--top N`, `--protocol socks5`, `--write` (persists to `~/.config/opencode/proxy-bridge.env`).
-- **`scripts/proxy-bridge.mjs`**: Node.js script for proxy discovery + TCP speed testing (concurrent, 5s timeout per proxy).
-
 ## [1.1.2] - 2026-08-27
 
 ### Added
