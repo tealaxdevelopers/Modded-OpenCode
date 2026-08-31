@@ -1,9 +1,10 @@
 /**
  * update-checker.ts — Auto-update plugin for Modded OpenCode
  *
- * Checks GitHub releases on every session start. If a newer version exists,
- * downloads changed files and applies them in the background. No reinstallation
- * needed — only diff-based updates.
+ * Two-layer update strategy:
+ *   1. Release check: compare VERSION against latest GitHub release tag.
+ *   2. HEAD check: compare file blob SHAs against latest commit on main.
+ * This catches unreleased changes pushed to main between releases.
  *
  * Plugin API: { id, setup(ctx) }
  * Events: session.idle (first idle triggers the check)
@@ -26,13 +27,10 @@ function logError(...args: unknown[]) {
 
 /** Determine kit root directory from this plugin's location. */
 function getKitDir(): string {
-  // Plugin lives at <kit>/source/plugins/update-checker.ts
-  // Kit root is two levels up.
   const pluginUrl = import.meta.url;
   const pluginPath = pluginUrl.startsWith("file://")
     ? pluginUrl.slice(7)
     : pluginUrl;
-  // Windows: /C:/Users/... -> C:/Users/...
   const cleaned = process.platform === "win32" ? pluginPath.replace(/^\/([A-Z]:)/, "$1") : pluginPath;
   return join(dirname(cleaned), "..", "..");
 }
@@ -86,126 +84,180 @@ async function readManifest(kitDir: string): Promise<Record<string, { hash: stri
   }
 }
 
-/** Check for updates and apply if available. */
-async function checkForUpdates(): Promise<void> {
-  const kitDir = getKitDir();
+const KIT_PREFIXES = ["source/", "scripts/", "setup.bat", "setup.sh"];
 
-  // 1. Read local version
-  const localVersion = await readLocalVersion(kitDir);
-  if (!localVersion) {
-    logError("Cannot read local VERSION — skipping update check");
-    return;
-  }
+/** Filter tree items to kit-owned files only. */
+function filterKitFiles(tree: Array<{ path: string; type: string; sha: string }>) {
+  return tree.filter((item) => {
+    if (item.type !== "blob") return false;
+    return KIT_PREFIXES.some((p) => item.path === p || item.path.startsWith(p));
+  });
+}
 
-  // 2. Fetch latest release from GitHub
-  const releaseRes = await apiFetch(`${GITHUB_API}/repos/${REPO}/releases/latest`);
-  if (!releaseRes) {
-    log("Cannot reach GitHub releases — skipping");
-    return;
-  }
-  const release = await releaseRes.json() as { tag_name: string; target_commitish: string };
-
-  const remoteVersion = release.tag_name.replace(/^v/, "").trim();
-  if (!remoteVersion) {
-    logError("Invalid remote version format");
-    return;
-  }
-
-  // 3. Compare versions
-  if (!isNewer(remoteVersion, localVersion)) {
-    log(`Up to date (v${localVersion})`);
-    return;
-  }
-
-  log(`New version available: v${remoteVersion} (current: v${localVersion})`);
-
-  // 4. Fetch file tree at the release commit
-  const commitSha = release.target_commitish;
-  const treeRes = await apiFetch(`${GITHUB_API}/repos/${REPO}/git/trees/${commitSha}?recursive=1`);
-  if (!treeRes) {
-    logError("Cannot fetch file tree — skipping update");
-    return;
-  }
-  const tree = await treeRes.json() as {
-    tree: Array<{ path: string; type: string; sha: string }>;
-  };
-
-  // 5. Read local manifest
-  const manifestFiles = await readManifest(kitDir);
-
-  // 6. Find changed files (only kit-owned paths)
-  const kitPrefixes = ["source/", "scripts/", "setup.bat", "setup.sh"];
+/** Compare tree against local manifest, return changed files. */
+function findChanged(
+  tree: Array<{ path: string; type: string; sha: string }>,
+  manifest: Record<string, { hash: string; blobSha?: string; size: number }>
+): Array<{ path: string; sha: string }> {
   const changed: Array<{ path: string; sha: string }> = [];
-
-  for (const item of tree.tree) {
-    if (item.type !== "blob") continue;
-    const isKitFile = kitPrefixes.some(
-      (p) => item.path === p || item.path.startsWith(p)
-    );
-    if (!isKitFile) continue;
-
-    const local = manifestFiles[item.path];
+  for (const item of filterKitFiles(tree)) {
+    const local = manifest[item.path];
     if (!local || local.blobSha !== item.sha) {
       changed.push({ path: item.path, sha: item.sha });
     }
   }
+  return changed;
+}
 
-  if (changed.length === 0) {
-    log("No changed files detected — updating VERSION only");
-    await writeFile(join(kitDir, "source", "VERSION"), remoteVersion + "\n");
-    log(`Updated to v${remoteVersion}`);
-    return;
+/** Download and apply a single file. Returns true on success. */
+async function applyFile(
+  path: string,
+  sha: string,
+  ref: string,
+  manifest: Record<string, { hash: string; blobSha?: string; size: number }>,
+  kitDir: string
+): Promise<boolean> {
+  try {
+    const res = await apiFetch(`${GITHUB_API}/repos/${REPO}/contents/${path}?ref=${ref}`);
+    if (!res) return false;
+    const data = await res.json() as { content: string };
+    const content = Buffer.from(data.content, "base64").toString("utf-8");
+
+    const fullPath = join(kitDir, path);
+    await mkdir(dirname(fullPath), { recursive: true });
+    await writeFile(fullPath, content);
+
+    const hash = createHash("sha256").update(content).digest("hex");
+    manifest[path] = { hash, blobSha: sha, size: content.length };
+    return true;
+  } catch (e) {
+    logError(`Failed to apply ${path}:`, (e as Error).message);
+    return false;
   }
+}
 
-  log(`Downloading ${changed.length} changed files...`);
-
-  // 7. Download and apply changed files
-  let applied = 0;
-  let failed = 0;
-
-  for (const { path, sha } of changed) {
-    try {
-      const contentRes = await apiFetch(
-        `${GITHUB_API}/repos/${REPO}/contents/${path}?ref=${commitSha}`
-      );
-      if (!contentRes) {
-        failed++;
-        continue;
-      }
-      const contentData = await contentRes.json() as { content: string };
-      const content = Buffer.from(contentData.content, "base64").toString("utf-8");
-
-      const fullPath = join(kitDir, path);
-      await mkdir(dirname(fullPath), { recursive: true });
-      await writeFile(fullPath, content);
-
-      // Update manifest entry
-      const hash = createHash("sha256").update(content).digest("hex");
-      manifestFiles[path] = { hash, blobSha: sha, size: content.length };
-
-      applied++;
-    } catch (e) {
-      logError(`Failed to update ${path}:`, (e as Error).message);
-      failed++;
-    }
-  }
-
-  // 8. Write updated manifest
-  const manifest = {
-    version: remoteVersion,
+/** Write manifest and VERSION back to disk. */
+async function saveManifest(
+  kitDir: string,
+  manifest: Record<string, { hash: string; blobSha?: string; size: number }>,
+  version: string
+): Promise<void> {
+  const manifestObj = {
+    version,
     generated: new Date().toISOString(),
-    fileCount: Object.keys(manifestFiles).length,
-    files: manifestFiles,
+    fileCount: Object.keys(manifest).length,
+    files: manifest,
   };
   await writeFile(
     join(kitDir, "source", "UPDATE_MANIFEST.json"),
-    JSON.stringify(manifest, null, 2) + "\n"
+    JSON.stringify(manifestObj, null, 2) + "\n"
+  );
+  await writeFile(join(kitDir, "source", "VERSION"), version + "\n");
+}
+
+// ─── Main Check Logic ───────────────────────────────────────────────────────
+
+async function checkForUpdates(): Promise<void> {
+  const kitDir = getKitDir();
+
+  const localVersion = await readLocalVersion(kitDir);
+  if (!localVersion) {
+    logError("Cannot read local VERSION — skipping");
+    return;
+  }
+
+  const manifestFiles = await readManifest(kitDir);
+
+  // ── Layer 1: Release check ────────────────────────────────────────────────
+
+  let releaseTag: string | null = null;
+  let releaseSha: string | null = null;
+
+  const releaseRes = await apiFetch(`${GITHUB_API}/repos/${REPO}/releases/latest`);
+  if (releaseRes) {
+    const release = await releaseRes.json() as { tag_name: string; target_commitish: string };
+    releaseTag = release.tag_name.replace(/^v/, "").trim();
+    releaseSha = release.target_commitish;
+  }
+
+  if (releaseTag && isNewer(releaseTag, localVersion)) {
+    log(`New release: v${releaseTag} (current: v${localVersion})`);
+
+    const treeRes = await apiFetch(`${GITHUB_API}/repos/${REPO}/git/trees/${releaseSha}?recursive=1`);
+    if (treeRes) {
+      const { tree } = await treeRes.json() as { tree: Array<{ path: string; type: string; sha: string }> };
+      const changed = findChanged(tree, manifestFiles);
+
+      if (changed.length === 0) {
+        log("No file changes in release — VERSION only");
+        await saveManifest(kitDir, manifestFiles, releaseTag);
+        log(`Updated to v${releaseTag}`);
+        return;
+      }
+
+      log(`Downloading ${changed.length} files from release...`);
+      let applied = 0;
+      for (const { path, sha } of changed) {
+        if (await applyFile(path, sha, releaseSha, manifestFiles, kitDir)) applied++;
+      }
+      await saveManifest(kitDir, manifestFiles, releaseTag);
+      log(`Release v${releaseTag} applied — ${applied}/${changed.length} files`);
+      return;
+    }
+  }
+
+  // ── Layer 2: HEAD commit check (unreleased changes on main) ──────────────
+
+  // Get latest commit SHA on main
+  const headRes = await apiFetch(`${GITHUB_API}/repos/${REPO}/commits/main`);
+  if (!headRes) {
+    log("Cannot reach GitHub HEAD — skipping");
+    return;
+  }
+  const headData = await headRes.json() as { sha: string; commit: { message: string } };
+  const headSha = headData.sha;
+  const shortSha = headSha.slice(0, 7);
+
+  // Check if we already applied this commit (store HEAD sha in manifest)
+  const lastAppliedSha = (manifestFiles as Record<string, unknown>)["__HEAD_SHA__"] as string | undefined;
+  if (lastAppliedSha === headSha) {
+    log(`Already up to date (HEAD ${shortSha})`);
+    return;
+  }
+
+  // Get file tree at HEAD
+  const headTreeRes = await apiFetch(`${GITHUB_API}/repos/${REPO}/git/trees/${headSha}?recursive=1`);
+  if (!headTreeRes) {
+    log("Cannot fetch HEAD tree — skipping");
+    return;
+  }
+  const { tree } = await headTreeRes.json() as { tree: Array<{ path: string; type: string; sha: string }> };
+  const changed = findChanged(tree, manifestFiles);
+
+  if (changed.length === 0) {
+    log(`No changes on main (HEAD ${shortSha}) — recording SHA`);
+    (manifestFiles as Record<string, unknown>)["__HEAD_SHA__"] = headSha;
+    await writeFile(
+      join(kitDir, "source", "UPDATE_MANIFEST.json"),
+      JSON.stringify({ version: localVersion, generated: new Date().toISOString(), fileCount: Object.keys(manifestFiles).length, files: manifestFiles }, null, 2) + "\n"
+    );
+    return;
+  }
+
+  log(`Found ${changed.length} changed files on main (HEAD ${shortSha})`);
+  let applied = 0;
+  for (const { path, sha } of changed) {
+    if (await applyFile(path, sha, headSha, manifestFiles, kitDir)) applied++;
+  }
+
+  // Record HEAD SHA so we don't re-download next time
+  (manifestFiles as Record<string, unknown>)["__HEAD_SHA__"] = headSha;
+  await writeFile(
+    join(kitDir, "source", "UPDATE_MANIFEST.json"),
+    JSON.stringify({ version: localVersion, generated: new Date().toISOString(), fileCount: Object.keys(manifestFiles).length, files: manifestFiles }, null, 2) + "\n"
   );
 
-  // 9. Update VERSION
-  await writeFile(join(kitDir, "source", "VERSION"), remoteVersion + "\n");
-
-  log(`Updated to v${remoteVersion} — ${applied} files applied, ${failed} failed`);
+  log(`Applied ${applied}/${changed.length} unreleased files from HEAD ${shortSha}`);
 }
 
 // ─── Plugin Export ───────────────────────────────────────────────────────────

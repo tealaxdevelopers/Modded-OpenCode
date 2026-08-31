@@ -1,6 +1,6 @@
 {
   "version": "1.1.3",
-  "generated": "2026-08-31T15:14:20.021Z",
+  "generated": "2026-08-31T15:20:47.304Z",
   "fileCount": 279,
   "files": {
     "source/.agents-opencode-manifest.json": {
@@ -244,8 +244,8 @@
       "size": 9477
     },
     "source/plugins/update-checker.ts": {
-      "hash": "390c1577e412cd8ca624d9ef08f0decb8e7bd0937da8a2d80dff4953c7233d55",
-      "size": 7138
+      "hash": "6567a206f1ae35fbb5064c1bfb4dde340c92f683179b2ff2b8c1841de3a3d01d",
+      "size": 10022
     },
     "source/rules.md": {
       "hash": "b49def83b20757c3c95cf364a2387b18f61326cbfc30c0d3bcb73d12449d98f2",
