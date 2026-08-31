@@ -1,7 +1,7 @@
 {
   "version": "1.1.2",
-  "generated": "2026-08-31T11:16:07.788Z",
-  "fileCount": 271,
+  "generated": "2026-08-31T11:32:37.099Z",
+  "fileCount": 278,
   "files": {
     "source/.agents-opencode-manifest.json": {
       "hash": "18b1fb45db0717146986a989f3f62d8b0575323d8b9fd01c096f73ffbf83cee7",
@@ -135,6 +135,10 @@
       "hash": "f20521165d6897f02aad566ddbfcea01c5de1f13bbba48bec8e3b62522e48177",
       "size": 405
     },
+    "source/commands/update.md": {
+      "hash": "017b07823e512500547e818d157657a55f0e4e4ec40d63078d672ff6879f82b1",
+      "size": 1956
+    },
     "source/instructions/blogger-reference.instructions.md": {
       "hash": "a098f78131d191aac9f787c2a9f60a1742bc0833d2c3a80565e4afb55b5321c3",
       "size": 2986
@@ -234,6 +238,10 @@
     "source/plugins/opencode-continue.ts": {
       "hash": "44a5e8f4d6310afd645e3912a8118de70b53f147d7b294eba4945e9c4ce059e2",
       "size": 9477
+    },
+    "source/plugins/update-checker.ts": {
+      "hash": "390c1577e412cd8ca624d9ef08f0decb8e7bd0937da8a2d80dff4953c7233d55",
+      "size": 7138
     },
     "source/rules.md": {
       "hash": "b49def83b20757c3c95cf364a2387b18f61326cbfc30c0d3bcb73d12449d98f2",
@@ -351,6 +359,10 @@
       "hash": "b710ada6c300d9b521cc574499df4b221c19c5909186f86a46f7dddb2094bdf0",
       "size": 2852
     },
+    "source/skills/brainstorming/SKILL.md": {
+      "hash": "801e35cb367d0781979fcc22ae8553cde908a5f8e220430e00fd2dd559740f7b",
+      "size": 5356
+    },
     "source/skills/break-edit-loop/SKILL.md": {
       "hash": "20fb5376d07883424eedafbeaf19c77ee95c691a6ea18ab2175c77ef0ba9fdd2",
       "size": 1303
@@ -410,6 +422,10 @@
     "source/skills/cynefin/SKILL.md": {
       "hash": "c9ca2f6d2c783a0e844d9f75b7fcbcf46985eb902375f233e6382b985db59609",
       "size": 2805
+    },
+    "source/skills/deep-research/SKILL.md": {
+      "hash": "f12a78aec1a09ae0233edd220fe47b5d8247fef7a261890529df66d53b3929c0",
+      "size": 3180
     },
     "source/skills/devsecops-free-auth/SKILL.md": {
       "hash": "5c87f9ea5bba62b05502465aa0f39fe69b93dbbba7a7576d5d284582de745db6",
@@ -518,6 +534,10 @@
     "source/skills/go/SKILL.md": {
       "hash": "0da87ee67d949a64b6f98be414fb97c861f817a608ee6c7dfc09e65b62f18382",
       "size": 1838
+    },
+    "source/skills/idea-os/SKILL.md": {
+      "hash": "d42c00f7fb464943b38e9d9c6a9f79c0c277340d592c288082f54a07545f40b9",
+      "size": 5950
     },
     "source/skills/issue-triage/SKILL.md": {
       "hash": "ab213b307e0c7e0d02244b5233b5ac3ceea74cac9c1aa4b766ec554a9364abbf",
@@ -682,6 +702,10 @@
     "source/skills/pdf/SKILL.md": {
       "hash": "38d8559d4899602f82f3560052132aa0c40cfca80203037729756bdb4fb8e0cb",
       "size": 7068
+    },
+    "source/skills/plan-writing/SKILL.md": {
+      "hash": "27143985441a3fec177bd68904db3e824aaacb56081d9476aaf310a23f4579bd",
+      "size": 4293
     },
     "source/skills/ponytail/SKILL.md": {
       "hash": "87e6adf02f01fda2b69a7a2cc0a468c5488fb60abf676d56545f91dfc979f3c3",
@@ -1007,9 +1031,13 @@
       "hash": "ea52d15aabaf72bc6b558efe2c126f161b53961090ddcd712000273bfe8c7b6c",
       "size": 4201
     },
+    "source/skills/wiki-researcher/SKILL.md": {
+      "hash": "b0cabb49ce2aef51386e19dbb93f0365495e503c2f81421639fcefc7014282f4",
+      "size": 3632
+    },
     "source/skills/writing-plans/SKILL.md": {
-      "hash": "2046e5b955aa16c288f9c7290c58f237628dfb6ba6d4817fad3da0fa830b46c2",
-      "size": 3264
+      "hash": "b811a28a811ed3c00c6d99074a6a7a1aa31089673a99551824925fa041a16f64",
+      "size": 3746
     },
     "source/skills/xlsx/SKILL.md": {
       "hash": "020ccdb5932257b66c638ec1157ea248d57fa52c8c01f1f68b559b5970c7df35",

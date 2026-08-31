@@ -3,6 +3,18 @@
 All notable changes to Modded OpenCode are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.1.3] - 2026-08-29
+
+### Added
+- **Research & Planning skills bundle** (6 skills) from [`EdEngineering/opencode-awesome-skills`](https://github.com/EdEngineering/opencode-awesome-skills):
+  - `deep-research` — autonomous research tasks with Gemini API integration
+  - `writing-plans` — comprehensive implementation plans with TDD-driven bite-sized tasks
+  - `plan-writing` — structured task planning with verification criteria
+  - `wiki-researcher` — deep codebase analysis with 5-iteration evidence-based tracing
+  - `brainstorming` — validated design pipeline before implementation
+  - `idea-os` — 5-phase idea-to-build pipeline (triage → clarify → research → PRD → plan)
+- Updated `UPDATE_MANIFEST.json` (271 → 278 tracked files)
+
 ## [1.1.2] - 2026-08-27
 
 ### Added
