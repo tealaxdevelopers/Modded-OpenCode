@@ -3,17 +3,13 @@
 All notable changes to Modded OpenCode are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [1.1.3] - 2026-08-29
+## [1.1.4] - 2026-08-31
 
-### Added
-- **Research & Planning skills bundle** (6 skills) from [`EdEngineering/opencode-awesome-skills`](https://github.com/EdEngineering/opencode-awesome-skills):
-  - `deep-research` — autonomous research tasks with Gemini API integration
-  - `writing-plans` — comprehensive implementation plans with TDD-driven bite-sized tasks
-  - `plan-writing` — structured task planning with verification criteria
-  - `wiki-researcher` — deep codebase analysis with 5-iteration evidence-based tracing
-  - `brainstorming` — validated design pipeline before implementation
-  - `idea-os` — 5-phase idea-to-build pipeline (triage → clarify → research → PRD → plan)
-- Updated `UPDATE_MANIFEST.json` (271 → 278 tracked files)
+### Fixed
+- **Update-checker two-layer strategy**: now checks both releases AND unreleased commits on main branch. Compares file blob SHAs against latest HEAD to catch changes between releases.
+- **Rate-limit-fallback config**: removed non-existent Gemini models from NVIDIA fallback, replaced with real NVIDIA-available models (deepseek-v4-flash, nemotron-3-nano, mistral-nemotron).
+- **Proxy-bridge command**: fixed script path resolution — now uses absolute path instead of relative path that failed in different working directories.
+- **README credits**: simplified to only reference awesome-opencode and opencode repos.
 
 ## [1.1.2] - 2026-08-27
 
