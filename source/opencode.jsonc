@@ -4,7 +4,8 @@
     "C:\\Users\\{{USERNAME}}\\.config\\opencode\\rules.md"
   ],
   "plugin": [
-    "agents-opencode"
+    "agents-opencode",
+    "@azumag/opencode-rate-limit-fallback"
   ],
   "permission": {
     "external_directory": "allow",

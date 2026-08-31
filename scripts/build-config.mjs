@@ -53,14 +53,21 @@ if (existsSync(manifestIn)) {
   writeFileSync(join(targetDir, '.agents-opencode-manifest.json'), manifest)
 }
 
-// 5. research skill hitap
+// 5. rate-limit-fallback config
+const rlConfigIn = join(sourceDir, 'configs', 'rate-limit-fallback.json')
+if (existsSync(rlConfigIn)) {
+  cpSync(rlConfigIn, join(targetDir, 'rate-limit-fallback.json'))
+  console.log('[build-config] rate-limit-fallback.json copied')
+}
+
+// 6. research skill hitap
 const researchPath = join(targetDir, 'skills', 'research', 'SKILL.md')
 if (existsSync(researchPath)) {
   const r = readFileSync(researchPath, 'utf8').replaceAll('{{HITAP}}', hitap)
   writeFileSync(researchPath, r)
 }
 
-// 6. opencode.jsonc
+// 7. opencode.jsonc
 const cfgIn = join(sourceDir, 'opencode.jsonc')
 if (!existsSync(cfgIn)) fail('source/opencode.jsonc missing')
 let cfg = readFileSync(cfgIn, 'utf8')

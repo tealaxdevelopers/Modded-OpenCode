@@ -1,7 +1,7 @@
 {
-  "version": "1.1.2",
-  "generated": "2026-08-31T11:32:37.099Z",
-  "fileCount": 278,
+  "version": "1.1.3",
+  "generated": "2026-08-31T15:14:20.021Z",
+  "fileCount": 279,
   "files": {
     "source/.agents-opencode-manifest.json": {
       "hash": "18b1fb45db0717146986a989f3f62d8b0575323d8b9fd01c096f73ffbf83cee7",
@@ -139,6 +139,10 @@
       "hash": "017b07823e512500547e818d157657a55f0e4e4ec40d63078d672ff6879f82b1",
       "size": 1956
     },
+    "source/configs/rate-limit-fallback.json": {
+      "hash": "6cb6fd603db7cacec299cb9e1000c007c688fdb7c9090af379bb1366aaf05d2d",
+      "size": 763
+    },
     "source/instructions/blogger-reference.instructions.md": {
       "hash": "a098f78131d191aac9f787c2a9f60a1742bc0833d2c3a80565e4afb55b5321c3",
       "size": 2986
@@ -228,8 +232,8 @@
       "size": 1943
     },
     "source/opencode.jsonc": {
-      "hash": "1d445a99b11790c1f1876e983b0e4c102a57d9c245d81b6157776762a4395eca",
-      "size": 1502
+      "hash": "87000121db24777e635e97cc3223f116a3c5d4f7eeafaca46d9ab82f6a1c4d2e",
+      "size": 1546
     },
     "source/plugins/agents-opencode.ts": {
       "hash": "b80344afd451ec4e46210f483d18c84b27b024b696391d62aa234c4771dc1911",
@@ -1044,12 +1048,12 @@
       "size": 10632
     },
     "source/VERSION": {
-      "hash": "77123b8e4bdbd54505bf6e8021527ac60281602a06fe307564532c4dba39dbca",
-      "size": 6
+      "hash": "431c43d80e707a979ea9df83e63fba47dfd9ab324911e111c3ffb08c8ad1b253",
+      "size": 7
     },
     "scripts/build-config.mjs": {
-      "hash": "5e27f654cd64c1fe9f072ae3e686d816786619f61dd8aa361e47734107917e88",
-      "size": 3991
+      "hash": "2a88efeeb43c782f087cea41237f1df2d0103b5be998dccf50c47d1681db41cd",
+      "size": 4261
     },
     "scripts/check.mjs": {
       "hash": "86b6ac320c9b2d66ad56970bd9159798009c976e535fc6a761a12d171303c32a",
