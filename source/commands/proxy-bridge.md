@@ -20,8 +20,16 @@ free proxy and optionally configuring OpenCode to route API traffic through it.
 
 1. Run the proxy bridge test:
 
+   First, find the script location:
+   ```powershell
+   $kitDir = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
+   node "$kitDir\scripts\proxy-bridge.mjs" --json
    ```
-   node scripts/proxy-bridge.mjs --json
+
+   Or if that fails, try the global config path:
+   ```powershell
+   $globalScript = Join-Path $env:USERPROFILE ".config\opencode\scripts\proxy-bridge.mjs"
+   if (Test-Path $globalScript) { node $globalScript --json }
    ```
 
    Flags:
