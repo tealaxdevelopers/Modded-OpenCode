@@ -1,0 +1,34 @@
+{
+  "enabled": true,
+  "cooldownMs": 60000,
+  "fallbackMode": "cycle",
+  "maxSubagentDepth": 10,
+  "enableSubagentFallback": true,
+  "fallbackModels": [
+    { "providerID": "nvidia", "modelID": "deepseek-v4-flash-0731" },
+    { "providerID": "nvidia", "modelID": "nemotron-3-nano-30b-a3b" },
+    { "providerID": "nvidia", "modelID": "mistral-nemotron" }
+  ],
+  "retryPolicy": {
+    "maxRetries": 3,
+    "strategy": "exponential",
+    "baseDelayMs": 1000,
+    "maxDelayMs": 30000,
+    "jitterEnabled": true,
+    "jitterFactor": 0.1,
+    "timeoutMs": 60000
+  },
+  "circuitBreaker": {
+    "enabled": true,
+    "failureThreshold": 5,
+    "recoveryTimeoutMs": 60000,
+    "halfOpenMaxCalls": 1,
+    "successThreshold": 2
+  },
+  "configReload": {
+    "enabled": true,
+    "watchFile": true,
+    "debounceMs": 1000,
+    "notifyOnReload": true
+  }
+}

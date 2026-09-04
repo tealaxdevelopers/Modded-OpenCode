@@ -1,0 +1,94 @@
+{
+  "skill": "pr-feedback",
+  "kind": "trigger-eval",
+  "how_to_run": "Build a catalog of every installed skill's name + description (this kit's skills plus the externals/companions a workspace normally has), mix all eval queries into one numbered list, and have 3 independent judges route each query using ONLY the catalog — no repo access. Majority vote per query. Pass = trigger queries route here; no-trigger queries route anywhere else ('route' names the expected sibling, diagnostic only). In this repo, tools/trigger-evals/ holds the checked-in harness.",
+  "queries": [
+    {
+      "q": "Address the review comments on my PR",
+      "expect": "trigger"
+    },
+    {
+      "q": "Handle the PR feedback from Sarah",
+      "expect": "trigger"
+    },
+    {
+      "q": "Respond to the reviewer on #214",
+      "expect": "trigger"
+    },
+    {
+      "q": "The reviewer left six comments on my pull request — work through them",
+      "expect": "trigger"
+    },
+    {
+      "q": "Go through the open review threads on this branch's PR and fix what's fair",
+      "expect": "trigger"
+    },
+    {
+      "q": "My PR got a changes-requested review — deal with it",
+      "expect": "trigger"
+    },
+    {
+      "q": "Apply the requested changes from the code review on PR #88",
+      "expect": "trigger"
+    },
+    {
+      "q": "Triage the reviewer's comments — some I agree with, some I don't",
+      "expect": "trigger"
+    },
+    {
+      "q": "Someone reviewed my PR overnight, handle their feedback",
+      "expect": "trigger"
+    },
+    {
+      "q": "Fix the review nits on my pull request and reply to each thread",
+      "expect": "trigger"
+    },
+    {
+      "q": "Review this PR",
+      "expect": "no-trigger",
+      "route": "/code-review"
+    },
+    {
+      "q": "Review the diff before shipping",
+      "expect": "no-trigger",
+      "route": "/code-review"
+    },
+    {
+      "q": "Open a PR for this",
+      "expect": "no-trigger",
+      "route": "/commit-push-pr"
+    },
+    {
+      "q": "Ship this as a PR",
+      "expect": "no-trigger",
+      "route": "/commit-push-pr"
+    },
+    {
+      "q": "Commit, push, and close the issue — I'm done",
+      "expect": "no-trigger",
+      "route": "/commit-push-close"
+    },
+    {
+      "q": "Fix this login bug",
+      "expect": "no-trigger",
+      "route": "/diagnosing-bugs"
+    },
+    {
+      "q": "Reply to this GitHub issue comment",
+      "expect": "no-trigger",
+      "route": "none"
+    },
+    {
+      "q": "Merge my PR",
+      "expect": "no-trigger",
+      "route": "none"
+    }
+  ],
+  "last_run": {
+    "date": "2026-08-21",
+    "method": "3 independent catalog-routing judges over the 332-query mixed set (all sixteen eval files interleaved, deterministic shuffle), majority vote per query; judges saw only the catalog — no repo access, no SKILL.md",
+    "result": "18/18 pass — unanimous pick agreement on every query",
+    "judge_model": "claude-opus-5 (3 independent catalog-only runs)",
+    "catalog": "tools/trigger-evals/build-catalog.sh (kit descriptions read live 2026-08-21) + catalog-externals.md snapshot dated 2026-08-06 (mattpocock/skills v1.2.0)"
+  }
+}

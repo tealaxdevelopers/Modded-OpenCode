@@ -1,0 +1,113 @@
+{
+  "skill": "feature-discovery",
+  "kind": "trigger-eval",
+  "how_to_run": "Build a catalog of every installed skill's name + description (this kit's skills plus the externals/companions a workspace normally has), mix all eval queries into one numbered list, and have 3 independent judges route each query using ONLY the catalog — no repo access. Majority vote per query. Pass = trigger queries route here; no-trigger queries route anywhere else ('route' names the expected sibling, diagnostic only). In this repo, tools/trigger-evals/ holds the checked-in harness.",
+  "queries": [
+    {
+      "q": "Investigate how the invite-user workflow works across ADMIN-WEB and API-SERVICE",
+      "expect": "trigger"
+    },
+    {
+      "q": "Trace where the stock-transfer approval logic lives",
+      "expect": "trigger"
+    },
+    {
+      "q": "Explain how this config flag changes behavior",
+      "expect": "trigger"
+    },
+    {
+      "q": "Audit the session-timeout behavior before we plan changes",
+      "expect": "trigger"
+    },
+    {
+      "q": "How does the legacy quotation workflow work?",
+      "expect": "trigger"
+    },
+    {
+      "q": "Map out how the RFID scanning module is wired",
+      "expect": "trigger"
+    },
+    {
+      "q": "Before we refactor billing, figure out how it works today",
+      "expect": "trigger"
+    },
+    {
+      "q": "What uses OrdersService, and why does it exist?",
+      "expect": "trigger"
+    },
+    {
+      "q": "Walk through the API surface the mobile app consumes",
+      "expect": "trigger"
+    },
+    {
+      "q": "Port the quotation screen from LEGACY-PORTAL to ADMIN-WEB",
+      "expect": "no-trigger",
+      "route": "/port-feature"
+    },
+    {
+      "q": "Rebuild this legacy feature in the new stack",
+      "expect": "no-trigger",
+      "route": "/port-feature"
+    },
+    {
+      "q": "Migrate the invoices module into the React app",
+      "expect": "no-trigger",
+      "route": "/port-feature"
+    },
+    {
+      "q": "Debug why checkout is throwing 500s",
+      "expect": "no-trigger",
+      "route": "/diagnosing-bugs"
+    },
+    {
+      "q": "Turn this rough idea into a feature prompt",
+      "expect": "no-trigger",
+      "route": "/feature-prompt"
+    },
+    {
+      "q": "Update CONTEXT.md with these domain terms",
+      "expect": "no-trigger",
+      "route": "/grill-with-docs"
+    },
+    {
+      "q": "Query the knowledge graph for the payment flow",
+      "expect": "no-trigger",
+      "route": "graphify"
+    },
+    {
+      "q": "Write an ADR for this decision",
+      "expect": "no-trigger",
+      "route": "/grill-with-docs"
+    },
+    {
+      "q": "Which issues are ready for an agent to pick up?",
+      "expect": "no-trigger",
+      "route": "/triage"
+    },
+    {
+      "q": "Which services read the FEATURE_FLAGS env var and what happens when it's off?",
+      "expect": "trigger"
+    },
+    {
+      "q": "Before implementing the new pricing rules, explain how discounts are applied today",
+      "expect": "trigger"
+    },
+    {
+      "q": "The PRD is sliced across API-SERVICE and ADMIN-WEB — map the producer surface and each consumer's call-sites into a contract with a smoke checklist",
+      "expect": "no-trigger",
+      "route": "/integration-contract"
+    },
+    {
+      "q": "Summarize this repo's overall architecture and how the main folders relate",
+      "expect": "no-trigger",
+      "route": "graphify"
+    }
+  ],
+  "last_run": {
+    "date": "2026-08-21",
+    "method": "3 independent catalog-routing judges over the 332-query mixed set (all sixteen eval files interleaved, deterministic shuffle), majority vote per query; judges saw only the catalog — no repo access, no SKILL.md",
+    "result": "22/22 pass — unanimous pick agreement on every query",
+    "judge_model": "claude-opus-5 (3 independent catalog-only runs)",
+    "catalog": "tools/trigger-evals/build-catalog.sh (kit descriptions read live 2026-08-21) + catalog-externals.md snapshot dated 2026-08-06 (mattpocock/skills v1.2.0)"
+  }
+}
