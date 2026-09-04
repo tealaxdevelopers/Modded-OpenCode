@@ -1,0 +1,16 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": "notify",
+  "share": "manual",
+  "provider": {
+    "fireworks-compatible": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Fireworks AI (custom endpoint)",
+      "options": {
+        "baseURL": "https://api.fireworks.ai/inference/v1",
+        "apiKey": "{env:FIREWORKS_API_KEY}"
+      },
+      "models": {}
+    }
+  }
+}
