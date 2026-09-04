@@ -1,0 +1,17 @@
+{
+  "name": "opencode-local-setup",
+  "version": "1.1.5",
+  "private": true,
+  "type": "module",
+  "description": "Secure, current OpenCode setup for local, LAN and OpenAI-compatible model servers.",
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "test": "npm run test:node && npm run test:install",
+    "validate": "npm run check && npm test",
+    "test:node": "node --test tests/*.test.mjs",
+    "test:install": "node scripts/run-install-test.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
