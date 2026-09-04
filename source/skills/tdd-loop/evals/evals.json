@@ -1,0 +1,108 @@
+{
+  "skill": "tdd-loop",
+  "kind": "trigger-eval",
+  "how_to_run": "Build a catalog of every installed skill's name + description (this kit's skills plus the externals/companions a workspace normally has), mix all eval queries into one numbered list, and have 3 independent judges route each query using ONLY the catalog — no repo access. Majority vote per query. Pass = trigger queries route here; no-trigger queries route anywhere else ('route' names the expected sibling, diagnostic only). In this repo, tools/trigger-evals/ holds the checked-in harness.",
+  "queries": [
+    {
+      "q": "Fix this bug test-first",
+      "expect": "trigger"
+    },
+    {
+      "q": "Add lowercase-username normalization to the signup flow — TDD please",
+      "expect": "trigger"
+    },
+    {
+      "q": "Write a failing test for the 429 retry behavior first, then implement it",
+      "expect": "trigger"
+    },
+    {
+      "q": "red-green this: carts with zero items should not be able to check out",
+      "expect": "trigger"
+    },
+    {
+      "q": "I need to hotfix prod NOW — the invoice total is wrong. We'll add tests right after.",
+      "expect": "trigger"
+    },
+    {
+      "q": "This legacy CodeIgniter controller has no tests and I need to change its permission check safely",
+      "expect": "trigger"
+    },
+    {
+      "q": "Refactor the scanner module without changing behavior — make sure the tests keep us honest",
+      "expect": "trigger"
+    },
+    {
+      "q": "Implement slice 0003 test-first",
+      "expect": "trigger"
+    },
+    {
+      "q": "Can you TDD a fix for the duplicate-order bug?",
+      "expect": "trigger"
+    },
+    {
+      "q": "Why is the RFID scan failing intermittently in WAREHOUSE-APP?",
+      "expect": "no-trigger",
+      "route": "/diagnosing-bugs"
+    },
+    {
+      "q": "Trace how invoice approval works across ADMIN-WEB and API-SVC",
+      "expect": "no-trigger",
+      "route": "/feature-discovery"
+    },
+    {
+      "q": "Punch-list this for PRD-142: the Save button sits 8px too low",
+      "expect": "no-trigger",
+      "route": "/polish-batch"
+    },
+    {
+      "q": "I'm done with #418, ship it",
+      "expect": "no-trigger",
+      "route": "/commit-push-close"
+    },
+    {
+      "q": "Sketch a quick throwaway prototype to see if drag-to-reorder feels right",
+      "expect": "no-trigger",
+      "route": "/prototype"
+    },
+    {
+      "q": "Run the test suite and tell me what's failing",
+      "expect": "no-trigger",
+      "route": "none"
+    },
+    {
+      "q": "Write release notes for the checkout fixes",
+      "expect": "no-trigger",
+      "route": "/release-notes"
+    },
+    {
+      "q": "Turn 'add CSV export' into a feature prompt",
+      "expect": "no-trigger",
+      "route": "/feature-prompt"
+    },
+    {
+      "q": "Audit the assets page against the Figma design",
+      "expect": "no-trigger",
+      "route": "/pixel-audit"
+    },
+    {
+      "q": "The billing suite already has two failing tests on main — add the proration rounding feature test-first anyway",
+      "expect": "trigger"
+    },
+    {
+      "q": "Write a characterization test before we touch this untested export job",
+      "expect": "trigger"
+    },
+    {
+      "q": "CI is red on main and I don't know why — figure out what broke",
+      "expect": "no-trigger",
+      "route": "/diagnosing-bugs"
+    }
+  ],
+  "last_run": {
+    "date": "2026-08-21",
+    "method": "3 independent catalog-routing judges over the 332-query mixed set (all sixteen eval files interleaved, deterministic shuffle), majority vote per query; judges saw only the catalog — no repo access, no SKILL.md",
+    "result": "21/21 pass — unanimous pick agreement on every query",
+    "judge_model": "claude-opus-5 (3 independent catalog-only runs)",
+    "catalog": "tools/trigger-evals/build-catalog.sh (kit descriptions read live 2026-08-21) + catalog-externals.md snapshot dated 2026-08-06 (mattpocock/skills v1.2.0)"
+  }
+}

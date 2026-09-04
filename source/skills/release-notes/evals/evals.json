@@ -1,0 +1,113 @@
+{
+  "skill": "release-notes",
+  "kind": "trigger-eval",
+  "how_to_run": "Build a catalog of every installed skill's name + description (this kit's skills plus the externals/companions a workspace normally has), mix all eval queries into one numbered list, and have 3 independent judges route each query using ONLY the catalog — no repo access. Majority vote per query. Pass = trigger queries route here; no-trigger queries route anywhere else ('route' names the expected sibling, diagnostic only). In this repo, tools/trigger-evals/ holds the checked-in harness.",
+  "queries": [
+    {
+      "q": "Generate release notes for 3 July 2026",
+      "expect": "trigger"
+    },
+    {
+      "q": "What did we ship this week? PM-friendly please",
+      "expect": "trigger"
+    },
+    {
+      "q": "Create a changelog for yesterday",
+      "expect": "trigger"
+    },
+    {
+      "q": "Summarize today's session for the PM",
+      "expect": "trigger"
+    },
+    {
+      "q": "Write up the QR scanning improvements for stakeholders",
+      "expect": "trigger"
+    },
+    {
+      "q": "Release notes for WAREHOUSE-APP, 1 to 4 July",
+      "expect": "trigger"
+    },
+    {
+      "q": "Make a non-technical summary of what changed in the billing work",
+      "expect": "trigger"
+    },
+    {
+      "q": "PM update for this sprint's commits",
+      "expect": "trigger"
+    },
+    {
+      "q": "Turn these commits into something the operations team can read",
+      "expect": "trigger"
+    },
+    {
+      "q": "Summarize this PR so I can review it faster",
+      "expect": "no-trigger",
+      "route": "/code-review"
+    },
+    {
+      "q": "Write the PR body for this change",
+      "expect": "no-trigger",
+      "route": "/commit-push-pr"
+    },
+    {
+      "q": "Close #212 with a how-to-test comment",
+      "expect": "no-trigger",
+      "route": "/commit-push-close"
+    },
+    {
+      "q": "Explain how the invite workflow works",
+      "expect": "no-trigger",
+      "route": "/feature-discovery"
+    },
+    {
+      "q": "Draft an ADR for the queue decision",
+      "expect": "no-trigger",
+      "route": "/grill-with-docs"
+    },
+    {
+      "q": "Show me the raw git log for last week",
+      "expect": "no-trigger",
+      "route": "none"
+    },
+    {
+      "q": "Update the README's feature list",
+      "expect": "no-trigger",
+      "route": "none"
+    },
+    {
+      "q": "File issues for these three bugs I found during QA",
+      "expect": "no-trigger",
+      "route": "none"
+    },
+    {
+      "q": "Summarize this long design doc into bullet points",
+      "expect": "no-trigger",
+      "route": "none"
+    },
+    {
+      "q": "Draft the weekly stakeholder update from our commits",
+      "expect": "trigger"
+    },
+    {
+      "q": "Turn the last two weeks of git history into notes the ops team can scan",
+      "expect": "trigger"
+    },
+    {
+      "q": "Summarize this session so the next agent can pick up where we left off",
+      "expect": "no-trigger",
+      "route": "/handoff"
+    },
+    {
+      "q": "Explain what changed in the billing module and why it exists",
+      "expect": "no-trigger",
+      "route": "/feature-discovery"
+    }
+  ],
+  "last_run": {
+    "date": "2026-08-21",
+    "method": "3 independent catalog-routing judges over the 332-query mixed set (all sixteen eval files interleaved, deterministic shuffle), majority vote per query; judges saw only the catalog — no repo access, no SKILL.md",
+    "result": "22/22 pass — unanimous pick agreement on every query",
+    "judge_model": "claude-opus-5 (3 independent catalog-only runs)",
+    "catalog": "tools/trigger-evals/build-catalog.sh (kit descriptions read live 2026-08-21) + catalog-externals.md snapshot dated 2026-08-06 (mattpocock/skills v1.2.0)"
+  }
+}

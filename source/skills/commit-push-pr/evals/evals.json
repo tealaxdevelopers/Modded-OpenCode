@@ -1,0 +1,104 @@
+{
+  "skill": "commit-push-pr",
+  "kind": "trigger-eval",
+  "how_to_run": "Build a catalog of every installed skill's name + description (this kit's skills plus the externals/companions a workspace normally has), mix all eval queries into one numbered list, and have 3 independent judges route each query using ONLY the catalog — no repo access. Majority vote per query. Pass = trigger queries route here; no-trigger queries route anywhere else ('route' names the expected sibling, diagnostic only). In this repo, tools/trigger-evals/ holds the checked-in harness.",
+  "queries": [
+    {
+      "q": "Commit, push, and open a PR",
+      "expect": "trigger"
+    },
+    {
+      "q": "Ship this as a PR",
+      "expect": "trigger"
+    },
+    {
+      "q": "PR this issue",
+      "expect": "trigger"
+    },
+    {
+      "q": "Open a pull request that closes #418",
+      "expect": "trigger"
+    },
+    {
+      "q": "I'm done — put this up for review as a pull request",
+      "expect": "trigger"
+    },
+    {
+      "q": "Wrap this up as a reviewable PR",
+      "expect": "trigger"
+    },
+    {
+      "q": "Push my branch and create the PR with a test plan",
+      "expect": "trigger"
+    },
+    {
+      "q": "Make a PR for the work on issue 204",
+      "expect": "trigger"
+    },
+    {
+      "q": "Land this via pull request",
+      "expect": "trigger"
+    },
+    {
+      "q": "I'm done with #418, ship it",
+      "expect": "no-trigger",
+      "route": "/commit-push-close"
+    },
+    {
+      "q": "Commit, push, and close the issue",
+      "expect": "no-trigger",
+      "route": "/commit-push-close"
+    },
+    {
+      "q": "Close the ticket with how-to-test steps",
+      "expect": "no-trigger",
+      "route": "/commit-push-close"
+    },
+    {
+      "q": "Review this PR",
+      "expect": "no-trigger",
+      "route": "/code-review"
+    },
+    {
+      "q": "Summarize this PR for the changelog",
+      "expect": "no-trigger",
+      "route": "/release-notes"
+    },
+    {
+      "q": "Generate release notes for this feature",
+      "expect": "no-trigger",
+      "route": "/release-notes"
+    },
+    {
+      "q": "Split this PRD into issues",
+      "expect": "no-trigger",
+      "route": "/to-tickets"
+    },
+    {
+      "q": "Grill me about this plan before I build it",
+      "expect": "no-trigger",
+      "route": "/grill-with-docs"
+    },
+    {
+      "q": "Diagnose why the build broke after my last commit",
+      "expect": "no-trigger",
+      "route": "/diagnosing-bugs"
+    },
+    {
+      "q": "Raise a pull request for this fix",
+      "expect": "trigger"
+    },
+    {
+      "q": "Why is CI failing on my pull request?",
+      "expect": "no-trigger",
+      "route": "/diagnosing-bugs"
+    }
+  ],
+  "last_run": {
+    "date": "2026-08-21",
+    "method": "3 independent catalog-routing judges over the 332-query mixed set (all sixteen eval files interleaved, deterministic shuffle), majority vote per query; judges saw only the catalog — no repo access, no SKILL.md",
+    "result": "20/20 pass — unanimous pick agreement on every query",
+    "judge_model": "claude-opus-5 (3 independent catalog-only runs)",
+    "catalog": "tools/trigger-evals/build-catalog.sh (kit descriptions read live 2026-08-21) + catalog-externals.md snapshot dated 2026-08-06 (mattpocock/skills v1.2.0)"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "skill": "agents-md",
+  "kind": "trigger-eval",
+  "how_to_run": "Build a catalog of every installed skill's name + description (this kit's skills plus the externals/companions a workspace normally has), mix all eval queries into one numbered list, and have 3 independent judges route each query using ONLY the catalog — no repo access. Majority vote per query. Pass = trigger queries route here; no-trigger queries route anywhere else ('route' names the expected sibling, diagnostic only). In this repo, tools/trigger-evals/ holds the checked-in harness.",
+  "queries": [
+    {
+      "q": "Generate AGENTS.md for this workspace",
+      "expect": "trigger"
+    },
+    {
+      "q": "Set up the workspace agent instructions from my code-workspace file",
+      "expect": "trigger"
+    },
+    {
+      "q": "Create the Project Matrix and non-negotiable rules for this workspace",
+      "expect": "trigger"
+    },
+    {
+      "q": "Refresh the Project Matrix — I added a folder to the workspace",
+      "expect": "trigger"
+    },
+    {
+      "q": "Regenerate the workspace AGENTS.md",
+      "expect": "trigger"
+    },
+    {
+      "q": "Bootstrap agent rules for my multi-repo VS Code workspace",
+      "expect": "trigger"
+    },
+    {
+      "q": "Make the CLAUDE.md shim and AGENTS.md for this workspace root",
+      "expect": "trigger"
+    },
+    {
+      "q": "New workspace — establish the PROJECT-CODEs",
+      "expect": "trigger"
+    },
+    {
+      "q": "Write an AGENTS.md for this repo",
+      "expect": "trigger"
+    },
+    {
+      "q": "Set up the design system for this project",
+      "expect": "no-trigger",
+      "route": "/design-system"
+    },
+    {
+      "q": "Configure the issue tracker and CONTEXT.md location",
+      "expect": "no-trigger",
+      "route": "/setup-matt-pocock-skills"
+    },
+    {
+      "q": "Seed the project ui-coding skill for ADMIN-WEB",
+      "expect": "no-trigger",
+      "route": "/design-system"
+    },
+    {
+      "q": "Generate release notes for the workspace",
+      "expect": "no-trigger",
+      "route": "/release-notes"
+    },
+    {
+      "q": "Trace how the workspace build pipeline works",
+      "expect": "no-trigger",
+      "route": "/feature-discovery"
+    },
+    {
+      "q": "Create a knowledge graph of the workspace",
+      "expect": "no-trigger",
+      "route": "graphify"
+    },
+    {
+      "q": "Sharpen the project's domain terminology",
+      "expect": "no-trigger",
+      "route": "domain-modeling"
+    },
+    {
+      "q": "Create a new skill for our deploy process",
+      "expect": "no-trigger",
+      "route": "skill-creator"
+    },
+    {
+      "q": "Add the CLAUDE.md shim that forwards Claude to AGENTS.md in this workspace",
+      "expect": "trigger"
+    },
+    {
+      "q": "We added another repo to the code-workspace — refresh the workspace agent rules",
+      "expect": "trigger"
+    },
+    {
+      "q": "Add a binding AGENTS.md rule so UI changes reuse the component library",
+      "expect": "no-trigger",
+      "route": "/design-system"
+    }
+  ],
+  "last_run": {
+    "date": "2026-08-21",
+    "method": "3 independent catalog-routing judges over the 332-query mixed set (all sixteen eval files interleaved, deterministic shuffle), majority vote per query; judges saw only the catalog — no repo access, no SKILL.md",
+    "result": "20/20 pass — unanimous pick agreement on every query",
+    "judge_model": "claude-opus-5 (3 independent catalog-only runs)",
+    "catalog": "tools/trigger-evals/build-catalog.sh (kit descriptions read live 2026-08-21) + catalog-externals.md snapshot dated 2026-08-06 (mattpocock/skills v1.2.0)"
+  }
+}
