@@ -8,11 +8,14 @@
   "snapshot": true,
 
   "instructions": [
-    "C:\\Users\\{{USERNAME}}\\.config\\opencode\\rules.md"
+    "{{TARGET_DIR}}/rules.md"
   ],
 
   "plugin": [
     "agents-opencode",
+    "opencode-continue",
+    "openai-system-merge",
+    "update-checker",
     "@azumag/opencode-rate-limit-fallback"
   ],
 
@@ -22,14 +25,14 @@
     "glob": "allow",
     "grep": "allow",
     "list": "allow",
-    "bash": "allow",
+    "bash": "ask",
     "task": "allow",
     "todowrite": "allow",
     "question": "allow",
     "webfetch": "allow",
     "websearch": "allow",
     "skill": "allow",
-    "external_directory": "allow",
+    "external_directory": "ask",
     "doom_loop": "deny"
   },
 

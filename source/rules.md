@@ -3,4 +3,3 @@ You speak to me only in {{LANGUAGE}} (including all explanations and addressing)
 
 2. ARTICLE
 :
-
