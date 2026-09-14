@@ -233,12 +233,19 @@ const setup = async (ctx: any) => {
 
     state.inFlight = true
     try {
+      // Loop detection: if we've already continued 2+ times, switch to thinking mode
+      // to prevent visible loop messages from reaching the user
+      const inLoop = state.consecutiveCount >= 2
+      const message = inLoop
+        ? "[Thinking] Analyze what happened in the previous steps. Identify if the task is complete or if a different approach is needed. Do NOT repeat the same action. If stuck, describe the blocker clearly."
+        : config.message
+
       const payload: any = {
         path: { id: sessionID },
         body: {
           ...(agent ? { agent } : {}),
           ...(assistantCtx.model ? { model: assistantCtx.model } : {}),
-          parts: [{ type: "text", text: config.message }],
+          parts: [{ type: "text", text: message }],
         },
         query: { directory: ctx.directory },
       }
@@ -252,12 +259,15 @@ const setup = async (ctx: any) => {
       state.lastAssistantMessageId = assistantCtx.messageId
       state.consecutiveCount += 1
       state.lastInjectedAt = Date.now()
-      try {
-        await (ctx.client as any).tui?.showToast?.({
-          body: { message: "Auto-continue: devam ediliyor…", variant: "info" },
-        })
-      } catch {
-        /* yoksay */
+      // Only show toast in non-loop mode; loop mode stays silent
+      if (!inLoop) {
+        try {
+          await (ctx.client as any).tui?.showToast?.({
+            body: { message: "Auto-continue: devam ediliyor…", variant: "info" },
+          })
+        } catch {
+          /* yoksay */
+        }
       }
     } catch {
       /* yoksay */
