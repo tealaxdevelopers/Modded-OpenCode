@@ -41,7 +41,7 @@ const DEFAULT_CONFIG: PluginConfig = {
   message: "continue",
   cooldown_ms: 8000,
   max_consecutive: 8,
-  continue_on_error: true,
+  continue_on_error: false,
 }
 
 interface SessionState {
