@@ -1,14 +1,14 @@
 <div align="center">
   <h1>⚡ Modded OpenCode</h1>
   <p>Требуется OpenCode — Desktop, Terminal и CLI читают один и тот же конфиг.</p>
-  <p><strong>99 навыков, автоустановка, свои правила — всё готово при запуске</strong></p>
+  <p><strong>105 навыков, автоустановка, свои правила — всё готово при запуске</strong></p>
   <p>
     <a href="README.md">🇬🇧 English</a> ·
     <a href="README.tr.md">🇹🇷 Türkçe</a>
   </p>
   <p>
-    <a href="https://github.com/tealaxdevelopers/modded-opencode"><img src="https://img.shields.io/github/last-commit/tealaxdevelopers/modded-opencode?label=%D0%9F%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BD%D0%B5%D0%B5%20%D0%BE%D0%B1%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5&style=flat-square" alt="Последнее обновление"/></a>
-    <a href="https://github.com/tealaxdevelopers/modded-opencode/stargazers"><img src="https://img.shields.io/github/stars/tealaxdevelopers/modded-opencode?style=flat-square" alt="Звёзды"/></a>
+    <a href="https://github.com/tealaxdevelopers/modded-opencode"><img src="https://img.shields.io/badge/%D0%9F%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BD%D0%B5%D0%B5%20%D0%BE%D0%B1%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-2026-blue?style=flat-square" alt="Последнее обновление"/></a>
+    <a href="https://github.com/tealaxdevelopers/modded-opencode/stargazers"><img src="https://img.shields.io/badge/%D0%97%D0%B2%D1%91%D0%B7%D0%B4%D1%8B-%E2%AD%90-yellow?style=flat-square" alt="Звёзды"/></a>
     <a href="https://opencode.ai"><img src="https://img.shields.io/badge/OpenCode-v2.3%2B-blue?style=flat-square" alt="OpenCode"/></a>
   </p>
 </div>
@@ -59,9 +59,11 @@ setup.bat
 На **macOS / Linux** используйте аналогичный мастер в оболочке:
 
 ```bash
-chmod +x setup.sh
+chmod +x setup.sh scripts/install.sh scripts/opencode-wrapper.sh scripts/sync-all-providers.sh
 ./setup.sh
 ```
+
+> ⚠️ После клонирования скрипты оболочки могут потерять права на выполнение. Запустите `chmod +x` для скриптов перед первым использованием. Среды CI также должны это проверять: `git ls-files --stage | grep 100755`.
 
 Оба мастера используют один движок (`scripts/build-config.mjs`) и задают одни и те же вопросы.
 
@@ -78,7 +80,15 @@ chmod +x setup.sh
 
 > 🔗 **Несколько ключей GitHub:** можно вставить несколько токенов через запятую — они сохраняются как `GITHUB_API_KEY_1`, `GITHUB_API_KEY_2`, … (без ограничений). Один токен остаётся как `GITHUB_API_KEY`. Когда включён мульти-режим, конфиг ссылается на первый ключ (`_1`).
 
-> 🔑 **Безопасность ключей:** ни один введённый ключ не записывается в файл. Сохраняется только как переменная среды пользователя (`setx`). Удалить позже: `setx GITHUB_API_KEY ""` (или `GITHUB_API_KEY_1`) / `setx BRAVE_API_KEY ""`
+> 🔑 **Безопасность ключей:** API-ключи **никогда не записываются в файлы shell RC** (`.bashrc`, `.zshrc`). Они хранятся в отдельном файле `.env.local` с ограниченными правами (`0600` — чтение/запись только владельцем). Файл shell RC получает только экспорт `OPENCODE_LOCAL_SETUP_DIR`, чтобы обёртка могла найти учётные данные во время выполнения.
+
+| ОС | Расположение `.env.local` | Обновляемый RC-файл | Права |
+|----|--------------------------|---------------------|-------|
+| **Windows** | `%USERPROFILE%\.config\opencode\local-setup\.env.local` | N/A (использует `setx`) | NTFS ACL |
+| **macOS** | `~/Library/Application Support/opencode/local-setup/.env.local` | `~/.zshrc` | `chmod 600` |
+| **Linux** | `~/.config/opencode/local-setup/.env.local` | `~/.bashrc` | `chmod 600` |
+
+> Чтобы отозвать ключи: удалите `.env.local` или запустите `opencode doctor` для проверки утечек.
 
 Выбранный **язык также задаёт язык общения агента** в `rules.md` — выберите `ru`, и ядро instructирует агента говорить по-русски.
 
@@ -125,7 +135,7 @@ setx BRAVE_API_KEY "BSA..."
   "message": "continue",
   "cooldown_ms": 8000,
   "max_consecutive": 8,
-  "continue_on_error": true
+  "continue_on_error": false
 }
 ```
 

@@ -1,14 +1,14 @@
 <div align="center">
   <h1>⚡ Modded OpenCode</h1>
   <p>OpenCode gerektirir — Desktop, Terminal ve CLI hepsi aynı config'i okur.</p>
-  <p><strong>99 skill, otomatik kurulum, özel kurallar — açılışta her şey hazır</strong></p>
+  <p><strong>105 skill, otomatik kurulum, özel kurallar — açılışta her şey hazır</strong></p>
   <p>
     <a href="README.md">🇬🇧 English</a> ·
     <a href="README.ru.md">🇷🇺 Русский</a>
   </p>
   <p>
-    <a href="https://github.com/tealaxdevelopers/modded-opencode"><img src="https://img.shields.io/github/last-commit/tealaxdevelopers/modded-opencode?label=Son%20G%C3%BCncelleme&style=flat-square" alt="Son Güncelleme"/></a>
-    <a href="https://github.com/tealaxdevelopers/modded-opencode/stargazers"><img src="https://img.shields.io/github/stars/tealaxdevelopers/modded-opencode?style=flat-square" alt="Yıldızlar"/></a>
+    <a href="https://github.com/tealaxdevelopers/modded-opencode"><img src="https://img.shields.io/badge/Son%20G%C3%BCncelleme-2026-blue?style=flat-square" alt="Son Güncelleme"/></a>
+    <a href="https://github.com/tealaxdevelopers/modded-opencode/stargazers"><img src="https://img.shields.io/badge/Y%C4%B1ld%C4%B1zlar-%E2%AD%90-yellow?style=flat-square" alt="Yıldızlar"/></a>
     <a href="https://opencode.ai"><img src="https://img.shields.io/badge/OpenCode-v2.3%2B-blue?style=flat-square" alt="OpenCode"/></a>
   </p>
 </div>
@@ -59,9 +59,11 @@ setup.bat
 **macOS / Linux** için eşdeğer kabuk sihirbazı:
 
 ```bash
-chmod +x setup.sh
+chmod +x setup.sh scripts/install.sh scripts/opencode-wrapper.sh scripts/sync-all-providers.sh
 ./setup.sh
 ```
+
+> ⚠️ Klonlama sonrası kabuk betikleri çalıştırma izni kaybedebilir. İlk kullanımdan önce `chmod +x` ile betiklere izin verin. CI ortamları da bunu doğrulamalıdır: `git ls-files --stage | grep 100755`.
 
 Her iki sihirbaz aynı motoru (`scripts/build-config.mjs`) paylaşır ve aynı soruları sorar.
 
@@ -78,7 +80,15 @@ Sihirbaz sırayla şunları sorar:
 
 > 🔗 **Birden fazla GitHub key:** Birden çok token'ı virgülle yapıştır — `GITHUB_API_KEY_1`, `GITHUB_API_KEY_2`, … olarak kaydedilir (üst sınır yok). Tek token `GITHUB_API_KEY` olarak kalır. Çoklu mod açıksa config ilk key'e (`_1`) bağlanır.
 
-> 🔑 **Key güvenliği:** Girdiğin hiçbir anahtar dosyaya yazılmaz. Sadece kullanıcı ortam değişkeni olarak kaydedilir (`setx`). Silmek için: `setx GITHUB_API_KEY ""` (veya `GITHUB_API_KEY_1`) / `setx BRAVE_API_KEY ""`
+> 🔑 **Key güvenliği:** API anahtarları asla kabuk RC dosyalarına (`.bashrc`, `.zshrc`) **yazılmaz**. Özel bir `.env.local` dosyasında saklanır (`0600` izin — sadece sahibi okuyabilir/yazabilir). Kabuk RC dosyası sadece `OPENCODE_LOCAL_SETUP_DIR` export'u alır, böylece wrapper çalışma zamanında kimlik bilgilerini bulabilir.
+
+| İşletim Sistemi | `.env.local` konumu | Güncellenen RC dosyası | İzinler |
+|-----------------|---------------------|------------------------|---------|
+| **Windows** | `%USERPROFILE%\.config\opencode\local-setup\.env.local` | N/A (`setx` kullanır) | NTFS ACL |
+| **macOS** | `~/Library/Application Support/opencode/local-setup/.env.local` | `~/.zshrc` | `chmod 600` |
+| **Linux** | `~/.config/opencode/local-setup/.env.local` | `~/.bashrc` | `chmod 600` |
+
+> Key'leri kaldırmak için: `.env.local` dosyasını silin veya `opencode doctor` ile sızıntı olup olmadığını kontrol edin.
 
 Kalan her şey otomatik kurulur: 99 skill, 13 agent, 19 command, 22 instruction, MCP sunucuları.
 
@@ -123,7 +133,7 @@ sonra `opencode.jsonc` içindeki ilgili `"enabled": false` değerini `true` yap.
   "message": "continue",
   "cooldown_ms": 8000,
   "max_consecutive": 8,
-  "continue_on_error": true
+  "continue_on_error": false
 }
 ```
 

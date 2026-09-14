@@ -26,7 +26,7 @@ Re-run the installer, then reload the active shell:
 exec "$SHELL" -l
 ```
 
-The installer updates `~/.zshrc` for Zsh and `~/.bashrc` otherwise. It replaces only the block between the `opencode-local-setup` markers.
+The installer updates `~/.zshrc` for Zsh and `~/.bashrc` otherwise. It replaces only the block between the `# >>> opencode setup >>>` and `# <<< opencode setup <<<` markers. API keys are stored in `.env.local` (not in RC files) — see the README for per-OS locations.
 
 ## Connection refused or timeout
 

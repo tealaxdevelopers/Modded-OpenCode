@@ -1,14 +1,14 @@
 <div align="center">
   <h1>⚡ Modded OpenCode</h1>
   <p>Requires OpenCode — Desktop, Terminal and the CLI all read the same config.</p>
-  <p><strong>99 skills, auto setup, custom rules — everything ready at launch</strong></p>
+  <p><strong>105 skills, auto setup, custom rules — everything ready at launch</strong></p>
   <p>
     <a href="README.tr.md">🇹🇷 Türkçe</a> ·
     <a href="README.ru.md">🇷🇺 Русский</a>
   </p>
   <p>
-    <a href="https://github.com/tealaxdevelopers/modded-opencode"><img src="https://img.shields.io/github/last-commit/tealaxdevelopers/modded-opencode?label=Last%20Update&style=flat-square" alt="Last Update"/></a>
-    <a href="https://github.com/tealaxdevelopers/modded-opencode/stargazers"><img src="https://img.shields.io/github/stars/tealaxdevelopers/modded-opencode?style=flat-square" alt="Stars"/></a>
+    <a href="https://github.com/tealaxdevelopers/modded-opencode"><img src="https://img.shields.io/badge/Last%20Update-2026-blue?style=flat-square" alt="Last Update"/></a>
+    <a href="https://github.com/tealaxdevelopers/modded-opencode/stargazers"><img src="https://img.shields.io/badge/Stars-⭐-yellow?style=flat-square" alt="Stars"/></a>
     <a href="https://opencode.ai"><img src="https://img.shields.io/badge/OpenCode-v2.3%2B-blue?style=flat-square" alt="OpenCode"/></a>
   </p>
 </div>
@@ -29,9 +29,10 @@ modded-opencode/
     ├── agents/                        # 13 custom agents (ivan, scout, planner, review...)
     ├── commands/                      # 19 slash commands
     ├── instructions/                  # 22 instruction sets
-    ├── plugins/                       # agents-opencode + auto-continue plugin
-    │   └── opencode-continue.ts       # Auto-resume on idle / disconnect
-    └── skills/                        # 99 SKILL.md packs
+    ├── plugins/                       # agents-opencode + auto-continue + openai-system-merge
+    │   ├── opencode-continue.ts       # Auto-resume on idle / disconnect
+    │   └── openai-system-merge.ts     # Fixes multi system message error for OpenAI-compatible providers
+    └── skills/                        # 105 SKILL.md packs (incl. Claude Code compatible skills)
 ```
 
 ### 🔥 Highlight Skills
@@ -46,7 +47,13 @@ modded-opencode/
 | **legal-advisor** | Legal research, regulation analysis, license audits |
 | **cto-advisor** | Tech debt analyzer, team scaling, tech evaluation |
 | **xlsx / pdf / docx** | Excel, PDF, Word document processing |
-| *(+89 more)* | |
+| **claude-commit** | Conventional git commit with atomic staging |
+| **claude-code-review** | Security, performance, correctness review |
+| **claude-debug** | Systematic hypothesis-driven debugging |
+| **claude-simplify** | Refactor for clarity and reduced complexity |
+| **claude-batch** | Process multiple files with same operation |
+| **claude-loop** | Repeat task with exit conditions |
+| *(+99 more)* | |
 
 ---
 
@@ -59,9 +66,11 @@ setup.bat
 On **macOS / Linux** use the equivalent shell wizard:
 
 ```bash
-chmod +x setup.sh
+chmod +x setup.sh scripts/install.sh scripts/opencode-wrapper.sh scripts/sync-all-providers.sh
 ./setup.sh
 ```
+
+> ⚠️ After cloning, shell scripts may lose their executable bits. Run `chmod +x` on the scripts before first use. CI environments should also verify this: `git ls-files --stage | grep 100755`.
 
 Both wizards share the same engine (`scripts/build-config.mjs`) and ask the same questions.
 
@@ -80,9 +89,17 @@ The **language you pick also sets the agent's conversation language** in `rules.
 
 > 🔗 **Multiple GitHub keys:** Paste several tokens separated by commas — they save as `GITHUB_API_KEY_1`, `GITHUB_API_KEY_2`, … (no upper limit). A single token stays as `GITHUB_API_KEY`. When multi-mode is on, the config references the first key (`_1`).
 
-> 🔑 **Key safety:** No key you enter is ever written to a file. Keys are saved only as user environment variables (`setx`). To remove later: `setx GITHUB_API_KEY ""` (or `GITHUB_API_KEY_1`) / `setx BRAVE_API_KEY ""`
+> 🔑 **Key safety:** API keys are **never written to shell RC files** (`.bashrc`, `.zshrc`). They are stored in a dedicated `.env.local` file with restricted permissions (`0600` — owner-only read/write). The shell RC file only receives an `OPENCODE_LOCAL_SETUP_DIR` export so the wrapper can find the credentials at runtime.
 
-Everything else installs automatically: 99 skills, 13 agents, 19 commands, 22 instruction sets, MCP servers.
+| OS | `.env.local` location | RC file updated | Permissions |
+|----|----------------------|-----------------|-------------|
+| **Windows** | `%USERPROFILE%\.config\opencode\local-setup\.env.local` | N/A (uses `setx`) | NTFS ACL |
+| **macOS** | `~/Library/Application Support/opencode/local-setup/.env.local` | `~/.zshrc` | `chmod 600` |
+| **Linux** | `~/.config/opencode/local-setup/.env.local` | `~/.bashrc` | `chmod 600` |
+
+> To revoke keys: delete `.env.local` or run `opencode doctor` to check for leaked credentials.
+
+Everything else installs automatically: 105 skills, 13 agents, 19 commands, 22 instruction sets, 4 plugins, MCP servers.
 
 ---
 
@@ -125,7 +142,7 @@ Tune or disable it via `<project>/.opencode/auto-continue.json`:
   "message": "continue",
   "cooldown_ms": 8000,
   "max_consecutive": 8,
-  "continue_on_error": true
+  "continue_on_error": false
 }
 ```
 
@@ -137,6 +154,16 @@ setx OC_AUTOCONTINUE 1   # on
 ```
 
 > Manual alternative: just type `continue` in the chat. The plugin only automates that step. A literal "Continue" button inside the chat box and an in-app settings toggle would require forking OpenCode's UI — out of scope for the plugin approach.
+
+---
+
+## 🔧 OpenAI-Compatible Provider Support
+
+Custom OpenAI-compatible providers (vLLM, Ollama, llama.cpp, LM Studio, Hetzner, OVHcloud, Scaleway, etc.) work out of the box. A built-in plugin (`openai-system-merge`) fixes the common `400 BadRequestError: System message must be at the beginning` error by automatically merging multiple system messages into one before sending to the provider.
+
+**What it fixes:** OpenCode plugins may generate multiple system messages. Strict OpenAI-compatible servers reject requests with more than one system message. The merge plugin handles this transparently.
+
+**Affected providers:** vLLM (Qwen template), Hetzner Inference, OVHcloud, Scaleway, Nebius, and any server that enforces single system message.
 
 ---
 
