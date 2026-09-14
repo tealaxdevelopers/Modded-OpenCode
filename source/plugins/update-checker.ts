@@ -36,7 +36,9 @@ function getKitDir(): string {
     ? pluginUrl.slice(7)
     : pluginUrl;
   const cleaned = process.platform === "win32" ? pluginPath.replace(/^\/([A-Z]:)/, "$1") : pluginPath;
-  return join(dirname(cleaned), "..", "..");
+  // Plugin lives in <root>/plugins/update-checker.ts
+  // Kit root (where source/VERSION lives) is one level up from plugins/
+  return join(dirname(cleaned), "..");
 }
 
 /** Compare semver strings. Returns true if remote > local. */
