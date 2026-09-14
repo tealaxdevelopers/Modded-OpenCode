@@ -134,7 +134,7 @@ writeFileSync(join(targetDir, 'rules.md'), rules)
 const manifestIn = join(sourceDir, '.agents-opencode-manifest.json')
 if (existsSync(manifestIn)) {
   let manifest = readFileSync(manifestIn, 'utf8')
-    .replaceAll('{{TARGET_DIR}}', targetDir)
+    .replaceAll('{{TARGET_DIR}}', targetDir.replace(/\\/g, '/'))
     .replaceAll('{{USERNAME}}', env.OC_USERNAME || '')
   writeFileSync(join(targetDir, '.agents-opencode-manifest.json'), manifest)
 }
@@ -159,7 +159,7 @@ if (existsSync(researchPath)) {
 const cfgIn = join(sourceDir, 'opencode.jsonc')
 if (!existsSync(cfgIn)) fail('source/opencode.jsonc missing')
 let cfg = readFileSync(cfgIn, 'utf8')
-  .replaceAll('{{TARGET_DIR}}', targetDir)
+  .replaceAll('{{TARGET_DIR}}', targetDir.replace(/\\/g, '/'))
   .replaceAll('{{USERNAME}}', env.OC_USERNAME || '')
 
 // Multi-key GitHub: switch to first key reference
