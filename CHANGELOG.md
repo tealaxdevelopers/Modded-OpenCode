@@ -3,6 +3,37 @@
 All notable changes to Modded OpenCode are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.1.6] - 2026-09-14
+
+### Fixed
+- **build-config.mjs**: cross-platform path replacement — templates now use `{{TARGET_DIR}}` placeholder instead of hardcoded `C:\Users\{{USERNAME}}` Windows paths. Replacement order corrected.
+- **setup.sh**: API keys no longer written to `.bashrc`/`.zshrc`. Keys stored in `.env.local` (mode 0600) at `local-setup/` directory. RC file only receives `OPENCODE_LOCAL_SETUP_DIR` export.
+- **update-checker.ts**: kit root path calculation fixed for installed plugin location (1 level up, not 2).
+- **opencode-continue.ts**: `continue_on_error` default changed to `false` for safety. Loop detection: after 2+ consecutive continues, switches to thinking mode and suppresses toast notifications.
+- **doctor.mjs**: secret detection broadened — catches any 20+ char alphanumeric token, not just known provider prefixes.
+- **sync-on-launch.ps1**: fixed script path from `$setupDir\scripts\sync-on-launch.mjs` to `$setupDir\sync-on-launch.mjs`.
+- **Agent skill references**: replaced non-existent skills (`socratic`, `postmortem`, `python-code-review`, `python-testing`, `data-pipeline`, `jtbd`, `wardley`, `aar`, `design`, `prompt-engineering`) with existing ones.
+- **README badges**: switched to static shields.io badges to avoid "repo not found" errors.
+
+### Added
+- **openai-system-merge plugin**: new plugin that patches `globalThis.fetch` to merge multiple leading system messages into one. Fixes `400 BadRequestError: System message must be at the beginning` on strict OpenAI-compatible providers (vLLM/Qwen, Hetzner, OVHcloud, Scaleway, Nebius).
+- **6 Claude Code compatible skills**: `claude-commit`, `claude-code-review`, `claude-debug`, `claude-simplify`, `claude-batch`, `claude-loop` — adapted from Claude Code's plugin system to OpenCode's SKILL.md format.
+- **github-auth instruction**: AI auto-detects GitHub token from environment variables (`GITHUB_API_KEY`, `GITHUB_TOKEN`, `GITHUB_PERSONAL_ACCESS_TOKEN`) instead of asking user.
+- **sequential-thinking instruction**: all models (with or without native thinking) use structured step-by-step reasoning for complex problems.
+- **Default persona fallback**: when remote persona API is unreachable, a built-in `DEFAULT_PERSONA` constant is used instead of leaving Article 2 empty.
+- **Manifest updated**: added missing `ivan.md`, `jester.md`, `oscar.md`, `scout.md` agents and `update-checker.ts` plugin.
+
+### Changed
+- **opencode.jsonc permissions**: `bash` and `external_directory` changed from `allow` to `ask` for security.
+- **opencode.jsonc plugins**: all local plugins listed by name (not file paths) for cleaner UI display.
+- **READMEs** (EN/TR/RU): added per-OS `.env.local` locations table, `chmod +x` requirements, OpenAI-compatible provider section, new skill listings.
+- Skill count: 99 → 105. Plugin count: 3 → 4.
+
+### Security
+- API keys never written to shell RC files — stored in `.env.local` with 0600 permissions.
+- Auto-continue loop mode uses thinking instead of visible messages to prevent prompt injection loops.
+- Default persona ensures agent always has working instructions even without internet.
+
 ## [1.1.5] - 2026-09-05
 
 ### Fixed
