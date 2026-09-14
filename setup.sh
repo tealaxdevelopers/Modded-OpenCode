@@ -30,6 +30,28 @@ else
   TARGET_DIR="$HOME/.config/opencode"
 fi
 
+# ---- RC file: only export helper + OPENCODE_LOCAL_SETUP_DIR ----
+# Credentials go to .env.local (mode 0600), never to shell RC files.
+LOCAL_SETUP_DIR="$TARGET_DIR/local-setup"
+mkdir -p "$LOCAL_SETUP_DIR" 2>/dev/null || true
+ENV_LOCAL="$LOCAL_SETUP_DIR/.env.local"
+touch "$ENV_LOCAL" && chmod 600 "$ENV_LOCAL"
+# Idempotent RC update with markers
+if ! grep -q '# >>> opencode setup >>>' "$RC_FILE" 2>/dev/null; then
+  cat >> "$RC_FILE" << 'RCEOF'
+# >>> opencode setup >>>
+export OPENCODE_LOCAL_SETUP_DIR="$HOME/.config/opencode/local-setup"
+# <<< opencode setup <<<
+RCEOF
+fi
+
+# ---- Node.js check ----
+command -v node >/dev/null 2>&1 || fail "Node.js not found — install Node.js >= 18 first."
+NODE_MAJOR="$(node -v 2>/dev/null | sed 's/v//' | cut -d. -f1)"
+if [ -n "$NODE_MAJOR" ] && [ "$NODE_MAJOR" -lt 18 ] 2>/dev/null; then
+  fail "Node.js v$NODE_MAJOR found but v18+ required."
+fi
+
 # shell rc for env persistence (handles bash, zsh, and fallback)
 RC_FILE=""
 case "${SHELL:-/bin/bash}" in
@@ -41,13 +63,6 @@ esac
 # Check if RC file exists; create with markers if not
 if [ ! -f "$RC_FILE" ]; then
   touch "$RC_FILE"
-fi
-
-# ---- Node.js check ----
-command -v node >/dev/null 2>&1 || fail "Node.js not found — install Node.js >= 18 first."
-NODE_MAJOR="$(node -v 2>/dev/null | sed 's/v//' | cut -d. -f1)"
-if [ -n "$NODE_MAJOR" ] && [ "$NODE_MAJOR" -lt 18 ] 2>/dev/null; then
-  fail "Node.js v$NODE_MAJOR found but v18+ required."
 fi
 
 # ---- language ----
@@ -146,18 +161,18 @@ if [ -n "${ghkey:-}" ]; then
     [ -z "$tok" ] && continue
     gh_n=$((gh_n+1))
     export "GITHUB_API_KEY_$gh_n=$tok"
-    printf "export GITHUB_API_KEY_%s='%s'\n" "$gh_n" "$tok" >> "$RC_FILE"
+    printf "export GITHUB_API_KEY_%s='%s'\n" "$gh_n" "$tok" >> "$ENV_LOCAL"
   done
   IFS="$OLD_IFS"
   if [ "$gh_n" -gt 0 ]; then
     HAS_GITHUB=1
     if [ "$gh_n" -eq 1 ]; then
       export GITHUB_API_KEY="$tok"
-      printf "export GITHUB_API_KEY='%s'\n" "$tok" >> "$RC_FILE"
+      printf "export GITHUB_API_KEY='%s'\n" "$tok" >> "$ENV_LOCAL"
     else
       OC_GH_MULTI=1
       export OC_GH_FIRST="$tok"
-      printf "export GITHUB_TOKEN_COUNT='%s'\n" "$gh_n" >> "$RC_FILE"
+      printf "export GITHUB_TOKEN_COUNT='%s'\n" "$gh_n" >> "$ENV_LOCAL"
     fi
     echo "  [+] $gh_n GitHub key(s) saved (GITHUB_API_KEY_1..N)."
   fi
@@ -170,7 +185,7 @@ read -r bravekey
 HAS_BRAVE=""
 if [ -n "${bravekey:-}" ]; then
   export BRAVE_API_KEY="$bravekey"
-  printf "export BRAVE_API_KEY='%s'\n" "$bravekey" >> "$RC_FILE"
+  printf "export BRAVE_API_KEY='%s'\n" "$bravekey" >> "$ENV_LOCAL"
   HAS_BRAVE=1
   echo "  [+] BRAVE_API_KEY saved."
 fi
@@ -189,7 +204,7 @@ if [ "${extra:-}" = "1" ]; then
   printf "  %s " "$L_CKEY";  read -r ckey
   if [ -n "${cbase:-}" ] && [ -n "${cmodel:-}" ] && [ -n "${ckey:-}" ]; then
     export CUSTOM_LLM_API_KEY="$ckey"
-    printf "export CUSTOM_LLM_API_KEY='%s'\n" "$ckey" >> "$RC_FILE"
+    printf "export CUSTOM_LLM_API_KEY='%s'\n" "$ckey" >> "$ENV_LOCAL"
     export OC_CBASE="$cbase" OC_CMODEL="$cmodel"
     HAS_CUSTOM=1
     echo "  [+] CUSTOM_LLM_API_KEY saved."
@@ -239,5 +254,5 @@ echo "  $L_DONE_HEAD"
 echo "  ============================================"
 echo
 echo "  $L_RUN_HINT"
-echo "  (env vars written to $RC_FILE — restart your terminal or 'source $RC_FILE')"
+  echo "  (credentials stored in $ENV_LOCAL — restart your terminal or 'source $RC_FILE')"
 echo
