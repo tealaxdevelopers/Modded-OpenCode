@@ -36,8 +36,18 @@ async function getOpenCodeVersion() {
 
 function hasEmbeddedSecret(value) {
   if (typeof value !== "string") return false;
+  // Environment variable references are safe
   if (/^\{env:[A-Za-z_][A-Za-z0-9_]*\}$/.test(value)) return false;
-  return /^(?:sk-|xai-|gsk_|fw_|Bearer\s+)[A-Za-z0-9._-]{8,}/i.test(value);
+  // URLs and file paths are not secrets
+  if (/^(https?:\/\/|file:\/\/|[A-Za-z]:|\/)/i.test(value)) return false;
+  // Empty or very short values are not secrets
+  if (value.length < 8) return false;
+  // Known provider prefixes (OpenAI, xAI, Groq, Fireworks, etc.)
+  if (/^(?:sk-|xai-|gsk_|fw_|Bearer\s+)[A-Za-z0-9._-]{8,}/i.test(value)) return true;
+  // Generic: long string that looks like a token/key (alphanumeric + common separators)
+  // GitHub tokens, personal access tokens, etc.
+  if (/^[A-Za-z0-9._-]{20,}$/.test(value)) return true;
+  return false;
 }
 
 console.log("OpenCode Local Setup doctor\n");
