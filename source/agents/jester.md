@@ -207,11 +207,10 @@ Load these skills to sharpen your critique:
 |-------|-------------|
 | `redteam` | Adversarial analysis - find vulnerabilities |
 | `premortem` | Imagine failure, identify risks |
-| `socratic` | Deep questioning to expose assumptions |
-| `postmortem` | Analyze what went wrong |
-| `pr-review` | Code review checklist |
-| `python-code-review` | Python-specific code quality |
 | `5whys` | Get to root cause |
+| `pr-review` | Code review checklist |
+| `systematic-debugging` | Structured debugging approach |
+| `refactoring` | Systematic code improvement |
 
 ---
 

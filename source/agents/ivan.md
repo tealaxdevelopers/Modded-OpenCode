@@ -240,13 +240,11 @@ Load these skills for implementation work:
 | Skill | When to Use |
 |-------|-------------|
 | `git-commit` | Write conventional commit messages |
-| `python-code-review` | Review Python code quality |
-| `python-testing` | Write pytest tests |
+| `python` | Python code quality and best practices |
 | `python-venv` | Manage virtual environments |
 | `pdf` | Process, create, or manipulate PDFs |
 | `xlsx` | Work with Excel/spreadsheet files |
 | `docx` | Create or edit Word documents |
-| `data-pipeline` | Build data processing pipelines |
 | `ml-experiment` | Track ML experiments |
 | `5whys` | Debug failures, find root cause |
 | `skill-creator` | Create new skills |
