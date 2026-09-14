@@ -22,7 +22,7 @@ if (Test-Path $envFile) {
 # Run sync-on-launch
 $configDir = "$env:USERPROFILE\.config\opencode"
 $env:OPENCODE_CONFIG = "$configDir\opencode.jsonc"
-node "$setupDir\scripts\sync-on-launch.mjs" 2>$null
+node "$setupDir\sync-on-launch.mjs" 2>$null
 if ($LASTEXITCODE -eq 0) {
     Write-Host "? Local models synced"
 } else {
