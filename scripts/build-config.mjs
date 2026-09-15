@@ -20,13 +20,13 @@ if (!sourceDir || !targetDir) {
 
 const fail = (msg) => { console.error('[build-config] ' + msg); process.exit(1) }
 
-// 1. target subdirs
-for (const d of ['skills', 'agents', 'commands', 'instructions', 'plugins']) {
+// 1. target subdirs (plugins installed from npm, no local dir needed)
+for (const d of ['skills', 'agents', 'commands', 'instructions']) {
   mkdirSync(join(targetDir, d), { recursive: true })
 }
 
-// 2. copy skill trees
-for (const d of ['skills', 'agents', 'commands', 'instructions', 'plugins']) {
+// 2. copy skill trees (plugins are installed from npm, not copied locally)
+for (const d of ['skills', 'agents', 'commands', 'instructions']) {
   const src = join(sourceDir, d)
   if (existsSync(src)) cpSync(src, join(targetDir, d), { recursive: true })
 }
