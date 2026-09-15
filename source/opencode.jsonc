@@ -12,6 +12,10 @@
   ],
 
   "plugin": [
+    "modded-opencode-agents-opencode",
+    "modded-opencode-opencode-continue",
+    "modded-opencode-openai-system-merge",
+    "modded-opencode-update-checker",
     "@azumag/opencode-rate-limit-fallback"
   ],
 

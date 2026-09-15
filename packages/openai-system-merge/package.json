@@ -1,0 +1,16 @@
+{
+  "name": "modded-opencode-openai-system-merge",
+  "version": "1.0.0",
+  "description": "Merge multiple system messages for strict OpenAI-compatible providers",
+  "type": "module",
+  "main": "index.ts",
+  "keywords": ["opencode", "plugin", "openai", "system-message", "merge"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tealaxdevelopers/modded-opencode"
+  },
+  "peerDependencies": {
+    "@opencode-ai/plugin": "latest"
+  }
+}

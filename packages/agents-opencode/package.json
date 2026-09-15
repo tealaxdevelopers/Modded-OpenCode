@@ -1,0 +1,16 @@
+{
+  "name": "modded-opencode-agents-opencode",
+  "version": "1.0.0",
+  "description": "Agent pack plugin for Modded OpenCode — 13 agents, 105 skills, 19 commands",
+  "type": "module",
+  "main": "index.ts",
+  "keywords": ["opencode", "plugin", "agents", "skills"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tealaxdevelopers/modded-opencode"
+  },
+  "peerDependencies": {
+    "@opencode-ai/plugin": "latest"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "modded-opencode-update-checker",
+  "version": "1.0.0",
+  "description": "Auto-update plugin for Modded OpenCode — checks GitHub for new releases",
+  "type": "module",
+  "main": "index.ts",
+  "keywords": ["opencode", "plugin", "update", "auto-update", "github"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tealaxdevelopers/modded-opencode"
+  },
+  "peerDependencies": {
+    "@opencode-ai/plugin": "latest"
+  }
+}
