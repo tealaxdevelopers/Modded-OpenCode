@@ -13,7 +13,7 @@
 //
 // Ayar (proje bazlı): <proje>/.opencode/auto-continue.json  (veya .jsonc)
 //   { "enabled": true, "message": "continue", "cooldown_ms": 8000,
-//     "max_consecutive": 8, "continue_on_error": true }
+//     "max_consecutive": 8, "continue_on_error": false }
 // Global kapat/aç: ortam değişkeni OC_AUTOCONTINUE=0 | 1
 //
 // Mantık (hjzccc/opencode-auto-continue temel alınmıştır):
@@ -263,7 +263,7 @@ const setup = async (ctx: any) => {
       if (!inLoop) {
         try {
           await (ctx.client as any).tui?.showToast?.({
-            body: { message: "Auto-continue: devam ediliyor…", variant: "info" },
+            body: { message: "Auto-continue: continuing…", variant: "info" },
           })
         } catch {
           /* yoksay */

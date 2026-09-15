@@ -36,6 +36,19 @@ LOCAL_SETUP_DIR="$TARGET_DIR/local-setup"
 mkdir -p "$LOCAL_SETUP_DIR" 2>/dev/null || true
 ENV_LOCAL="$LOCAL_SETUP_DIR/.env.local"
 touch "$ENV_LOCAL" && chmod 600 "$ENV_LOCAL"
+# shell rc for env persistence (handles bash, zsh, and fallback)
+RC_FILE=""
+case "${SHELL:-/bin/bash}" in
+  *zsh)   RC_FILE="$HOME/.zshrc" ;;
+  *bash)  RC_FILE="$HOME/.bashrc" ;;
+  *)      RC_FILE="$HOME/.bashrc" ;;
+esac
+
+# Check if RC file exists; create with markers if not
+if [ ! -f "$RC_FILE" ]; then
+  touch "$RC_FILE"
+fi
+
 # Idempotent RC update with markers
 if ! grep -q '# >>> opencode setup >>>' "$RC_FILE" 2>/dev/null; then
   cat >> "$RC_FILE" << 'RCEOF'
@@ -50,19 +63,6 @@ command -v node >/dev/null 2>&1 || fail "Node.js not found — install Node.js >
 NODE_MAJOR="$(node -v 2>/dev/null | sed 's/v//' | cut -d. -f1)"
 if [ -n "$NODE_MAJOR" ] && [ "$NODE_MAJOR" -lt 18 ] 2>/dev/null; then
   fail "Node.js v$NODE_MAJOR found but v18+ required."
-fi
-
-# shell rc for env persistence (handles bash, zsh, and fallback)
-RC_FILE=""
-case "${SHELL:-/bin/bash}" in
-  *zsh)   RC_FILE="$HOME/.zshrc" ;;
-  *bash)  RC_FILE="$HOME/.bashrc" ;;
-  *)      RC_FILE="$HOME/.bashrc" ;;
-esac
-
-# Check if RC file exists; create with markers if not
-if [ ! -f "$RC_FILE" ]; then
-  touch "$RC_FILE"
 fi
 
 # ---- language ----

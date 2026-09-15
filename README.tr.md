@@ -29,9 +29,9 @@ modded-opencode/
     ├── agents/                        # 13 özel agent (ivan, scout, planner, review...)
     ├── commands/                      # 19 slash komutu
     ├── instructions/                  # 22 instruction seti
-    ├── plugins/                       # agents-opencode + auto-continue plugin'i
+    ├── plugins/                       # 4 plugin (agents-opencode, auto-continue, openai-system-merge, update-checker)
     │   └── opencode-continue.ts       # Boşta kalınca / kopunca otomatik devam
-    └── skills/                        # 99 adet SKILL.md paketi
+    └── skills/                        # 105 adet SKILL.md paketi
 ```
 
 ### 🔥 Öne Çıkan Skill'ler
@@ -90,7 +90,7 @@ Sihirbaz sırayla şunları sorar:
 
 > Key'leri kaldırmak için: `.env.local` dosyasını silin veya `opencode doctor` ile sızıntı olup olmadığını kontrol edin.
 
-Kalan her şey otomatik kurulur: 99 skill, 13 agent, 19 command, 22 instruction, MCP sunucuları.
+Kalan her şey otomatik kurulur: 105 skill, 13 agent, 19 command, 22 instruction, MCP sunucuları.
 
 ---
 

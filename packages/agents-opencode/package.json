@@ -1,6 +1,6 @@
 {
   "name": "modded-opencode-agents-opencode",
-  "version": "1.0.0",
+  "version": "1.1.6",
   "description": "Agent pack plugin for Modded OpenCode — 13 agents, 105 skills, 19 commands",
   "type": "module",
   "main": "index.ts",

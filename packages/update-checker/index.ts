@@ -130,8 +130,14 @@ async function applyFile(
     const content = Buffer.from(data.content, "base64").toString("utf-8");
 
     const fullPath = join(kitDir, path);
-    await mkdir(dirname(fullPath), { recursive: true });
-    await writeFile(fullPath, content);
+    // Path traversal protection: resolved path must be within kitDir
+    const resolved = join(kitDir, path);
+    if (!resolved.startsWith(kitDir)) {
+      logError(`Blocked path traversal: ${path}`);
+      return false;
+    }
+    await mkdir(dirname(resolved), { recursive: true });
+    await writeFile(resolved, content);
 
     const hash = createHash("sha256").update(content).digest("hex");
     manifest[path] = { hash, blobSha: sha, size: content.length };

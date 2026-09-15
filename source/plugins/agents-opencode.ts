@@ -1,6 +1,6 @@
 import type { Plugin } from "@opencode-ai/plugin";
 
-const PACKAGE_VERSION = "2.0.0";
+const PACKAGE_VERSION = "1.1.6";
 
 export const AgentsOpencodePlugin: Plugin = async ({
   client,
@@ -13,7 +13,7 @@ export const AgentsOpencodePlugin: Plugin = async ({
     body: {
       service: "agents-opencode",
       level: "info",
-      message: `Agents Opencode v${PACKAGE_VERSION} loaded — 13 agents, 99 skills, 19 commands available`,
+      message: `Agents Opencode v${PACKAGE_VERSION} loaded — 13 agents, 105 skills, 19 commands available`,
     },
   });
 
@@ -42,7 +42,7 @@ Available agents (invoke via @mention):
 - @oscar — Senior code reviewer
 - @scout — Research and planning
 
-Active skills: 99 language/domain/utility skill packs.
+Active skills: 105 language/domain/utility skill packs.
 Active commands: 19 slash commands (type / to see autocomplete).
 Autoupdate: enabled (OpenCode checks for updates on startup).`);
 

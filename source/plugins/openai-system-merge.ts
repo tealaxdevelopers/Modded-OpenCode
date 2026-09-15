@@ -80,8 +80,10 @@ function mergeLeadingSystemMessages(messages: any[]): any[] {
 function patchFetch() {
   const originalFetch = globalThis.fetch;
   if (!originalFetch) return;
+  // Guard against double-patching
+  if ((globalThis.fetch as any).__openaiSystemMergePatched) return;
 
-  globalThis.fetch = async function patchedFetch(
+  const patchedFetch = async function(
     input: RequestInfo | URL,
     init?: RequestInit
   ): Promise<Response> {
@@ -125,6 +127,9 @@ function patchFetch() {
     const newInit = { ...init, body: JSON.stringify(body) };
     return originalFetch.call(globalThis, input, newInit);
   };
+
+  (patchedFetch as any).__openaiSystemMergePatched = true;
+  globalThis.fetch = patchedFetch;
 }
 
 // Apply patch on module load

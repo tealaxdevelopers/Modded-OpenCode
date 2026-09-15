@@ -174,23 +174,26 @@ if (env.HAS_GITHUB !== '1') {
 if (env.HAS_BRAVE === '1') {
   cfg = cfg.replace(/("brave-search"\s*:\s*\{[\s\S]*?"enabled":\s*)false/, '$1true')
 }
-// Custom provider injection
+// Custom provider injection (uses JSON.stringify to prevent injection)
 if (env.HAS_CUSTOM === '1' && env.OC_CBASE && env.OC_CMODEL) {
   const base = env.OC_CBASE.trim().replace(/\/+$/, '')
-  const model = env.OC_CMODEL.trim().replace(/"/g, '').replace(/\\/g, '')
+  const model = env.OC_CMODEL.trim()
   const keyName = model.replace(/[^A-Za-z0-9._-]/g, '-').toLowerCase()
   if (base && model) {
-    const block =
-      `"provider": {\n` +
-      `    "${keyName}": {\n` +
-      `      "name": "${model}",\n` +
-      `      "npm": "@ai-sdk/openai-compatible",\n` +
-      `      "options": {\n` +
-      `        "baseURL": "${base}",\n` +
-      `        "apiKey": "{env:CUSTOM_LLM_API_KEY}"\n` +
-      `      },\n` +
-      `      "models": {\n        "${model}": {}\n      }\n    }\n  }`
-    cfg = cfg.replace('"provider": {}', block)
+    const providerObj = {
+      [keyName]: {
+        name: model,
+        npm: '@ai-sdk/openai-compatible',
+        options: {
+          baseURL: base,
+          apiKey: '{env:CUSTOM_LLM_API_KEY}'
+        },
+        models: {
+          [model]: {}
+        }
+      }
+    }
+    cfg = cfg.replace('"provider": {}', '"provider": ' + JSON.stringify(providerObj, null, 2).split('\n').join('\n    '))
   }
 }
 
