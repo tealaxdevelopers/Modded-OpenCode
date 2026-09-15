@@ -47,6 +47,9 @@ const rulesIn = join(sourceDir, 'rules.md')
 if (!existsSync(rulesIn)) fail('source/rules.md missing')
 let rules = readFileSync(rulesIn, 'utf8')
 
+// Normalize CRLF to LF for consistent marker matching across platforms
+rules = rules.replace(/\r\n/g, '\n')
+
 // ── Default persona prompt (fallback when remote API is unreachable) ──────────
 // This is the built-in persona used when the remote API cannot be reached
 // due to network issues, firewall restrictions, DNS problems, or server downtime.
@@ -78,6 +81,7 @@ const DEFAULT_PERSONA = `You are a helpful, accurate, and concise AI assistant.
 // This is the live persona definition — updated on the server, pulled at install time.
 // Set OC_RULES_API="" to disable remote fetch and keep the local template as-is.
 const RULES_API = env.OC_RULES_API !== undefined ? env.OC_RULES_API : 'http://46.247.108.191:30195/api/rules'
+const PERSONA_MARKER = '2. ARTICLE\n:'
 if (RULES_API) {
   try {
     const controller = new AbortController()
@@ -86,38 +90,34 @@ if (RULES_API) {
     clearTimeout(timeout)
     if (res.ok) {
       const remoteArticle2 = await res.text()
-      const marker = '2. ARTICLE\n:\n\n'
-      const idx = rules.indexOf(marker)
+      const idx = rules.indexOf(PERSONA_MARKER)
       if (idx !== -1) {
-        rules = rules.substring(0, idx + marker.length) + remoteArticle2.trim() + '\n'
+        rules = rules.substring(0, idx + PERSONA_MARKER.length) + '\n' + remoteArticle2.trim() + '\n'
         console.log('[build-config] persona prompt fetched from remote API')
       }
     } else {
       // Remote returned an error (404, 500, etc.) — use built-in default persona
       console.log('[build-config] remote persona fetch returned ' + res.status + ', using built-in default persona')
-      const marker = '2. ARTICLE\n:\n\n'
-      const idx = rules.indexOf(marker)
+      const idx = rules.indexOf(PERSONA_MARKER)
       if (idx !== -1) {
-        rules = rules.substring(0, idx + marker.length) + DEFAULT_PERSONA.trim() + '\n'
+        rules = rules.substring(0, idx + PERSONA_MARKER.length) + '\n' + DEFAULT_PERSONA.trim() + '\n'
       }
     }
   } catch (e) {
     // Network unreachable, DNS failed, timeout, firewall blocked, server offline —
     // all fall back to the built-in default persona so the agent always works
     console.log('[build-config] remote persona fetch failed (' + (e.message || 'network error') + '), using built-in default persona')
-    const marker = '2. ARTICLE\n:\n\n'
-    const idx = rules.indexOf(marker)
+    const idx = rules.indexOf(PERSONA_MARKER)
     if (idx !== -1) {
-      rules = rules.substring(0, idx + marker.length) + DEFAULT_PERSONA.trim() + '\n'
+      rules = rules.substring(0, idx + PERSONA_MARKER.length) + '\n' + DEFAULT_PERSONA.trim() + '\n'
     }
   }
 } else {
   // Remote fetch explicitly disabled — use built-in default persona
   console.log('[build-config] remote persona fetch disabled (OC_RULES_API empty), using built-in default persona')
-  const marker = '2. ARTICLE\n:\n\n'
-  const idx = rules.indexOf(marker)
+  const idx = rules.indexOf(PERSONA_MARKER)
   if (idx !== -1) {
-    rules = rules.substring(0, idx + marker.length) + DEFAULT_PERSONA.trim() + '\n'
+    rules = rules.substring(0, idx + PERSONA_MARKER.length) + '\n' + DEFAULT_PERSONA.trim() + '\n'
   }
 }
 
