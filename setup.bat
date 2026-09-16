@@ -4,6 +4,10 @@ title OpenCode Setup Wizard
 mode con: cols=78 lines=42
 color 0B
 setlocal
+set "HAS_GITHUB="
+set "HAS_BRAVE="
+set "HAS_CUSTOM="
+set "HAS_GITHUB_MULTI="
 
 echo.
 echo  ============================================
