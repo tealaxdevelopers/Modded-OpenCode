@@ -172,7 +172,9 @@ Custom providers (vLLM, Ollama, llama.cpp, LM Studio, Hetzner, OVHcloud, Scalewa
 
 ## 📦 Installation
 
-Both wizards (`setup.bat` / `setup.sh`) ask the same questions:
+### Primary: `setup.bat` / `setup.sh` (full wizard)
+
+Both wizards ask the same questions and produce the complete config:
 
 | Step | Question | If left empty |
 |------|----------|---------------|
@@ -182,6 +184,10 @@ Both wizards (`setup.bat` / `setup.sh`) ask the same questions:
 | 4️⃣ GitHub API key(s) | For GitHub MCP | skipped, MCP disabled |
 | 5️⃣ Brave API key | For web search | skipped, search disabled |
 | 6️⃣ Extra integrations | Custom provider menu | skip |
+
+### Secondary: `scripts/install.sh` (provider sync only)
+
+Lightweight helper that syncs local model catalogs — does **not** create rules, agents, skills, or config. Use after adding a new local model server.
 
 The language you pick sets the agent's conversation language in `rules.md`.
 

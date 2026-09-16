@@ -197,9 +197,15 @@ if (env.HAS_CUSTOM === '1' && env.OC_CBASE && env.OC_CMODEL) {
   }
 }
 
-// validate
+// validate — strip JSONC features (comments, trailing commas) before JSON.parse
+function stripJsonc(s) {
+  return s
+    .replace(/\/\/.*$/gm, '')           // line comments
+    .replace(/\/\*[\s\S]*?\*\//g, '')   // block comments
+    .replace(/,\s*([\]}])/g, '$1')      // trailing commas
+}
 try {
-  JSON.parse(cfg)
+  JSON.parse(stripJsonc(cfg))
 } catch (e) {
   fail('generated opencode.jsonc is invalid JSON: ' + e.message)
 }

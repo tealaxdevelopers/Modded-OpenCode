@@ -35,7 +35,6 @@ fi
 LOCAL_SETUP_DIR="$TARGET_DIR/local-setup"
 mkdir -p "$LOCAL_SETUP_DIR" 2>/dev/null || true
 ENV_LOCAL="$LOCAL_SETUP_DIR/.env.local"
-touch "$ENV_LOCAL" && chmod 600 "$ENV_LOCAL"
 # shell rc for env persistence (handles bash, zsh, and fallback)
 RC_FILE=""
 case "${SHELL:-/bin/bash}" in
@@ -49,14 +48,33 @@ if [ ! -f "$RC_FILE" ]; then
   touch "$RC_FILE"
 fi
 
-# Idempotent RC update with markers
+# Idempotent RC update with markers — use LOCAL_SETUP_DIR variable, not hardcoded path
 if ! grep -q '# >>> opencode setup >>>' "$RC_FILE" 2>/dev/null; then
-  cat >> "$RC_FILE" << 'RCEOF'
+  cat >> "$RC_FILE" << RCEOF
 # >>> opencode setup >>>
-export OPENCODE_LOCAL_SETUP_DIR="$HOME/.config/opencode/local-setup"
+export OPENCODE_LOCAL_SETUP_DIR="$LOCAL_SETUP_DIR"
 # <<< opencode setup <<<
 RCEOF
 fi
+
+# ---- Safe shell escape ----
+# Produces a single-quoted string safe for shell exports.
+# If value contains single quotes, uses dollar-quote syntax.
+shell_escape_val() {
+  local val="$1"
+  if [[ "$val" != *"'"* ]]; then
+    printf "'%s'" "$val"
+  else
+    local escaped="${val//\'/\'\\'\'}"
+    printf "'%s'" "$escaped"
+  fi
+}
+
+# Write a safe export line to temp env file
+write_env() {
+  local key="$1" val="$2"
+  printf 'export %s=%s\n' "$key" "$(shell_escape_val "$val")" >> "$ENV_LOCAL.tmp.$$"
+}
 
 # ---- Node.js check ----
 command -v node >/dev/null 2>&1 || fail "Node.js not found — install Node.js >= 18 first."
@@ -161,18 +179,18 @@ if [ -n "${ghkey:-}" ]; then
     [ -z "$tok" ] && continue
     gh_n=$((gh_n+1))
     export "GITHUB_API_KEY_$gh_n=$tok"
-    printf "export GITHUB_API_KEY_%s='%s'\n" "$gh_n" "$tok" >> "$ENV_LOCAL"
+    write_env "GITHUB_API_KEY_$gh_n" "$tok"
   done
   IFS="$OLD_IFS"
   if [ "$gh_n" -gt 0 ]; then
     HAS_GITHUB=1
     if [ "$gh_n" -eq 1 ]; then
       export GITHUB_API_KEY="$tok"
-      printf "export GITHUB_API_KEY='%s'\n" "$tok" >> "$ENV_LOCAL"
+      write_env "GITHUB_API_KEY" "$tok"
     else
       OC_GH_MULTI=1
       export OC_GH_FIRST="$tok"
-      printf "export GITHUB_TOKEN_COUNT='%s'\n" "$gh_n" >> "$ENV_LOCAL"
+      write_env "GITHUB_TOKEN_COUNT" "$gh_n"
     fi
     echo "  [+] $gh_n GitHub key(s) saved (GITHUB_API_KEY_1..N)."
   fi
@@ -185,7 +203,7 @@ read -r bravekey
 HAS_BRAVE=""
 if [ -n "${bravekey:-}" ]; then
   export BRAVE_API_KEY="$bravekey"
-  printf "export BRAVE_API_KEY='%s'\n" "$bravekey" >> "$ENV_LOCAL"
+  write_env "BRAVE_API_KEY" "$bravekey"
   HAS_BRAVE=1
   echo "  [+] BRAVE_API_KEY saved."
 fi
@@ -204,7 +222,7 @@ if [ "${extra:-}" = "1" ]; then
   printf "  %s " "$L_CKEY";  read -r ckey
   if [ -n "${cbase:-}" ] && [ -n "${cmodel:-}" ] && [ -n "${ckey:-}" ]; then
     export CUSTOM_LLM_API_KEY="$ckey"
-    printf "export CUSTOM_LLM_API_KEY='%s'\n" "$ckey" >> "$ENV_LOCAL"
+    write_env "CUSTOM_LLM_API_KEY" "$ckey"
     export OC_CBASE="$cbase" OC_CMODEL="$cmodel"
     HAS_CUSTOM=1
     echo "  [+] CUSTOM_LLM_API_KEY saved."
@@ -212,6 +230,31 @@ if [ "${extra:-}" = "1" ]; then
     echo "  [i] Cancelled."
   fi
 fi
+
+# ---- Atomic .env.local commit ----
+# Preserve user-added lines outside markers, replace only our section
+ENV_MARKER_START="# >>> modded-opencode credentials >>>"
+ENV_MARKER_END="# <<< modded-opencode credentials <<<"
+if [ -f "$ENV_LOCAL" ]; then
+  awk -v start="$ENV_MARKER_START" -v end="$ENV_MARKER_END" '
+    $0 == start { skip = 1; next }
+    $0 == end { skip = 0; next }
+    !skip { print }
+  ' "$ENV_LOCAL" > "$ENV_LOCAL.user.$$" 2>/dev/null || : > "$ENV_LOCAL.user.$$"
+else
+  : > "$ENV_LOCAL.user.$$"
+fi
+
+{
+  cat "$ENV_LOCAL.user.$$"
+  echo "$ENV_MARKER_START"
+  cat "$ENV_LOCAL.tmp.$$"
+  echo "$ENV_MARKER_END"
+  echo
+} > "$ENV_LOCAL"
+
+chmod 600 "$ENV_LOCAL"
+rm -f "$ENV_LOCAL.tmp.$$" "$ENV_LOCAL.user.$$"
 
 # ---- Create target dirs ----
 mkdir -p "$TARGET_DIR" 2>/dev/null || fail "Cannot create target directory: $TARGET_DIR"
