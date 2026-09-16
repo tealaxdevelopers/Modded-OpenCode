@@ -40,6 +40,9 @@ Plugin'ler npm'den yüklenir (yerel dosya olarak paketlenmez):
 | **auto-continue** | `modded-opencode-opencode-continue` | Boşta kalınca / kopunca otomatik devam |
 | **openai-system-merge** | `modded-opencode-openai-system-merge` | OpenAI-uyumlu sunucularda çoklu system message hatasını düzeltir |
 | **update-checker** | `modded-opencode-update-checker` | Başlangıçta GitHub'dan yeni sürüm kontrolü |
+| **notify** | `modded-opencode-opencode-notify` | Görev tamamlanınca çapraz platform masaüstü bildirimleri |
+| **session-title** | `modded-opencode-opencode-session-title` | İlk kullanıcı mesajından otomatik oturum başlığı üretir |
+| **env-guard** | `modded-opencode-opencode-env-guard` | .env dosyalarını ve tespit edilen sır içeren yazmaları engeller |
 
 ### 🔥 Öne Çıkan Skill'ler
 

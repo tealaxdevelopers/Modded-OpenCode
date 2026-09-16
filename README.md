@@ -40,6 +40,9 @@ Plugins are installed from npm (not bundled as local files):
 | **auto-continue** | `modded-opencode-opencode-continue` | Auto-resume on idle / disconnect |
 | **openai-system-merge** | `modded-opencode-openai-system-merge` | Fixes multi system message error for OpenAI-compatible providers |
 | **update-checker** | `modded-opencode-update-checker` | Checks GitHub for new releases on startup |
+| **notify** | `modded-opencode-opencode-notify` | Cross-platform native desktop notifications on task completion |
+| **session-title** | `modded-opencode-opencode-session-title` | Auto-generates session titles from the first user message |
+| **env-guard** | `modded-opencode-opencode-env-guard` | Blocks reading .env files and writes containing detected secrets |
 
 ### 🔥 Highlight Skills
 

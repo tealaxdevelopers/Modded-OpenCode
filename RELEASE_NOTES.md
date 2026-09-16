@@ -26,4 +26,4 @@
 - Update-checker root path fix for correct installed location
 - Default persona fallback when remote API unreachable
 - Static README badges (no more repo-not-found errors)
-- 105 skills, 13 agents, 19 commands, 22 instructions, 4 plugins
+- 105 skills, 13 agents, 19 commands, 22 instructions, 7 plugins

@@ -176,6 +176,9 @@ Plugins are installed from npm and listed in `opencode.jsonc`:
   "modded-opencode-opencode-continue",
   "modded-opencode-openai-system-merge",
   "modded-opencode-update-checker",
+  "modded-opencode-opencode-notify",
+  "modded-opencode-opencode-session-title",
+  "modded-opencode-opencode-env-guard",
   "@azumag/opencode-rate-limit-fallback"
 ]
 ```
@@ -186,6 +189,9 @@ Plugins are installed from npm and listed in `opencode.jsonc`:
 | auto-continue | `modded-opencode-opencode-continue` | Auto-resume idle sessions |
 | openai-system-merge | `modded-opencode-openai-system-merge` | Merge multiple system messages for strict OpenAI-compatible providers |
 | update-checker | `modded-opencode-update-checker` | Auto-update from GitHub releases |
+| notify | `modded-opencode-opencode-notify` | Cross-platform desktop notifications on task completion |
+| session-title | `modded-opencode-opencode-session-title` | Auto-generate session titles from first user message |
+| env-guard | `modded-opencode-opencode-env-guard` | Block .env reads and writes with detected secrets |
 | rate-limit-fallback | `@azumag/opencode-rate-limit-fallback` | Fallback models on rate limit |
 
 To disable a plugin, remove or comment out its entry in the `plugin` array.

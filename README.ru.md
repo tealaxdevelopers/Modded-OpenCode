@@ -40,6 +40,9 @@ modded-opencode/
 | **auto-continue** | `modded-opencode-opencode-continue` | Авто-продолжение при простое / обрыве |
 | **openai-system-merge** | `modded-opencode-openai-system-merge` | Исправление ошибки множественных system-сообщений для OpenAI-совместимых провайдеров |
 | **update-checker** | `modded-opencode-update-checker` | Проверка новых релизов на GitHub при запуске |
+| **notify** | `modded-opencode-opencode-notify` | Кроссплатформенные уведомления рабочего стола при завершении задачи |
+| **session-title** | `modded-opencode-opencode-session-title` | Авто-генерация заголовков сессий из первого сообщения пользователя |
+| **env-guard** | `modded-opencode-opencode-env-guard` | Блокировка чтения .env файлов и записи с обнаруженными секретами |
 
 ### 🔥 Лучшие Навыки
 
