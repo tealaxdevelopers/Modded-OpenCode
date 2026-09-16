@@ -163,3 +163,43 @@ Then validate:
 oc-doctor
 opencode models
 ```
+
+## Plugin issues
+
+### Plugin shows as `file://` instead of name
+
+This means old local `.ts` files exist in `~/.config/opencode/plugins/`. Remove them:
+
+```bash
+rm ~/.config/opencode/plugins/*.ts
+```
+
+Restart OpenCode. Plugins should now show by npm package name.
+
+### Plugin not loading
+
+Check the plugin list in `opencode.jsonc`:
+
+```bash
+cat ~/.config/opencode/opencode.jsonc | grep -A 10 '"plugin"'
+```
+
+Each entry must be a valid npm package name. Restart OpenCode after changes.
+
+### Auto-continue not working
+
+1. Check if enabled: `<project>/.opencode/auto-continue.json` or `OC_AUTOCONTINUE` env var
+2. Check cooldown: default 8000ms — recent injection blocks re-injection
+3. Check max consecutive: default 8 — after 8 consecutive continues, plugin stops
+
+```bash
+OC_AUTOCONTINUE=1 sync-models
+```
+
+### OpenAI system merge not triggering
+
+The plugin only activates when a request has 2+ leading system messages. If your provider returns a different error, the plugin won't help. Check if the error specifically mentions "System message must be at the beginning".
+
+### Update checker not working
+
+The update checker runs once per session on the first `session.idle` event. If it fails (network issue, rate limit), it won't retry until the next session. Check logs for `[update-checker]` messages.

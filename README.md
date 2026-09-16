@@ -29,11 +29,17 @@ modded-opencode/
     ├── agents/                        # 13 custom agents (ivan, scout, planner, review...)
     ├── commands/                      # 19 slash commands
     ├── instructions/                  # 22 instruction sets
-    ├── plugins/                       # agents-opencode + auto-continue + openai-system-merge
-    │   ├── opencode-continue.ts       # Auto-resume on idle / disconnect
-    │   └── openai-system-merge.ts     # Fixes multi system message error for OpenAI-compatible providers
     └── skills/                        # 105 SKILL.md packs (incl. Claude Code compatible skills)
 ```
+
+Plugins are installed from npm (not bundled as local files):
+
+| Plugin | Package | Purpose |
+|--------|---------|---------|
+| **agents-opencode** | `modded-opencode-agents-opencode` | Compaction context, version injection, sensitive file blocking |
+| **auto-continue** | `modded-opencode-opencode-continue` | Auto-resume on idle / disconnect |
+| **openai-system-merge** | `modded-opencode-openai-system-merge` | Fixes multi system message error for OpenAI-compatible providers |
+| **update-checker** | `modded-opencode-update-checker` | Checks GitHub for new releases on startup |
 
 ### 🔥 Highlight Skills
 
@@ -53,7 +59,7 @@ modded-opencode/
 | **claude-simplify** | Refactor for clarity and reduced complexity |
 | **claude-batch** | Process multiple files with same operation |
 | **claude-loop** | Repeat task with exit conditions |
-| *(+99 more)* | |
+| *(+95 more)* | |
 
 ---
 
@@ -128,7 +134,7 @@ then flip the matching `"enabled": false` to `true` inside `opencode.jsonc`.
 
 ## 🔁 Auto-Continue (auto-resume)
 
-Ships **on by default**. A bundled plugin (`source/plugins/opencode-continue.ts`) watches your sessions and, when a session goes **idle** (model finished but you didn't type) **or the connection drops mid-task** (`session.error`), it automatically injects a `continue` message so the agent resumes on its own — without you or the AI having to press anything.
+Ships **on by default**. The auto-continue plugin watches your sessions and, when a session goes **idle** (model finished but you didn't type) **or the connection drops mid-task** (`session.error`), it automatically injects a `continue` message so the agent resumes on its own — without you or the AI having to press anything.
 
 - 🛡️ **Bounded**: a cooldown (`cooldown_ms`) and a max consecutive count (`max_consecutive`) prevent infinite loops.
 - 🔄 **Self-resetting**: as soon as you send a real message, the counter resets.

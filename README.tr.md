@@ -29,10 +29,17 @@ modded-opencode/
     ├── agents/                        # 13 özel agent (ivan, scout, planner, review...)
     ├── commands/                      # 19 slash komutu
     ├── instructions/                  # 22 instruction seti
-    ├── plugins/                       # 4 plugin (agents-opencode, auto-continue, openai-system-merge, update-checker)
-    │   └── opencode-continue.ts       # Boşta kalınca / kopunca otomatik devam
     └── skills/                        # 105 adet SKILL.md paketi
 ```
+
+Plugin'ler npm'den yüklenir (yerel dosya olarak paketlenmez):
+
+| Plugin | Paket | Amaç |
+|--------|-------|------|
+| **agents-opencode** | `modded-opencode-agents-opencode` | Sıkıştırma bağlamı, versiyon enjeksiyonu, hassas dosya engelleme |
+| **auto-continue** | `modded-opencode-opencode-continue` | Boşta kalınca / kopunca otomatik devam |
+| **openai-system-merge** | `modded-opencode-openai-system-merge` | OpenAI-uyumlu sunucularda çoklu system message hatasını düzeltir |
+| **update-checker** | `modded-opencode-update-checker` | Başlangıçta GitHub'dan yeni sürüm kontrolü |
 
 ### 🔥 Öne Çıkan Skill'ler
 
@@ -46,7 +53,7 @@ modded-opencode/
 | **legal-advisor** | Hukuk araştırması, mevzuat analizi, lisans denetimi |
 | **cto-advisor** | Tech debt analizcisi, ekip ölçekleme, teknoloji değerlendirme |
 | **xlsx / pdf / docx** | Excel, PDF, Word belge işleme |
-| *(+89 daha)* | |
+| *(+95 daha)* | |
 
 ---
 
@@ -119,7 +126,7 @@ sonra `opencode.jsonc` içindeki ilgili `"enabled": false` değerini `true` yap.
 
 ## 🔁 Auto-Continue (otomatik devam)
 
-**Varsayılan açık** gelir. Paketlenmiş bir plugin (`source/plugins/opencode-continue.ts`) oturumlarını izler; bir oturum **boşta kalınca** (model bitti ama sen yazmadın) **veya bağlantı iş ortasında kopunca** (`session.error`), otomatik olarak `continue` mesajı enjekte eder — senin de AI'ın da bir şey yapmasına gerek kalmadan agent kendi devam eder.
+**Varsayılan açık** gelir. Auto-continue plugin'i oturumlarını izler; bir oturum **boşta kalınca** (model bitti ama sen yazmadın) **veya bağlantı iş ortasında kopunca** (`session.error`), otomatik olarak `continue` mesajı enjekte eder — senin de AI'ın da bir şey yapmasına gerek kalmadan agent kendi devam eder.
 
 - 🛡️ **Sınırlı**: cooldown (`cooldown_ms`) ve maksimum ardışık sayı (`max_consecutive`) sonsuz döngüyü engeller.
 - 🔄 **Kendini sıfırlar**: Gerçek bir mesaj attığında sayaç sıfırlanır.

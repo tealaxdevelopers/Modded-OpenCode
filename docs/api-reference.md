@@ -165,3 +165,39 @@ opencode auth login            # authenticate a provider
 opencode auth list             # inspect authentication state
 opencode upgrade               # install the current release
 ```
+
+## Plugins
+
+Plugins are installed from npm and listed in `opencode.jsonc`:
+
+```jsonc
+"plugin": [
+  "modded-opencode-agents-opencode",
+  "modded-opencode-opencode-continue",
+  "modded-opencode-openai-system-merge",
+  "modded-opencode-update-checker",
+  "@azumag/opencode-rate-limit-fallback"
+]
+```
+
+| Plugin | npm package | Purpose |
+|--------|-------------|---------|
+| agents-opencode | `modded-opencode-agents-opencode` | Compaction context injection, sensitive file blocking, version env var |
+| auto-continue | `modded-opencode-opencode-continue` | Auto-resume idle sessions |
+| openai-system-merge | `modded-opencode-openai-system-merge` | Merge multiple system messages for strict OpenAI-compatible providers |
+| update-checker | `modded-opencode-update-checker` | Auto-update from GitHub releases |
+| rate-limit-fallback | `@azumag/opencode-rate-limit-fallback` | Fallback models on rate limit |
+
+To disable a plugin, remove or comment out its entry in the `plugin` array.
+
+To configure auto-continue: `<project>/.opencode/auto-continue.json`
+
+```jsonc
+{
+  "enabled": true,
+  "message": "continue",
+  "cooldown_ms": 8000,
+  "max_consecutive": 8,
+  "continue_on_error": false
+}
+```

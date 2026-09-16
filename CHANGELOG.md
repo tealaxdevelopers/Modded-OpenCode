@@ -3,6 +3,30 @@
 All notable changes to Modded OpenCode are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.1.7] - 2026-09-15
+
+### Fixed
+- **setup.sh**: RC_FILE variable was used before being defined — moved shell detection block before first reference. RC file updates now work correctly on macOS/Linux.
+- **build-config.mjs**: custom provider injection used string concatenation vulnerable to JSON injection — switched to `JSON.stringify` for safe serialization.
+- **agents-opencode.ts**: `PACKAGE_VERSION` was hardcoded as `2.0.0` (stale) — updated to `1.1.6`. Skill count was `99` — corrected to `105`.
+- **opencode-continue.ts**: stale comment claimed `continue_on_error: true` but default is `false` — fixed. Turkish toast string `"devam ediliyor…"` replaced with English `"continuing…"`.
+- **update-checker.ts**: added path traversal protection — downloaded file paths are now validated to stay within kit directory.
+- **openai-system-merge.ts**: added double-patch guard to prevent infinite recursion if module is loaded multiple times.
+- **workflows/discord.yml**: deleted — duplicate of `.github/workflows/discord-notify.yml` with command injection vulnerability in commit message handling.
+- **READMEs** (EN/TR/RU): fixed skill count 99 → 105, updated plugin section to reflect npm-based installation, removed stale `source/plugins/` references.
+- **Version alignment**: all `package.json` files and `source/VERSION` updated to `1.1.6`. Plugin source files synced between `source/plugins/` and `packages/`.
+
+### Security
+- `build-config.mjs`: JSON.stringify prevents injection via custom provider base URL or model name.
+- `update-checker.ts`: path traversal attacks blocked on downloaded update files.
+- `openai-system-merge.ts`: double-patch guard prevents fetch recursion exploits.
+- `workflows/discord.yml`: removed command injection surface.
+
+### Changed
+- Local plugin `.ts` files removed from `source/plugins/` — plugins now installed exclusively from npm packages.
+- Root `.gitignore` added for `node_modules/`, `.env`, `.env.local`, `.DS_Store`.
+- Package versions bumped to `1.1.6` across all 4 npm packages.
+
 ## [1.1.6] - 2026-09-14
 
 ### Fixed
