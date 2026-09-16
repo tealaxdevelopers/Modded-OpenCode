@@ -3,7 +3,7 @@
 All notable changes to Modded OpenCode are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [1.1.7-hotfix] - 2026-09-16
+## [1.1.7] - 2026-09-15
 
 ### Added
 - **opencode-notify**: Cross-platform desktop notifications plugin (npm: `modded-opencode-opencode-notify`)
@@ -28,6 +28,19 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `update-checker.ts`: path traversal attacks blocked on downloaded update files.
 - `openai-system-merge.ts`: double-patch guard prevents fetch recursion exploits.
 - `workflows/discord.yml`: removed command injection surface.
+
+---
+
+## [1.1.7-hotfix] - 2026-09-16
+
+### Fixed
+- **env-guard**: write blocking removed for legitimate code edits (npm republish)
+- **setup.sh**: macOS path bug, shell_escape_val(), atomic .env.local
+- **MCP servers**: package name corrections
+- **Version alignment**: all 7 packages synchronized to 1.1.7-hotfix
+
+### Security
+- env-guard no longer blocks code edits containing API_KEY references
 
 ### Changed
 - Local plugin `.ts` files removed from `source/plugins/` — plugins now installed exclusively from npm packages.
