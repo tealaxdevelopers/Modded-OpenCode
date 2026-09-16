@@ -56,12 +56,12 @@ OPENCODE_SYNC_TIMEOUT_MS=10000 sync-models
 Check the exact config path and provider IDs:
 
 ```bash
-echo "${OPENCODE_CONFIG:-$HOME/.config/opencode/opencode.json}"
+echo "${OPENCODE_CONFIG:-$HOME/.config/opencode/opencode.jsonc}"
 opencode models
 opencode models --refresh
 ```
 
-A project-level `opencode.json` can override global settings. A custom path set with `OPENCODE_CONFIG` is loaded in OpenCode's documented precedence order.
+A project-level `opencode.jsonc` can override global settings. A custom path set with `OPENCODE_CONFIG` is loaded in OpenCode's documented precedence order.
 
 ## The config contains comments
 
@@ -154,7 +154,7 @@ OPENCODE_SYNC_PRUNE=0 sync-models
 The writer uses a temporary file and atomic rename, so a failed write should leave the original intact. Before major manual edits:
 
 ```bash
-cp ~/.config/opencode/opencode.json ~/.config/opencode/opencode.json.backup
+cp ~/.config/opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc.backup
 ```
 
 Then validate:
@@ -193,7 +193,7 @@ Each entry must be a valid npm package name. Restart OpenCode after changes.
 3. Check max consecutive: default 8 — after 8 consecutive continues, plugin stops
 
 ```bash
-OC_AUTOCONTINUE=1 sync-models
+OC_AUTOCONTINUE=1 opencode
 ```
 
 ### OpenAI system merge not triggering

@@ -28,7 +28,7 @@ For a compatible server that requires a token, keep the value in the environment
 export REMOTE_API_KEY='your-token'
 ```
 
-Reference it from `opencode.json`:
+Reference it from `opencode.jsonc`:
 
 ```json
 {
@@ -56,11 +56,13 @@ The synchronizer recognizes these variables:
 
 ## Environment file
 
-The installer creates:
+The installer creates a `.env.local` file in the setup directory. Location varies by OS:
 
-```text
-~/.config/opencode/local-setup/.env.local
-```
+| OS | Default path |
+|---|---|
+| Linux | `~/.config/opencode/local-setup/.env.local` |
+| macOS | `~/Library/Application Support/opencode/local-setup/.env.local` |
+| Windows | `%USERPROFILE%\.config\opencode\local-setup\.env.local` |
 
 It is permissioned for the current user only. Put local/remote keys there when you do not want to export them in every shell:
 
@@ -73,7 +75,7 @@ Do not commit this file.
 
 ## Secret migration
 
-Older releases could copy a live `Authorization: Bearer ...` header into `opencode.json`. A successful sync now:
+Older releases could copy a live `Authorization: Bearer ...` header into `opencode.jsonc`. A successful sync now:
 
 1. uses the token for `/models` discovery;
 2. stores an `apiKey: "{env:VARIABLE}"` reference;

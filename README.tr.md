@@ -60,6 +60,27 @@ Plugin'ler npm'den yüklenir (yerel dosya olarak paketlenmez):
 
 ---
 
+## ⚡ Hızlı Başlangıç
+
+### Windows
+```batch
+git clone https://github.com/tealaxdevelopers/Modded-OpenCode.git
+cd Modded-OpenCode
+setup.bat
+```
+
+### macOS / Linux
+```bash
+git clone https://github.com/tealaxdevelopers/Modded-OpenCode.git
+cd Modded-OpenCode
+chmod +x setup.sh scripts/*.sh
+./setup.sh
+```
+
+> Provider kurulumu sihirbaza dahildir. OpenCode ayrı olarak yüklenmelidir: https://opencode.ai
+
+---
+
 ## 🚀 Kurulum
 
 ```batch
@@ -98,7 +119,7 @@ Sihirbaz sırayla şunları sorar:
 | **macOS** | `~/Library/Application Support/opencode/local-setup/.env.local` | `~/.zshrc` | `chmod 600` |
 | **Linux** | `~/.config/opencode/local-setup/.env.local` | `~/.bashrc` | `chmod 600` |
 
-> Key'leri kaldırmak için: `.env.local` dosyasını silin veya `opencode doctor` ile sızıntı olup olmadığını kontrol edin.
+> Key'leri kaldırmak için: `.env.local` dosyasını silin veya `oc-doctor` ile sızıntı olup olmadığını kontrol edin.
 
 Kalan her şey otomatik kurulur: 105 skill, 13 agent, 19 command, 22 instruction, MCP sunucuları.
 

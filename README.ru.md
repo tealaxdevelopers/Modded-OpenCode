@@ -60,6 +60,27 @@ modded-opencode/
 
 ---
 
+## ⚡ Быстрый старт
+
+### Windows
+```batch
+git clone https://github.com/tealaxdevelopers/Modded-OpenCode.git
+cd Modded-OpenCode
+setup.bat
+```
+
+### macOS / Linux
+```bash
+git clone https://github.com/tealaxdevelopers/Modded-OpenCode.git
+cd Modded-OpenCode
+chmod +x setup.sh scripts/*.sh
+./setup.sh
+```
+
+> Настройка включена в мастер. OpenCode устанавливается отдельно: https://opencode.ai
+
+---
+
 ## 🚀 Установка
 
 ```batch
@@ -98,7 +119,7 @@ chmod +x setup.sh scripts/install.sh scripts/opencode-wrapper.sh scripts/sync-al
 | **macOS** | `~/Library/Application Support/opencode/local-setup/.env.local` | `~/.zshrc` | `chmod 600` |
 | **Linux** | `~/.config/opencode/local-setup/.env.local` | `~/.bashrc` | `chmod 600` |
 
-> Чтобы отозвать ключи: удалите `.env.local` или запустите `opencode doctor` для проверки утечек.
+> Чтобы отозвать ключи: удалите `.env.local` или запустите `oc-doctor` для проверки утечек.
 
 Выбранный **язык также задаёт язык общения агента** в `rules.md` — выберите `ru`, и ядро instructирует агента говорить по-русски.
 

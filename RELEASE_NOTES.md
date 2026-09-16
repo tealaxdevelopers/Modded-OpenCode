@@ -1,4 +1,4 @@
-## What's New
+## What's New — v1.1.7 (2026-09-15)
 
 ### Security Fixes (P0)
 - API keys now stored in .env.local (0600 permissions), never written to shell RC files

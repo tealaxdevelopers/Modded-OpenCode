@@ -25,7 +25,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Changed
 - Local plugin `.ts` files removed from `source/plugins/` — plugins now installed exclusively from npm packages.
 - Root `.gitignore` added for `node_modules/`, `.env`, `.env.local`, `.DS_Store`.
-- Package versions bumped to `1.1.6` across all 4 npm packages.
+- Package versions bumped to `1.1.6` across all npm packages.
 
 ## [1.1.6] - 2026-09-14
 
@@ -51,7 +51,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **opencode.jsonc permissions**: `bash` and `external_directory` changed from `allow` to `ask` for security.
 - **opencode.jsonc plugins**: all local plugins listed by name (not file paths) for cleaner UI display.
 - **READMEs** (EN/TR/RU): added per-OS `.env.local` locations table, `chmod +x` requirements, OpenAI-compatible provider section, new skill listings.
-- Skill count: 99 → 105. Plugin count: 3 → 4.
+- Skill count: 99 → 105. Plugin count: 3 → 7.
 
 ### Security
 - API keys never written to shell RC files — stored in `.env.local` with 0600 permissions.

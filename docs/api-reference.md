@@ -6,7 +6,7 @@ This project manages only custom OpenAI-compatible providers. OpenCode's built-i
 
 | Purpose | Default | Override |
 |---|---|---|
-| OpenCode config | `~/.config/opencode/opencode.json` | `OPENCODE_CONFIG` |
+| OpenCode config | `~/.config/opencode/opencode.jsonc` | `OPENCODE_CONFIG` |
 | OpenCode config root | `~/.config/opencode` | `XDG_CONFIG_HOME` |
 | Installed helper files | `~/.config/opencode/local-setup` | `OPENCODE_LOCAL_SETUP_DIR` |
 | Setup environment file | `<setup-dir>/.env.local` | `OPENCODE_LOCAL_ENV` |

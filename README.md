@@ -66,6 +66,27 @@ Plugins are installed from npm (not bundled as local files):
 
 ---
 
+## ⚡ Quick Start
+
+### Windows
+```batch
+git clone https://github.com/tealaxdevelopers/Modded-OpenCode.git
+cd Modded-OpenCode
+setup.bat
+```
+
+### macOS / Linux
+```bash
+git clone https://github.com/tealaxdevelopers/Modded-OpenCode.git
+cd Modded-OpenCode
+chmod +x setup.sh scripts/*.sh
+./setup.sh
+```
+
+> Provider setup is included in the wizard. OpenCode must be installed separately: https://opencode.ai
+
+---
+
 ## 🚀 Installation
 
 ```batch
@@ -106,7 +127,7 @@ The **language you pick also sets the agent's conversation language** in `rules.
 | **macOS** | `~/Library/Application Support/opencode/local-setup/.env.local` | `~/.zshrc` | `chmod 600` |
 | **Linux** | `~/.config/opencode/local-setup/.env.local` | `~/.bashrc` | `chmod 600` |
 
-> To revoke keys: delete `.env.local` or run `opencode doctor` to check for leaked credentials.
+> To revoke keys: delete `.env.local` or run `oc-doctor` to check for leaked credentials.
 
 Everything else installs automatically: 105 skills, 13 agents, 19 commands, 22 instruction sets, 4 plugins, MCP servers.
 
