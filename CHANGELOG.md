@@ -7,9 +7,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [1.1.7-hotfix] — Release — 2026-09-16
 
-Hotfix release addressing env-guard write blocking and setup.sh issues.
+Hotfix release addressing env-guard write blocking, setup.sh issues, and build-config JSONC parser bug.
 
 ### Fixed
+- **build-config.mjs**: JSONC parser was stripping `//` inside JSON strings (breaking `https://` URLs). Now uses `sync-core.mjs` parser which correctly tracks string state.
+- **build-config.mjs**: file is now written only after successful validation (no more corrupted output on error)
 - **env-guard**: write blocking removed for legitimate code edits (npm republish)
 - **setup.sh**: macOS path bug, shell_escape_val(), atomic .env.local
 - **MCP servers**: package name corrections
@@ -17,6 +19,9 @@ Hotfix release addressing env-guard write blocking and setup.sh issues.
 
 ### Security
 - env-guard no longer blocks code edits containing API_KEY references
+
+### Added
+- Regression test for build-config JSONC parser (URL preservation, invalid output rejection)
 
 ---
 
