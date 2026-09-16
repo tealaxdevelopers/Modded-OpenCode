@@ -1,6 +1,6 @@
 import type { Plugin } from "@opencode-ai/plugin";
 
-const PACKAGE_VERSION = "1.1.7";
+const PACKAGE_VERSION = "1.1.7-hotfix";
 
 const ENV_EXTENSIONS = [".env", ".env.local", ".env.production", ".env.staging"];
 
@@ -9,7 +9,7 @@ export const OpencodeEnvGuardPlugin: Plugin = async ({ client }) => {
     body: {
       service: "opencode-env-guard",
       level: "info",
-      message: `opencode-env-guard v${PACKAGE_VERSION} loaded â€” sensitive file protection`,
+      message: `opencode-env-guard v${PACKAGE_VERSION} loaded Ã¢â‚¬â€ sensitive file protection`,
     },
   });
 

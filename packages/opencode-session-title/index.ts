@@ -1,6 +1,6 @@
 import type { Plugin } from "@opencode-ai/plugin";
 
-const PACKAGE_VERSION = "1.1.7";
+const PACKAGE_VERSION = "1.1.7-hotfix";
 const MAX_TITLE_LEN = 60;
 
 export const OpencodeSessionTitlePlugin: Plugin = async ({ client }) => {
@@ -8,7 +8,7 @@ export const OpencodeSessionTitlePlugin: Plugin = async ({ client }) => {
     body: {
       service: "opencode-session-title",
       level: "info",
-      message: `opencode-session-title v${PACKAGE_VERSION} loaded â€” auto session naming`,
+      message: `opencode-session-title v${PACKAGE_VERSION} loaded Ã¢â‚¬â€ auto session naming`,
     },
   });
 

@@ -1,29 +1,29 @@
-// Modded OpenCode â€” Auto-Continue plugin (tek dosya, .opencode/plugins/ altÄ±na)
+// Modded OpenCode Ã¢â‚¬â€ Auto-Continue plugin (tek dosya, .opencode/plugins/ altÃ„Â±na)
 //
 // Ne yapar:
-//   Oturum boÅŸta kalÄ±nca (AI iÅŸi bitirdi ama kullanÄ±cÄ± yazmadÄ±) VEYA
-//   baÄŸlantÄ± kopmasÄ± / hata yÃ¼zÃ¼nden iÅŸ yarÄ±da kesilince, ne AI ne insan
-//   durdurmadÄ±ysa otomatik "continue" mesajÄ± enjekte eder.
+//   Oturum boÃ…Å¸ta kalÃ„Â±nca (AI iÃ…Å¸i bitirdi ama kullanÃ„Â±cÃ„Â± yazmadÃ„Â±) VEYA
+//   baÃ„Å¸lantÃ„Â± kopmasÃ„Â± / hata yÃƒÂ¼zÃƒÂ¼nden iÃ…Å¸ yarÃ„Â±da kesilince, ne AI ne insan
+//   durdurmadÃ„Â±ysa otomatik "continue" mesajÃ„Â± enjekte eder.
 //
-// YavaÅŸ baÄŸlantÄ± desteÄŸi:
-//   ZayÄ±f internet baÄŸlantÄ±sÄ±nda model timeout alabilir veya baÄŸlantÄ±
-//   yarÄ±da kesilebilir â€” plugin bu durumlarda otomatik devam ederek
-//   kullanÄ±cÄ±nÄ±n iÅŸini yarÄ±da bÄ±rakmaz. OpenCode'un kendi session.error
-//   event'ini tetikler, plugin bunu yakalayÄ±p devam mesajÄ± enjekte eder.
+// YavaÃ…Å¸ baÃ„Å¸lantÃ„Â± desteÃ„Å¸i:
+//   ZayÃ„Â±f internet baÃ„Å¸lantÃ„Â±sÃ„Â±nda model timeout alabilir veya baÃ„Å¸lantÃ„Â±
+//   yarÃ„Â±da kesilebilir Ã¢â‚¬â€ plugin bu durumlarda otomatik devam ederek
+//   kullanÃ„Â±cÃ„Â±nÃ„Â±n iÃ…Å¸ini yarÃ„Â±da bÃ„Â±rakmaz. OpenCode'un kendi session.error
+//   event'ini tetikler, plugin bunu yakalayÃ„Â±p devam mesajÃ„Â± enjekte eder.
 //
-// Ayar (proje bazlÄ±): <proje>/.opencode/auto-continue.json  (veya .jsonc)
+// Ayar (proje bazlÃ„Â±): <proje>/.opencode/auto-continue.json  (veya .jsonc)
 //   { "enabled": true, "message": "continue", "cooldown_ms": 8000,
 //     "max_consecutive": 8, "continue_on_error": false }
-// Global kapat/aÃ§: ortam deÄŸiÅŸkeni OC_AUTOCONTINUE=0 | 1
+// Global kapat/aÃƒÂ§: ortam deÃ„Å¸iÃ…Å¸keni OC_AUTOCONTINUE=0 | 1
 //
-// MantÄ±k (hjzccc/opencode-auto-continue temel alÄ±nmÄ±ÅŸtÄ±r):
+// MantÃ„Â±k (hjzccc/opencode-auto-continue temel alÃ„Â±nmÃ„Â±Ã…Å¸tÃ„Â±r):
 //   - session.idle / session.error dinler
-//   - cooldown + max_consecutive ile sonsuz dÃ¶ngÃ¼yÃ¼ engeller
-//   - gerÃ§ek kullanÄ±cÄ± mesajÄ± gelince sayacÄ± sÄ±fÄ±rlar
-//   - injection Ã¶ncesi oturum hÃ¢lÃ¢ boÅŸta mÄ± tekrar kontrol eder (race kapanÄ±r)
-//   - yavaÅŸ baÄŸlantÄ±/signal kaybÄ± durumunda stabilize edici ping gÃ¶revi gÃ¶rÃ¼r
+//   - cooldown + max_consecutive ile sonsuz dÃƒÂ¶ngÃƒÂ¼yÃƒÂ¼ engeller
+//   - gerÃƒÂ§ek kullanÃ„Â±cÃ„Â± mesajÃ„Â± gelince sayacÃ„Â± sÃ„Â±fÃ„Â±rlar
+//   - injection ÃƒÂ¶ncesi oturum hÃƒÂ¢lÃƒÂ¢ boÃ…Å¸ta mÃ„Â± tekrar kontrol eder (race kapanÃ„Â±r)
+//   - yavaÃ…Å¸ baÃ„Å¸lantÃ„Â±/signal kaybÃ„Â± durumunda stabilize edici ping gÃƒÂ¶revi gÃƒÂ¶rÃƒÂ¼r
 //
-// opencode plugin ÅŸemasÄ±: default export { id, setup } ÅŸeklinde olmalÄ±.
+// opencode plugin Ã…Å¸emasÃ„Â±: default export { id, setup } Ã…Å¸eklinde olmalÃ„Â±.
 
 import { existsSync, readFileSync, writeFileSync } from "fs"
 import { join } from "path"
@@ -192,7 +192,7 @@ const setup = async (ctx: any) => {
   const sessionStateStore = createSessionStateStore()
   const getConfig = () => loadConfig(ctx.directory)
 
-  // Ä°lk Ã§alÄ±ÅŸtÄ±rmada gÃ¶rÃ¼nÃ¼r bir ayar dosyasÄ± bÄ±rak (kullanÄ±cÄ± kolayca kapatabilir)
+  // Ã„Â°lk ÃƒÂ§alÃ„Â±Ã…Å¸tÃ„Â±rmada gÃƒÂ¶rÃƒÂ¼nÃƒÂ¼r bir ayar dosyasÃ„Â± bÃ„Â±rak (kullanÃ„Â±cÃ„Â± kolayca kapatabilir)
   try {
     const cfgPath = join(ctx.directory, ".opencode", "auto-continue.json")
     if (!existsSync(cfgPath)) writeConfig(ctx.directory, getConfig())
@@ -263,7 +263,7 @@ const setup = async (ctx: any) => {
       if (!inLoop) {
         try {
           await (ctx.client as any).tui?.showToast?.({
-            body: { message: "Auto-continue: continuingâ€¦", variant: "info" },
+            body: { message: "Auto-continue: continuingÃ¢â‚¬Â¦", variant: "info" },
           })
         } catch {
           /* yoksay */

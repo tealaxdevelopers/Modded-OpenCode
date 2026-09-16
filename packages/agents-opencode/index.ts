@@ -1,6 +1,6 @@
 import type { Plugin } from "@opencode-ai/plugin";
 
-const PACKAGE_VERSION = "1.1.7";
+const PACKAGE_VERSION = "1.1.7-hotfix";
 
 export const AgentsOpencodePlugin: Plugin = async ({
   client,
@@ -13,7 +13,7 @@ export const AgentsOpencodePlugin: Plugin = async ({
     body: {
       service: "agents-opencode",
       level: "info",
-      message: `Agents Opencode v${PACKAGE_VERSION} loaded â€” 13 agents, 105 skills, 19 commands available`,
+      message: `Agents Opencode v${PACKAGE_VERSION} loaded Ã¢â‚¬â€ 13 agents, 105 skills, 19 commands available`,
     },
   });
 
@@ -28,19 +28,19 @@ export const AgentsOpencodePlugin: Plugin = async ({
 You are operating with the agents-opencode v${PACKAGE_VERSION} agent pack.
 
 Available agents (invoke via @mention):
-- @codebase â€” Multi-language development with profile detection
-- @orchestrator â€” Strategic planning and complex workflow coordination
-- @planner â€” Read-only analysis and implementation planning
-- @review â€” Code review for security, performance, and best practices
-- @docs â€” Documentation creation and maintenance
-- @blogger â€” Content creation for blogging, podcasting, YouTube
-- @brutal-critic â€” Content quality review with framework-based scoring
-- @em-advisor â€” Engineering management guidance
-- @legal-advisor â€” License auditing, compliance, and regulatory guidance
-- @ivan â€” Senior code implementor
-- @jester â€” High-temperature oracle
-- @oscar â€” Senior code reviewer
-- @scout â€” Research and planning
+- @codebase Ã¢â‚¬â€ Multi-language development with profile detection
+- @orchestrator Ã¢â‚¬â€ Strategic planning and complex workflow coordination
+- @planner Ã¢â‚¬â€ Read-only analysis and implementation planning
+- @review Ã¢â‚¬â€ Code review for security, performance, and best practices
+- @docs Ã¢â‚¬â€ Documentation creation and maintenance
+- @blogger Ã¢â‚¬â€ Content creation for blogging, podcasting, YouTube
+- @brutal-critic Ã¢â‚¬â€ Content quality review with framework-based scoring
+- @em-advisor Ã¢â‚¬â€ Engineering management guidance
+- @legal-advisor Ã¢â‚¬â€ License auditing, compliance, and regulatory guidance
+- @ivan Ã¢â‚¬â€ Senior code implementor
+- @jester Ã¢â‚¬â€ High-temperature oracle
+- @oscar Ã¢â‚¬â€ Senior code reviewer
+- @scout Ã¢â‚¬â€ Research and planning
 
 Active skills: 105 language/domain/utility skill packs.
 Active commands: 19 slash commands (type / to see autocomplete).

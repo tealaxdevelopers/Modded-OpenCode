@@ -3,7 +3,7 @@
 All notable changes to Modded OpenCode are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [1.1.7] - 2026-09-16
+## [1.1.7-hotfix] - 2026-09-16
 
 ### Added
 - **opencode-notify**: Cross-platform desktop notifications plugin (npm: `modded-opencode-opencode-notify`)
