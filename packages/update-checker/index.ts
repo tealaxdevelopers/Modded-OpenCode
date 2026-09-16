@@ -1,5 +1,5 @@
 /**
- * update-checker.ts — Auto-update plugin for Modded OpenCode
+ * update-checker.ts â€” Auto-update plugin for Modded OpenCode
  *
  * Two-layer update strategy:
  *   1. Release check: compare VERSION against latest GitHub release tag.
@@ -7,8 +7,8 @@
  * This catches unreleased changes pushed to main between releases.
  *
  * Behavior: checks ONCE per session launch (first session.idle event).
- * If up to date — stops. No repeated checks in the same session.
- * Next time OpenCode opens → new session → checks again.
+ * If up to date â€” stops. No repeated checks in the same session.
+ * Next time OpenCode opens â†’ new session â†’ checks again.
  *
  * Plugin API: { id, setup(ctx) }
  * Events: session.idle (first idle only)
@@ -167,20 +167,20 @@ async function saveManifest(
   await writeFile(join(kitDir, "source", "VERSION"), version + "\n");
 }
 
-// ─── Main Check Logic ───────────────────────────────────────────────────────
+// â”€â”€â”€ Main Check Logic â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function checkForUpdates(): Promise<void> {
   const kitDir = getKitDir();
 
   const localVersion = await readLocalVersion(kitDir);
   if (!localVersion) {
-    logError("Cannot read local VERSION — skipping");
+    logError("Cannot read local VERSION â€” skipping");
     return;
   }
 
   const manifestFiles = await readManifest(kitDir);
 
-  // ── Layer 1: Release check ────────────────────────────────────────────────
+  // â”€â”€ Layer 1: Release check â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   let releaseTag: string | null = null;
   let releaseSha: string | null = null;
@@ -201,7 +201,7 @@ async function checkForUpdates(): Promise<void> {
       const changed = findChanged(tree, manifestFiles);
 
       if (changed.length === 0) {
-        log("No file changes in release — VERSION only");
+        log("No file changes in release â€” VERSION only");
         await saveManifest(kitDir, manifestFiles, releaseTag);
         log(`Updated to v${releaseTag}`);
         return;
@@ -213,17 +213,17 @@ async function checkForUpdates(): Promise<void> {
         if (await applyFile(path, sha, releaseSha, manifestFiles, kitDir)) applied++;
       }
       await saveManifest(kitDir, manifestFiles, releaseTag);
-      log(`Release v${releaseTag} applied — ${applied}/${changed.length} files`);
+      log(`Release v${releaseTag} applied â€” ${applied}/${changed.length} files`);
       return;
     }
   }
 
-  // ── Layer 2: HEAD commit check (unreleased changes on main) ──────────────
+  // â”€â”€ Layer 2: HEAD commit check (unreleased changes on main) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   // Get latest commit SHA on main
   const headRes = await apiFetch(`${GITHUB_API}/repos/${REPO}/commits/main`);
   if (!headRes) {
-    log("Cannot reach GitHub HEAD — skipping");
+    log("Cannot reach GitHub HEAD â€” skipping");
     return;
   }
   const headData = await headRes.json() as { sha: string; commit: { message: string } };
@@ -240,14 +240,14 @@ async function checkForUpdates(): Promise<void> {
   // Get file tree at HEAD
   const headTreeRes = await apiFetch(`${GITHUB_API}/repos/${REPO}/git/trees/${headSha}?recursive=1`);
   if (!headTreeRes) {
-    log("Cannot fetch HEAD tree — skipping");
+    log("Cannot fetch HEAD tree â€” skipping");
     return;
   }
   const { tree } = await headTreeRes.json() as { tree: Array<{ path: string; type: string; sha: string }> };
   const changed = findChanged(tree, manifestFiles);
 
   if (changed.length === 0) {
-    log(`No changes on main (HEAD ${shortSha}) — recording SHA`);
+    log(`No changes on main (HEAD ${shortSha}) â€” recording SHA`);
     (manifestFiles as Record<string, unknown>)["__HEAD_SHA__"] = headSha;
     await writeFile(
       join(kitDir, "source", "UPDATE_MANIFEST.json"),
@@ -272,13 +272,13 @@ async function checkForUpdates(): Promise<void> {
   log(`Applied ${applied}/${changed.length} unreleased files from HEAD ${shortSha}`);
 }
 
-// ─── Plugin Export ───────────────────────────────────────────────────────────
+// â”€â”€â”€ Plugin Export â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export default {
   id: "update-checker",
   setup: (ctx: { subscribe: (event: string, cb: () => void | Promise<void>) => void }) => {
     // Check once per session launch. First session.idle triggers the check.
-    // If up to date → stop. If update found → apply it, then stop.
+    // If up to date â†’ stop. If update found â†’ apply it, then stop.
     // Next OpenCode launch = new session = fresh check.
     let checked = false;
 

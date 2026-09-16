@@ -2,7 +2,7 @@ import type { Plugin } from "@opencode-ai/plugin";
 import { execSync } from "child_process";
 import { platform } from "os";
 
-const PACKAGE_VERSION = "1.1.6";
+const PACKAGE_VERSION = "1.1.7";
 let lastNotify = 0;
 const COOLDOWN = 2000;
 
@@ -11,7 +11,7 @@ export const OpencodeNotifyPlugin: Plugin = async ({ client }) => {
     body: {
       service: "opencode-notify",
       level: "info",
-      message: `opencode-notify v${PACKAGE_VERSION} loaded — cross-platform notifications`,
+      message: `opencode-notify v${PACKAGE_VERSION} loaded â€” cross-platform notifications`,
     },
   });
 
@@ -57,7 +57,7 @@ function sendNotification(title: string, body: string) {
       );
     }
   } catch {
-    // Notification failed silently — not critical
+    // Notification failed silently â€” not critical
   }
 }
 

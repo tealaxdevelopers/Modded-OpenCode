@@ -1,6 +1,6 @@
 {
   "name": "modded-opencode-opencode-session-title",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Auto-generates short session titles from the first user message in OpenCode",
   "license": "MIT",
   "repository": {

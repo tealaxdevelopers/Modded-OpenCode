@@ -1,5 +1,5 @@
 /**
- * openai-system-merge.ts — Merge multiple system messages into one
+ * openai-system-merge.ts â€” Merge multiple system messages into one
  *
  * Problem: Strict OpenAI-compatible servers (Hetzner, OVHcloud, Scaleway,
  * Nebius, vLLM with Qwen template) accept exactly ONE system message.
@@ -12,7 +12,7 @@
  * before the request reaches the wire.
  *
  * Anthropic requests are never touched (detected via anthropic-version header).
- * Only the leading run of system messages is merged — mid-conversation system
+ * Only the leading run of system messages is merged â€” mid-conversation system
  * messages are left in place.
  *
  * Based on: different-ai/openwork#3970
@@ -92,7 +92,7 @@ function patchFetch() {
       return originalFetch.call(globalThis, input, init);
     }
 
-    // Check headers for Anthropic — never touch those
+    // Check headers for Anthropic â€” never touch those
     const headers = new Headers(init.headers);
     if (isAnthropicRequest(headers)) {
       return originalFetch.call(globalThis, input, init);
@@ -140,7 +140,7 @@ export default {
   setup: () => {
     // Patch is already applied on import
     console.log(
-      `${MERGE_LOG} loaded — will merge multiple leading system messages for OpenAI-compatible providers`
+      `${MERGE_LOG} loaded â€” will merge multiple leading system messages for OpenAI-compatible providers`
     );
   },
 };

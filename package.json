@@ -1,6 +1,6 @@
 {
   "name": "opencode-local-setup",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "private": true,
   "type": "module",
   "description": "Secure, current OpenCode setup for local, LAN and OpenAI-compatible model servers.",

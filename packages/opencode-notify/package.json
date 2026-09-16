@@ -1,6 +1,6 @@
 {
   "name": "modded-opencode-opencode-notify",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Cross-platform native desktop notifications for OpenCode",
   "license": "MIT",
   "repository": {

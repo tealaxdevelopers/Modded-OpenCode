@@ -9,7 +9,7 @@ export const OpencodeEnvGuardPlugin: Plugin = async ({ client }) => {
     body: {
       service: "opencode-env-guard",
       level: "info",
-      message: `opencode-env-guard v${PACKAGE_VERSION} loaded — sensitive file protection`,
+      message: `opencode-env-guard v${PACKAGE_VERSION} loaded â€” sensitive file protection`,
     },
   });
 
