@@ -1,6 +1,6 @@
 {
   "version": "1.1.6",
-  "generated": "2026-09-16T13:17:49.558Z",
+  "generated": "2026-09-16T16:15:00.386Z",
   "fileCount": 287,
   "files": {
     "source/.agents-opencode-manifest.json": {
@@ -240,8 +240,8 @@
       "size": 1986
     },
     "source/opencode.jsonc": {
-      "hash": "63ce1b78aab4430e5f807c6ff516b6605d386ee4d09cf3581ffc29ef75b673d3",
-      "size": 3210
+      "hash": "931d5b9582281aaa260b3b17912926d66776b6154c1089ea9a4f37bc4949f0cd",
+      "size": 3190
     },
     "source/plugins/opencode-env-guard.ts": {
       "hash": "0fabce10b1f2137bb7a971918bffb267523d34b03af1fc273a7c5cc362ce336a",
@@ -256,8 +256,8 @@
       "size": 1689
     },
     "source/rules.md": {
-      "hash": "d25f0318aaa59bafca4f3b5fe3ed89e80d25ecd9d1dc6a18f17e32060e0b8001",
-      "size": 172
+      "hash": "79f318b68e670dc99aac0a7212f7430b78c2b25486e68212ba66def3f8322f48",
+      "size": 177
     },
     "source/skills/5whys/SKILL.md": {
       "hash": "2706086a75d99b0953a3a3397f83423032f9c5f230001f7cbc9d2f49250ae63e",
