@@ -3,19 +3,6 @@
 All notable changes to Modded OpenCode are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [1.1.8] - 2026-09-15
-
-### Added
-- **opencode-notify plugin** (npm: `modded-opencode-opencode-notify`): cross-platform native desktop notifications. Sends Windows toast, macOS osascript, or Linux notify-send when assistant completes a message. Configurable cooldown (2s default).
-- **opencode-session-title plugin** (npm: `modded-opencode-opencode-session-title`): auto-generates short session titles from the first user message. Strips code blocks, truncates to 60 chars.
-- **opencode-env-guard plugin** (npm: `modded-opencode-opencode-env-guard`): blocks reading `.env` files and writes containing detected secrets/keys/patterns. Protects API keys, tokens, private keys, and password patterns.
-- **LSP configuration**: 10 built-in language servers enabled in `opencode.jsonc` (typescript, pyright, gopls, rust-analyzer, clangd, bash-language-server, yaml-language-server, vscode-json-language-server, vscode-css-language-server, vscode-html-language-server).
-
-### Changed
-- **compaction**: `prune` enabled (was false), `reserved` reduced to 6400 (was 10000) for faster context pruning and lower token usage.
-- **opencode.jsonc**: plugin list expanded to 7 packages (was 4).
-- **npm scope**: 7 total published packages under `modded-opencode-*` namespace.
-
 ## [1.1.7] - 2026-09-15
 
 ### Fixed
