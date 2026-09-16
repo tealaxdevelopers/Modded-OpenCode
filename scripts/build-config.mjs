@@ -197,16 +197,50 @@ if (env.HAS_CUSTOM === '1' && env.OC_CBASE && env.OC_CMODEL) {
   }
 }
 
+// sanitize — remove illegal control characters from JSON strings
+function sanitizeJson(s) {
+  // Replace literal control chars (U+0000-U+001F except \n \r \t) with empty
+  return s.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '')
+}
+
 // validate — strip JSONC features (comments, trailing commas) before JSON.parse
 function stripJsonc(s) {
-  return s
-    .replace(/\/\/.*$/gm, '')           // line comments
-    .replace(/\/\*[\s\S]*?\*\//g, '')   // block comments
-    .replace(/,\s*([\]}])/g, '$1')      // trailing commas
+  let result = ''
+  let i = 0
+  while (i < s.length) {
+    // Skip single-line comments
+    if (s[i] === '/' && s[i+1] === '/') {
+      while (i < s.length && s[i] !== '\n') i++
+      continue
+    }
+    // Skip block comments
+    if (s[i] === '/' && s[i+1] === '*') {
+      i += 2
+      while (i < s.length && !(s[i] === '*' && s[i+1] === '/')) i++
+      i += 2
+      continue
+    }
+    result += s[i]
+    i++
+  }
+  // Remove trailing commas before } or ]
+  result = result.replace(/,(\s*[}\]])/g, '$1')
+  return result
 }
 try {
-  JSON.parse(stripJsonc(cfg))
+  const stripped = stripJsonc(sanitizeJson(cfg))
+  JSON.parse(stripped)
 } catch (e) {
+  const stripped = stripJsonc(sanitizeJson(cfg))
+  const pos = Number(e.message.match(/position (\d+)/)?.[1] || 0)
+  const lineCol = e.message.match(/line (\d+) column (\d+)/)
+  if (lineCol) {
+    const [, line, col] = lineCol.map(Number)
+    const lines = stripped.split('\n')
+    const problemLine = lines[line - 1] || ''
+    const snippet = problemLine.substring(Math.max(0, col - 20), col + 20)
+    fail(`generated opencode.jsonc is invalid JSON at line ${line} col ${col}:\n  ${snippet}\n  ${'^'.repeat(Math.min(20, snippet.length))}\n  ${e.message}`)
+  }
   fail('generated opencode.jsonc is invalid JSON: ' + e.message)
 }
 
