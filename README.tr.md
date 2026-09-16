@@ -1,7 +1,7 @@
 <div align="center">
   <h1>⚡ Modded OpenCode</h1>
   <p>OpenCode gerektirir — Desktop, Terminal ve CLI hepsi aynı config'i okur.</p>
-  <p><strong>105 skill, otomatik kurulum, özel kurallar — açılışta her şey hazır</strong></p>
+  <p><strong>105 skill · 13 agent · 19 command · 7 plugin — açılışta her şey hazır</strong></p>
   <p>
     <a href="README.md">🇬🇧 English</a> ·
     <a href="README.ru.md">🇷🇺 Русский</a>
@@ -12,51 +12,6 @@
     <a href="https://opencode.ai"><img src="https://img.shields.io/badge/OpenCode-v2.3%2B-blue?style=flat-square" alt="OpenCode"/></a>
   </p>
 </div>
-
----
-
-## 📦 İçinde Ne Var?
-
-```
-modded-opencode/
-├── setup.bat                          # Tek tıkla kurulum sihirbazı (Windows, EN/TR/RU)
-├── setup.sh                           # Tek tıkla kurulum sihirbazı (macOS / Linux)
-├── scripts/build-config.mjs           # Çapraz platform opencode.jsonc üreteci (Node)
-└── source/
-    ├── opencode.jsonc                 # Provider & MCP yapılandırması (temiz)
-    ├── rules.md                       # Agent persona kuralları (özel hitap + dil)
-    ├── .gitignore
-    ├── agents/                        # 13 özel agent (ivan, scout, planner, review...)
-    ├── commands/                      # 19 slash komutu
-    ├── instructions/                  # 22 instruction seti
-    └── skills/                        # 105 adet SKILL.md paketi
-```
-
-Plugin'ler npm'den yüklenir (yerel dosya olarak paketlenmez):
-
-| Plugin | Paket | Amaç |
-|--------|-------|------|
-| **agents-opencode** | `modded-opencode-agents-opencode` | Sıkıştırma bağlamı, versiyon enjeksiyonu, hassas dosya engelleme |
-| **auto-continue** | `modded-opencode-opencode-continue` | Boşta kalınca / kopunca otomatik devam |
-| **openai-system-merge** | `modded-opencode-openai-system-merge` | OpenAI-uyumlu sunucularda çoklu system message hatasını düzeltir |
-| **update-checker** | `modded-opencode-update-checker` | Başlangıçta GitHub'dan yeni sürüm kontrolü |
-| **notify** | `modded-opencode-opencode-notify` | Görev tamamlanınca çapraz platform masaüstü bildirimleri |
-| **session-title** | `modded-opencode-opencode-session-title` | İlk kullanıcı mesajından otomatik oturum başlığı üretir |
-| **env-guard** | `modded-opencode-opencode-env-guard` | .env dosyalarını ve tespit edilen sır içeren yazmaları engeller |
-
-### 🔥 Öne Çıkan Skill'ler
-
-| Skill | Ne İşe Yarar |
-|-------|-------------|
-| **ponytail** | Token israfını önleyen karar merdiveni (YAGNI/stdlib/oneliner/MVP) |
-| **multi-language** | Python/Kotlin/Java/Node.js idiomik kod üretimi |
-| **java-spring** | Spring Boot + constructor injection + validation |
-| **pythonic-quality** | Pythonic idiom'lar, SOLID, Liskov-safe subtype'lar |
-| **senior-fullstack** | React/Next/Node/GraphQL/PostgreSQL fullstack |
-| **legal-advisor** | Hukuk araştırması, mevzuat analizi, lisans denetimi |
-| **cto-advisor** | Tech debt analizcisi, ekip ölçekleme, teknoloji değerlendirme |
-| **xlsx / pdf / docx** | Excel, PDF, Word belge işleme |
-| *(+95 daha)* | |
 
 ---
 
@@ -81,47 +36,28 @@ chmod +x setup.sh scripts/*.sh
 
 ---
 
-## 🚀 Kurulum
+## 🔌 Plugin'ler (7 adet, npm'den yüklenir)
 
-```batch
-setup.bat
+| Plugin | Ne Yapar |
+|--------|----------|
+| **agents-opencode** | Sıkıştırma bağlamı enjeksiyonu, hassas dosya engelleme, versiyon env var'ı |
+| **auto-continue** | Boşta kalan / kopan oturumları otomatik devam ettirir (varsayılan açık) |
+| **openai-system-merge** | Katı OpenAI-uyumlu sunucularda çoklu system message hatasını düzeltir |
+| **update-checker** | Başlangıçta GitHub'dan yeni sürüm kontrol eder |
+| **notify** | Görev tamamlanınca çapraz platform masaüstü bildirimleri |
+| **session-title** | İlk kullanıcı mesajından otomatik oturum başlığı üretir |
+| **env-guard** | .env dosyalarını ve tespit edilen sır içeren yazmaları engeller |
+
+Auto-continue ayarları (`<proje>/.opencode/auto-continue.json`):
+
+```jsonc
+{
+  "enabled": true,
+  "cooldown_ms": 8000,
+  "max_consecutive": 8,
+  "continue_on_error": false
+}
 ```
-
-**macOS / Linux** için eşdeğer kabuk sihirbazı:
-
-```bash
-chmod +x setup.sh scripts/install.sh scripts/opencode-wrapper.sh scripts/sync-all-providers.sh
-./setup.sh
-```
-
-> ⚠️ Klonlama sonrası kabuk betikleri çalıştırma izni kaybedebilir. İlk kullanımdan önce `chmod +x` ile betiklere izin verin. CI ortamları da bunu doğrulamalıdır: `git ls-files --stage | grep 100755`.
-
-Her iki sihirbaz aynı motoru (`scripts/build-config.mjs`) paylaşır ve aynı soruları sorar.
-
-Sihirbaz sırayla şunları sorar:
-
-| Adım | Soru | Boş Bırakılırsa |
-|------|------|-----------------|
-| 1️⃣ Dil | `tr` / `us` / `ru` (2 harf) | — |
-| 2️⃣ Kullanıcı adı | Windows kullanıcı adın | `ENTER` = otomatik algılanır |
-| 3️⃣ Hitap | Agent sana nasıl hitap etsin? | Varsayılan kullanılır |
-| 4️⃣ GitHub API key(ler) | GitHub MCP için — virgülle birden fazla key desteklenir | `ENTER` = atlanır, MCP **kapalı** kurulur |
-| 5️⃣ Brave API key | Web araması için | `ENTER` = atlanır, arama **kapalı** kurulur |
-| 6️⃣ Ekstra entegrasyon | Özel provider menüsü | `ENTER` = geç |
-
-> 🔗 **Birden fazla GitHub key:** Birden çok token'ı virgülle yapıştır — `GITHUB_API_KEY_1`, `GITHUB_API_KEY_2`, … olarak kaydedilir (üst sınır yok). Tek token `GITHUB_API_KEY` olarak kalır. Çoklu mod açıksa config ilk key'e (`_1`) bağlanır.
-
-> 🔑 **Key güvenliği:** API anahtarları asla kabuk RC dosyalarına (`.bashrc`, `.zshrc`) **yazılmaz**. Özel bir `.env.local` dosyasında saklanır (`0600` izin — sadece sahibi okuyabilir/yazabilir). Kabuk RC dosyası sadece `OPENCODE_LOCAL_SETUP_DIR` export'u alır, böylece wrapper çalışma zamanında kimlik bilgilerini bulabilir.
-
-| İşletim Sistemi | `.env.local` konumu | Güncellenen RC dosyası | İzinler |
-|-----------------|---------------------|------------------------|---------|
-| **Windows** | `%USERPROFILE%\.config\opencode\local-setup\.env.local` | N/A (`setx` kullanır) | NTFS ACL |
-| **macOS** | `~/Library/Application Support/opencode/local-setup/.env.local` | `~/.zshrc` | `chmod 600` |
-| **Linux** | `~/.config/opencode/local-setup/.env.local` | `~/.bashrc` | `chmod 600` |
-
-> Key'leri kaldırmak için: `.env.local` dosyasını silin veya `oc-doctor` ile sızıntı olup olmadığını kontrol edin.
-
-Kalan her şey otomatik kurulur: 105 skill, 13 agent, 19 command, 22 instruction, MCP sunucuları.
 
 ---
 
@@ -137,122 +73,131 @@ Kalan her şey otomatik kurulur: 105 skill, 13 agent, 19 command, 22 instruction
 | **brave-search** | Web arama | 🔑 Key verildiyse aktif |
 | *filesystem* | Dosya sistemi erişimi | ⛔ Varsayılan kapalı |
 
-Sonradan key eklemek için:
+---
 
-```batch
-setx GITHUB_API_KEY "ghp_..."
-setx BRAVE_API_KEY "BSA..."
-```
+## 🔥 Skill'ler (105 adet)
 
-sonra `opencode.jsonc` içindeki ilgili `"enabled": false` değerini `true` yap.
+### Dil & Framework
+
+| Skill | Ne İşe Yarar |
+|-------|-------------|
+| **multi-language** | Python/Kotlin/Java/Node.js idiomik kod üretimi |
+| **java-spring** | Spring Boot + constructor injection + validation |
+| **pythonic-quality** | Pythonic idiom'lar, SOLID, Liskov-safe subtype'lar |
+| **senior-fullstack** | React/Next/Node/GraphQL/PostgreSQL fullstack |
+| **rust** | Ownership/borrowing, Result/Option, safe abstractions |
+
+### Kalite & İnceleme
+
+| Skill | Ne İşe Yarar |
+|-------|-------------|
+| **ponytail** | Token israfını önleyen karar merdiveni (YAGNI/stdlib/oneliner/MVP) |
+| **claude-code-review** | Güvenlik, performans, doğruluk incelemesi |
+| **claude-debug** | Sistemli hipotez tabanlı hata ayıklama |
+| **claude-simplify** | Netlik ve karmaşıklık azaltma için yeniden düzenleme |
+| **code-change-impact** | Kod değişiklikleri için patlama yarıçapı analizi |
+
+### İçerik & İş
+
+| Skill | Ne İşe Yarar |
+|-------|-------------|
+| **legal-advisor** | Hukuk araştırması, mevzuat analizi, lisans denetimi |
+| **cto-advisor** | Tech debt analizcisi, ekip ölçekleme, teknoloji değerlendirme |
+| **blogger** | Teknoloji/finans/liderlik blogları, podcast fikirleri, YouTube scriptleri |
+| **deep-research** | Alıntı takibi ile çoklu kaynak web araştırması |
+
+### Verimlilik
+
+| Skill | Ne İşe Yarar |
+|-------|-------------|
+| **claude-commit** | Atomik staging ile geleneksel git commit |
+| **claude-batch** | Birden fazla dosyayı aynı işlemle işleme |
+| **claude-loop** | Çıkış koşulları ile görevi tekrarlama |
+| **xlsx / pdf / docx** | Excel, PDF, Word belge işleme |
+
+*+95 daha fazla skill `source/skills/` içinde*
 
 ---
 
-## 🔁 Auto-Continue (otomatik devam)
+## 🤖 Agent'lar (13 adet)
 
-**Varsayılan açık** gelir. Auto-continue plugin'i oturumlarını izler; bir oturum **boşta kalınca** (model bitti ama sen yazmadın) **veya bağlantı iş ortasında kopunca** (`session.error`), otomatik olarak `continue` mesajı enjekte eder — senin de AI'ın da bir şey yapmasına gerek kalmadan agent kendi devam eder.
-
-- 🛡️ **Sınırlı**: cooldown (`cooldown_ms`) ve maksimum ardışık sayı (`max_consecutive`) sonsuz döngüyü engeller.
-- 🔄 **Kendini sıfırlar**: Gerçek bir mesaj attığında sayaç sıfırlanır.
-- 🌐 **Çapraz platform**: Aynı plugin Windows, macOS ve Linux'ta yüklenir.
-
-`<proje>/.opencode/auto-continue.json` ile ayarla veya kapat:
-
-```jsonc
-{
-  "enabled": true,
-  "message": "continue",
-  "cooldown_ms": 8000,
-  "max_consecutive": 8,
-  "continue_on_error": false
-}
-```
-
-Veya ortam değişkeniyle global aç/kapat — dosya gerekmez:
-
-```batch
-setx OC_AUTOCONTINUE 0   # kapalı
-setx OC_AUTOCONTINUE 1   # açık
-```
-
-> Manuel alternatif: sohbete `continue` yazmak. Plugin sadece o adımı otomatikleştirir. Sohbet kutusu içine gerçek "Continue" butonu ve uygulama içi ayar toggle'ı, OpenCode UI'ını fork'lamayı gerektirir — plugin yaklaşımının kapsamı dışında.
+| Agent | Rol | Mod |
+|-------|-----|-----|
+| **@codebase** | Profil algılama ile çok dilli geliştirme | primary |
+| **@orchestrator** | Stratejik planlama ve iş akışı koordinasyonu | primary |
+| **@planner** | Salt okunur analiz ve uygulama planlama | primary |
+| **@review** | Güvenlik, performans, en iyi uygulamalar için kod incelemesi | subagent |
+| **@docs** | Dokümantasyon oluşturma ve bakım | subagent |
+| **@ivan** | Kıdemli kod uygulayıcı | subagent |
+| **@jester** | Alışılmadık düşünme için yüksek sıcaklık oracle'ı | subagent |
+| **@oscar** | Kıdemli kod inceleyici | subagent |
+| **@scout** | Araştırma ve planlama | subagent |
+| **@blogger** | İçerik oluşturma (blog, podcast, YouTube) | primary |
+| **@brutal-critic** | Çerçeve puanlaması ile içerik kalite incelemesi | subagent |
+| **@em-advisor** | Mühendislik yönetimi rehberliği | primary |
+| **@legal-advisor** | Lisans denetimi, uyumluluk, düzenleyici rehberlik | primary |
 
 ---
 
-## ⚙️ Provider'lar (Önemli!)
+## ⚙️ Provider'lar
 
 **Kurulumla birlikte hazır provider gelmez.** Config `provider: {}` olarak boş kurulur.
 
 İki bağlantı yolu:
 
-### 1) Sihirbazdan özel OpenAI-uyumlu provider (Adım 6 → `[1]`)
-
-Base URL + model adı + API key sorulup config'e işlenir:
-
-```jsonc
-"provider": {
-  "<model-adi>": {
-    "name": "<model-adi>",
-    "npm": "@ai-sdk/openai-compatible",
-    "options": {
-      "baseURL": "https://sunucun.com/v1",
-      "apiKey": "{env:CUSTOM_LLM_API_KEY}"
-    },
-    "models": { "<model-adi>": {} }
-  }
-}
-```
+### 1) Sihirbazdan (Adım 6 → `[1]`)
+Base URL + model adı + API key sorulup config'e işlenir.
 
 ### 2) Hazır sağlayıcılar (OpenAI, Anthropic, Google...)
-
-Kurulum sonrası tek komut:
-
 ```batch
 opencode auth login
 ```
 
-### Elle örnek (DashScope/Qwen)
+### Desteklenen yerel endpoint'ler
 
-Elle eklemek isteyenler için **örnek** — varsayılan değildir:
-
-```jsonc
-"provider": {
-  "qwen-dashscope": {
-    "name": "Qwen DashScope",
-    "npm": "@ai-sdk/openai-compatible",
-    "options": {
-      "baseURL": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
-    },
-    "models": {
-      "qwen-turbo-latest": {
-        "name": "Qwen Turbo",
-        "limit": { "context": 1000000, "output": 8192 }
-      }
-    }
-  }
-}
-```
-
-> ⚠️ Eski sürümlerde gelen `@melodyoftears/opencode-qwen-auth` eklentisi **kaldırılmıştır**.
+| Provider | Varsayılan URL | Port |
+|----------|---------------|------|
+| Ollama | `http://127.0.0.1:11434/v1` | 11434 |
+| LM Studio | `http://127.0.0.1:1234/v1` | 1234 |
+| vLLM | `http://127.0.0.1:8000/v1` | 8000 |
+| llama.cpp | `http://127.0.0.1:8080/v1` | 8080 |
 
 ---
 
-## 📜 Rules.md (Agent Persona)
+## 🔧 OpenAI-Uyumlu Provider Desteği
 
-Paketin kalbi. `rules.md`, OpenCode'u OpenCode'un instruction sistemiyle yüklenen bir oturum-kapsamlı persona katmanını yapılandırır — ajanın kimliği, sesi ve çalışma stili:
-
-- 🎭 **Kişilik tanımı:** Ajanın operatör kimliğini kurar — oturum için ses, yanıt formatı ve çalışma stili.
-- 🌐 **Dil + hitap:** İkisi de kurulumda belirlenir (`{{LANGUAGE}}`, `{{HITAP}}`) — ajan senin dilini konuşur, seni seçtiğin şekilde çağırır.
-- 🔒 **Kapsam:** Bu sadece prompt katmanı yapılandırmasıdır. Model ağırlıklarını değiştirmez, sunucu tarafı API politikalarını, hesap izinlerini veya yasal sınırları aşamaz — onlar her zaman geçerlidir. Kişisel, yerel kullanım içindir.
-
-> **Not:** Bu, özel ve kontrollü bir oturum için kişilik yapılandırmasıdır — güvenlik açığı istismarı değildir. Üretim veya çok kullanıcılı sistemler için önerilmez.
+Özel provider'lar (vLLM, Ollama, llama.cpp, LM Studio, Hetzner, OVHcloud, Scaleway vb.) kutudan çıkar çıkmaz çalışır. `openai-system-merge` plugin'i, sıkı OpenAI-uyumlu sunucularda oluşan `400 BadRequestError: System message must be at the beginning` hatasınıbirden fazla system message'ı birleştirerek düzeltir.
 
 ---
 
-## 🙏 Teşekkürler
+## 📦 Kurulum
 
-- [opencode-ai/opencode](https://github.com/opencode-ai/opencode) — ana platform
-- [awesome-opencode/awesome-opencode](https://github.com/awesome-opencode/awesome-opencode) — plugin/tema/agent listesi
+Her iki sihirbaz (`setup.bat` / `setup.sh`) aynı soruları sorar:
+
+| Adım | Soru | Boş Bırakılırsa |
+|------|------|-----------------|
+| 1️⃣ Dil | `tr` / `us` / `ru` | — |
+| 2️⃣ Kullanıcı adı | Windows kullanıcı adın | otomatik algılanır |
+| 3️⃣ Hitap | Agent sana nasıl hitap etsin? | varsayılan |
+| 4️⃣ GitHub API key(ler) | GitHub MCP için | atlanır, MCP kapalı |
+| 5️⃣ Brave API key | Web araması için | atlanır, arama kapalı |
+| 6️⃣ Ekstra entegrasyon | Özel provider menüsü | geç |
+
+Seçtiğin dil `rules.md` içindeki agent konuşma dilini belirler.
+
+> 🔑 **Key güvenliği:** API anahtarları `.env.local` dosyasında saklanır (`0600` izin), kabuk RC dosyalarına asla yazılmaz.
+
+| İşletim Sistemi | `.env.local` konumu |
+|-----------------|---------------------|
+| **Windows** | `%USERPROFILE%\.config\opencode\local-setup\.env.local` |
+| **macOS** | `~/Library/Application Support/opencode/local-setup/.env.local` |
+| **Linux** | `~/.config/opencode/local-setup/.env.local` |
+
+---
+
+## 📜 Rules.md
+
+Agent persona katmanı — OpenCode instruction sistemiyle yüklenir. Kimlik, ses ve çalışma stilini belirler. Dil ve hitap kurulumda yapılandırılır.
 
 ---
 
@@ -267,16 +212,22 @@ printf -- "---\nname: benim-skillim\ndescription: Bir seyler yapar\n---\n# Skill
 ```
 
 Doğrulama:
-
 ```bash
 npm run validate
 ```
 
 ---
 
+## 🙏 Teşekkürler
+
+- [opencode-ai/opencode](https://github.com/opencode-ai/opencode) — ana platform
+- [awesome-opencode/awesome-opencode](https://github.com/awesome-opencode/awesome-opencode) — plugin/tema/agent listesi
+
+---
+
 ## 📄 Lisans
 
-MIT — kullan, değiştir, dağıt, forkla. Özgürce kullan.
+MIT — kullan, değiştir, dağıt, forkla.
 
 ---
 
