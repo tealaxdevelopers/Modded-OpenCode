@@ -8,6 +8,7 @@
 //   4. generates opencode.jsonc from the template (GitHub/Brave/custom-provider toggles)
 import { cpSync, mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
+import { stripJsonComments, stripTrailingCommas } from './sync-core.mjs'
 
 const env = process.env
 const sourceDir = env.OC_SOURCE
@@ -197,61 +198,11 @@ if (env.HAS_CUSTOM === '1' && env.OC_CBASE && env.OC_CMODEL) {
   }
 }
 
-// sanitize — remove illegal control characters from JSON strings
-function sanitizeJson(s) {
-  // Normalize line endings to \n and strip other control chars
-  return s.replace(/\r\n/g, '\n').replace(/\r/g, '\n').replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '')
-}
-
-// validate — strip JSONC features (comments, trailing commas) before JSON.parse
-function stripJsonc(s) {
-  let result = ''
-  let i = 0
-  while (i < s.length) {
-    // Skip single-line comments
-    if (s[i] === '/' && s[i+1] === '/') {
-      while (i < s.length && s[i] !== '\n') i++
-      continue
-    }
-    // Skip block comments
-    if (s[i] === '/' && s[i+1] === '*') {
-      i += 2
-      while (i < s.length && !(s[i] === '*' && s[i+1] === '/')) i++
-      i += 2
-      continue
-    }
-    result += s[i]
-    i++
-  }
-  // Remove trailing commas before } or ]
-  result = result.replace(/,(\s*[}\]])/g, '$1')
-  return result
-}
+// validate — use proper JSONC parser from sync-core (handles strings correctly)
 try {
-  const sanitized = sanitizeJson(cfg)
-  const stripped = stripJsonc(sanitized)
-  // Write the actual file (not the template)
-  writeFileSync(join(targetDir, 'opencode.jsonc'), stripped)
-  JSON.parse(stripped)
+  stripTrailingCommas(stripJsonComments(cfg)) // triggers parse in next line
+  JSON.parse(stripTrailingCommas(stripJsonComments(cfg)))
 } catch (e) {
-  const sanitized = sanitizeJson(cfg)
-  const stripped = stripJsonc(sanitized)
-  // Show first 200 chars for debugging
-  console.log('[build-config] First 200 chars of generated JSON:')
-  console.log(stripped.substring(0, 200))
-  console.log('[build-config] Hex of first 50 bytes:')
-  for (let i = 0; i < Math.min(50, stripped.length); i++) {
-    process.stdout.write(stripped.charCodeAt(i).toString(16).padStart(2, '0') + ' ')
-  }
-  console.log()
-  const lineCol = e.message.match(/line (\d+) column (\d+)/)
-  if (lineCol) {
-    const [, line, col] = lineCol.map(Number)
-    const lines = stripped.split('\n')
-    const problemLine = lines[line - 1] || ''
-    const snippet = problemLine.substring(Math.max(0, col - 20), col + 20)
-    fail(`generated opencode.jsonc is invalid JSON at line ${line} col ${col}:\n  ${snippet}\n  ${'^'.repeat(Math.min(20, snippet.length))}\n  ${e.message}`)
-  }
   fail('generated opencode.jsonc is invalid JSON: ' + e.message)
 }
 

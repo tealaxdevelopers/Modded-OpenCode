@@ -46,6 +46,40 @@ test("JSONC supports comments and trailing commas", () => {
   assert.deepEqual(parseJsonConfig(`{/* block */"provider":{"local":{},},// line\n}`), { provider: { local: {} } });
 });
 
+test("build-config preserves URLs and string content and rejects invalid output before writing", async () => {
+  const temp = await fs.mkdtemp(path.join(os.tmpdir(), "build-config-test-"));
+  const source = path.join(temp, "source");
+  const target = path.join(temp, "target");
+  try {
+    await fs.mkdir(source);
+    await fs.writeFile(path.join(source, "rules.md"), "{{LANGUAGE}} {{HITAP}}\n");
+    const template = await fs.readFile(path.join(root, "source", "opencode.jsonc"), "utf8");
+    const env = {
+      OC_SOURCE: source, OC_TARGET: target, OC_RULES_API: "",
+      OC_USERNAME: "UZMAN", OC_LANGUAGE: "Turkce", OC_ADDRESSING: "Tealax",
+      HAS_GITHUB: "", HAS_BRAVE: "", HAS_CUSTOM: "", OC_GH_MULTI: "",
+    };
+    const output = path.join(target, "opencode.jsonc");
+    await fs.writeFile(path.join(source, "opencode.jsonc"), template);
+    await run("scripts/build-config.mjs", env);
+    const generated = parseJsonConfig(await fs.readFile(output, "utf8"));
+    assert.equal(generated.$schema, "https://opencode.ai/config.json");
+    assert.equal(generated.mcp.github.enabled, false);
+    assert.deepEqual(generated.provider, {});
+    const values = { url: "https://example.test/v1", literal: '/*keep*/ //keep ,} ,] "quoted" \\path', key: "{env:CUSTOM_LLM_API_KEY}" };
+    const jsonc = `{\r\n// comment\r\n"values": ${JSON.stringify(values)},\r\n/* block */\r\n}`;
+    await fs.writeFile(path.join(source, "opencode.jsonc"), jsonc);
+    await run("scripts/build-config.mjs", env);
+    const saved = await fs.readFile(output, "utf8");
+    assert.deepEqual(parseJsonConfig(saved), { values });
+    await fs.writeFile(path.join(source, "opencode.jsonc"), '{"value":"invalid\u0001"}');
+    await assert.rejects(run("scripts/build-config.mjs", env));
+    assert.equal(await fs.readFile(output, "utf8"), saved);
+  } finally {
+    await fs.rm(temp, { recursive: true, force: true });
+  }
+});
+
 test("model limits require both context and output", () => {
   assert.deepEqual(resolveModelLimit({ context_length: 131072, max_output_tokens: 8192 }), { context: 131072, output: 8192 });
   assert.equal(resolveModelLimit({ context_length: 131072 }), undefined);
