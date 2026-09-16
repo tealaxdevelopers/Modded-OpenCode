@@ -1,6 +1,6 @@
 {
   "version": "1.1.6",
-  "generated": "2026-09-16T16:15:00.386Z",
+  "generated": "2026-09-16T16:19:59.292Z",
   "fileCount": 287,
   "files": {
     "source/.agents-opencode-manifest.json": {
@@ -240,8 +240,8 @@
       "size": 1986
     },
     "source/opencode.jsonc": {
-      "hash": "931d5b9582281aaa260b3b17912926d66776b6154c1089ea9a4f37bc4949f0cd",
-      "size": 3190
+      "hash": "3630d3d1527e67e14f8197a1512878efb5b05f8e2d4fbc00b5b87165b8dbdca4",
+      "size": 3159
     },
     "source/plugins/opencode-env-guard.ts": {
       "hash": "0fabce10b1f2137bb7a971918bffb267523d34b03af1fc273a7c5cc362ce336a",

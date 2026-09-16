@@ -72,7 +72,7 @@
   "mcp": {
     "fetch": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-fetch"],
+      "command": ["npx", "-y", "mcp-fetch-server"],
       "enabled": true
     },
     "sequential-thinking": {
@@ -87,7 +87,7 @@
     },
     "time": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-time"],
+      "command": ["npx", "-y", "@mcpcentral/mcp-time"],
       "enabled": true
     },
     "github": {
