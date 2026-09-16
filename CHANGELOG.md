@@ -3,7 +3,26 @@
 All notable changes to Modded OpenCode are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [1.1.7] - 2026-09-15
+---
+
+## [1.1.7-hotfix] — Release — 2026-09-16
+
+Hotfix release addressing env-guard write blocking and setup.sh issues.
+
+### Fixed
+- **env-guard**: write blocking removed for legitimate code edits (npm republish)
+- **setup.sh**: macOS path bug, shell_escape_val(), atomic .env.local
+- **MCP servers**: package name corrections
+- **Version alignment**: all 7 packages synchronized to 1.1.7-hotfix
+
+### Security
+- env-guard no longer blocks code edits containing API_KEY references
+
+---
+
+## [1.1.7] — Release — 2026-09-15
+
+Major feature release with 3 new plugins, compaction improvements, and MCP fixes.
 
 ### Added
 - **opencode-notify**: Cross-platform desktop notifications plugin (npm: `modded-opencode-opencode-notify`)
@@ -29,25 +48,12 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `openai-system-merge.ts`: double-patch guard prevents fetch recursion exploits.
 - `workflows/discord.yml`: removed command injection surface.
 
----
-
-## [1.1.7-hotfix] - 2026-09-16
-
-### Fixed
-- **env-guard**: write blocking removed for legitimate code edits (npm republish)
-- **setup.sh**: macOS path bug, shell_escape_val(), atomic .env.local
-- **MCP servers**: package name corrections
-- **Version alignment**: all 7 packages synchronized to 1.1.7-hotfix
-
-### Security
-- env-guard no longer blocks code edits containing API_KEY references
-
 ### Changed
 - Local plugin `.ts` files removed from `source/plugins/` — plugins now installed exclusively from npm packages.
 - Root `.gitignore` added for `node_modules/`, `.env`, `.env.local`, `.DS_Store`.
 - Package versions bumped to `1.1.6` across all npm packages.
 
-## [1.1.6] - 2026-09-14
+## [1.1.6] — Release — 2026-09-14
 
 ### Fixed
 - **build-config.mjs**: cross-platform path replacement — templates now use `{{TARGET_DIR}}` placeholder instead of hardcoded `C:\Users\{{USERNAME}}` Windows paths. Replacement order corrected.
