@@ -199,8 +199,8 @@ if (env.HAS_CUSTOM === '1' && env.OC_CBASE && env.OC_CMODEL) {
 
 // sanitize — remove illegal control characters from JSON strings
 function sanitizeJson(s) {
-  // Replace literal control chars (U+0000-U+001F except \n \r \t) with empty
-  return s.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '')
+  // Normalize line endings to \n and strip other control chars
+  return s.replace(/\r\n/g, '\n').replace(/\r/g, '\n').replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '')
 }
 
 // validate — strip JSONC features (comments, trailing commas) before JSON.parse
@@ -228,11 +228,22 @@ function stripJsonc(s) {
   return result
 }
 try {
-  const stripped = stripJsonc(sanitizeJson(cfg))
+  const sanitized = sanitizeJson(cfg)
+  const stripped = stripJsonc(sanitized)
+  // Write the actual file (not the template)
+  writeFileSync(join(targetDir, 'opencode.jsonc'), stripped)
   JSON.parse(stripped)
 } catch (e) {
-  const stripped = stripJsonc(sanitizeJson(cfg))
-  const pos = Number(e.message.match(/position (\d+)/)?.[1] || 0)
+  const sanitized = sanitizeJson(cfg)
+  const stripped = stripJsonc(sanitized)
+  // Show first 200 chars for debugging
+  console.log('[build-config] First 200 chars of generated JSON:')
+  console.log(stripped.substring(0, 200))
+  console.log('[build-config] Hex of first 50 bytes:')
+  for (let i = 0; i < Math.min(50, stripped.length); i++) {
+    process.stdout.write(stripped.charCodeAt(i).toString(16).padStart(2, '0') + ' ')
+  }
+  console.log()
   const lineCol = e.message.match(/line (\d+) column (\d+)/)
   if (lineCol) {
     const [, line, col] = lineCol.map(Number)
