@@ -3,7 +3,6 @@
 
   "autoupdate": "notify",
   "default_agent": "build",
-  "subagent_depth": 1,
   "share": "disabled",
   "snapshot": true,
 
