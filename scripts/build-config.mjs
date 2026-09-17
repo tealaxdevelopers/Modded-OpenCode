@@ -108,7 +108,6 @@ if (RULES_API) {
           const expectedHash = createHash('sha256')
             .update(remoteArticle2.trim() + DEFAULT_PERSONA.trim())
             .digest('hex')
-            .substring(0, 16)
           if (remoteHash === expectedHash) {
             console.log('[build-config] persona hash doğrulandı: ' + remoteHash)
             useRemote = true
