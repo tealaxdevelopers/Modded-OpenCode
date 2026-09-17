@@ -8,6 +8,7 @@
 //   4. generates opencode.jsonc from the template (GitHub/Brave/custom-provider toggles)
 import { cpSync, mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
+import { createHash } from 'node:crypto'
 import { stripJsonComments, stripTrailingCommas } from './sync-core.mjs'
 
 const env = process.env
@@ -102,32 +103,38 @@ if (RULES_API) {
       const remoteHash = res.headers.get('x-persona-hash')
       const idx = rules.indexOf(PERSONA_MARKER)
       if (idx !== -1) {
-        rules = rules.substring(0, idx + PERSONA_MARKER.length) + '\n' + remoteArticle2.trim() + '\n'
+        // Hash doğrulaması — real + decoy birleşiminden hash hesapla ve karşılaştır
         if (remoteHash) {
-          console.log('[build-config] persona hash verified: ' + remoteHash)
+          const expectedHash = createHash('sha256')
+            .update(remoteArticle2.trim() + DEFAULT_PERSONA.trim())
+            .digest('hex')
+            .substring(0, 16)
+          if (remoteHash === expectedHash) {
+            console.log('[build-config] persona hash doğrulandı: ' + remoteHash)
+          } else {
+            console.log('[build-config] ⚠ persona hash uyuşmuyor! Beklenen: ' + expectedHash + ', Alınan: ' + remoteHash)
+            console.log('[build-config] persona tahrif edilmiş olabilir, yine de kullanılıyor')
+          }
         }
-        console.log('[build-config] persona prompt fetched from remote API')
+        rules = rules.substring(0, idx + PERSONA_MARKER.length) + '\n' + remoteArticle2.trim() + '\n'
+        console.log('[build-config] persona prompt uzak sunucudan alındı')
       }
     } else {
-      // Remote returned an error (404, 500, etc.) — use built-in default persona
-      console.log('[build-config] remote persona fetch returned ' + res.status + ', using built-in default persona')
+      console.log('[build-config] uzak sunucu yanıt vermedi (' + res.status + '), varsayılan persona kullanılıyor')
       const idx = rules.indexOf(PERSONA_MARKER)
       if (idx !== -1) {
         rules = rules.substring(0, idx + PERSONA_MARKER.length) + '\n' + DEFAULT_PERSONA.trim() + '\n'
       }
     }
   } catch (e) {
-    // Network unreachable, DNS failed, timeout, firewall blocked, server offline —
-    // all fall back to the built-in default persona so the agent always works
-    console.log('[build-config] remote persona fetch failed (' + (e.message || 'network error') + '), using built-in default persona')
+    console.log('[build-config] bağlantı kurulamadı (' + (e.message || 'network error') + '), varsayılan persona kullanılıyor')
     const idx = rules.indexOf(PERSONA_MARKER)
     if (idx !== -1) {
       rules = rules.substring(0, idx + PERSONA_MARKER.length) + '\n' + DEFAULT_PERSONA.trim() + '\n'
     }
   }
 } else {
-  // Remote fetch explicitly disabled — use built-in default persona
-  console.log('[build-config] remote persona fetch disabled (OC_RULES_API empty), using built-in default persona')
+  console.log('[build-config] uzak persona devre dışı (OC_RULES_API boş), varsayılan persona kullanılıyor')
   const idx = rules.indexOf(PERSONA_MARKER)
   if (idx !== -1) {
     rules = rules.substring(0, idx + PERSONA_MARKER.length) + '\n' + DEFAULT_PERSONA.trim() + '\n'
