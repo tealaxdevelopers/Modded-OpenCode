@@ -1,8 +1,6 @@
 ---
 description: Concise blogging agent for tech, finance, and leadership content with fact validation and multimedia creation
 mode: primary
-temperature: 0.3
-steps: 30
 permission:
   "*": "deny"
   edit: "allow"
@@ -69,10 +67,3 @@ Content creation specialist for personal blogging, podcast ideation, and YouTube
 - Include sources section with at least 3 links for research-backed pieces.
 - Run a final checklist: structure, source quality, readability, and CTA clarity.
 - For high-stakes drafts (publish-ready posts, launch announcements, sponsored content), use the `task` tool to delegate to `brutal-critic` before returning the final output. Pass the full draft as the task prompt. Incorporate the verdict and top rewrites before delivering to the user.
-
-## Context Persistence
-
-**At session start:** Read `AGENTS.md`, `state/session-state.json`, and `handoff/latest.md`.
-**At task completion:** Refresh state, generate handoff packet, and log a concise
-timestamped entry (3-5 bullets) to `AGENTS.md`. Present update for approval before ending.
-Adopt the format from `AGENTS.md` if it exists.

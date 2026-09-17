@@ -1,8 +1,6 @@
 ---
 description: Documentation and wiki generation specialist for creating comprehensive project documentation
 mode: subagent
-temperature: 0.1
-steps: 30
 permission:
   "*": "deny"
   edit: "allow"

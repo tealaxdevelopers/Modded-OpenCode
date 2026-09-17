@@ -1,7 +1,7 @@
 <div align="center">
   <h1>⚡ Modded OpenCode</h1>
   <p>Requires OpenCode — Desktop, Terminal and the CLI all read the same config.</p>
-  <p><strong>105 skills · 13 agents · 19 commands · 7 plugins — everything ready at launch</strong></p>
+  <p><strong>105 skills · 13 agents · 19 commands · 6 plugins — everything ready at launch</strong></p>
   <p>
     <a href="README.tr.md">🇹🇷 Türkçe</a> ·
     <a href="README.ru.md">🇷🇺 Русский</a>
@@ -40,7 +40,7 @@ chmod +x setup.sh scripts/*.sh
 
 ---
 
-## 🔌 Plugins (7 total, installed from npm)
+## 🔌 Plugins (6 built-in, installed from npm)
 
 | Plugin | What it does |
 |--------|-------------|

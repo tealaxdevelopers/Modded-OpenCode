@@ -1,7 +1,7 @@
 <div align="center">
   <h1>⚡ Modded OpenCode</h1>
   <p>OpenCode gerektirir — Desktop, Terminal ve CLI hepsi aynı config'i okur.</p>
-  <p><strong>105 skill · 13 agent · 19 command · 7 plugin — açılışta her şey hazır</strong></p>
+  <p><strong>105 skill · 13 agent · 19 command · 6 plugin — açılışta her şey hazır</strong></p>
   <p>
     <a href="README.md">🇬🇧 English</a> ·
     <a href="README.ru.md">🇷🇺 Русский</a>
@@ -40,7 +40,7 @@ chmod +x setup.sh scripts/*.sh
 
 ---
 
-## 🔌 Plugin'ler (7 adet, npm'den yüklenir)
+## 🔌 Plugin'ler (6 yerleşik, npm'den yüklenir)
 
 | Plugin | Ne Yapar |
 |--------|----------|

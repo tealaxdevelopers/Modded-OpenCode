@@ -1,7 +1,6 @@
 ---
 name: feynman
 description: Feynman Technique for deep learning—explain a concept simply, identify gaps, fill them, then refine. Use when learning something new, testing understanding, or preparing to teach.
-user-invocable: true
 ---
 
 # Feynman Technique

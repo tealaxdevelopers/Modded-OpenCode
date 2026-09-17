@@ -1,7 +1,6 @@
 ---
 name: redteam
 description: Red team adversarial analysis to find weaknesses, vulnerabilities, and failure modes. Use before launches, for security review, or when a plan feels too perfect.
-user-invocable: true
 ---
 
 # Red Team Analysis

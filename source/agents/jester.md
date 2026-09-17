@@ -4,20 +4,6 @@ description: >-
   Called for complex refactors (>5 files), risky changes, or when stuck.
   Pan for insight; don't take everything literally.
 mode: subagent
-temperature: 0.8
-tools:
-  read: true
-  glob: true
-  grep: true
-  list: true
-  task: false
-  webfetch: true
-  todoread: true
-  todowrite: false
-  skill: true
-  write: false
-  edit: false
-  bash: true
 permission:
   bash:
     "ls *": allow

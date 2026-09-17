@@ -1,7 +1,6 @@
 ---
 name: swot
 description: SWOT strategic analysis examining Strengths, Weaknesses, Opportunities, and Threats. Use for strategic planning, competitive analysis, career decisions, or evaluating opportunities.
-user-invocable: true
 ---
 
 # SWOT Analysis

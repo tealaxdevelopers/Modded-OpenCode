@@ -1,7 +1,6 @@
 ---
 name: moscow
 description: MoSCoW prioritization categorizing items as Must have, Should have, Could have, or Won't have. Use for scope definition, feature prioritization, or when everything feels equally important.
-user-invocable: true
 ---
 
 # MoSCoW Prioritization

@@ -1,7 +1,6 @@
 ---
 name: ooda
 description: OODA loop decision framework (Observe, Orient, Decide, Act). Use for complex decisions, problem-solving, unclear situations, or when someone is jumping to solutions without analysis.
-user-invocable: true
 ---
 
 # OODA Loop Analysis

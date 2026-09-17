@@ -2,7 +2,7 @@ import type { Plugin } from "@opencode-ai/plugin";
 import { execSync } from "child_process";
 import { platform } from "os";
 
-const PACKAGE_VERSION = "1.1.7-hotfix";
+const PACKAGE_VERSION = "1.1.8";
 let lastNotify = 0;
 const COOLDOWN = 2000;
 

@@ -1,6 +1,6 @@
 import type { Plugin } from "@opencode-ai/plugin";
 
-const PACKAGE_VERSION = "1.1.7-hotfix";
+const PACKAGE_VERSION = "1.1.8";
 
 export const AgentsOpencodePlugin: Plugin = async ({
   client,

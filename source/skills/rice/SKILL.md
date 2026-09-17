@@ -1,7 +1,6 @@
 ---
 name: rice
 description: RICE prioritization scoring initiatives by Reach, Impact, Confidence, and Effort. Use for feature prioritization, roadmap planning, or when comparing initiatives objectively.
-user-invocable: true
 ---
 
 # RICE Prioritization Scoring

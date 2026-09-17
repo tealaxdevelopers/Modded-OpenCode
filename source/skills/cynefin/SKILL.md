@@ -1,7 +1,6 @@
 ---
 name: cynefin
 description: Cynefin sense-making framework categorizing problems as Simple, Complicated, Complex, Chaotic, or Confused to select the right approach. Use when unsure how to tackle a problem.
-user-invocable: true
 ---
 
 # Cynefin Analysis

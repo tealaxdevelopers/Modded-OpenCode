@@ -1,8 +1,6 @@
 ---
 description: Multi-language development agent with profile auto-detection for implementing features across .NET, Python, TypeScript, Flutter, Go, Java, Node.js, React, Ruby, and Rust projects
 mode: all
-temperature: 0.1
-steps: 50
 permission:
   "*": "deny"
   edit: "allow"
@@ -137,10 +135,3 @@ When implementation requires iteration, use a bounded verify-and-continue loop:
 - Run up to 5 cycles: implement -> validate -> gap check.
 - If the same issue repeats twice without progress, change strategy and escalate with options.
 - Do not mark complete until completion criteria are fully met.
-
-## Context Persistence
-
-**At session start:** Read `AGENTS.md`, `state/session-state.json`, and `handoff/latest.md`.
-**At task completion:** Refresh state, generate handoff packet, and log a concise
-timestamped entry (3-5 bullets) to `AGENTS.md`. Present update for approval before ending.
-Adopt the format from `AGENTS.md` if it exists.

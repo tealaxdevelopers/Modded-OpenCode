@@ -1,7 +1,6 @@
 ---
 name: 5whys
 description: Five Whys root cause analysis. Iteratively asks "why" to drill past symptoms to underlying causes. Use for debugging, investigating failures, or understanding why something went wrong.
-user-invocable: true
 ---
 
 # Five Whys Analysis

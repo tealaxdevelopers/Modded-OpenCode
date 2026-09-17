@@ -1,7 +1,7 @@
 <div align="center">
   <h1>⚡ Modded OpenCode</h1>
   <p>Требуется OpenCode — Desktop, Terminal и CLI читают один и тот же конфиг.</p>
-  <p><strong>105 навыков · 13 агентов · 19 команд · 7 плагинов — всё готово при запуске</strong></p>
+  <p><strong>105 навыков · 13 агентов · 19 команд · 6 плагинов — всё готово при запуске</strong></p>
   <p>
     <a href="README.md">🇬🇧 English</a> ·
     <a href="README.tr.md">🇹🇷 Türkçe</a>

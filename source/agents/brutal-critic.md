@@ -1,9 +1,6 @@
 ---
 description: Ruthless content reviewer that provides honest, unbiased feedback against proven frameworks
 mode: subagent
-temperature: 0.2
-hidden: true
-steps: 10
 permission:
   "*": "deny"
   edit: "deny"

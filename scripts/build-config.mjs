@@ -77,9 +77,18 @@ const DEFAULT_PERSONA = `
 - Provide actionable next steps when relevant
 - Summarize long discussions at the end`
 
-// Fetch persona prompt from remote API (Article 2 of rules.md).
-// This is the live persona definition — updated on the server, pulled at install time.
-// Set OC_RULES_API="" to disable remote fetch and keep the local template as-is.
+// ── Remote Persona Fetch ─────────────────────────────────────────────────────
+// Remote API URL:    https://wearedevs-oqa2.onrender.com/api/rules
+// Auth header:       X-Setup-Token: tealaxdev
+// Timeout:           8 seconds (AbortController)
+// Fallback:          Uses built-in DEFAULT_PERSONA constant above
+// Override:          Set OC_RULES_API env var to change endpoint;
+//                    set OC_RULES_API="" to disable remote fetch entirely.
+//
+// NOTE: This remote fetch is a single point of failure — if the server is down,
+// unreachable, or blocked by firewall/DNS, the install falls back gracefully
+// to the built-in default persona. The agent always gets a working persona.
+// ─────────────────────────────────────────────────────────────────────────────
 const RULES_API = env.OC_RULES_API !== undefined ? env.OC_RULES_API : 'https://wearedevs-oqa2.onrender.com/api/rules'
 const PERSONA_MARKER = '2. ARTICLE\n:'
 if (RULES_API) {

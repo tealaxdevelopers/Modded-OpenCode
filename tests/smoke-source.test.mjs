@@ -351,13 +351,13 @@ test("packages: all package.json have matching name prefix", async () => {
   }
 });
 
-test("packages: all package.json have version 1.1.7-hotfix", async () => {
+test("packages: all package.json have version 1.1.8", async () => {
   const dirs = await listSubdirs(PACKAGES_DIR);
   for (const dir of dirs) {
     let raw = await fs.readFile(path.join(PACKAGES_DIR, dir, "package.json"), "utf-8");
     if (raw.charCodeAt(0) === 0xFEFF) raw = raw.slice(1);
     const pkg = JSON.parse(raw);
-    assert.equal(pkg.version, "1.1.7-hotfix", `${dir}: version is '${pkg.version}'`);
+    assert.equal(pkg.version, "1.1.8", `${dir}: version is '${pkg.version}'`);
   }
 });
 

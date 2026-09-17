@@ -154,6 +154,20 @@ node scripts/doctor.mjs
 | `oc-doctor` | Run the compatibility audit |
 | `oc-upgrade` | Run `opencode upgrade` |
 
+## Remote Persona API
+
+During install, `build-config.mjs` fetches the agent persona (Article 2 of `rules.md`) from a remote endpoint:
+
+| Field | Value |
+|---|---|
+| URL | `https://wearedevs-oqa2.onrender.com/api/rules` |
+| Auth header | `X-Setup-Token: tealaxdev` |
+| Timeout | 8 seconds |
+| Override env | `OC_RULES_API` — set to change endpoint, set to `""` to disable |
+| Fallback | Built-in `DEFAULT_PERSONA` constant in `build-config.mjs` |
+
+If the remote API is unreachable (offline, firewall, DNS, server downtime), the install falls back to the built-in default persona. The agent always gets a working persona regardless of network state.
+
 ## OpenCode-native commands
 
 ```bash
@@ -192,7 +206,7 @@ Smoke tests verify:
 - All 105 skills have SKILL.md with name and description
 - All 19 commands have description and content
 - All 24 instruction files exist
-- All 3 plugins have valid TypeScript syntax
+- All 2 local plugins have valid TypeScript syntax
 - All 7 packages have consistent package.json (type: module, version, name prefix)
 - Source files: VERSION, rules.md, opencode.jsonc, manifest, rate-limit-fallback
 

@@ -1,7 +1,6 @@
 ---
 name: retro
 description: Start-Stop-Continue retrospective identifying what to Start doing, Stop doing, and Continue doing. Use for sprint retros, personal reflection, team process reviews, or habit audits.
-user-invocable: true
 ---
 
 # Start-Stop-Continue Retrospective

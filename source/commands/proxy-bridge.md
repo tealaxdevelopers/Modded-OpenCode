@@ -1,6 +1,5 @@
 ---
 description: "Find fastest free proxy and configure OpenCode to use it"
-argument-hint: "[--protocol socks5|--json|--write]"
 subtask: true
 ---
 

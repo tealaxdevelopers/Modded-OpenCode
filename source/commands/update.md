@@ -1,6 +1,5 @@
 ---
 description: "Check for kit updates and apply changed files"
-argument-hint: "[--check-only]"
 subtask: true
 ---
 

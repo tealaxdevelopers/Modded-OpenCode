@@ -1,29 +1,29 @@
-// Modded OpenCode Ã¢â‚¬â€ Auto-Continue plugin (tek dosya, .opencode/plugins/ altÃ„Â±na)
+// Modded OpenCode - Auto-Continue plugin (single file, under .opencode/plugins/)
 //
-// Ne yapar:
-//   Oturum boÃ…Å¸ta kalÃ„Â±nca (AI iÃ…Å¸i bitirdi ama kullanÃ„Â±cÃ„Â± yazmadÃ„Â±) VEYA
-//   baÃ„Å¸lantÃ„Â± kopmasÃ„Â± / hata yÃƒÂ¼zÃƒÂ¼nden iÃ…Å¸ yarÃ„Â±da kesilince, ne AI ne insan
-//   durdurmadÃ„Â±ysa otomatik "continue" mesajÃ„Â± enjekte eder.
+// What it does:
+//   When session goes idle (AI finished its work but user didn't type) OR
+//   disconnection / error causes task to be cut off halfway, neither AI nor human
+//   stopped it, automatically injects a "continue" message.
 //
-// YavaÃ…Å¸ baÃ„Å¸lantÃ„Â± desteÃ„Å¸i:
-//   ZayÃ„Â±f internet baÃ„Å¸lantÃ„Â±sÃ„Â±nda model timeout alabilir veya baÃ„Å¸lantÃ„Â±
-//   yarÃ„Â±da kesilebilir Ã¢â‚¬â€ plugin bu durumlarda otomatik devam ederek
-//   kullanÃ„Â±cÃ„Â±nÃ„Â±n iÃ…Å¸ini yarÃ„Â±da bÃ„Â±rakmaz. OpenCode'un kendi session.error
-//   event'ini tetikler, plugin bunu yakalayÃ„Â±p devam mesajÃ„Â± enjekte eder.
+// Slow connection support:
+//   With weak internet connection, the model may timeout or connection
+//   can be cut off halfway - plugin in these cases by automatically continuing
+//   doesn't leave the user's task halfway. OpenCode's own session.error
+//   event triggers it, plugin catches this and injects a continuation message.
 //
-// Ayar (proje bazlÃ„Â±): <proje>/.opencode/auto-continue.json  (veya .jsonc)
+// Settings (project-based): <project>/.opencode/auto-continue.json  (or .jsonc)
 //   { "enabled": true, "message": "continue", "cooldown_ms": 8000,
 //     "max_consecutive": 8, "continue_on_error": false }
-// Global kapat/aÃƒÂ§: ortam deÃ„Å¸iÃ…Å¸keni OC_AUTOCONTINUE=0 | 1
+// Global on/off: environment variable OC_AUTOCONTINUE=0 | 1
 //
-// MantÃ„Â±k (hjzccc/opencode-auto-continue temel alÃ„Â±nmÃ„Â±Ã…Å¸tÃ„Â±r):
-//   - session.idle / session.error dinler
-//   - cooldown + max_consecutive ile sonsuz dÃƒÂ¶ngÃƒÂ¼yÃƒÂ¼ engeller
-//   - gerÃƒÂ§ek kullanÃ„Â±cÃ„Â± mesajÃ„Â± gelince sayacÃ„Â± sÃ„Â±fÃ„Â±rlar
-//   - injection ÃƒÂ¶ncesi oturum hÃƒÂ¢lÃƒÂ¢ boÃ…Å¸ta mÃ„Â± tekrar kontrol eder (race kapanÃ„Â±r)
-//   - yavaÃ…Å¸ baÃ„Å¸lantÃ„Â±/signal kaybÃ„Â± durumunda stabilize edici ping gÃƒÂ¶revi gÃƒÂ¶rÃƒÂ¼r
+// Logic (based on hjzccc/opencode-auto-continue):
+//   - listens to session.idle / session.error
+//   - prevents infinite loop with cooldown + max_consecutive
+//   - resets the counter when real user message comes
+//   - checks again if session is still idle before injection (race condition closes)
+//   - acts as stabilizing ping in case of slow connection/signal loss
 //
-// opencode plugin Ã…Å¸emasÃ„Â±: default export { id, setup } Ã…Å¸eklinde olmalÃ„Â±.
+// opencode plugin schema: default export { id, setup } should be in this form.
 
 import { existsSync, readFileSync, writeFileSync } from "fs"
 import { join } from "path"
@@ -192,12 +192,12 @@ const setup = async (ctx: any) => {
   const sessionStateStore = createSessionStateStore()
   const getConfig = () => loadConfig(ctx.directory)
 
-  // Ã„Â°lk ÃƒÂ§alÃ„Â±Ã…Å¸tÃ„Â±rmada gÃƒÂ¶rÃƒÂ¼nÃƒÂ¼r bir ayar dosyasÃ„Â± bÃ„Â±rak (kullanÃ„Â±cÃ„Â± kolayca kapatabilir)
+  // On first run, leave a visible config file (user can easily disable)
   try {
     const cfgPath = join(ctx.directory, ".opencode", "auto-continue.json")
     if (!existsSync(cfgPath)) writeConfig(ctx.directory, getConfig())
   } catch {
-    /* yoksay */
+    /* ignore */
   }
 
   async function injectContinuation(sessionID: string): Promise<void> {
@@ -266,11 +266,11 @@ const setup = async (ctx: any) => {
             body: { message: "Auto-continue: continuingÃ¢â‚¬Â¦", variant: "info" },
           })
         } catch {
-          /* yoksay */
+          /* ignore */
         }
       }
     } catch {
-      /* yoksay */
+      /* ignore */
     } finally {
       state.inFlight = false
     }

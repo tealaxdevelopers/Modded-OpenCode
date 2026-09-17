@@ -1,6 +1,5 @@
 ---
 name: staging-fix
-disable-model-invocation: true
 description: "Fix a staging bug without ever touching a server — work from evidence (read-only staging inspection only with this session's explicit approval), fix locally with a test, then ship a PR targeting the `staging` branch with auto-merge so GitHub Actions deploys it. Use when the user says \"fix this on staging\", \"staging is broken\", or \"bug on the staging server\". Merely inspecting staging — checking logs, DB state, or env — with no fix requested is not this skill. Shipping normal issue work is /commit-push-pr or /commit-push-close; diagnosing a bug with no staging environment involved is /diagnosing-bugs."
 ---
 

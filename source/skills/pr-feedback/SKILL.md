@@ -1,6 +1,5 @@
 ---
 name: pr-feedback
-disable-model-invocation: true
 description: "Address reviewer feedback on an existing open GitHub PR — fetch every review comment and thread, group them into a numbered accept / pushback / needs-discussion list, wait for the user's approval, apply the accepted fixes, ship through /commit-push-pr on the same branch, and reply to each addressed thread citing the fixing commit SHA. Use when the user says \"address the review comments\", \"handle PR feedback\", \"respond to the reviewer\", or wants reviewer comments on their open PR worked through. Reviewing a PR yourself routes to /code-review; opening a new PR routes to /commit-push-pr."
 ---
 

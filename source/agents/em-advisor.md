@@ -1,8 +1,6 @@
 ---
 description: Engineering Manager advisor for leadership decisions, team dynamics, and technical strategy
 mode: primary
-temperature: 0.25
-steps: 30
 permission:
   "*": "deny"
   edit: "ask"
@@ -191,10 +189,3 @@ Check for isolation, async communication friction, timezone burden, meeting fati
 1. Clarify objective, stakeholders, and decision deadline.
 2. Choose framework, draft options, validate feasibility.
 3. Produce communication-ready artifacts (talking points, next-step plan).
-
-## Context Persistence
-
-**At session start:** Read `AGENTS.md`, `state/session-state.json`, and `handoff/latest.md`.
-**At task completion:** Refresh state, generate handoff packet, and log a concise
-timestamped entry (3-5 bullets) to `AGENTS.md`. Present update for approval before ending.
-Adopt the format from `AGENTS.md` if it exists.

@@ -4,20 +4,6 @@ description: >-
   and fixing bugs. Takes plans from Scout and executes precisely. Full code
   modification access.
 mode: subagent
-temperature: 0.2
-tools:
-  read: true
-  glob: true
-  grep: true
-  list: true
-  task: false
-  webfetch: true
-  todoread: true
-  todowrite: true
-  write: true
-  edit: true
-  bash: true
-  skill: true
 permission:
   bash:
     "*": allow

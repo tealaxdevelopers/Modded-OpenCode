@@ -4,20 +4,6 @@ description: >-
   implementations, and creating actionable plans. Digs deep, plans lean. Returns
   research findings that flow naturally into implementation plans with file:line refs.
 mode: subagent
-temperature: 0.2
-tools:
-  read: true
-  glob: true
-  grep: true
-  list: true
-  task: false
-  webfetch: true
-  todoread: true
-  todowrite: true
-  write: false
-  edit: false
-  bash: true
-  skill: true
 permission:
   bash:
     # GitHub CLI

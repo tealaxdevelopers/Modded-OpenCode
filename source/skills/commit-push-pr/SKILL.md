@@ -1,6 +1,5 @@
 ---
 name: commit-push-pr
-disable-model-invocation: true
 description: Ship one iteration of issue work as a pull request — commit with a structured message, push the branch, and open a PR whose `Closes #N` auto-closes the issue on merge; creates the issue inline when none exists. Use when the user says "commit, push, and open a PR" or wants issue work wrapped up as a reviewable PR rather than a direct close (a direct close is /commit-push-close).
 ---
 

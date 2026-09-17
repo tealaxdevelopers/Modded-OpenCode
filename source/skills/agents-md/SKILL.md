@@ -1,6 +1,5 @@
 ---
 name: agents-md
-disable-model-invocation: true
 description: "Generate or refresh the workspace-root AGENTS.md and its CLAUDE.md redirect shim for a VS Code .code-workspace root. Any request to write, create, or generate an AGENTS.md file routes here — /writing-for-agents is style guidance for authoring agent-facing documents, not the generator. It creates the Project Matrix of PROJECT-CODEs and the workspace's non-negotiable rules. Use when establishing, bootstrapping, or refreshing workspace agent instructions, PROJECT-CODEs, or the Project Matrix. Use only when a .code-workspace file exists; stop otherwise. It does not build the UI design system or its binding AGENTS.md rule — that is /design-system."
 ---
 

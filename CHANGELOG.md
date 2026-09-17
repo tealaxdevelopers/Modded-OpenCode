@@ -5,6 +5,46 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [1.1.8] — Release — 2026-09-17
+
+Comprehensive code review, docs audit, and OpenCode docs alignment.
+
+### Fixed
+- **opencode.jsonc**: `github` MCP `enabled: true` → `false` (was failing without API key)
+- **opencode.jsonc**: removed redundant `snapshot: true` (default is already true)
+- **opencode.jsonc**: added `model` and `small_model` fields for explicit model selection
+- **opencode.jsonc**: added `lsp` permission to match other tool permissions
+- **orchestrator.md**: removed phantom references to `.opencode/instructions/orchestrator-reference.instructions.md`
+- **5 agents** (planner, orchestrator, em-advisor, codebase, blogger): removed references to non-existent `state/session-state.json` and `handoff/latest.md`
+- **Plugin versions**: `source/plugins/` synchronized to 1.1.8 (was 1.1.7)
+- **Plugin count**: READMEs corrected from 7 → 6 built-in plugins (3 languages + RELEASE_NOTES)
+- **api-reference.md**: corrected "3 plugins" → "2 local plugins" in smoke test description
+
+### Changed
+- **22 skills**: removed unrecognized frontmatter fields (`user-invocable`, `disable-model-invocation`, `risk`, `source`, `date_added`, `category`, `source_repo`, `source_type`, `author`, `tags`, `tools`, `license_source`)
+- **4 skills**: normalized license format to `MIT` (skill-creator, docx, pdf, xlsx)
+- **4 agents** (scout, oscar, jester, ivan): removed deprecated `tools:` blocks from frontmatter
+- **18 commands**: removed undocumented `argument-hint` field from frontmatter
+- **opencode-continue plugin**: 23 Turkish comments translated to English
+- **Oscar vs Orchestrator**: added disambiguation notes to both agent descriptions
+- **Remote persona API**: documented fallback behavior in build-config.mjs and api-reference.md
+- **deep-research skill**: rewritten to use built-in websearch/webfetch tools (no Gemini API key needed)
+- **All versions**: bumped from 1.1.7-hotfix → 1.1.8 across all packages, plugins, and source files
+
+### Added
+- **opencode-ai-docs/**: 36 OpenCode AI documentation pages saved locally for reference
+- **tsconfig.json**: root TypeScript config for plugin typechecking
+- **package.json**: `build:plugins`, `build:plugins:dist`, `clean:plugins` scripts
+- **tests/smoke-source.test.mjs**: 34 source integrity tests covering agents, skills, commands, instructions, plugins, and packages
+
+### Removed
+- **opencode-env-guard plugin**: removed entirely (caused blocking issues per user request)
+  - Deleted `packages/opencode-env-guard/`
+  - Deleted `source/plugins/opencode-env-guard.ts`
+  - Removed references from all READMEs, api-reference.md, troubleshooting.md, opencode.jsonc, UPDATE_MANIFEST.json
+
+---
+
 ## [1.1.7-hotfix] — Release — 2026-09-16
 
 Hotfix release addressing env-guard write blocking, setup.sh issues, and build-config JSONC parser bug.
@@ -15,7 +55,7 @@ Hotfix release addressing env-guard write blocking, setup.sh issues, and build-c
 - **env-guard**: write blocking removed for legitimate code edits (npm republish)
 - **setup.sh**: macOS path bug, shell_escape_val(), atomic .env.local
 - **MCP servers**: package name corrections
-- **Version alignment**: all 7 packages synchronized to 1.1.7-hotfix
+- **Version alignment**: all 7 packages synchronized to 1.1.7-hotfix (now superseded by 1.1.8)
 
 ### Security
 - env-guard no longer blocks code edits containing API_KEY references

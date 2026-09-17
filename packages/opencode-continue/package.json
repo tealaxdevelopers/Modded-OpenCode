@@ -1,6 +1,6 @@
 {
   "name": "modded-opencode-opencode-continue",
-  "version": "1.1.7-hotfix",
+  "version": "1.1.8",
   "description": "Auto-continue plugin for Modded OpenCode — resumes idle sessions automatically",
   "type": "module",
   "main": "index.ts",

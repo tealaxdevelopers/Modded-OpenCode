@@ -4,7 +4,9 @@
   "autoupdate": "notify",
   "default_agent": "build",
   "share": "disabled",
-  "snapshot": true,
+
+  "model": "anthropic/claude-sonnet-4-20250514",
+  "small_model": "anthropic/claude-3-5-haiku-20241022",
 
   "instructions": [
     "{{TARGET_DIR}}/rules.md"
@@ -32,6 +34,7 @@
     "webfetch": "allow",
     "websearch": "allow",
     "skill": "allow",
+    "lsp": "allow",
     "external_directory": "ask",
     "doom_loop": "ask"
   },
@@ -81,7 +84,7 @@
     "github": {
       "type": "local",
       "command": ["npx", "-y", "@modelcontextprotocol/server-github"],
-      "enabled": true,
+      "enabled": false,
       "environment": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_API_KEY}"
       }
