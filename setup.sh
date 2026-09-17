@@ -97,13 +97,10 @@ while true; do
       L_GH_INFO="Birincil: GitHub API key. Bos birakirsan GitHub MCP kapali kurulur."
       L_GH_ASK="GitHub API key'ler - birden fazla ise virgulle ayir (ENTER = atla):"
       L_BRAVE_ASK="Brave API key (ENTER = atla):"
-      L_EXTRA_HEAD="Baska entegrasyon var mi?"
-      L_EXTRA_OPT1="  [1] OpenAI-uyumlu ozel provider ekle (baseURL + model + key)"
-      L_EXTRA_OPT2="  [2] Hazir saglayicilar icin 'opencode auth login' kullan"
-      L_EXTRA_ASK="Secim numarasi (ENTER = gec):"
-      L_CBASE="Base URL:"
-      L_CMODEL="Model adi:"
-      L_CKEY="API key:"
+      L_PERSONA_HEAD="Agent persona kaynagi sec:"
+      L_PERSONA_OPT1="  [1] Yerel persona (ag gerektirmez, dahiliVarsayilan)"
+      L_PERSONA_OPT2="  [2] Uzak onerilen persona (sunucudan guncellenebilir)"
+      L_PERSONA_ASK="Secim numarasi (ENTER = 1):"
       L_DONE_HEAD="KURULUM TAMAMLANDI!"
       L_RUN_HINT="[>] Baslat: opencode"
       break ;;
@@ -115,13 +112,10 @@ while true; do
       L_GH_INFO="Primary: GitHub API key(s). Leave empty to install GitHub MCP disabled."
       L_GH_ASK="GitHub API keys - separate multiple with commas (ENTER = skip):"
       L_BRAVE_ASK="Brave API key (ENTER = skip):"
-      L_EXTRA_HEAD="Any other integrations?"
-      L_EXTRA_OPT1="  [1] Add a custom OpenAI-compatible provider (baseURL + model + key)"
-      L_EXTRA_OPT2="  [2] For built-in providers run 'opencode auth login'"
-      L_EXTRA_ASK="Option number (ENTER = continue):"
-      L_CBASE="Base URL:"
-      L_CMODEL="Model name:"
-      L_CKEY="API key:"
+      L_PERSONA_HEAD="Choose agent persona source:"
+      L_PERSONA_OPT1="  [1] Local persona (no network needed, built-in default)"
+      L_PERSONA_OPT2="  [2] Remote recommended persona (updatable from server)"
+      L_PERSONA_ASK="Option number (ENTER = 1):"
       L_DONE_HEAD="SETUP COMPLETE!"
       L_RUN_HINT="[>] Launch: opencode"
       break ;;
@@ -133,13 +127,10 @@ while true; do
       L_GH_INFO="Pervichnyy: GitHub API klyuchi. Pustoy = GitHub MCP vyklyuchen."
       L_GH_ASK="GitHub API klyuchi - neskolko cherez zapyatuyu (ENTER = propustit):"
       L_BRAVE_ASK="Brave API key (ENTER = propustit):"
-      L_EXTRA_HEAD="Yest' drugiye integratsii?"
-      L_EXTRA_OPT1="  [1] Dobavit svoy OpenAI-sovmestimyy provider (baseURL + model + key)"
-      L_EXTRA_OPT2="  [2] Dlya vstroennykh provayderov zapustite 'opencode auth login'"
-      L_EXTRA_ASK="Nomer varianta (ENTER = dal'she):"
-      L_CBASE="Base URL:"
-      L_CMODEL="Imya modeli:"
-      L_CKEY="API key:"
+      L_PERSONA_HEAD="Vyberite istochnik personalii agenta:"
+      L_PERSONA_OPT1="  [1] Lokal'naya personaliya (bez seti, vstroyennyy standart)"
+      L_PERSONA_OPT2="  [2] Udalennaya rekomenduyemaya personaliya (obnovlyayetsya s servera)"
+      L_PERSONA_ASK="Nomer varianta (ENTER = 1):"
       L_DONE_HEAD="USTANOVKA ZAVERSHENA!"
       L_RUN_HINT="[>] Zapusk: opencode"
       break ;;
@@ -158,6 +149,18 @@ defaddr="$L_ADDR_DEF"
 printf "  %s (ENTER = %s): " "$L_ADDR_ASK" "$defaddr"
 read -r addressing
 addressing="${addressing:-$defaddr}"
+
+# ---- Persona source ----
+echo
+echo "  $L_PERSONA_HEAD"
+echo "  $L_PERSONA_OPT1"
+echo "  $L_PERSONA_OPT2"
+printf "  %s " "$L_PERSONA_ASK"
+read -r persona
+OC_PERSONA_MODE="local"
+if [ "${persona:-}" = "2" ]; then
+  OC_PERSONA_MODE="remote"
+fi
 
 echo
 echo "  $L_GH_INFO"
@@ -208,29 +211,6 @@ if [ -n "${bravekey:-}" ]; then
   echo "  [+] BRAVE_API_KEY saved."
 fi
 
-# ---- Extra: custom provider ----
-echo
-echo "  $L_EXTRA_HEAD"
-echo "  $L_EXTRA_OPT1"
-echo "  $L_EXTRA_OPT2"
-printf "  %s " "$L_EXTRA_ASK"
-read -r extra
-HAS_CUSTOM=""
-if [ "${extra:-}" = "1" ]; then
-  printf "  %s " "$L_CBASE"; read -r cbase
-  printf "  %s " "$L_CMODEL"; read -r cmodel
-  printf "  %s " "$L_CKEY";  read -r ckey
-  if [ -n "${cbase:-}" ] && [ -n "${cmodel:-}" ] && [ -n "${ckey:-}" ]; then
-    export CUSTOM_LLM_API_KEY="$ckey"
-    write_env "CUSTOM_LLM_API_KEY" "$ckey"
-    export OC_CBASE="$cbase" OC_CMODEL="$cmodel"
-    HAS_CUSTOM=1
-    echo "  [+] CUSTOM_LLM_API_KEY saved."
-  else
-    echo "  [i] Cancelled."
-  fi
-fi
-
 # ---- Atomic .env.local commit ----
 # Preserve user-added lines outside markers, replace only our section
 ENV_MARKER_START="# >>> modded-opencode credentials >>>"
@@ -263,7 +243,7 @@ mkdir -p "$TARGET_DIR" 2>/dev/null || fail "Cannot create target directory: $TAR
 export OC_SOURCE OC_TARGET="$TARGET_DIR" OC_USERNAME="$username" \
        OC_LANGUAGE="$LANG_WORD" OC_ADDRESSING="$addressing" \
        HAS_GITHUB="${HAS_GITHUB:-}" HAS_BRAVE="${HAS_BRAVE:-}" \
-       HAS_CUSTOM="${HAS_CUSTOM:-}" OC_GH_MULTI="${OC_GH_MULTI:-}"
+       OC_PERSONA_MODE="$OC_PERSONA_MODE" OC_GH_MULTI="${OC_GH_MULTI:-}"
 
 # Check that build-config.mjs exists
 BUILD_SCRIPT="$OC_SOURCE/../scripts/build-config.mjs"
@@ -284,7 +264,7 @@ echo "    Lang:    $LANG_WORD"
 echo "    Target:  $TARGET_DIR"
 [ -n "$HAS_GITHUB" ] && echo "    GitHub MCP: ON" || echo "    GitHub MCP: off (no key)"
 [ -n "$HAS_BRAVE" ]  && echo "    Brave:      ON" || echo "    Brave:      off (no key)"
-[ -n "$HAS_CUSTOM" ] && echo "    Custom:     ON" || echo "    Custom:     none"
+echo "    Persona:    $OC_PERSONA_MODE"
 echo "  ============================================"
 echo
 echo "  [1/4] Running build-config..."
