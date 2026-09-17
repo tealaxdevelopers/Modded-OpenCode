@@ -57,16 +57,16 @@
   },
 
   "lsp": {
-    "typescript": { "command": ["npx", "-y", "typescript-language-server", "--stdio"] },
-    "pyright": { "command": ["npx", "-y", "pyright-langserver", "--stdio"] },
-    "gopls": { "command": ["gopls"] },
-    "rust": { "command": ["rust-analyzer"] },
-    "clangd": { "command": ["clangd"] },
-    "bash": { "command": ["npx", "-y", "bash-language-server", "start"] },
-    "yaml": { "command": ["npx", "-y", "yaml-language-server", "--stdio"] },
-    "json": { "command": ["npx", "-y", "vscode-json-language-server", "--stdio"] },
-    "css": { "command": ["npx", "-y", "vscode-css-language-server", "--stdio"] },
-    "html": { "command": ["npx", "-y", "vscode-html-language-server", "--stdio"] }
+    "typescript": { "command": ["npx", "-y", "typescript-language-server", "--stdio"], "extensions": [".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs"] },
+    "pyright": { "command": ["npx", "-y", "pyright-langserver", "--stdio"], "extensions": [".py", ".pyi", ".pyw"] },
+    "gopls": { "command": ["gopls"], "extensions": [".go", ".go.mod", ".go.sum"] },
+    "rust": { "command": ["rust-analyzer"], "extensions": [".rs"] },
+    "clangd": { "command": ["clangd"], "extensions": [".c", ".cpp", ".cc", ".cxx", ".h", ".hpp", ".hxx"] },
+    "bash": { "command": ["npx", "-y", "bash-language-server", "start"], "extensions": [".sh", ".bash", ".zsh"] },
+    "yaml": { "command": ["npx", "-y", "yaml-language-server", "--stdio"], "extensions": [".yaml", ".yml"] },
+    "json": { "command": ["npx", "-y", "vscode-json-language-server", "--stdio"], "extensions": [".json", ".jsonc", ".jsonl"] },
+    "css": { "command": ["npx", "-y", "vscode-css-language-server", "--stdio"], "extensions": [".css", ".scss", ".less"] },
+    "html": { "command": ["npx", "-y", "vscode-html-language-server", "--stdio"], "extensions": [".html", ".htm", ".vue", ".svelte"] }
   },
 
   "mcp": {
