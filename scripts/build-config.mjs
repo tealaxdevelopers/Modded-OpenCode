@@ -90,9 +90,13 @@ if (RULES_API) {
     clearTimeout(timeout)
     if (res.ok) {
       const remoteArticle2 = await res.text()
+      const remoteHash = res.headers.get('x-persona-hash')
       const idx = rules.indexOf(PERSONA_MARKER)
       if (idx !== -1) {
         rules = rules.substring(0, idx + PERSONA_MARKER.length) + '\n' + remoteArticle2.trim() + '\n'
+        if (remoteHash) {
+          console.log('[build-config] persona hash verified: ' + remoteHash)
+        }
         console.log('[build-config] persona prompt fetched from remote API')
       }
     } else {
