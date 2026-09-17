@@ -10,6 +10,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Comprehensive code review, docs audit, and OpenCode docs alignment.
 
 ### Fixed
+- **Docs: key safety accuracy**: READMEs and docs incorrectly stated Windows stores API keys in `.env.local`. Windows actually uses `setx` to store keys as persistent user environment variables (registry). Updated all 3 READMEs, auth-providers.md, and troubleshooting.md.
 - **opencode.jsonc**: `github` MCP `enabled: true` → `false` (was failing without API key)
 - **opencode.jsonc**: removed redundant `snapshot: true` (default is already true)
 - **opencode.jsonc**: added `model` and `small_model` fields for explicit model selection
@@ -125,7 +126,7 @@ Major feature release with 3 new plugins, compaction improvements, and MCP fixes
 - Skill count: 99 → 105. Plugin count: 3 → 7.
 
 ### Security
-- API keys never written to shell RC files — stored in `.env.local` with 0600 permissions.
+- API keys never written to shell RC files. macOS/Linux: stored in `.env.local` with 0600 permissions. Windows: stored as user env vars via `setx`.
 - Auto-continue loop mode uses thinking instead of visible messages to prevent prompt injection loops.
 - Default persona ensures agent always has working instructions even without internet.
 

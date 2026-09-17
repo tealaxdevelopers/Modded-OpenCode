@@ -9,6 +9,7 @@
 - Removed unrecognized frontmatter fields from 22 skills
 
 ### Documentation
+- Fixed key safety docs: Windows uses `setx` for persistent env vars, not `.env.local` (was misleading)
 - 36 OpenCode AI docs pages saved locally for offline reference
 - Remote persona API behavior documented (build-config.mjs + api-reference.md)
 - Oscar vs Orchestrator disambiguation notes added
@@ -30,7 +31,7 @@
 ## What's New — v1.1.7 (2026-09-15)
 
 ### Security Fixes (P0)
-- API keys now stored in .env.local (0600 permissions), never written to shell RC files
+- API keys never written to shell RC files. macOS/Linux: `.env.local` (0600). Windows: `setx` env vars.
 - Cross-platform path fix: templates use {{TARGET_DIR}} placeholder instead of hardcoded Windows paths
 - Secret detection broadened: catches tokens 20+ chars, not just known prefixes
 - Auto-continue `continue_on_error` defaults to false for safety

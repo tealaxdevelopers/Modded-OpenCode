@@ -188,11 +188,11 @@ Her iki sihirbaz (`setup.bat` / `setup.sh`) aynı soruları sorar:
 
 Seçtiğin dil `rules.md` içindeki agent konuşma dilini belirler.
 
-> 🔑 **Key güvenliği:** API anahtarları `.env.local` dosyasında saklanır (`0600` izin), kabuk RC dosyalarına asla yazılmaz.
+> 🔑 **Key güvenliği:** Kabuk RC dosyalarına asla yazılmaz. macOS/Linux'da `.env.local` (`0600` izin) dosyasında saklanır. Windows'da `setx` ile kullanıcı ortam değişkenlerine yazılır (registry'de saklanır, elle kaldırılana kadar kalır).
 
-| İşletim Sistemi | `.env.local` konumu |
-|-----------------|---------------------|
-| **Windows** | `%USERPROFILE%\.config\opencode\local-setup\.env.local` |
+| İşletim Sistemi | Saklama yöntemi |
+|-----------------|-----------------|
+| **Windows** | `setx` ile kullanıcı ortam değişkenleri (ör. `GITHUB_API_KEY`, `BRAVE_API_KEY`) |
 | **macOS** | `~/Library/Application Support/opencode/local-setup/.env.local` |
 | **Linux** | `~/.config/opencode/local-setup/.env.local` |
 

@@ -194,11 +194,11 @@ Lightweight helper that syncs local model catalogs — does **not** create rules
 
 The language you pick sets the agent's conversation language in `rules.md`.
 
-> 🔑 **Key safety:** API keys stored in `.env.local` (mode `0600`), never written to shell RC files.
+> 🔑 **Key safety:** Never written to shell RC files. On macOS/Linux, stored in `.env.local` (mode `0600`). On Windows, stored as user environment variables via `setx` (persists in registry until manually removed).
 
-| OS | `.env.local` location |
-|----|----------------------|
-| **Windows** | `%USERPROFILE%\.config\opencode\local-setup\.env.local` |
+| OS | Storage method |
+|----|----------------|
+| **Windows** | User environment variables via `setx` (e.g. `GITHUB_API_KEY`, `BRAVE_API_KEY`) |
 | **macOS** | `~/Library/Application Support/opencode/local-setup/.env.local` |
 | **Linux** | `~/.config/opencode/local-setup/.env.local` |
 

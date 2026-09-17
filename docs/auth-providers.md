@@ -56,15 +56,15 @@ The synchronizer recognizes these variables:
 
 ## Environment file
 
-The installer creates a `.env.local` file in the setup directory. Location varies by OS:
+The macOS/Linux installer (`setup.sh`) creates a `.env.local` file in the setup directory:
 
-| OS | Default path |
+| OS | Storage method |
 |---|---|
 | Linux | `~/.config/opencode/local-setup/.env.local` |
 | macOS | `~/Library/Application Support/opencode/local-setup/.env.local` |
-| Windows | `%USERPROFILE%\.config\opencode\local-setup\.env.local` |
+| Windows | User environment variables via `setx` (not a file — stored in Windows registry) |
 
-It is permissioned for the current user only. Put local/remote keys there when you do not want to export them in every shell:
+On macOS/Linux, `.env.local` is permissioned for the current user only. On Windows, `setx` stores keys as persistent user-level environment variables accessible via `%VARIABLE_NAME%`.
 
 ```bash
 LOCAL_API_BASE=http://127.0.0.1:1234/v1

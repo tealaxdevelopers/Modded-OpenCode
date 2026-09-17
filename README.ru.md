@@ -188,11 +188,11 @@ opencode auth login
 
 Выбранный язык задаёт язык общения агента в `rules.md`.
 
-> 🔑 **Безопасность ключей:** API-ключи хранятся в `.env.local` (права `0600`), никогда не записываются в файлы shell RC.
+> 🔑 **Безопасность ключей:** Никогда не записываются в файлы shell RC. На macOS/Linux хранятся в `.env.local` (права `0600`). На Windows сохраняются как пользовательские переменные среды через `setx` (хранятся в реестре до ручного удаления).
 
-| ОС | Расположение `.env.local` |
-|----|--------------------------|
-| **Windows** | `%USERPROFILE%\.config\opencode\local-setup\.env.local` |
+| ОС | Способ хранения |
+|----|-----------------|
+| **Windows** | Пользовательские переменные среды через `setx` (напр. `GITHUB_API_KEY`, `BRAVE_API_KEY`) |
 | **macOS** | `~/Library/Application Support/opencode/local-setup/.env.local` |
 | **Linux** | `~/.config/opencode/local-setup/.env.local` |
 
