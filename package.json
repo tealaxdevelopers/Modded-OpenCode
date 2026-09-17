@@ -9,7 +9,16 @@
     "test": "npm run test:node && npm run test:install",
     "validate": "npm run check && npm test",
     "test:node": "node --test tests/*.test.mjs",
-    "test:install": "node scripts/run-install-test.mjs"
+    "test:install": "node scripts/run-install-test.mjs",
+    "test:smoke": "node --test tests/smoke-*.test.mjs",
+    "build:plugins": "tsc --noEmit",
+    "build:plugins:dist": "npm run build:plugins:dist:notify && npm run build:plugins:dist:session-title",
+    "build:plugins:dist:notify": "cd packages/opencode-notify && npm run build",
+    "build:plugins:dist:session-title": "cd packages/opencode-session-title && npm run build",
+    "clean:plugins": "rimraf packages/*/dist source/plugins/dist"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
   },
   "engines": {
     "node": ">=18"

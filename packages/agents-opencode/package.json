@@ -1,9 +1,14 @@
 {
   "name": "modded-opencode-agents-opencode",
   "version": "1.1.7-hotfix",
-  "description": "Agent pack plugin for Modded OpenCode Ã¢â‚¬â€ 13 agents, 105 skills, 19 commands",
+  "description": "Agent pack plugin for Modded OpenCode — 13 agents, 105 skills, 19 commands",
   "type": "module",
   "main": "index.ts",
+  "types": "index.ts",
+  "files": ["index.ts"],
+  "scripts": {
+    "typecheck": "tsc --noEmit index.ts"
+  },
   "keywords": ["opencode", "plugin", "agents", "skills"],
   "license": "MIT",
   "repository": {
@@ -12,5 +17,8 @@
   },
   "peerDependencies": {
     "@opencode-ai/plugin": "latest"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
   }
 }

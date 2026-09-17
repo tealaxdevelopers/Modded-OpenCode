@@ -13,6 +13,10 @@
   </p>
 </div>
 
+<p align="center">
+  <img src="docs/assets/hero.svg" alt="Modded OpenCode — Запустите свои AI модели внутри OpenCode" width="100%"/>
+</p>
+
 ---
 
 ## ⚡ Быстрый старт

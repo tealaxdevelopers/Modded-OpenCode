@@ -203,3 +203,46 @@ The plugin only activates when a request has 2+ leading system messages. If your
 ### Update checker not working
 
 The update checker runs once per session on the first `session.idle` event. If it fails (network issue, rate limit), it won't retry until the next session. Check logs for `[update-checker]` messages.
+
+## Source integrity
+
+Run smoke tests to verify all source files are present and well-formed:
+
+```bash
+npm run test:smoke
+```
+
+This checks 34 conditions across agents, skills, commands, instructions, plugins, and packages. If a test fails after pulling new changes:
+
+```bash
+npm install
+npm run validate
+```
+
+If the issue persists, compare your local files against the repository:
+
+```bash
+git status
+git diff source/
+```
+
+## Plugin build issues
+
+All plugins use `type: module` and can be typechecked:
+
+```bash
+npm run build:plugins
+```
+
+If TypeScript reports errors, install dependencies first:
+
+```bash
+npm install
+npm run build:plugins
+```
+
+To compile the two plugins that produce `dist/` output:
+
+```bash
+npm run build:plugins:dist
+```

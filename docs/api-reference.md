@@ -166,6 +166,36 @@ opencode auth list             # inspect authentication state
 opencode upgrade               # install the current release
 ```
 
+## Development
+
+### Build and validate
+
+```bash
+npm run validate               # syntax check + all tests
+npm run check                  # syntax check only (node --check + bash -n)
+npm run build:plugins          # typecheck all plugins (tsc --noEmit)
+npm run build:plugins:dist     # compile notify + session-title plugins
+npm run clean:plugins          # remove dist/ output
+```
+
+### Tests
+
+```bash
+npm test                       # run all tests (launch-sync + install)
+npm run test:node              # launch-sync integration tests only
+npm run test:install           # bash install test only
+npm run test:smoke             # source integrity smoke tests (34 tests)
+```
+
+Smoke tests verify:
+- All 13 agents exist with valid frontmatter
+- All 105 skills have SKILL.md with name and description
+- All 19 commands have description and content
+- All 24 instruction files exist
+- All 3 plugins have valid TypeScript syntax
+- All 7 packages have consistent package.json (type: module, version, name prefix)
+- Source files: VERSION, rules.md, opencode.jsonc, manifest, rate-limit-fallback
+
 ## Plugins
 
 Plugins are installed from npm and listed in `opencode.jsonc`:

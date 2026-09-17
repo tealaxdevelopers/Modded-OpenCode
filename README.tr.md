@@ -13,6 +13,10 @@
   </p>
 </div>
 
+<p align="center">
+  <img src="docs/assets/hero.svg" alt="Modded OpenCode — Kendi AI'ını OpenCode içinde çalıştır" width="100%"/>
+</p>
+
 ---
 
 ## ⚡ Hızlı Başlangıç

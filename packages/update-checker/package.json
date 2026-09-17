@@ -1,9 +1,14 @@
 {
   "name": "modded-opencode-update-checker",
   "version": "1.1.7-hotfix",
-  "description": "Auto-update plugin for Modded OpenCode Ã¢â‚¬â€ checks GitHub for new releases",
+  "description": "Auto-update plugin for Modded OpenCode — checks GitHub for new releases",
   "type": "module",
   "main": "index.ts",
+  "types": "index.ts",
+  "files": ["index.ts"],
+  "scripts": {
+    "typecheck": "tsc --noEmit index.ts"
+  },
   "keywords": ["opencode", "plugin", "update", "auto-update", "github"],
   "license": "MIT",
   "repository": {
@@ -12,5 +17,8 @@
   },
   "peerDependencies": {
     "@opencode-ai/plugin": "latest"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
   }
 }

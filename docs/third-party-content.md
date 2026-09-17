@@ -12,6 +12,7 @@ This project includes or is inspired by content from the following sources.
 | `claude-simplify` | Claude Code (Anthropic) | MIT | Adapted to OpenCode SKILL.md format |
 | `claude-batch` | Claude Code (Anthropic) | MIT | Adapted to OpenCode SKILL.md format |
 | `claude-loop` | Claude Code (Anthropic) | MIT | Adapted to OpenCode SKILL.md format |
+| `deep-research` | [sanjay3290/ai-skills](https://github.com/sanjay3290/ai-skills/tree/main/skills/deep-research) | MIT | Rewritten to use built-in tools (removed Python/Gemini dependency) |
 
 ## Plugins
 

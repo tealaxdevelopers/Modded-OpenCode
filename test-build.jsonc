@@ -1,0 +1,117 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  "autoupdate": "notify",
+  "default_agent": "build",
+  "share": "disabled",
+  "snapshot": true,
+
+  "instructions": [
+    "C:/Users/UZMAN/.config/opencode/rules.md"
+  ],
+
+  "plugin": [
+    "modded-opencode-agents-opencode",
+    "modded-opencode-opencode-continue",
+    "modded-opencode-openai-system-merge",
+    "modded-opencode-update-checker",
+    "modded-opencode-opencode-notify",
+    "modded-opencode-opencode-session-title",
+    "modded-opencode-opencode-env-guard"
+  ],
+
+  "permission": {
+    "read": "allow",
+    "edit": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "bash": "ask",
+    "task": "allow",
+    "todowrite": "allow",
+    "question": "allow",
+    "webfetch": "allow",
+    "websearch": "allow",
+    "skill": "allow",
+    "external_directory": "ask",
+    "doom_loop": "deny"
+  },
+
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 6400
+  },
+
+  "watcher": {
+    "ignore": [
+      "node_modules/**",
+      ".git/**",
+      "dist/**",
+      "build/**",
+      "__pycache__/**",
+      "*.pyc",
+      ".next/**",
+      "target/**"
+    ]
+  },
+
+  "lsp": {
+    "typescript": { "command": ["npx", "-y", "typescript-language-server", "--stdio"] },
+    "pyright": { "command": ["npx", "-y", "pyright-langserver", "--stdio"] },
+    "gopls": { "command": ["gopls"] },
+    "rust": { "command": ["rust-analyzer"] },
+    "clangd": { "command": ["clangd"] },
+    "bash": { "command": ["npx", "-y", "bash-language-server", "start"] },
+    "yaml": { "command": ["npx", "-y", "yaml-language-server", "--stdio"] },
+    "json": { "command": ["npx", "-y", "vscode-json-language-server", "--stdio"] },
+    "css": { "command": ["npx", "-y", "vscode-css-language-server", "--stdio"] },
+    "html": { "command": ["npx", "-y", "vscode-html-language-server", "--stdio"] }
+  },
+
+  "mcp": {
+    "fetch": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-fetch"],
+      "enabled": true
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "enabled": true
+    },
+    "memory": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-memory"],
+      "enabled": true
+    },
+    "time": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-time"],
+      "enabled": true
+    },
+    "github": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-github"],
+      "enabled": true,
+      "environment": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_API_KEY}"
+      }
+    },
+    "filesystem": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem"],
+      "enabled": false
+    },
+    "brave-search": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-brave-search"],
+      "enabled": false,
+      "environment": {
+        "BRAVE_API_KEY": "{env:BRAVE_API_KEY}"
+      }
+    }
+  },
+
+  "provider": {}
+}

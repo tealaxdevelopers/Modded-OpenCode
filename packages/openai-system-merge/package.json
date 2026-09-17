@@ -4,6 +4,11 @@
   "description": "Merge multiple system messages for strict OpenAI-compatible providers",
   "type": "module",
   "main": "index.ts",
+  "types": "index.ts",
+  "files": ["index.ts"],
+  "scripts": {
+    "typecheck": "tsc --noEmit index.ts"
+  },
   "keywords": ["opencode", "plugin", "openai", "system-message", "merge"],
   "license": "MIT",
   "repository": {
@@ -12,5 +17,8 @@
   },
   "peerDependencies": {
     "@opencode-ai/plugin": "latest"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
   }
 }
