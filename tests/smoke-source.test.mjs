@@ -268,9 +268,9 @@ test("plugins: directory exists", async () => {
   assert.ok(await exists(PLUGINS_DIR), "source/plugins/ directory must exist");
 });
 
-test("plugins: exactly 3 plugin files", async () => {
+test("plugins: exactly 2 plugin files", async () => {
   const files = await listDir(PLUGINS_DIR, ".ts");
-  assert.equal(files.length, 3, `Expected 3 plugin files, found ${files.length}: ${files.join(", ")}`);
+  assert.equal(files.length, 2, `Expected 2 plugin files, found ${files.length}: ${files.join(", ")}`);
 });
 
 test("plugins: all have valid TypeScript syntax (basic check)", async () => {
@@ -303,7 +303,7 @@ test("plugins: all have PACKAGE_VERSION constant", async () => {
 
 const PACKAGES_DIR = path.join(__dirname, "..", "packages");
 
-test("packages: all 7 packages have package.json", async () => {
+test("packages: all 6 packages have package.json", async () => {
   const expectedPackages = [
     "agents-opencode",
     "opencode-continue",
@@ -311,7 +311,6 @@ test("packages: all 7 packages have package.json", async () => {
     "update-checker",
     "opencode-notify",
     "opencode-session-title",
-    "opencode-env-guard",
   ];
   for (const pkg of expectedPackages) {
     const pkgPath = path.join(PACKAGES_DIR, pkg, "package.json");

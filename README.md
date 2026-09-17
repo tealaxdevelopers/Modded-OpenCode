@@ -50,7 +50,6 @@ chmod +x setup.sh scripts/*.sh
 | **update-checker** | Checks GitHub for new releases on startup |
 | **notify** | Cross-platform desktop notifications on task completion |
 | **session-title** | Auto-generates session titles from the first user message |
-| **env-guard** | Blocks reading `.env` files and writes containing detected secrets |
 
 Auto-continue config (`<project>/.opencode/auto-continue.json`):
 

@@ -243,10 +243,6 @@
       "hash": "3630d3d1527e67e14f8197a1512878efb5b05f8e2d4fbc00b5b87165b8dbdca4",
       "size": 3159
     },
-    "source/plugins/opencode-env-guard.ts": {
-      "hash": "0fabce10b1f2137bb7a971918bffb267523d34b03af1fc273a7c5cc362ce336a",
-      "size": 1962
-    },
     "source/plugins/opencode-notify.ts": {
       "hash": "3b680dcb2d7054c5c15b529c747272a16039215e7e46e9ddaa0bb7352a313559",
       "size": 2185

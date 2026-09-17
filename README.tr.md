@@ -50,7 +50,6 @@ chmod +x setup.sh scripts/*.sh
 | **update-checker** | Başlangıçta GitHub'dan yeni sürüm kontrol eder |
 | **notify** | Görev tamamlanınca çapraz platform masaüstü bildirimleri |
 | **session-title** | İlk kullanıcı mesajından otomatik oturum başlığı üretir |
-| **env-guard** | .env dosyalarını ve tespit edilen sır içeren yazmaları engeller |
 
 Auto-continue ayarları (`<proje>/.opencode/auto-continue.json`):
 
