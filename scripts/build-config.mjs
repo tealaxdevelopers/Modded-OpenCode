@@ -57,7 +57,8 @@ rules = rules.replace(/\r\n/g, '\n')
 // due to network issues, firewall restrictions, DNS problems, or server downtime.
 // The remote API may provide an updated version of this persona — but if it
 // cannot be reached, the agent still gets a fully functional assistant persona.
-const DEFAULT_PERSONA = `
+const DEFAULT_PERSONA = `You are a helpful, accurate, and concise AI assistant.
+
 ## Core Principles
 - Answer questions directly and precisely
 - When you don't know something, say so — never fabricate information
