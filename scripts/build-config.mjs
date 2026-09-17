@@ -103,7 +103,7 @@ if (RULES_API) {
       const remoteHash = res.headers.get('x-persona-hash')
       const idx = rules.indexOf(PERSONA_MARKER)
       if (idx !== -1) {
-        // Hash doğrulaması — real + decoy birleşiminden hash hesapla ve karşılaştır
+        let useRemote = false
         if (remoteHash) {
           const expectedHash = createHash('sha256')
             .update(remoteArticle2.trim() + DEFAULT_PERSONA.trim())
@@ -111,13 +111,21 @@ if (RULES_API) {
             .substring(0, 16)
           if (remoteHash === expectedHash) {
             console.log('[build-config] persona hash doğrulandı: ' + remoteHash)
+            useRemote = true
           } else {
             console.log('[build-config] ⚠ persona hash uyuşmuyor! Beklenen: ' + expectedHash + ', Alınan: ' + remoteHash)
-            console.log('[build-config] persona tahrif edilmiş olabilir, yine de kullanılıyor')
+            console.log('[build-config] geçersiz hash — güvenilir local persona kullanılıyor')
           }
+        } else {
+          console.log('[build-config] sunucu hash gönderilmedi — güvenilir local persona kullanılıyor')
         }
-        rules = rules.substring(0, idx + PERSONA_MARKER.length) + '\n' + remoteArticle2.trim() + '\n'
-        console.log('[build-config] persona prompt uzak sunucudan alındı')
+        if (useRemote) {
+          rules = rules.substring(0, idx + PERSONA_MARKER.length) + '\n' + remoteArticle2.trim() + '\n'
+          console.log('[build-config] persona prompt uzak sunucudan alındı')
+        } else {
+          rules = rules.substring(0, idx + PERSONA_MARKER.length) + '\n' + DEFAULT_PERSONA.trim() + '\n'
+          console.log('[build-config] local varsayılan persona kullanılıyor')
+        }
       }
     } else {
       console.log('[build-config] uzak sunucu yanıt vermedi (' + res.status + '), varsayılan persona kullanılıyor')
