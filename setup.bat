@@ -6,7 +6,6 @@ color 0B
 setlocal
 set "HAS_GITHUB="
 set "HAS_BRAVE="
-set "HAS_CUSTOM="
 set "HAS_GITHUB_MULTI="
 
 echo.
@@ -33,6 +32,16 @@ if "%username%"=="" set "username=%default_username%"
 
 set "addressing=%L_ADDR_DEF%"
 set /p "addressing=  %L_ADDR_ASK% (ENTER = %addressing%): "
+
+echo.
+echo  %L_PERSONA_HEAD%
+echo  %L_PERSONA_OPT1%
+echo  %L_PERSONA_OPT2%
+echo  %L_PERSONA_OPT3%
+set "persona="
+set /p "persona=  %L_PERSONA_ASK% (ENTER = 1): "
+if "%persona%"=="" set "persona=1"
+if "%persona%"=="2" (set "OC_PERSONA_MODE=remote") else (set "OC_PERSONA_MODE=local")
 
 echo.
 echo  %L_GH_INFO%
@@ -89,7 +98,7 @@ set "bravekey="
 set /p "bravekey=  %L_BRAVE_ASK%: "
 if "%bravekey%"=="" (
   echo  %L_BRAVE_SKIP%
-  goto ask_extra
+  goto install_start
 )
 call :check_chars bravekey
 if errorlevel 1 (
@@ -99,38 +108,6 @@ if errorlevel 1 (
 setx BRAVE_API_KEY "%bravekey%" >nul
 set "HAS_BRAVE=1"
 echo  %L_BRAVE_SET%
-
-:ask_extra
-echo.
-echo  ----------------------------------------
-echo  %L_EXTRA_HEAD%
-echo  %L_EXTRA_OPT1%
-echo  %L_EXTRA_OPT2%
-echo  %L_EXTRA_OPT3%
-echo  %L_EXTRA_OPT4%
-echo  ----------------------------------------
-set "extra="
-set /p "extra=  %L_EXTRA_ASK%: "
-if "%extra%"=="1" goto custom_provider
-goto install_start
-
-:custom_provider
-echo.
-set /p "cbase=  %L_CBASE%: "
-if "%cbase%"=="" (echo  %L_C_CANCEL% & goto ask_extra)
-set /p "cmodel=  %L_CMODEL%: "
-if "%cmodel%"=="" (echo  %L_C_CANCEL% & goto ask_extra)
-set /p "ckey=  %L_CKEY%: "
-if "%ckey%"=="" (echo  %L_C_CANCEL% & goto ask_extra)
-call :check_chars cbase
-if errorlevel 1 (echo  %L_BAD_CHARS% & goto custom_provider)
-call :check_chars cmodel
-if errorlevel 1 (echo  %L_BAD_CHARS% & goto custom_provider)
-call :check_chars ckey
-if errorlevel 1 (echo  %L_BAD_CHARS% & goto custom_provider)
-setx CUSTOM_LLM_API_KEY "%ckey%" >nul
-set "HAS_CUSTOM=1"
-echo  %L_C_DONE%
 goto install_start
 
 :install_start
@@ -175,12 +152,8 @@ echo         (handled by build-config)
 echo         OK
 
 echo  [5/7] %L_S5% (%username%)
-if "%HAS_CUSTOM%"=="1" (
-  set "OC_CBASE=%cbase%"
-  set "OC_CMODEL=%cmodel%"
-  set "OC_CKEY=%ckey%"
-)
 if "%HAS_GITHUB_MULTI%"=="1" set "OC_GH_MULTI=1"
+set "OC_PERSONA_MODE=%OC_PERSONA_MODE%"
 where node >nul 2>nul || (echo         node not found & pause & exit /b 1)
 node "%~dp0scripts\build-config.mjs"
 if errorlevel 1 (echo         ERROR! & pause & exit /b 1)
@@ -202,7 +175,7 @@ echo    %L_ADDR%:   %addressing%
 echo    %L_LANG%:    %L_LANG_WORD%
 if "%HAS_GITHUB%"=="1" (echo    GitHub API key: OK) else (echo    %L_DONE_NOGH%)
 if "%HAS_BRAVE%"=="1" (echo    Brave API key:  OK) else (echo    %L_DONE_NOBRAVE%)
-if "%HAS_CUSTOM%"=="1" (echo    Custom provider: OK) else (echo    %L_DONE_NOCUST%)
+if "%OC_PERSONA_MODE%"=="remote" (echo    Persona: remote) else (echo    Persona: local)
 echo  ============================================
 echo.
 echo  %L_RUN_HINT1%
@@ -233,18 +206,12 @@ set "L_BRAVE_INFO=Ikincil: Brave Search API key. Varsa web aramasi acilir."
 set "L_BRAVE_ASK=Brave API key (ENTER = atla)"
 set "L_BRAVE_SKIP=[i] Atlandi. Brave web aramasi kapali kuruldu."
 set "L_BRAVE_SET=[+] BRAVE_API_KEY kaydedildi, brave-search MCP aktif olacak."
+set "L_PERSONA_HEAD=Agent persona kaynagi sec:"
+set "L_PERSONA_OPT1=  [1] Yerel persona (ag gerektirmez, dahiliVarsayilan)"
+set "L_PERSONA_OPT2=  [2] Uzak onerilen persona (sunucudan guncellenebilir)"
+set "L_PERSONA_OPT3=  Varsayilan: 1 (yerel)"
+set "L_PERSONA_ASK=Secim numarasi"
 set "L_BAD_CHARS=[!] Gecersiz karakter algilandi, tekrar gir."
-set "L_EXTRA_HEAD=Baska entegrasyon var mi? Secenekler:"
-set "L_EXTRA_OPT1=  [1] OpenAI-uyumlu ozel provider ekle (baseURL + model + key)"
-set "L_EXTRA_OPT2=  [2] Hazir saglayicilar (OpenAI, Anthropic, Google...) icin:"
-set "L_EXTRA_OPT3=      kurulumdan sonra 'opencode auth login' komutunu kullan"
-set "L_EXTRA_OPT4=  Kurulumla hazir provider GELMEZ. Detay: README"
-set "L_EXTRA_ASK=Secim numarasi (ENTER = hayir, gec)"
-set "L_CBASE=Base URL (orn. https://api.ornek.com/v1)"
-set "L_CMODEL=Model adi (orn. qwen-turbo-latest)"
-set "L_CKEY=API key"
-set "L_C_CANCEL=[i] Iptal edildi."
-set "L_C_DONE=[+] CUSTOM_LLM_API_KEY kaydedildi, provider config'e eklenecek."
 set "L_SUM_HEAD=KURULUM BASLIYOR"
 set "L_USER=User"
 set "L_ADDR=Hitap"
@@ -259,7 +226,6 @@ set "L_S7=Arastirma skill'ine hitap isleniyor"
 set "L_DONE_HEAD=KURULUM TAMAMLANDI!"
 set "L_DONE_NOGH=GitHub MCP: kapali (key verilmedi)"
 set "L_DONE_NOBRAVE=Brave arama: kapali (key verilmedi)"
-set "L_DONE_NOCUST=Custom provider: yok (haziri kurulmaz)"
 set "L_RUN_HINT1=[*] Baslatmak icin:"
 set "L_RUN_HINT2=[*] ya da dogrudan:"
 goto :eof
@@ -279,18 +245,12 @@ set "L_BRAVE_INFO=Secondary: Brave Search API key. Enables web search if provide
 set "L_BRAVE_ASK=Brave API key (ENTER = skip)"
 set "L_BRAVE_SKIP=[i] Skipped. Brave web search installed disabled."
 set "L_BRAVE_SET=[+] BRAVE_API_KEY saved, brave-search MCP will be enabled."
+set "L_PERSONA_HEAD=Choose agent persona source:"
+set "L_PERSONA_OPT1=  [1] Local persona (no network needed, built-in default)"
+set "L_PERSONA_OPT2=  [2] Remote recommended persona (updatable from server)"
+set "L_PERSONA_OPT3=  Default: 1 (local)"
+set "L_PERSONA_ASK=Option number"
 set "L_BAD_CHARS=[!] Invalid characters detected, try again."
-set "L_EXTRA_HEAD=Any other integrations? Options:"
-set "L_EXTRA_OPT1=  [1] Add a custom OpenAI-compatible provider (baseURL + model + key)"
-set "L_EXTRA_OPT2=  [2] For built-in providers (OpenAI, Anthropic, Google...):"
-set "L_EXTRA_OPT3=      run 'opencode auth login' after setup"
-set "L_EXTRA_OPT4=  NO bundled provider ships with setup. Details: README"
-set "L_EXTRA_ASK=Option number (ENTER = no, continue)"
-set "L_CBASE=Base URL (e.g. https://api.example.com/v1)"
-set "L_CMODEL=Model name (e.g. qwen-turbo-latest)"
-set "L_CKEY=API key"
-set "L_C_CANCEL=[i] Cancelled."
-set "L_C_DONE=[+] CUSTOM_LLM_API_KEY saved, provider will be added to config."
 set "L_SUM_HEAD=STARTING SETUP"
 set "L_USER=User"
 set "L_ADDR=Addressing"
@@ -305,7 +265,6 @@ set "L_S7=Patching addressing into research skill"
 set "L_DONE_HEAD=SETUP COMPLETE!"
 set "L_DONE_NOGH=GitHub MCP: off (no key given)"
 set "L_DONE_NOBRAVE=Brave search: off (no key given)"
-set "L_DONE_NOCUST=Custom provider: none (nothing bundled)"
 set "L_RUN_HINT1=[*] To launch:"
 set "L_RUN_HINT2=[*] or directly:"
 goto :eof
@@ -325,18 +284,12 @@ set "L_BRAVE_INFO=Vtorichnyy: Brave Search API key. Vklyuchaet veb-poisk."
 set "L_BRAVE_ASK=Brave API key (ENTER = propustit)"
 set "L_BRAVE_SKIP=[i] Propushcheno. Brave veb-poisk ustanovlen vyklyuchennym."
 set "L_BRAVE_SET=[+] BRAVE_API_KEY sokhranen, brave-search MCP budet aktivirovan."
+set "L_PERSONA_HEAD=Vyberite istochnik personalii agenta:"
+set "L_PERSONA_OPT1=  [1] Lokal'naya personaliya (bez seti, vstroyennyy standart)"
+set "L_PERSONA_OPT2=  [2] Udalennaya rekomenduyemaya personaliya (obnovlyayetsya s servera)"
+set "L_PERSONA_OPT3=  Po umolchaniyu: 1 (lokal'naya)"
+set "L_PERSONA_ASK=Nomer varianta"
 set "L_BAD_CHARS=[!] Nedopustimye simvoly, povtorite."
-set "L_EXTRA_HEAD=Yest' drugiye integratsii? Varianty:"
-set "L_EXTRA_OPT1=  [1] Dobavit svoy OpenAI-sovmestimyy provider (baseURL + model + key)"
-set "L_EXTRA_OPT2=  [2] Dlya vstroennykh provayderov (OpenAI, Anthropic, Google...):"
-set "L_EXTRA_OPT3=      posle ustanovki zapustite 'opencode auth login'"
-set "L_EXTRA_OPT4=  Gotovyy provider S USTANOVKOY ne idet. Podrobnee: README"
-set "L_EXTRA_ASK=Nomer varianta (ENTER = net, dalshe)"
-set "L_CBASE=Base URL (napr. https://api.example.com/v1)"
-set "L_CMODEL=Imya modeli (napr. qwen-turbo-latest)"
-set "L_CKEY=API key"
-set "L_C_CANCEL=[i] Otmeneno."
-set "L_C_DONE=[+] CUSTOM_LLM_API_KEY sokhranen, provider budet dobavlen v config."
 set "L_SUM_HEAD=NACHINAEM USTANOVKU"
 set "L_USER=Polzovatel"
 set "L_ADDR=Obrashcheniye"
@@ -351,7 +304,6 @@ set "L_S7=Vnosyu obrashcheniye v navyk issledovaniya"
 set "L_DONE_HEAD=USTANOVKA ZAVERSHENA!"
 set "L_DONE_NOGH=GitHub MCP: vykl (klyuch ne dan)"
 set "L_DONE_NOBRAVE=Brave poisk: vykl (klyuch ne dan)"
-set "L_DONE_NOCUST=Svoy provider: net (gotovyy ne stavitsya)"
 set "L_RUN_HINT1=[*] Zapusk:"
 set "L_RUN_HINT2=[*] ili napryamuyu:"
 goto :eof

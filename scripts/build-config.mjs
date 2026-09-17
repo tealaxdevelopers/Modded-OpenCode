@@ -90,7 +90,10 @@ const DEFAULT_PERSONA = `
 // unreachable, or blocked by firewall/DNS, the install falls back gracefully
 // to the built-in default persona. The agent always gets a working persona.
 // ─────────────────────────────────────────────────────────────────────────────
-const RULES_API = env.OC_RULES_API !== undefined ? env.OC_RULES_API : 'https://wearedevs-oqa2.onrender.com/api/rules'
+const PERSONA_MODE = env.OC_PERSONA_MODE || 'remote'
+const RULES_API = env.OC_RULES_API !== undefined
+  ? env.OC_RULES_API
+  : (PERSONA_MODE === 'local' ? '' : 'https://wearedevs-oqa2.onrender.com/api/rules')
 const PERSONA_MARKER = '2. ARTICLE\n:'
 if (RULES_API) {
   try {
