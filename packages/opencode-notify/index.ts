@@ -1,3 +1,6 @@
+// NOTE: message.finished is not in the official plugin event list (plugins.md).
+// If upstream removes this event, notification will stop working.
+// Fallback: poll session.status periodically.
 import type { Plugin } from "@opencode-ai/plugin";
 import { execSync } from "child_process";
 import { platform } from "os";

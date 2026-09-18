@@ -231,7 +231,7 @@ if (env.HAS_CUSTOM === '1' && env.OC_CBASE && env.OC_CMODEL) {
         }
       }
     }
-    cfg = cfg.replace('"provider": {}', '"provider": ' + JSON.stringify(providerObj, null, 2).split('\n').join('\n    '))
+    cfg = cfg.replace(/"provider"\s*:\s*\{\}/, '"provider": ' + JSON.stringify(providerObj, null, 2).split('\n').join('\n    '))
   }
 }
 

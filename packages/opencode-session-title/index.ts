@@ -1,3 +1,6 @@
+// NOTE: message.finished is not in the official plugin event list (plugins.md).
+// If upstream removes this event, auto-titling will stop working.
+// Fallback: generate title from first user message on session.deleted.
 import type { Plugin } from "@opencode-ai/plugin";
 
 const PACKAGE_VERSION = "1.1.8";

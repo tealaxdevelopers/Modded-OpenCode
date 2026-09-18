@@ -141,11 +141,20 @@ function createSessionStateStore() {
     if (s?.deferredTimer) clearTimeout(s.deferredTimer)
     states.delete(id)
   }
+  function cleanupStale(): void {
+    const now = Date.now()
+    for (const [id, s] of states) {
+      if (s.lastInjectedAt && now - s.lastInjectedAt > 3600000) {
+        if (s.deferredTimer) clearTimeout(s.deferredTimer)
+        states.delete(id)
+      }
+    }
+  }
   function resetConsecutive(id: string): void {
     const s = states.get(id)
     if (s) s.consecutiveCount = 0
   }
-  return { getState, cleanup, resetConsecutive }
+  return { getState, cleanup, cleanupStale, resetConsecutive }
 }
 
 type SessionMessage = {
@@ -219,6 +228,7 @@ async function isSessionIdle(ctx: any, sessionID: string, directory: string): Pr
 const setup = async (ctx: any) => {
   const sessionStateStore = createSessionStateStore()
   const getConfig = () => loadConfig(ctx.directory)
+  let lastCleanup = 0
 
   // On first run, leave a visible config file (user can easily disable)
   try {
@@ -278,6 +288,8 @@ const setup = async (ctx: any) => {
         query: { directory: ctx.directory },
       }
 
+      // NOTE: promptAsync is not in the official plugin docs (plugins.md).
+      // If upstream removes it, the sync prompt fallback will block the event loop.
       if (typeof (ctx.client.session as any).promptAsync === "function") {
         await (ctx.client.session as any).promptAsync(payload)
       } else {
@@ -311,6 +323,13 @@ const setup = async (ctx: any) => {
         const info = event.properties?.info
         if (info?.id) sessionStateStore.cleanup(info.id)
         return
+      }
+
+      // Periodic cleanup: remove idle session states older than 1 hour (throttled to once per 5 min)
+      const now = Date.now()
+      if (now - lastCleanup > 300000) {
+        lastCleanup = now
+        sessionStateStore.cleanupStale()
       }
 
       const config = getConfig()

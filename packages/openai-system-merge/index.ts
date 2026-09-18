@@ -1,5 +1,5 @@
 /**
- * openai-system-merge.ts Ã¢â‚¬â€ Merge multiple system messages into one
+ * openai-system-merge.ts -- Merge multiple system messages into one
  *
  * Problem: Strict OpenAI-compatible servers (Hetzner, OVHcloud, Scaleway,
  * Nebius, vLLM with Qwen template) accept exactly ONE system message.
@@ -12,13 +12,16 @@
  * before the request reaches the wire.
  *
  * Anthropic requests are never touched (detected via anthropic-version header).
- * Only the leading run of system messages is merged Ã¢â‚¬â€ mid-conversation system
+ * Only the leading run of system messages is merged -- mid-conversation system
  * messages are left in place.
  *
  * Based on: different-ai/openwork#3970
  */
 
 const MERGE_LOG = "[openai-system-merge]";
+
+// Prevent re-patching if the plugin is loaded multiple times (npm cache, local plugins dir, etc.)
+const PATCHED_SYMBOL = Symbol.for("opencode-openai-system-merge-patched");
 
 function isAnthropicRequest(headers: Headers): boolean {
   return headers.has("anthropic-version") || headers.has("anthropic-beta");
@@ -80,55 +83,67 @@ function mergeLeadingSystemMessages(messages: any[]): any[] {
 function patchFetch() {
   const originalFetch = globalThis.fetch;
   if (!originalFetch) return;
-  // Guard against double-patching
-  if ((globalThis.fetch as any).__openaiSystemMergePatched) return;
+  // Symbol-based guard -- survives multiple plugin loads
+  if ((globalThis as any)[PATCHED_SYMBOL]) return;
+  (globalThis as any)[PATCHED_SYMBOL] = true;
 
   const patchedFetch = async function(
     input: RequestInfo | URL,
     init?: RequestInit
   ): Promise<Response> {
-    // Only intercept requests with a body
-    if (!init?.body || typeof init.body !== "string") {
-      return originalFetch.call(globalThis, input, init);
-    }
-
-    // Check headers for Anthropic Ã¢â‚¬â€ never touch those
-    const headers = new Headers(init.headers);
-    if (isAnthropicRequest(headers)) {
-      return originalFetch.call(globalThis, input, init);
-    }
-
-    // Try to parse the body as JSON
-    let body: any;
     try {
-      body = JSON.parse(init.body);
+      // Only intercept requests with a body
+      if (!init?.body || typeof init.body !== "string") {
+        return originalFetch.call(globalThis, input, init);
+      }
+
+      // URL guard -- only intercept OpenAI-compatible chat completions endpoints
+      // This avoids breaking if upstream fetches other URLs
+      const url = typeof input === "string" ? input : (input as Request)?.url;
+      if (url && !url.includes("/chat/completions") && !url.includes("/v1/chat/completions")) {
+        return originalFetch.call(globalThis, input, init);
+      }
+
+      // Check headers for Anthropic -- never touch those
+      const headers = new Headers(init.headers);
+      if (isAnthropicRequest(headers)) {
+        return originalFetch.call(globalThis, input, init);
+      }
+
+      // Try to parse the body as JSON
+      let body: any;
+      try {
+        body = JSON.parse(init.body);
+      } catch {
+        return originalFetch.call(globalThis, input, init);
+      }
+
+      // Only process if there's a messages array with multiple system messages
+      if (!body?.messages || !Array.isArray(body.messages)) {
+        return originalFetch.call(globalThis, input, init);
+      }
+
+      const systemCount = body.messages.filter(
+        (m: any) => m?.role === "system"
+      ).length;
+
+      if (systemCount < 2) {
+        return originalFetch.call(globalThis, input, init);
+      }
+
+      // Merge leading system messages
+      const merged = mergeLeadingSystemMessages(body.messages);
+      body.messages = merged;
+
+      // Re-serialize and send
+      const newInit = { ...init, body: JSON.stringify(body) };
+      return originalFetch.call(globalThis, input, newInit);
     } catch {
+      // If anything goes wrong, pass through to original
       return originalFetch.call(globalThis, input, init);
     }
-
-    // Only process if there's a messages array with multiple system messages
-    if (!body?.messages || !Array.isArray(body.messages)) {
-      return originalFetch.call(globalThis, input, init);
-    }
-
-    const systemCount = body.messages.filter(
-      (m: any) => m?.role === "system"
-    ).length;
-
-    if (systemCount < 2) {
-      return originalFetch.call(globalThis, input, init);
-    }
-
-    // Merge leading system messages
-    const merged = mergeLeadingSystemMessages(body.messages);
-    body.messages = merged;
-
-    // Re-serialize and send
-    const newInit = { ...init, body: JSON.stringify(body) };
-    return originalFetch.call(globalThis, input, newInit);
   };
 
-  (patchedFetch as any).__openaiSystemMergePatched = true;
   globalThis.fetch = patchedFetch;
 }
 
@@ -140,7 +155,7 @@ export default {
   setup: () => {
     // Patch is already applied on import
     console.log(
-      `${MERGE_LOG} loaded Ã¢â‚¬â€ will merge multiple leading system messages for OpenAI-compatible providers`
+      `${MERGE_LOG} loaded -- will merge multiple leading system messages for OpenAI-compatible providers`
     );
   },
 };

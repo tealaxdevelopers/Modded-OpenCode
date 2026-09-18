@@ -175,8 +175,8 @@ if [ -n "${ghkey:-}" ]; then
   # Split by comma — compatible with bash 3.2+ (no mapfile needed)
   OLD_IFS="$IFS"
   IFS=','
+  set -f  # disable glob expansion — keys may contain *, ?, [
   for tok in $ghkey; do
-    IFS="$OLD_IFS"
     # trim leading/trailing whitespace
     tok="$(echo "$tok" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
     [ -z "$tok" ] && continue
@@ -184,6 +184,7 @@ if [ -n "${ghkey:-}" ]; then
     export "GITHUB_API_KEY_$gh_n=$tok"
     write_env "GITHUB_API_KEY_$gh_n" "$tok"
   done
+  set +f  # re-enable glob expansion
   IFS="$OLD_IFS"
   if [ "$gh_n" -gt 0 ]; then
     HAS_GITHUB=1

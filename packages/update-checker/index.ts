@@ -282,15 +282,20 @@ export default {
     // Next OpenCode launch = new session = fresh check.
     let checked = false;
 
-    ctx.subscribe("session.idle", async () => {
-      if (checked) return;
-      checked = true;
+    // Wrap in try/catch in case subscribe API changes upstream
+    try {
+      ctx.subscribe("session.idle", async () => {
+        if (checked) return;
+        checked = true;
 
-      try {
-        await checkForUpdates();
-      } catch (e) {
-        logError("Update check failed:", (e as Error).message);
-      }
-    });
+        try {
+          await checkForUpdates();
+        } catch (e) {
+          logError("Update check failed:", (e as Error).message);
+        }
+      });
+    } catch {
+      // subscribe not available — update checking disabled
+    }
   },
 };

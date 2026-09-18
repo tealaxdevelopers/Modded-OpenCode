@@ -73,6 +73,10 @@ if errorlevel 1 (
 )
 set /a gh_n+=1
 setx GITHUB_API_KEY_%gh_n% "%tok%" >nul
+REM NOTE: setx has a 1024-char value limit. Keys longer than this will be silently truncated.
+for /f %%L in ('powershell -NoProfile -Command "if('%tok%'.Length -gt 1000){'LONG'}"') do set "KEYLENCHK=%%L"
+if "%KEYLENCHK%"=="LONG" echo  [!] Warning: API key may be truncated (setx limit: 1024 chars).
+set "KEYLENCHK="
 goto gh_split
 
 :gh_finish
@@ -83,6 +87,10 @@ if "%gh_n%"=="0" (
 set "HAS_GITHUB=1"
 if "%gh_n%"=="1" (
   setx GITHUB_API_KEY "%tok%" >nul
+  REM NOTE: setx has a 1024-char value limit. Keys longer than this will be silently truncated.
+  for /f %%L in ('powershell -NoProfile -Command "if('%tok%'.Length -gt 1000){'LONG'}"') do set "KEYLENCHK=%%L"
+  if "%KEYLENCHK%"=="LONG" echo  [!] Warning: API key may be truncated (setx limit: 1024 chars).
+  set "KEYLENCHK="
 ) else (
   set "HAS_GITHUB_MULTI=1"
   setx GITHUB_TOKEN_COUNT "%gh_n%" >nul
@@ -130,8 +138,18 @@ echo.
 
 echo  [1/7] %L_S1%
 if not exist "%target_dir%" mkdir "%target_dir%" 2>nul
+if not exist "%target_dir%" (
+  echo  [!] Error: cannot create directory %target_dir%
+  echo      Check permissions or run as administrator.
+  goto :eof
+)
 for %%D in (skills agents commands instructions plugins agent) do (
   if not exist "%target_dir%\%%D" mkdir "%target_dir%\%%D" 2>nul
+  if not exist "%target_dir%\%%D" (
+    echo  [!] Error: cannot create directory %target_dir%\%%D
+    echo      Check permissions or run as administrator.
+    goto :eof
+  )
 )
 echo         OK
 
@@ -187,7 +205,8 @@ exit /b 0
 
 :check_chars
 call set "CHK_VAL=%%%~1%%"
-powershell -NoProfile -Command "if ($env:CHK_VAL -match '[&|^<>!]') { exit 1 } else { exit 0 }"
+REM Block characters that break cmd/setx parsing (| is valid in base64 keys, so excluded)
+powershell -NoProfile -Command "if ($env:CHK_VAL -match '[&<>!^%%]') { exit 1 } elseif ($env:CHK_VAL -match '[\"]') { exit 1 } else { exit 0 }"
 exit /b %errorlevel%
 
 :lang_tr
