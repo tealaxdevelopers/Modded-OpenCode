@@ -170,6 +170,8 @@ echo         OK
 echo  [5/7] %L_S5% (%username%)
 if "%HAS_GITHUB_MULTI%"=="1" set "OC_GH_MULTI=1"
 set "OC_PERSONA_MODE=%OC_PERSONA_MODE%"
+REM Persist kit root for update-checker (npm packages can't find repo root via import.meta.url)
+setx OC_KIT_DIR "%~dp0" >nul 2>nul
 where node >nul 2>nul || (echo         node not found & pause & exit /b 1)
 node "%~dp0scripts\build-config.mjs"
 if errorlevel 1 (echo         ERROR! & pause & exit /b 1)

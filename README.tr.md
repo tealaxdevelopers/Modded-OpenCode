@@ -195,6 +195,8 @@ Seçtiğin dil `rules.md` içindeki agent konuşma dilini belirler.
 | **macOS** | `~/Library/Application Support/opencode/local-setup/.env.local` |
 | **Linux** | `~/.config/opencode/local-setup/.env.local` |
 
+> **Not:** Agent'lar geniş okuma izinlerine sahiptir (`opencode.jsonc` içinde `"read": "allow"`), böylece yapılandırma dosyalarınızla çalışmanız istendiğinde `.env` dosyalarını okuyabilirler. Hassas dosyaların otomatik engellenmesi yoktur — bu kasıtlıdır. Daha sıkı kontroller istiyorsanız, `opencode.jsonc`'de `"read": "ask"` yapılandırın ve belirli kalıplar için deny kuralları ekleyin.
+
 ---
 
 ## 📜 Rules.md

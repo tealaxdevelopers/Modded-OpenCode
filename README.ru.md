@@ -195,6 +195,8 @@ opencode auth login
 | **macOS** | `~/Library/Application Support/opencode/local-setup/.env.local` |
 | **Linux** | `~/.config/opencode/local-setup/.env.local` |
 
+> **Примечание:** Агенты имеют широкие права на чтение (`"read": "allow"` в `opencode.jsonc`), поэтому они могут читать `.env` файлы когда вы просите их работать с конфигурацией. Автоматическая блокировка чувствительных файлов отсутствует — это сделано намеренно. Если вам нужны более строгие ограничения, настройте `"read": "ask"` и добавьте правила запрета для определённых шаблонов в вашем `opencode.jsonc`.
+
 ---
 
 ## 📜 Rules.md

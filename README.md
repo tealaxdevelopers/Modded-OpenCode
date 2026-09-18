@@ -201,6 +201,8 @@ The language you pick sets the agent's conversation language in `rules.md`.
 | **macOS** | `~/Library/Application Support/opencode/local-setup/.env.local` |
 | **Linux** | `~/.config/opencode/local-setup/.env.local` |
 
+> **Note on `.env` access:** Agents have broad read permissions (`"read": "allow"` in `opencode.jsonc`) so they can read `.env` files when you ask them to work with your configuration. There is no automatic blocking of sensitive files — this is by design. If you need stricter controls, configure `"read": "ask"` and add deny rules for specific patterns in your `opencode.jsonc`.
+
 ---
 
 ## 📜 rules.md

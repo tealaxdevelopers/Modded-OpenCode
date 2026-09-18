@@ -211,6 +211,11 @@ if [ -n "${bravekey:-}" ]; then
   echo "  [+] BRAVE_API_KEY saved."
 fi
 
+# Persist kit root for update-checker (npm packages can't find repo root via import.meta.url)
+KIT_ROOT="$(dirname "$OC_SOURCE")"
+export OC_KIT_DIR="$KIT_ROOT"
+write_env "OC_KIT_DIR" "$KIT_ROOT"
+
 # ---- Atomic .env.local commit ----
 # Preserve user-added lines outside markers, replace only our section
 ENV_MARKER_START="# >>> modded-opencode credentials >>>"

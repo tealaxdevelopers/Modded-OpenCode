@@ -29,15 +29,21 @@ function logError(...args: unknown[]) {
   console.error("[update-checker]", ...args);
 }
 
-/** Determine kit root directory from this plugin's location. */
+/** Determine kit root directory.
+ *  Priority: OC_KIT_DIR env var > import.meta.url relative path.
+ *  When installed as npm plugin, import.meta.url points to node_modules
+ *  not the repo root, so OC_KIT_DIR must be set by the setup script. */
 function getKitDir(): string {
+  // Prefer explicit env var (set by setup scripts during installation)
+  const envDir = process.env.OC_KIT_DIR;
+  if (envDir) return envDir;
+
+  // Fallback: try relative to plugin file (works for local plugins only)
   const pluginUrl = import.meta.url;
   const pluginPath = pluginUrl.startsWith("file://")
     ? pluginUrl.slice(7)
     : pluginUrl;
   const cleaned = process.platform === "win32" ? pluginPath.replace(/^\/([A-Z]:)/, "$1") : pluginPath;
-  // Plugin lives in <root>/plugins/update-checker.ts
-  // Kit root (where source/VERSION lives) is one level up from plugins/
   return join(dirname(cleaned), "..");
 }
 
