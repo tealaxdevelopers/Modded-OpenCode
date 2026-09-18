@@ -228,7 +228,7 @@ Plugins are installed from npm and listed in `opencode.jsonc`:
 
 | Plugin | npm package | Purpose |
 |--------|-------------|---------|
-| agents-opencode | `modded-opencode-agents-opencode` | Compaction context injection, sensitive file blocking, version env var |
+| agents-opencode | `modded-opencode-agents-opencode` | Compaction context injection, version env var |
 | auto-continue | `modded-opencode-opencode-continue` | Auto-resume idle sessions |
 | openai-system-merge | `modded-opencode-openai-system-merge` | Merge multiple system messages for strict OpenAI-compatible providers |
 | update-checker | `modded-opencode-update-checker` | Auto-update from GitHub releases |

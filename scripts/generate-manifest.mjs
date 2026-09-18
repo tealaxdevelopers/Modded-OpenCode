@@ -85,7 +85,7 @@ async function main() {
   };
 
   for (const f of allFiles) {
-    manifest.files[f.path] = { hash: f.hash, size: f.size };
+    manifest.files[f.path] = { hash: f.hash, blobSha: f.hash, size: f.size };
   }
 
   await writeFile(OUTPUT, JSON.stringify(manifest, null, 2) + "\n");

@@ -246,6 +246,7 @@ const setup = async (ctx: any) => {
     if (state.inFlight) return
     if (state.consecutiveCount >= config.max_consecutive) return
     state.inFlight = true
+    try {
 
     let messages: SessionMessage[] = []
     try {
@@ -312,6 +313,7 @@ const setup = async (ctx: any) => {
     } catch {
       state.consecutiveCount += 1
       state.lastInjectedAt = Date.now()
+    }
     } finally {
       state.inFlight = false
     }

@@ -57,7 +57,7 @@ test("build-config preserves URLs and string content and rejects invalid output 
     const env = {
       OC_SOURCE: source, OC_TARGET: target, OC_RULES_API: "",
       OC_USERNAME: "UZMAN", OC_LANGUAGE: "Turkce", OC_ADDRESSING: "Tealax",
-      HAS_GITHUB: "", HAS_BRAVE: "", HAS_CUSTOM: "", OC_GH_MULTI: "",
+      HAS_GITHUB: "", HAS_BRAVE: "", OC_GH_MULTI: "",
     };
     const output = path.join(target, "opencode.jsonc");
     await fs.writeFile(path.join(source, "opencode.jsonc"), template);

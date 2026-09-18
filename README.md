@@ -44,7 +44,7 @@ chmod +x setup.sh scripts/*.sh
 
 | Plugin | What it does |
 |--------|-------------|
-| **agents-opencode** | Compaction context injection, sensitive file blocking, version env var |
+| **agents-opencode** | Compaction context injection, version env var |
 | **auto-continue** | Auto-resume idle/disconnected sessions (on by default) |
 | **openai-system-merge** | Fixes multi-system-message error for strict OpenAI-compatible providers |
 | **update-checker** | Checks GitHub for new releases on startup |
@@ -186,7 +186,6 @@ Both wizards ask the same questions and produce the complete config:
 | 3️⃣ Addressing | How should the agent call you? | default |
 | 4️⃣ GitHub API key(s) | For GitHub MCP | skipped, MCP disabled |
 | 5️⃣ Brave API key | For web search | skipped, search disabled |
-| 6️⃣ Extra integrations | Custom provider menu | skip |
 
 ### Secondary: `scripts/install.sh` (provider sync only)
 

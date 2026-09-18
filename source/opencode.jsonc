@@ -63,27 +63,27 @@
   "mcp": {
     "fetch": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-fetch"],
+      "command": ["npx", "-y", "@modelcontextprotocol/server-fetch@2025.4.7"],
       "enabled": true
     },
     "sequential-thinking": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking@2026.7.4"],
       "enabled": true
     },
     "memory": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-memory"],
+      "command": ["npx", "-y", "@modelcontextprotocol/server-memory@2026.1.26"],
       "enabled": true
     },
     "time": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-time"],
+      "command": ["npx", "-y", "@modelcontextprotocol/server-time@2025.9.25"],
       "enabled": true
     },
     "github": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-github"],
+      "command": ["npx", "-y", "@modelcontextprotocol/server-github@2025.4.8"],
       "enabled": false,
       "environment": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_API_KEY}"
@@ -91,12 +91,12 @@
     },
     "filesystem": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem"],
+      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem@2026.7.10"],
       "enabled": false
     },
     "brave-search": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-brave-search"],
+      "command": ["npx", "-y", "@modelcontextprotocol/server-brave-search@0.6.2"],
       "enabled": false,
       "environment": {
         "BRAVE_API_KEY": "{env:BRAVE_API_KEY}"

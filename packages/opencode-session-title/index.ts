@@ -1,17 +1,18 @@
 // NOTE: message.finished is not in the official plugin event list (plugins.md).
 // If upstream removes this event, auto-titling will stop working.
-// Fallback: generate title from first user message on session.deleted.
+// Fallback: session.idle checks if title is still default; session.deleted generates from first user message.
 import type { Plugin } from "@opencode-ai/plugin";
 
-const PACKAGE_VERSION = "1.1.8";
+const PACKAGE_VERSION = "1.1.9";
 const MAX_TITLE_LEN = 60;
+const DEFAULT_TITLE = "Untitled Session";
 
 export const OpencodeSessionTitlePlugin: Plugin = async ({ client }) => {
   await client.app.log({
     body: {
       service: "opencode-session-title",
       level: "info",
-      message: `opencode-session-title v${PACKAGE_VERSION} loaded Ã¢â‚¬â€ auto session naming`,
+      message: `opencode-session-title v${PACKAGE_VERSION} loaded — auto session naming`,
     },
   });
 
@@ -32,6 +33,58 @@ export const OpencodeSessionTitlePlugin: Plugin = async ({ client }) => {
       const title = generateTitle(text);
       if (title) {
         await client.session.update({ id: sessionID, title });
+      }
+    },
+
+    "session.idle": async (input, output) => {
+      try {
+        const sessionID = output.sessionID;
+        if (!sessionID) return;
+
+        const session = output.session;
+        if (session && session.title && session.title !== DEFAULT_TITLE) return;
+
+        const messages = output.messages;
+        if (!messages || messages.length === 0) return;
+
+        const firstUserMsg = messages.find((m: any) => m.role === "user");
+        if (!firstUserMsg) return;
+
+        const text = extractText(firstUserMsg);
+        if (!text || text.length < 5) return;
+
+        const title = generateTitle(text);
+        if (title && title !== DEFAULT_TITLE) {
+          await client.session.update({ id: sessionID, title });
+        }
+      } catch {
+        // session.idle fallback failed silently — not critical
+      }
+    },
+
+    "session.deleted": async (input, output) => {
+      try {
+        const sessionID = output.sessionID;
+        if (!sessionID) return;
+
+        const session = output.session;
+        if (session && session.title && session.title !== DEFAULT_TITLE) return;
+
+        const messages = output.messages;
+        if (!messages || messages.length === 0) return;
+
+        const firstUserMsg = messages.find((m: any) => m.role === "user");
+        if (!firstUserMsg) return;
+
+        const text = extractText(firstUserMsg);
+        if (!text || text.length < 5) return;
+
+        const title = generateTitle(text);
+        if (title && title !== DEFAULT_TITLE) {
+          await client.session.update({ id: sessionID, title });
+        }
+      } catch {
+        // session.deleted fallback failed silently — session may already be gone
       }
     },
   };

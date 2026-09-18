@@ -1,1151 +1,1437 @@
 {
-  "version": "1.1.6",
+  "version": "1.1.8",
   "generated": "2026-09-16T16:19:59.292Z",
   "fileCount": 287,
   "files": {
     "source/.agents-opencode-manifest.json": {
       "hash": "c45d14681f64e142a2735d9742e800366fc16b716402950ddeb5300ed82616da",
-      "size": 5551
+      "size": 5551,
+      "blobSha": "c45d14681f64e142a2735d9742e800366fc16b716402950ddeb5300ed82616da"
     },
     "source/.opencode-agents-version": {
       "hash": "06422ec926e5945ba64744f935f3bf0b2c29c8b3a1fbb0fef56e01082a0b3af5",
-      "size": 7
+      "size": 7,
+      "blobSha": "06422ec926e5945ba64744f935f3bf0b2c29c8b3a1fbb0fef56e01082a0b3af5"
     },
     "source/agents/blogger.md": {
       "hash": "ab47f5a313de78bdae89ed3ef21334b789803fb30611ed3053b93ad608651e96",
-      "size": 3201
+      "size": 3201,
+      "blobSha": "ab47f5a313de78bdae89ed3ef21334b789803fb30611ed3053b93ad608651e96"
     },
     "source/agents/brutal-critic.md": {
       "hash": "b9f37f26922b5f088fb58ceaeb39ff9c0f4b14fd607506e90aa11c4eebc7be9a",
-      "size": 2653
+      "size": 2653,
+      "blobSha": "b9f37f26922b5f088fb58ceaeb39ff9c0f4b14fd607506e90aa11c4eebc7be9a"
     },
     "source/agents/codebase.md": {
       "hash": "96aeba884e9c53f0d63874528776aefe16648af77629c57c452473cd789ceba9",
-      "size": 5682
+      "size": 5682,
+      "blobSha": "96aeba884e9c53f0d63874528776aefe16648af77629c57c452473cd789ceba9"
     },
     "source/agents/docs.md": {
       "hash": "b345d2b3d89f8e27d0220e83c50244b02513a9ca80bbee92362bc0abf3be40ee",
-      "size": 3379
+      "size": 3379,
+      "blobSha": "b345d2b3d89f8e27d0220e83c50244b02513a9ca80bbee92362bc0abf3be40ee"
     },
     "source/agents/em-advisor.md": {
       "hash": "1dd5a63f91fcf5977a935b9e480096d3190d3025ca1f76e45035ad53e710cd75",
-      "size": 9375
+      "size": 9375,
+      "blobSha": "1dd5a63f91fcf5977a935b9e480096d3190d3025ca1f76e45035ad53e710cd75"
     },
     "source/agents/ivan.md": {
       "hash": "c93ea9d5570d81c611421c00943a04b58a25bf67ed1e39aa663b3c371ccd8ef1",
-      "size": 6456
+      "size": 6456,
+      "blobSha": "c93ea9d5570d81c611421c00943a04b58a25bf67ed1e39aa663b3c371ccd8ef1"
     },
     "source/agents/jester.md": {
       "hash": "1fdad367017e549ca66d0beba934b89ef28b81dee549deff34e5e0ebd0170285",
-      "size": 6055
+      "size": 6055,
+      "blobSha": "1fdad367017e549ca66d0beba934b89ef28b81dee549deff34e5e0ebd0170285"
     },
     "source/agents/legal-advisor.md": {
       "hash": "f0e59d4fa2ea479cb27c3a19aa6954a7c418b32029a23814fd751876d1a06a91",
-      "size": 7264
+      "size": 7264,
+      "blobSha": "f0e59d4fa2ea479cb27c3a19aa6954a7c418b32029a23814fd751876d1a06a91"
     },
     "source/agents/orchestrator.md": {
       "hash": "03909c81fda10b170d676a36a01a9a8d8456a61eb1e6dd996b2a5347bfced2c1",
-      "size": 8806
+      "size": 8806,
+      "blobSha": "03909c81fda10b170d676a36a01a9a8d8456a61eb1e6dd996b2a5347bfced2c1"
     },
     "source/agents/oscar.md": {
       "hash": "6d770e501ddb019f25260bca14e6e488e1febe8fe6aa368387c5624026cce6db",
-      "size": 9364
+      "size": 9364,
+      "blobSha": "6d770e501ddb019f25260bca14e6e488e1febe8fe6aa368387c5624026cce6db"
     },
     "source/agents/planner.md": {
       "hash": "16e54639b3d6982cdf86ba80462cfd31acc5d336395feeaf55cf56dc5c4c0a2d",
-      "size": 5715
+      "size": 5715,
+      "blobSha": "16e54639b3d6982cdf86ba80462cfd31acc5d336395feeaf55cf56dc5c4c0a2d"
     },
     "source/agents/review.md": {
       "hash": "3d9c293f1e676afed1e596f3c67ffb9ab0ce01278f00231375cc06d8d69c2e4a",
-      "size": 4616
+      "size": 4616,
+      "blobSha": "3d9c293f1e676afed1e596f3c67ffb9ab0ce01278f00231375cc06d8d69c2e4a"
     },
     "source/agents/scout.md": {
       "hash": "28f04fa16d8383f6870724efa1dacabfc2e08e69471770c8f3100ef9cbde8bd7",
-      "size": 6324
+      "size": 6324,
+      "blobSha": "28f04fa16d8383f6870724efa1dacabfc2e08e69471770c8f3100ef9cbde8bd7"
     },
     "source/commands/1-on-1-prep.md": {
       "hash": "8931a812a03feda91ddaedf3194d161b0b6cec04a23f93ac2b4b914217f20106",
-      "size": 369
+      "size": 369,
+      "blobSha": "8931a812a03feda91ddaedf3194d161b0b6cec04a23f93ac2b4b914217f20106"
     },
     "source/commands/api-docs.md": {
       "hash": "b47fec42e9e32c12939897c0a511a10bc6feae277b8f05e1a9bf9d1fe5a398dc",
-      "size": 355
+      "size": 355,
+      "blobSha": "b47fec42e9e32c12939897c0a511a10bc6feae277b8f05e1a9bf9d1fe5a398dc"
     },
     "source/commands/architecture-decision.md": {
       "hash": "4b8b4c58f7679525f0f3d05f634c25c2ce317a6791ca634ce7e246b6e2b63ffd",
-      "size": 398
+      "size": 398,
+      "blobSha": "4b8b4c58f7679525f0f3d05f634c25c2ce317a6791ca634ce7e246b6e2b63ffd"
     },
     "source/commands/architecture-review.md": {
       "hash": "79327ef11c7ee5b5188201d81fe62b10e2b57b8918dcde4ca8b75b02638ab0a4",
-      "size": 1315
+      "size": 1315,
+      "blobSha": "79327ef11c7ee5b5188201d81fe62b10e2b57b8918dcde4ca8b75b02638ab0a4"
     },
     "source/commands/blog-post.md": {
       "hash": "c1d2ae309adcd570ea0ad4be0d68d86a7e6ce2293649ff5f433986c758793d54",
-      "size": 874
+      "size": 874,
+      "blobSha": "c1d2ae309adcd570ea0ad4be0d68d86a7e6ce2293649ff5f433986c758793d54"
     },
     "source/commands/checkpoint.md": {
       "hash": "b667a778ec2742eef0b4915931f89955b267897c5995e7d89d377e6b44cc3385",
-      "size": 1250
+      "size": 1250,
+      "blobSha": "b667a778ec2742eef0b4915931f89955b267897c5995e7d89d377e6b44cc3385"
     },
     "source/commands/code-review.md": {
       "hash": "48a9ea4c9d1eb0051cec2131efa124e613e250b88d6c281d53f2485f58798d98",
-      "size": 402
+      "size": 402,
+      "blobSha": "48a9ea4c9d1eb0051cec2131efa124e613e250b88d6c281d53f2485f58798d98"
     },
     "source/commands/content-review.md": {
       "hash": "af3a284d8855d00050b401c5c4df45ca8b69c0bedf6294304859d3b9d257ad3c",
-      "size": 1057
+      "size": 1057,
+      "blobSha": "af3a284d8855d00050b401c5c4df45ca8b69c0bedf6294304859d3b9d257ad3c"
     },
     "source/commands/create-readme.md": {
       "hash": "7a6a8447ac72800f1bf0884066a0900d8ac80abc31dc1454ccd5d266bc610fcd",
-      "size": 314
+      "size": 314,
+      "blobSha": "7a6a8447ac72800f1bf0884066a0900d8ac80abc31dc1454ccd5d266bc610fcd"
     },
     "source/commands/execution-loop.md": {
       "hash": "6859f59ce1432809bdc2623bde7d9b846cff06e433a1010d3a7f79fb0553e564",
-      "size": 920
+      "size": 920,
+      "blobSha": "6859f59ce1432809bdc2623bde7d9b846cff06e433a1010d3a7f79fb0553e564"
     },
     "source/commands/generate-tests.md": {
       "hash": "58a816031a4b4f39360f1c2983a2b5cae952418de6af8204f5f762c9dc87f26b",
-      "size": 341
+      "size": 341,
+      "blobSha": "58a816031a4b4f39360f1c2983a2b5cae952418de6af8204f5f762c9dc87f26b"
     },
     "source/commands/legal-review.md": {
       "hash": "fe2dac98a24aca08deaa36e1167ffe79db5f4cd38dd5ea09bb4f0c3ffa7df30c",
-      "size": 736
+      "size": 736,
+      "blobSha": "fe2dac98a24aca08deaa36e1167ffe79db5f4cd38dd5ea09bb4f0c3ffa7df30c"
     },
     "source/commands/plan-project.md": {
       "hash": "1492fe2c517b39d7c5970ebeab0fa34ab6ad76be602d5ed964b7033229575f09",
-      "size": 1177
+      "size": 1177,
+      "blobSha": "1492fe2c517b39d7c5970ebeab0fa34ab6ad76be602d5ed964b7033229575f09"
     },
     "source/commands/proxy-bridge.md": {
       "hash": "53725885707aa2e7f4e00487b8f8d514e308016e1d6089d44e5cfb920861f7a4",
-      "size": 3227
+      "size": 3227,
+      "blobSha": "53725885707aa2e7f4e00487b8f8d514e308016e1d6089d44e5cfb920861f7a4"
     },
     "source/commands/README.md": {
       "hash": "5abf935d59ca8c96946dbb4e4787bf0f0f1ae97b88675dc2d575929f0c57b529",
-      "size": 3693
+      "size": 3693,
+      "blobSha": "5abf935d59ca8c96946dbb4e4787bf0f0f1ae97b88675dc2d575929f0c57b529"
     },
     "source/commands/refactor-plan.md": {
       "hash": "1845630980de5fa3f9b4921f59b916935bf3d4b817498e7e7ca636d0eae1ff63",
-      "size": 379
+      "size": 379,
+      "blobSha": "1845630980de5fa3f9b4921f59b916935bf3d4b817498e7e7ca636d0eae1ff63"
     },
     "source/commands/security-audit.md": {
       "hash": "420cdc1d3caed7e8c1dcc968065d2fe06f01e4f12aff8aa1fb5025a000419b3c",
-      "size": 395
+      "size": 395,
+      "blobSha": "420cdc1d3caed7e8c1dcc968065d2fe06f01e4f12aff8aa1fb5025a000419b3c"
     },
     "source/commands/stop-loop.md": {
       "hash": "15a2f15cd8d7dbbda070b4cd6753188617905a0a58245949d506ad922486c13e",
-      "size": 423
+      "size": 423,
+      "blobSha": "15a2f15cd8d7dbbda070b4cd6753188617905a0a58245949d506ad922486c13e"
     },
     "source/commands/update.md": {
       "hash": "47100bbac0dc4368a886ba0093b0e1e965a117cb36c334befc101de57c5891c3",
-      "size": 2015
+      "size": 2015,
+      "blobSha": "47100bbac0dc4368a886ba0093b0e1e965a117cb36c334befc101de57c5891c3"
     },
     "source/configs/rate-limit-fallback.json": {
       "hash": "15e137e3b7ad90f5e39b46a66b9b11ff12d0f6e9219aa27439244de5b2745642",
-      "size": 875
+      "size": 875,
+      "blobSha": "15e137e3b7ad90f5e39b46a66b9b11ff12d0f6e9219aa27439244de5b2745642"
     },
     "source/instructions/blogger-reference.instructions.md": {
       "hash": "74b26fdd1578324ab5368e358d274c302cb3d9a1ec8d6d26e5f22a4cef3ebb2c",
-      "size": 3134
+      "size": 3134,
+      "blobSha": "74b26fdd1578324ab5368e358d274c302cb3d9a1ec8d6d26e5f22a4cef3ebb2c"
     },
     "source/instructions/blogger.instructions.md": {
       "hash": "a42dee8bc1311cb418e2215e16c4d95f90e13bab555cdec1836cd4e593ae3120",
-      "size": 3774
+      "size": 3774,
+      "blobSha": "a42dee8bc1311cb418e2215e16c4d95f90e13bab555cdec1836cd4e593ae3120"
     },
     "source/instructions/brutal-critic-reference.instructions.md": {
       "hash": "a79a7edad35bbe226616d5c3fa5562a42810c2edcd7349b8bbf021338c48d8a4",
-      "size": 2400
+      "size": 2400,
+      "blobSha": "a79a7edad35bbe226616d5c3fa5562a42810c2edcd7349b8bbf021338c48d8a4"
     },
     "source/instructions/brutal-critic.instructions.md": {
       "hash": "a41549a5d4669c8504181417a5ce16abd6992711e1c32217745680a6d0ad8f29",
-      "size": 4720
+      "size": 4720,
+      "blobSha": "a41549a5d4669c8504181417a5ce16abd6992711e1c32217745680a6d0ad8f29"
     },
     "source/instructions/ci-cd-hygiene.instructions.md": {
       "hash": "e3329a70e68c89f174b68e7d9ce968c852a4559db8a988325680f8e39d63bef4",
-      "size": 1502
+      "size": 1502,
+      "blobSha": "e3329a70e68c89f174b68e7d9ce968c852a4559db8a988325680f8e39d63bef4"
     },
     "source/instructions/dotnet-clean-architecture-reference.instructions.md": {
       "hash": "8a8af92866c18d6f79f7037adf5c4da6c85d20497840db09c64cc1e00bd5d99c",
-      "size": 4026
+      "size": 4026,
+      "blobSha": "8a8af92866c18d6f79f7037adf5c4da6c85d20497840db09c64cc1e00bd5d99c"
     },
     "source/instructions/dotnet-clean-architecture.instructions.md": {
       "hash": "0bc6e2e8d07da199ecdb73a57ae60b8bbef577ae44646f316107f7e93a03575a",
-      "size": 1297
+      "size": 1297,
+      "blobSha": "0bc6e2e8d07da199ecdb73a57ae60b8bbef577ae44646f316107f7e93a03575a"
     },
     "source/instructions/flutter.instructions.md": {
       "hash": "684da67425587921721848340ce0e33bd28b9b1561d5d9118fe513fea00d570a",
-      "size": 1033
+      "size": 1033,
+      "blobSha": "684da67425587921721848340ce0e33bd28b9b1561d5d9118fe513fea00d570a"
     },
     "source/instructions/github-auth.instructions.md": {
       "hash": "7236464924aa28e2738ae66e13993d8f0b34ee2fa9bfefbb78db243cb4c36ec5",
-      "size": 1292
+      "size": 1292,
+      "blobSha": "7236464924aa28e2738ae66e13993d8f0b34ee2fa9bfefbb78db243cb4c36ec5"
     },
     "source/instructions/go.instructions.md": {
       "hash": "bde1a291429d15ef113b783971db2bbf3c8b56a54aee58e6a5566b6a72ffeb60",
-      "size": 1249
+      "size": 1249,
+      "blobSha": "bde1a291429d15ef113b783971db2bbf3c8b56a54aee58e6a5566b6a72ffeb60"
     },
     "source/instructions/java-spring-boot-reference.instructions.md": {
       "hash": "45b7a10d407b440bd6f71ea55e5cd6fd1da2a843877ca958d4387fe641a94b1f",
-      "size": 5329
+      "size": 5329,
+      "blobSha": "45b7a10d407b440bd6f71ea55e5cd6fd1da2a843877ca958d4387fe641a94b1f"
     },
     "source/instructions/java-spring-boot.instructions.md": {
       "hash": "57de46186bcae8d8a898600655237b51ae83895530bff76111c5930ec0977aa5",
-      "size": 1318
+      "size": 1318,
+      "blobSha": "57de46186bcae8d8a898600655237b51ae83895530bff76111c5930ec0977aa5"
     },
     "source/instructions/legal-advisor.instructions.md": {
       "hash": "4e1df600a1600569ca0fbadee8613edf2f5cfc73701791afc89e86559d3f32ec",
-      "size": 4563
+      "size": 4563,
+      "blobSha": "4e1df600a1600569ca0fbadee8613edf2f5cfc73701791afc89e86559d3f32ec"
     },
     "source/instructions/loop-execution.instructions.md": {
       "hash": "b47bfd317a4099f904f73e1423aafee21b21273f746d4bd6074c8ceb2e238b21",
-      "size": 2016
+      "size": 2016,
+      "blobSha": "b47bfd317a4099f904f73e1423aafee21b21273f746d4bd6074c8ceb2e238b21"
     },
     "source/instructions/node-express.instructions.md": {
       "hash": "5b69a4062ec8cff00328612b7937bac9cf94bc5ca3d36d1474119167b998de8d",
-      "size": 1255
+      "size": 1255,
+      "blobSha": "5b69a4062ec8cff00328612b7937bac9cf94bc5ca3d36d1474119167b998de8d"
     },
     "source/instructions/orchestrator-reference.instructions.md": {
       "hash": "c6494a49a68408cb7c4e7716b4412e973c343e5e945a2e63bf7160ae5ae82f7c",
-      "size": 6907
+      "size": 6907,
+      "blobSha": "c6494a49a68408cb7c4e7716b4412e973c343e5e945a2e63bf7160ae5ae82f7c"
     },
     "source/instructions/python-best-practices.instructions.md": {
       "hash": "ef5ccffaa1a65cf366c71b1a780533594eb1099feb69c27b9345d99b05d5a98b",
-      "size": 1060
+      "size": 1060,
+      "blobSha": "ef5ccffaa1a65cf366c71b1a780533594eb1099feb69c27b9345d99b05d5a98b"
     },
     "source/instructions/react-next.instructions.md": {
       "hash": "c2e7e9592008b1e8e2cd133a4044f7eb2de2f79ffe92d7eef83c4b38018b9ae0",
-      "size": 1292
+      "size": 1292,
+      "blobSha": "c2e7e9592008b1e8e2cd133a4044f7eb2de2f79ffe92d7eef83c4b38018b9ae0"
     },
     "source/instructions/ruby-on-rails.instructions.md": {
       "hash": "8cfeb8899f5281e0d738f69e27377a7a368f303977c5eb6b5a9eec7382129a54",
-      "size": 1044
+      "size": 1044,
+      "blobSha": "8cfeb8899f5281e0d738f69e27377a7a368f303977c5eb6b5a9eec7382129a54"
     },
     "source/instructions/rust.instructions.md": {
       "hash": "a79847e2c926bef0bbf70ff05de43fb770e55aae1b9c583c824358ba1bbb9486",
-      "size": 1009
+      "size": 1009,
+      "blobSha": "a79847e2c926bef0bbf70ff05de43fb770e55aae1b9c583c824358ba1bbb9486"
     },
     "source/instructions/sequential-thinking.instructions.md": {
       "hash": "8f1315eac2dabdc8dc573cb5f3a0a3a8b6b505effaeeb798df2b49ee4c541822",
-      "size": 1961
+      "size": 1961,
+      "blobSha": "8f1315eac2dabdc8dc573cb5f3a0a3a8b6b505effaeeb798df2b49ee4c541822"
     },
     "source/instructions/sql-migrations.instructions.md": {
       "hash": "19995fc7571602669c932c75e5b100ec1781e243c4c09c300e23acc2902e5c99",
-      "size": 1626
+      "size": 1626,
+      "blobSha": "19995fc7571602669c932c75e5b100ec1781e243c4c09c300e23acc2902e5c99"
     },
     "source/instructions/typescript-strict.instructions.md": {
       "hash": "473c90030bab14f99ce60d9418aa1656d3b02d24975e91bef51cb17c684c8c8a",
-      "size": 1044
+      "size": 1044,
+      "blobSha": "473c90030bab14f99ce60d9418aa1656d3b02d24975e91bef51cb17c684c8c8a"
     },
     "source/instructions/ux-responsive.instructions.md": {
       "hash": "4b61fdcd5bb7f74e3c8107a7e581f55fc504a7627b369f05e79e2ce3cbcef6bf",
-      "size": 1986
+      "size": 1986,
+      "blobSha": "4b61fdcd5bb7f74e3c8107a7e581f55fc504a7627b369f05e79e2ce3cbcef6bf"
     },
     "source/opencode.jsonc": {
       "hash": "3630d3d1527e67e14f8197a1512878efb5b05f8e2d4fbc00b5b87165b8dbdca4",
-      "size": 3159
+      "size": 3159,
+      "blobSha": "3630d3d1527e67e14f8197a1512878efb5b05f8e2d4fbc00b5b87165b8dbdca4"
     },
     "source/plugins/opencode-notify.ts": {
       "hash": "3b680dcb2d7054c5c15b529c747272a16039215e7e46e9ddaa0bb7352a313559",
-      "size": 2185
+      "size": 2185,
+      "blobSha": "3b680dcb2d7054c5c15b529c747272a16039215e7e46e9ddaa0bb7352a313559"
     },
     "source/plugins/opencode-session-title.ts": {
       "hash": "9dd1abf9a7d3604a9ecb17b550774089d8e302a82e3f95519ef78219188abd92",
-      "size": 1689
+      "size": 1689,
+      "blobSha": "9dd1abf9a7d3604a9ecb17b550774089d8e302a82e3f95519ef78219188abd92"
     },
     "source/rules.md": {
       "hash": "79f318b68e670dc99aac0a7212f7430b78c2b25486e68212ba66def3f8322f48",
-      "size": 177
+      "size": 177,
+      "blobSha": "79f318b68e670dc99aac0a7212f7430b78c2b25486e68212ba66def3f8322f48"
     },
     "source/skills/5whys/SKILL.md": {
       "hash": "2706086a75d99b0953a3a3397f83423032f9c5f230001f7cbc9d2f49250ae63e",
-      "size": 3594
+      "size": 3594,
+      "blobSha": "2706086a75d99b0953a3a3397f83423032f9c5f230001f7cbc9d2f49250ae63e"
     },
     "source/skills/adr/SKILL.md": {
       "hash": "b60f9b08a0689dbd0d7d041645b8bb23008f4920fcdd388c30614c4c283c1bb6",
-      "size": 4410
+      "size": 4410,
+      "blobSha": "b60f9b08a0689dbd0d7d041645b8bb23008f4920fcdd388c30614c4c283c1bb6"
     },
     "source/skills/agent-diagnostics/SKILL.md": {
       "hash": "d3560c2c8c66f6f17b16b3d1f6a62e0a1c283e189ea1056f3aaf4f82a67498dc",
-      "size": 1207
+      "size": 1207,
+      "blobSha": "d3560c2c8c66f6f17b16b3d1f6a62e0a1c283e189ea1056f3aaf4f82a67498dc"
     },
     "source/skills/agent-tuning/SKILL.md": {
       "hash": "242d6cc452dd1243d8c1d576f48a8e12ce0d264dce570575e8296bf875f24b5a",
-      "size": 4244
+      "size": 4244,
+      "blobSha": "242d6cc452dd1243d8c1d576f48a8e12ce0d264dce570575e8296bf875f24b5a"
     },
     "source/skills/agents-md/agents/openai.yaml": {
       "hash": "3bf863a8856d04a6a1c4f23b3aae6cbf5388544129662c55cc733c2d9c23bbbf",
-      "size": 45
+      "size": 45,
+      "blobSha": "3bf863a8856d04a6a1c4f23b3aae6cbf5388544129662c55cc733c2d9c23bbbf"
     },
     "source/skills/agents-md/assets/agents-md-template.md": {
       "hash": "9f6d5ea7233272feaede5088b362b487345428ffbab09b9e24351ab8eaedc427",
-      "size": 20983
+      "size": 20983,
+      "blobSha": "9f6d5ea7233272feaede5088b362b487345428ffbab09b9e24351ab8eaedc427"
     },
     "source/skills/agents-md/assets/claude-md-template.md": {
       "hash": "184907e953e41f7ad0a85dcded0bc6ea8b26f5731c60cef2d3c25e6a0968c03e",
-      "size": 187
+      "size": 187,
+      "blobSha": "184907e953e41f7ad0a85dcded0bc6ea8b26f5731c60cef2d3c25e6a0968c03e"
     },
     "source/skills/agents-md/evals/baseline.md": {
       "hash": "e035f0b09810372d9fd8ab22f0aba9196cbae8a68fde5019cc568f99eb376555",
-      "size": 1499
+      "size": 1499,
+      "blobSha": "e035f0b09810372d9fd8ab22f0aba9196cbae8a68fde5019cc568f99eb376555"
     },
     "source/skills/agents-md/evals/evals.json": {
       "hash": "c4b69b82387f97c83690012eb03de549267dc29bb4c39dac67327bc4bd094264",
-      "size": 3722
+      "size": 3722,
+      "blobSha": "c4b69b82387f97c83690012eb03de549267dc29bb4c39dac67327bc4bd094264"
     },
     "source/skills/agents-md/evals/final.md": {
       "hash": "1d0c55a748086af546d973580d4541a9bbc48d36410dc8e4479f9fa0f4fc81bb",
-      "size": 2790
+      "size": 2790,
+      "blobSha": "1d0c55a748086af546d973580d4541a9bbc48d36410dc8e4479f9fa0f4fc81bb"
     },
     "source/skills/agents-md/evals/README.md": {
       "hash": "63255936beccd72f3eed7cc3989d2c5fb4b74bf8f3ef1885884cc50da8ac2f8e",
-      "size": 1671
+      "size": 1671,
+      "blobSha": "63255936beccd72f3eed7cc3989d2c5fb4b74bf8f3ef1885884cc50da8ac2f8e"
     },
     "source/skills/agents-md/evals/rubric.md": {
       "hash": "488b5c4ccbfd70561e0bc9ec6a10a81a0df869fb7ee3292f4a8d686d1f4507e7",
-      "size": 1882
+      "size": 1882,
+      "blobSha": "488b5c4ccbfd70561e0bc9ec6a10a81a0df869fb7ee3292f4a8d686d1f4507e7"
     },
     "source/skills/agents-md/evals/test-cases.md": {
       "hash": "db365836449716cb73b89d51f819c4a4102fa10b65943b8b77e62dc6f72b7947",
-      "size": 2226
+      "size": 2226,
+      "blobSha": "db365836449716cb73b89d51f819c4a4102fa10b65943b8b77e62dc6f72b7947"
     },
     "source/skills/agents-md/references/antigravity-tools.md": {
       "hash": "648b9ae03ef6541b5b471eeef6b7ab068180c0a4c3b535941947ab56aa3b23f1",
-      "size": 4105
+      "size": 4105,
+      "blobSha": "648b9ae03ef6541b5b471eeef6b7ab068180c0a4c3b535941947ab56aa3b23f1"
     },
     "source/skills/agents-md/references/claude-tools.md": {
       "hash": "2975671815e8d36da07ece2dfd0672afe8fe815812bea005e0bf026e4497de1b",
-      "size": 5681
+      "size": 5681,
+      "blobSha": "2975671815e8d36da07ece2dfd0672afe8fe815812bea005e0bf026e4497de1b"
     },
     "source/skills/agents-md/references/codex-tools.md": {
       "hash": "f0ea37ad07758a51ffba9ac7f3a700c1272d08986751e4dde27ba05f7d7ef977",
-      "size": 3318
+      "size": 3318,
+      "blobSha": "f0ea37ad07758a51ffba9ac7f3a700c1272d08986751e4dde27ba05f7d7ef977"
     },
     "source/skills/agents-md/references/copilot-tools.md": {
       "hash": "df8cfb532c57c2c760be646d2d7b4bbcd5636f8e033f152125c13ad523a3ad6e",
-      "size": 3669
+      "size": 3669,
+      "blobSha": "df8cfb532c57c2c760be646d2d7b4bbcd5636f8e033f152125c13ad523a3ad6e"
     },
     "source/skills/agents-md/references/cursor-tools.md": {
       "hash": "1e9af9f7bf48b27c1a8f71ebddaad5c7a9f28c4dfdd84bdb543678b82c84203c",
-      "size": 5831
+      "size": 5831,
+      "blobSha": "1e9af9f7bf48b27c1a8f71ebddaad5c7a9f28c4dfdd84bdb543678b82c84203c"
     },
     "source/skills/agents-md/references/memory-global-defaults.md": {
       "hash": "1b93e8afff247d337f6f05041c761aacda42dd2b0a6b12197d410c47f49f3601",
-      "size": 3875
+      "size": 3875,
+      "blobSha": "1b93e8afff247d337f6f05041c761aacda42dd2b0a6b12197d410c47f49f3601"
     },
     "source/skills/agents-md/references/opencode-tools.md": {
       "hash": "0d0f45f08c2d2067083bcd7a828f5a8a76e34cbf5f9b479d47d2f544a8f6c9e3",
-      "size": 3984
+      "size": 3984,
+      "blobSha": "0d0f45f08c2d2067083bcd7a828f5a8a76e34cbf5f9b479d47d2f544a8f6c9e3"
     },
     "source/skills/agents-md/references/skills-manifest.md": {
       "hash": "9f746bb133a86ce6b05c2196b2a3f1996be716a74970fd74aca77651d9498597",
-      "size": 6942
+      "size": 6942,
+      "blobSha": "9f746bb133a86ce6b05c2196b2a3f1996be716a74970fd74aca77651d9498597"
     },
     "source/skills/agents-md/references/stack-detection.md": {
       "hash": "fe9892597f2e36869fcac44d81dad764f3c6bfa2700c1bc44f47bb15a7ee0a76",
-      "size": 1472
+      "size": 1472,
+      "blobSha": "fe9892597f2e36869fcac44d81dad764f3c6bfa2700c1bc44f47bb15a7ee0a76"
     },
     "source/skills/agents-md/references/tool-calling.md": {
       "hash": "2ce55af6b55d50c4121964feb380523d23f9a44ba222df333fe247c3846f9141",
-      "size": 9660
+      "size": 9660,
+      "blobSha": "2ce55af6b55d50c4121964feb380523d23f9a44ba222df333fe247c3846f9141"
     },
     "source/skills/agents-md/SKILL.md": {
       "hash": "9663a63af29350ed80c8c53ac130d9cee9567c305407371c6d4da8403f87748a",
-      "size": 8900
+      "size": 8900,
+      "blobSha": "9663a63af29350ed80c8c53ac130d9cee9567c305407371c6d4da8403f87748a"
     },
     "source/skills/api-documentation/SKILL.md": {
       "hash": "626a75c9c8b4f4799c3e1d580a868a07e4d9c8d2340be241cf796913317ef246",
-      "size": 4388
+      "size": 4388,
+      "blobSha": "626a75c9c8b4f4799c3e1d580a868a07e4d9c8d2340be241cf796913317ef246"
     },
     "source/skills/blogger/references/career-content.md": {
       "hash": "24f72b840807b5ae1c8e812fb990f8fcf0bba0e7e824757066fabf620a6c2879",
-      "size": 9567
+      "size": 9567,
+      "blobSha": "24f72b840807b5ae1c8e812fb990f8fcf0bba0e7e824757066fabf620a6c2879"
     },
     "source/skills/blogger/references/career-examples/examples.md": {
       "hash": "e8ff3b9f5ee80a5477ede018c9306be6da204604ff0fdc65e2472c19e970e4cd",
-      "size": 6752
+      "size": 6752,
+      "blobSha": "e8ff3b9f5ee80a5477ede018c9306be6da204604ff0fdc65e2472c19e970e4cd"
     },
     "source/skills/blogger/SKILL.md": {
       "hash": "f4ba8ee718c6d26a8dc476168ef97566c8892ae21d0f1bf26839e8da2fd26ad8",
-      "size": 2910
+      "size": 2910,
+      "blobSha": "f4ba8ee718c6d26a8dc476168ef97566c8892ae21d0f1bf26839e8da2fd26ad8"
     },
     "source/skills/brainstorming/SKILL.md": {
       "hash": "8adba5422a230463044fcfb09015e59f0b912b2569928a83b9e732f7c837f41b",
-      "size": 5593
+      "size": 5593,
+      "blobSha": "8adba5422a230463044fcfb09015e59f0b912b2569928a83b9e732f7c837f41b"
     },
     "source/skills/break-edit-loop/SKILL.md": {
       "hash": "20fb5376d07883424eedafbeaf19c77ee95c691a6ea18ab2175c77ef0ba9fdd2",
-      "size": 1303
+      "size": 1303,
+      "blobSha": "20fb5376d07883424eedafbeaf19c77ee95c691a6ea18ab2175c77ef0ba9fdd2"
     },
     "source/skills/brutal-critic/SKILL.md": {
       "hash": "a4b6dc0a2eea6f58d04430552c006d71c3a79da6b5c79602cb824a6476812c60",
-      "size": 2241
+      "size": 2241,
+      "blobSha": "a4b6dc0a2eea6f58d04430552c006d71c3a79da6b5c79602cb824a6476812c60"
     },
     "source/skills/claude-batch/SKILL.md": {
       "hash": "0fe002c3db0cafd77147573d49b74d539284cc0b2698158ed6e8da99046ce1cc",
-      "size": 2010
+      "size": 2010,
+      "blobSha": "0fe002c3db0cafd77147573d49b74d539284cc0b2698158ed6e8da99046ce1cc"
     },
     "source/skills/claude-code-review/SKILL.md": {
       "hash": "627be0ed4ec5d9f79f9f916ec9889fc5798ac900568b146be44917884aa5fa12",
-      "size": 2202
+      "size": 2202,
+      "blobSha": "627be0ed4ec5d9f79f9f916ec9889fc5798ac900568b146be44917884aa5fa12"
     },
     "source/skills/claude-commit/SKILL.md": {
       "hash": "ed75805657911135a34261d8fbafb0869f676354dc149e6f4a78582651f079b9",
-      "size": 1803
+      "size": 1803,
+      "blobSha": "ed75805657911135a34261d8fbafb0869f676354dc149e6f4a78582651f079b9"
     },
     "source/skills/claude-debug/SKILL.md": {
       "hash": "2255e976947eea60f5960b8e87c56418e8ecc21007f74923f3bc01010d4df945",
-      "size": 2203
+      "size": 2203,
+      "blobSha": "2255e976947eea60f5960b8e87c56418e8ecc21007f74923f3bc01010d4df945"
     },
     "source/skills/claude-loop/SKILL.md": {
       "hash": "675387497b957551d2d9d6cf832e584133e8633f714f25a4d4e5d218f059f0a6",
-      "size": 1945
+      "size": 1945,
+      "blobSha": "675387497b957551d2d9d6cf832e584133e8633f714f25a4d4e5d218f059f0a6"
     },
     "source/skills/claude-simplify/SKILL.md": {
       "hash": "1e9aa8804820f4cd0d2c146766579f933b159f1d1b3e95e25fd9380526365d3c",
-      "size": 1786
+      "size": 1786,
+      "blobSha": "1e9aa8804820f4cd0d2c146766579f933b159f1d1b3e95e25fd9380526365d3c"
     },
     "source/skills/code-change-impact/references/recipes.md": {
       "hash": "3187f918093163e4ea6a10678d77031cdb8cb928b4d3844d1e3a3f56abf4555d",
-      "size": 3160
+      "size": 3160,
+      "blobSha": "3187f918093163e4ea6a10678d77031cdb8cb928b4d3844d1e3a3f56abf4555d"
     },
     "source/skills/code-change-impact/SKILL.md": {
       "hash": "2cf0fd5d54849fb2fb3de29a25b3624ff0149041063503ecc550a175b6e0de41",
-      "size": 7916
+      "size": 7916,
+      "blobSha": "2cf0fd5d54849fb2fb3de29a25b3624ff0149041063503ecc550a175b6e0de41"
     },
     "source/skills/commit-push-pr/agents/openai.yaml": {
       "hash": "3bf863a8856d04a6a1c4f23b3aae6cbf5388544129662c55cc733c2d9c23bbbf",
-      "size": 45
+      "size": 45,
+      "blobSha": "3bf863a8856d04a6a1c4f23b3aae6cbf5388544129662c55cc733c2d9c23bbbf"
     },
     "source/skills/commit-push-pr/evals/baseline.md": {
       "hash": "f8a63102dc333cfe2eda94c219419104c0f31abee4940dd90a129dee9e9fe5cb",
-      "size": 930
+      "size": 930,
+      "blobSha": "f8a63102dc333cfe2eda94c219419104c0f31abee4940dd90a129dee9e9fe5cb"
     },
     "source/skills/commit-push-pr/evals/evals.json": {
       "hash": "f2cd4443c436430a488b7ab0d21128bbcea6c66519091dd35bc76b46d2d6017b",
-      "size": 3394
+      "size": 3394,
+      "blobSha": "f2cd4443c436430a488b7ab0d21128bbcea6c66519091dd35bc76b46d2d6017b"
     },
     "source/skills/commit-push-pr/evals/final.md": {
       "hash": "71123013de8633488e0e7a850ac15cabdebe29ce886267e9f107810fa7622f46",
-      "size": 2079
+      "size": 2079,
+      "blobSha": "71123013de8633488e0e7a850ac15cabdebe29ce886267e9f107810fa7622f46"
     },
     "source/skills/commit-push-pr/evals/README.md": {
       "hash": "3d3f9f2fbb3fc8386e03bfecfd297b9f66e943ad7386d2050284b662d8f6edb1",
-      "size": 1681
+      "size": 1681,
+      "blobSha": "3d3f9f2fbb3fc8386e03bfecfd297b9f66e943ad7386d2050284b662d8f6edb1"
     },
     "source/skills/commit-push-pr/evals/rubric.md": {
       "hash": "b10698c241b6bdbd19a9368b263346893684110b675ffb5e72398d817256293a",
-      "size": 1897
+      "size": 1897,
+      "blobSha": "b10698c241b6bdbd19a9368b263346893684110b675ffb5e72398d817256293a"
     },
     "source/skills/commit-push-pr/evals/test-cases.md": {
       "hash": "fdeca34f63919e9a2ac0f8b7ad5abff5c0a63f04e47b988ec2a63405e7e621b8",
-      "size": 1881
+      "size": 1881,
+      "blobSha": "fdeca34f63919e9a2ac0f8b7ad5abff5c0a63f04e47b988ec2a63405e7e621b8"
     },
     "source/skills/commit-push-pr/references/ship-policy.md": {
       "hash": "c34d755e4381862bd23431f41368be1983174b0433efdf44a400b417fda559c8",
-      "size": 9653
+      "size": 9653,
+      "blobSha": "c34d755e4381862bd23431f41368be1983174b0433efdf44a400b417fda559c8"
     },
     "source/skills/commit-push-pr/SKILL.md": {
       "hash": "36674a122a77020f68551043dcf01aa5625cea1844495af7ebe10b6273714037",
-      "size": 7945
+      "size": 7945,
+      "blobSha": "36674a122a77020f68551043dcf01aa5625cea1844495af7ebe10b6273714037"
     },
     "source/skills/cto-advisor/SKILL.md": {
       "hash": "4edac8655c9c42bb5881e2a3122794b89bcbb55dcaefd45d43c7d9f48242e57f",
-      "size": 9574
+      "size": 9574,
+      "blobSha": "4edac8655c9c42bb5881e2a3122794b89bcbb55dcaefd45d43c7d9f48242e57f"
     },
     "source/skills/cynefin/SKILL.md": {
       "hash": "8630eee05c27281ac175e9d334291112d329721c2fb80bfc21c007b0eb1945f1",
-      "size": 2909
+      "size": 2909,
+      "blobSha": "8630eee05c27281ac175e9d334291112d329721c2fb80bfc21c007b0eb1945f1"
     },
     "source/skills/deep-research/SKILL.md": {
       "hash": "fa2fdb654afd7fe175eb5a51e606fb00c5bab7f51b23359e27f9672db6c63e8f",
-      "size": 3300
+      "size": 3300,
+      "blobSha": "fa2fdb654afd7fe175eb5a51e606fb00c5bab7f51b23359e27f9672db6c63e8f"
     },
     "source/skills/devsecops-free-auth/SKILL.md": {
       "hash": "5c87f9ea5bba62b05502465aa0f39fe69b93dbbba7a7576d5d284582de745db6",
-      "size": 3629
+      "size": 3629,
+      "blobSha": "5c87f9ea5bba62b05502465aa0f39fe69b93dbbba7a7576d5d284582de745db6"
     },
     "source/skills/devsecops-free-cicd/SKILL.md": {
       "hash": "c2bef582ac9dde345c7f5a32ff7ec1ab4a44820544d1f504ff0f3bf55a1fa570",
-      "size": 3314
+      "size": 3314,
+      "blobSha": "c2bef582ac9dde345c7f5a32ff7ec1ab4a44820544d1f504ff0f3bf55a1fa570"
     },
     "source/skills/devsecops-free-cloud/SKILL.md": {
       "hash": "a95077976455a2420400be28d4f480ee7e4c2acec5fb051996290e9b8c3eec7e",
-      "size": 2993
+      "size": 2993,
+      "blobSha": "a95077976455a2420400be28d4f480ee7e4c2acec5fb051996290e9b8c3eec7e"
     },
     "source/skills/devsecops-free-discovery/SKILL.md": {
       "hash": "96787b89b0adf22cd5be3a41f331ada7d7a1dedd2c0713abd5a6d86b640a4976",
-      "size": 2558
+      "size": 2558,
+      "blobSha": "96787b89b0adf22cd5be3a41f331ada7d7a1dedd2c0713abd5a6d86b640a4976"
     },
     "source/skills/devsecops-free-dns/SKILL.md": {
       "hash": "ea8c44233e48b6b7d909908cd96fbb909c19a5b95b5ee877aed23a92942147b9",
-      "size": 3076
+      "size": 3076,
+      "blobSha": "ea8c44233e48b6b7d909908cd96fbb909c19a5b95b5ee877aed23a92942147b9"
     },
     "source/skills/devsecops-free-monitoring/SKILL.md": {
       "hash": "3378eb53854bac27d4985da51c40a2ae50d132a0037ecd7296dab8bf28031eae",
-      "size": 3620
+      "size": 3620,
+      "blobSha": "3378eb53854bac27d4985da51c40a2ae50d132a0037ecd7296dab8bf28031eae"
     },
     "source/skills/devsecops-free-security/SKILL.md": {
       "hash": "ce27b833c13233c36707a468a4aab50230b9418831198067967c7a85a9b13fb5",
-      "size": 4245
+      "size": 4245,
+      "blobSha": "ce27b833c13233c36707a468a4aab50230b9418831198067967c7a85a9b13fb5"
     },
     "source/skills/devsecops-free-storage/SKILL.md": {
       "hash": "10ccc791f1f7fbe871070dec4d37b312b2fb7d1365bc6dc751c53753117a6565",
-      "size": 3635
+      "size": 3635,
+      "blobSha": "10ccc791f1f7fbe871070dec4d37b312b2fb7d1365bc6dc751c53753117a6565"
     },
     "source/skills/dispatching-parallel-agents/SKILL.md": {
       "hash": "743788400e8b06f49f514a75147396fa187e7cf6db800d8edbe43aab3f83cf4d",
-      "size": 6284
+      "size": 6284,
+      "blobSha": "743788400e8b06f49f514a75147396fa187e7cf6db800d8edbe43aab3f83cf4d"
     },
     "source/skills/docs-validation/SKILL.md": {
       "hash": "c350cf6b9665523eb65065cbce19215a252ea613c7ba841198cf7ee45efe5ae0",
-      "size": 1012
+      "size": 1012,
+      "blobSha": "c350cf6b9665523eb65065cbce19215a252ea613c7ba841198cf7ee45efe5ae0"
     },
     "source/skills/docx/SKILL.md": {
       "hash": "dac798a092d63121316d8bc4c8fbe68f50c8f8de66ba9f2b3b59d4935ae6e605",
-      "size": 10346
+      "size": 10346,
+      "blobSha": "dac798a092d63121316d8bc4c8fbe68f50c8f8de66ba9f2b3b59d4935ae6e605"
     },
     "source/skills/dotnet/SKILL.md": {
       "hash": "8b98e8a47feabb7a8356e5a639e272fcb6ff7cf2c04124f973a57af07b6d2d73",
-      "size": 1769
+      "size": 1769,
+      "blobSha": "8b98e8a47feabb7a8356e5a639e272fcb6ff7cf2c04124f973a57af07b6d2d73"
     },
     "source/skills/emergency-confusion-reset/SKILL.md": {
       "hash": "9892c8eb6b6b45117c658a3d08f2016bce7a3bb69d24ed8b52e5930ed727c095",
-      "size": 1552
+      "size": 1552,
+      "blobSha": "9892c8eb6b6b45117c658a3d08f2016bce7a3bb69d24ed8b52e5930ed727c095"
     },
     "source/skills/feature-discovery/evals/baseline.md": {
       "hash": "ab3068b31387d208bf477c2e44fdce6f913bd0bc9bb82ffffbd636f54b417b06",
-      "size": 1170
+      "size": 1170,
+      "blobSha": "ab3068b31387d208bf477c2e44fdce6f913bd0bc9bb82ffffbd636f54b417b06"
     },
     "source/skills/feature-discovery/evals/evals.json": {
       "hash": "224d9e1e982bb84edeed255c701f4f724f0170cc15251178f52ee9ed7f53705f",
-      "size": 4115
+      "size": 4115,
+      "blobSha": "224d9e1e982bb84edeed255c701f4f724f0170cc15251178f52ee9ed7f53705f"
     },
     "source/skills/feature-discovery/evals/final.md": {
       "hash": "ed3fd502c0f77c6e442f39bb0ff0c3205e7b758df908c67e8f51ac4b2226e421",
-      "size": 3491
+      "size": 3491,
+      "blobSha": "ed3fd502c0f77c6e442f39bb0ff0c3205e7b758df908c67e8f51ac4b2226e421"
     },
     "source/skills/feature-discovery/evals/README.md": {
       "hash": "7e6826e6b47d253a61bb88e1170f94d38b4508095f05da9359e1d54369724141",
-      "size": 1687
+      "size": 1687,
+      "blobSha": "7e6826e6b47d253a61bb88e1170f94d38b4508095f05da9359e1d54369724141"
     },
     "source/skills/feature-discovery/evals/rubric.md": {
       "hash": "55738ea73fa392b868310e1e1965b1b942322c8ebc00d755fce11d984bce159d",
-      "size": 1906
+      "size": 1906,
+      "blobSha": "55738ea73fa392b868310e1e1965b1b942322c8ebc00d755fce11d984bce159d"
     },
     "source/skills/feature-discovery/evals/test-cases.md": {
       "hash": "c411c30968204547034907e9dcc513871d76464c50c465083e6fa673cdd48602",
-      "size": 2490
+      "size": 2490,
+      "blobSha": "c411c30968204547034907e9dcc513871d76464c50c465083e6fa673cdd48602"
     },
     "source/skills/feature-discovery/references/context-terms.md": {
       "hash": "752c20fcd1a2926006ded1c76e2bffceda02a0afb9769d4a634ee04a0541456a",
-      "size": 2253
+      "size": 2253,
+      "blobSha": "752c20fcd1a2926006ded1c76e2bffceda02a0afb9769d4a634ee04a0541456a"
     },
     "source/skills/feature-discovery/SKILL.md": {
       "hash": "1399e1b84417077d325a6006c981ff3f0449c4cd58364baabd74b1f708f56b27",
-      "size": 9200
+      "size": 9200,
+      "blobSha": "1399e1b84417077d325a6006c981ff3f0449c4cd58364baabd74b1f708f56b27"
     },
     "source/skills/feynman/SKILL.md": {
       "hash": "adbc422b57b4d25034ce872b651764c47a3be9a61f7debc687327b7a81c23206",
-      "size": 2349
+      "size": 2349,
+      "blobSha": "adbc422b57b4d25034ce872b651764c47a3be9a61f7debc687327b7a81c23206"
     },
     "source/skills/flutter/SKILL.md": {
       "hash": "d71ab0acd87e04c25a3f661f87a5030e40feb1751f4865d069a88d60733cc6e2",
-      "size": 3053
+      "size": 3053,
+      "blobSha": "d71ab0acd87e04c25a3f661f87a5030e40feb1751f4865d069a88d60733cc6e2"
     },
     "source/skills/git-commit/SKILL.md": {
       "hash": "564e065e3f410274a8ade19a6dd3b0e3277103b112d5c5134fca4f41151812a4",
-      "size": 1941
+      "size": 1941,
+      "blobSha": "564e065e3f410274a8ade19a6dd3b0e3277103b112d5c5134fca4f41151812a4"
     },
     "source/skills/git-safety-check/SKILL.md": {
       "hash": "326e5876ff3200590b99f631f7eaf9c283f9759230b70327a2b166740bc9a1e7",
-      "size": 1114
+      "size": 1114,
+      "blobSha": "326e5876ff3200590b99f631f7eaf9c283f9759230b70327a2b166740bc9a1e7"
     },
     "source/skills/github-integration/SKILL.md": {
       "hash": "81ab7fdf9ea21827298f6c9c4790bc49682cfcd544a5bd0807fec8abe892797a",
-      "size": 4395
+      "size": 4395,
+      "blobSha": "81ab7fdf9ea21827298f6c9c4790bc49682cfcd544a5bd0807fec8abe892797a"
     },
     "source/skills/go/SKILL.md": {
       "hash": "191d1d5a296f3f77654cd9f9158091c500706acd67b6bac3e66cc54d069fab3f",
-      "size": 1881
+      "size": 1881,
+      "blobSha": "191d1d5a296f3f77654cd9f9158091c500706acd67b6bac3e66cc54d069fab3f"
     },
     "source/skills/idea-os/SKILL.md": {
       "hash": "7b52ef97ef893ab0a3072cfe1771cd0b2a49d82fc04d0cd8499a616d7d136c72",
-      "size": 6038
+      "size": 6038,
+      "blobSha": "7b52ef97ef893ab0a3072cfe1771cd0b2a49d82fc04d0cd8499a616d7d136c72"
     },
     "source/skills/issue-triage/SKILL.md": {
       "hash": "37b346175b317992f4767108cac4de96011a953cd10908babc086c2dcb2b1be9",
-      "size": 2627
+      "size": 2627,
+      "blobSha": "37b346175b317992f4767108cac4de96011a953cd10908babc086c2dcb2b1be9"
     },
     "source/skills/java-spring/SKILL.md": {
       "hash": "8b630d0aeb58707b093181d2a0582942c63a23898190bb444f2f6464cb669f16",
-      "size": 2115
+      "size": 2115,
+      "blobSha": "8b630d0aeb58707b093181d2a0582942c63a23898190bb444f2f6464cb669f16"
     },
     "source/skills/json-canvas/SKILL.md": {
       "hash": "916699bfe22512eb851aa83a1ccbedbb34a017a20a5217ebdc7bc385b338ec3b",
-      "size": 14655
+      "size": 14655,
+      "blobSha": "916699bfe22512eb851aa83a1ccbedbb34a017a20a5217ebdc7bc385b338ec3b"
     },
     "source/skills/legal-advisor/references/export-control.md": {
       "hash": "0b46534655c68fc7943668e9c328279bae77ce6cef25767e6b20bdc0634c895f",
-      "size": 1692
+      "size": 1692,
+      "blobSha": "0b46534655c68fc7943668e9c328279bae77ce6cef25767e6b20bdc0634c895f"
     },
     "source/skills/legal-advisor/references/jurisdictions/australia.md": {
       "hash": "013110a730b0c59057d9068ccb5dbac4a0fec874d9b5685db09398934e436696",
-      "size": 285
+      "size": 285,
+      "blobSha": "013110a730b0c59057d9068ccb5dbac4a0fec874d9b5685db09398934e436696"
     },
     "source/skills/legal-advisor/references/jurisdictions/brazil.md": {
       "hash": "84a398e8bbf4a4fcae14d08fe0edb19d03705d3bb68b9cbab8d1c074b0e2e447",
-      "size": 289
+      "size": 289,
+      "blobSha": "84a398e8bbf4a4fcae14d08fe0edb19d03705d3bb68b9cbab8d1c074b0e2e447"
     },
     "source/skills/legal-advisor/references/jurisdictions/canada.md": {
       "hash": "7c421244096da03c05eb11fa2744dcc42bbe03de8622fa9950bb0c66fdcf8faf",
-      "size": 349
+      "size": 349,
+      "blobSha": "7c421244096da03c05eb11fa2744dcc42bbe03de8622fa9950bb0c66fdcf8faf"
     },
     "source/skills/legal-advisor/references/jurisdictions/china.md": {
       "hash": "c866d6daba66e203386263352859442678514013b41d4027d355905e8183587a",
-      "size": 355
+      "size": 355,
+      "blobSha": "c866d6daba66e203386263352859442678514013b41d4027d355905e8183587a"
     },
     "source/skills/legal-advisor/references/jurisdictions/european-union.md": {
       "hash": "a243285eeae4c52fb1b7bdde1aa4ca86f80c94edefdea6258a55a5e44badf557",
-      "size": 354
+      "size": 354,
+      "blobSha": "a243285eeae4c52fb1b7bdde1aa4ca86f80c94edefdea6258a55a5e44badf557"
     },
     "source/skills/legal-advisor/references/jurisdictions/france.md": {
       "hash": "d3511b6ad89fefd87d253c4737b123c93852ba6aa57744bcdfea92581aa3d528",
-      "size": 321
+      "size": 321,
+      "blobSha": "d3511b6ad89fefd87d253c4737b123c93852ba6aa57744bcdfea92581aa3d528"
     },
     "source/skills/legal-advisor/references/jurisdictions/germany.md": {
       "hash": "f4ca878b6e5d77fe0d94f4670d752175a0193c98be384587e33c3f2b69f0b76a",
-      "size": 299
+      "size": 299,
+      "blobSha": "f4ca878b6e5d77fe0d94f4670d752175a0193c98be384587e33c3f2b69f0b76a"
     },
     "source/skills/legal-advisor/references/jurisdictions/india.md": {
       "hash": "94fd955252f90cd4d6678789fb486bda85143c6324b34fafcc3f3f95bcd89025",
-      "size": 322
+      "size": 322,
+      "blobSha": "94fd955252f90cd4d6678789fb486bda85143c6324b34fafcc3f3f95bcd89025"
     },
     "source/skills/legal-advisor/references/jurisdictions/international.md": {
       "hash": "964fbe6ae027998dba58c408798a45980ca1f8f3470d198a94001e55479d63cd",
-      "size": 294
+      "size": 294,
+      "blobSha": "964fbe6ae027998dba58c408798a45980ca1f8f3470d198a94001e55479d63cd"
     },
     "source/skills/legal-advisor/references/jurisdictions/japan.md": {
       "hash": "797da09fea13718a503c708bd8ae0ea0cd19fe1266e74751088e8a39b15a0a1c",
-      "size": 301
+      "size": 301,
+      "blobSha": "797da09fea13718a503c708bd8ae0ea0cd19fe1266e74751088e8a39b15a0a1c"
     },
     "source/skills/legal-advisor/references/jurisdictions/malaysia.md": {
       "hash": "8bb8ab674c8dc50b9b8f4e26b1ee8aa246df573aea0df530fea6718fb6b166a5",
-      "size": 515
+      "size": 515,
+      "blobSha": "8bb8ab674c8dc50b9b8f4e26b1ee8aa246df573aea0df530fea6718fb6b166a5"
     },
     "source/skills/legal-advisor/references/jurisdictions/quebec.md": {
       "hash": "7d32d0944c314e42a51afb7ab6e3fe94484c450c1d26693237eab28e848daace",
-      "size": 316
+      "size": 316,
+      "blobSha": "7d32d0944c314e42a51afb7ab6e3fe94484c450c1d26693237eab28e848daace"
     },
     "source/skills/legal-advisor/references/jurisdictions/saudi-arabia.md": {
       "hash": "ae8c0a242d13c60e8ddd0d6f5c591bd99edd1a27db2c38d460af9cf0dffe3af3",
-      "size": 345
+      "size": 345,
+      "blobSha": "ae8c0a242d13c60e8ddd0d6f5c591bd99edd1a27db2c38d460af9cf0dffe3af3"
     },
     "source/skills/legal-advisor/references/jurisdictions/scotland.md": {
       "hash": "f17c6bcd33802225bf13d6f55066612085de990e1f083ba31fb87c2dd82c8e00",
-      "size": 313
+      "size": 313,
+      "blobSha": "f17c6bcd33802225bf13d6f55066612085de990e1f083ba31fb87c2dd82c8e00"
     },
     "source/skills/legal-advisor/references/jurisdictions/south-africa.md": {
       "hash": "74a9af43f444d3f6b8e33133a5af3a333d148545e149258a8fa4befc73da3b29",
-      "size": 338
+      "size": 338,
+      "blobSha": "74a9af43f444d3f6b8e33133a5af3a333d148545e149258a8fa4befc73da3b29"
     },
     "source/skills/legal-advisor/references/jurisdictions/united-arab-emirates.md": {
       "hash": "784a0237482b5ad020f8a8e6d21a6d47b8a56aaa15b7aeb392885cae838a3a5c",
-      "size": 342
+      "size": 342,
+      "blobSha": "784a0237482b5ad020f8a8e6d21a6d47b8a56aaa15b7aeb392885cae838a3a5c"
     },
     "source/skills/legal-advisor/references/jurisdictions/united-kingdom.md": {
       "hash": "f7b27bd31bf3fb5dfe73b19fefae427f708f9f703a983793411d3d3db52a3499",
-      "size": 353
+      "size": 353,
+      "blobSha": "f7b27bd31bf3fb5dfe73b19fefae427f708f9f703a983793411d3d3db52a3499"
     },
     "source/skills/legal-advisor/references/jurisdictions/united-states.md": {
       "hash": "ed85cc08c528d950c3eb29cd490747c12e395627f4bbd9a01250df12392f5fd4",
-      "size": 466
+      "size": 466,
+      "blobSha": "ed85cc08c528d950c3eb29cd490747c12e395627f4bbd9a01250df12392f5fd4"
     },
     "source/skills/legal-advisor/references/license-matrix.md": {
       "hash": "7dd66e988dbe12543d15996f90db7bb8f3270a370209e98636fd35e522358961",
-      "size": 9237
+      "size": 9237,
+      "blobSha": "7dd66e988dbe12543d15996f90db7bb8f3270a370209e98636fd35e522358961"
     },
     "source/skills/legal-advisor/references/privacy-checklists.md": {
       "hash": "e4b6b21d667a7c36d95619841b430398f6f06d54448446dc480483b3750a9901",
-      "size": 8957
+      "size": 8957,
+      "blobSha": "e4b6b21d667a7c36d95619841b430398f6f06d54448446dc480483b3750a9901"
     },
     "source/skills/legal-advisor/references/research-methodology.md": {
       "hash": "70aafb81fda58151803bd760d6f05ccf3d132d4b9e672d7b3b5c7fdb11ed291d",
-      "size": 5174
+      "size": 5174,
+      "blobSha": "70aafb81fda58151803bd760d6f05ccf3d132d4b9e672d7b3b5c7fdb11ed291d"
     },
     "source/skills/legal-advisor/SKILL.md": {
       "hash": "54b2cce437fb99b2b82725016bd19913864ce164e9c7dc5f9b8f7ca58cd45716",
-      "size": 5380
+      "size": 5380,
+      "blobSha": "54b2cce437fb99b2b82725016bd19913864ce164e9c7dc5f9b8f7ca58cd45716"
     },
     "source/skills/lint-gate/SKILL.md": {
       "hash": "a63e55acc92a5b4cd7715c4349c61d0e5e3f9382b1e527946cce35068838a359",
-      "size": 869
+      "size": 869,
+      "blobSha": "a63e55acc92a5b4cd7715c4349c61d0e5e3f9382b1e527946cce35068838a359"
     },
     "source/skills/lsp-server-integration/SKILL.md": {
       "hash": "e9d437a8fd5e1e17ea6a235dd3b3e3218fdb4f1bd2535d0aa9fae3e060b1b5e1",
-      "size": 1507
+      "size": 1507,
+      "blobSha": "e9d437a8fd5e1e17ea6a235dd3b3e3218fdb4f1bd2535d0aa9fae3e060b1b5e1"
     },
     "source/skills/mcp-server-integration/SKILL.md": {
       "hash": "c8dc3452a975fecb7da0d4d5d15bece010798e812e2ae8e6fa71f07009050d04",
-      "size": 1525
+      "size": 1525,
+      "blobSha": "c8dc3452a975fecb7da0d4d5d15bece010798e812e2ae8e6fa71f07009050d04"
     },
     "source/skills/ml-experiment/SKILL.md": {
       "hash": "b131985ac08917857f477cc45467d003eb5598471c7da0b2f762ea6aa8d98d98",
-      "size": 4864
+      "size": 4864,
+      "blobSha": "b131985ac08917857f477cc45467d003eb5598471c7da0b2f762ea6aa8d98d98"
     },
     "source/skills/moscow/SKILL.md": {
       "hash": "8748a40a94ada6999419870715956d5580ab95410cbda78c3515e3095ebcdd8a",
-      "size": 2260
+      "size": 2260,
+      "blobSha": "8748a40a94ada6999419870715956d5580ab95410cbda78c3515e3095ebcdd8a"
     },
     "source/skills/multi-language/SKILL.md": {
       "hash": "79ad34682b244ae103e69ee9cc221bd98a5a051eab2209bbdac7a65dbc4631a3",
-      "size": 1479
+      "size": 1479,
+      "blobSha": "79ad34682b244ae103e69ee9cc221bd98a5a051eab2209bbdac7a65dbc4631a3"
     },
     "source/skills/node-express/SKILL.md": {
       "hash": "a031c6980417913226c8f2b7b1bf53b333f1d97c3d28fab426e7fb4e2b87d32a",
-      "size": 1707
+      "size": 1707,
+      "blobSha": "a031c6980417913226c8f2b7b1bf53b333f1d97c3d28fab426e7fb4e2b87d32a"
     },
     "source/skills/obsidian-bases/SKILL.md": {
       "hash": "0c77c57886dbe3c054fbef865290c8b124eb46b3c87c5ef1e6f38b07d06e24e6",
-      "size": 17060
+      "size": 17060,
+      "blobSha": "0c77c57886dbe3c054fbef865290c8b124eb46b3c87c5ef1e6f38b07d06e24e6"
     },
     "source/skills/obsidian-markdown/SKILL.md": {
       "hash": "1be454f44dc493a4d613543af3fd934d58a4fd4f1056447557414c667767c399",
-      "size": 11433
+      "size": 11433,
+      "blobSha": "1be454f44dc493a4d613543af3fd934d58a4fd4f1056447557414c667767c399"
     },
     "source/skills/ooda/SKILL.md": {
       "hash": "1f4f5577fe6c75e902467e17164da3ff2f552a4f8b466ab5b064e97b240cd1a9",
-      "size": 3732
+      "size": 3732,
+      "blobSha": "1f4f5577fe6c75e902467e17164da3ff2f552a4f8b466ab5b064e97b240cd1a9"
     },
     "source/skills/opencode-agent-authoring/SKILL.md": {
       "hash": "34d5148bb3b765154fd04ee8199083f4d33048bdc7815b7bbef1aa6972078887",
-      "size": 2401
+      "size": 2401,
+      "blobSha": "34d5148bb3b765154fd04ee8199083f4d33048bdc7815b7bbef1aa6972078887"
     },
     "source/skills/opencode-command-authoring/SKILL.md": {
       "hash": "838d3825396845fc13808fa0c54dd9e8cd45ce06e6964b55b48e32c572ff6f65",
-      "size": 1572
+      "size": 1572,
+      "blobSha": "838d3825396845fc13808fa0c54dd9e8cd45ce06e6964b55b48e32c572ff6f65"
     },
     "source/skills/opencode-configs/SKILL.md": {
       "hash": "6beb9cdcb22bb4c798d49dfc3b3a90de86b8e0dbfa9452cc3c634fa47142deb5",
-      "size": 1303
+      "size": 1303,
+      "blobSha": "6beb9cdcb22bb4c798d49dfc3b3a90de86b8e0dbfa9452cc3c634fa47142deb5"
     },
     "source/skills/opencode-plugin-authoring/SKILL.md": {
       "hash": "c29dcd0f6363b0fd4717d7e027505595f7225c8cd723a9ca052d281ea128ff15",
-      "size": 1411
+      "size": 1411,
+      "blobSha": "c29dcd0f6363b0fd4717d7e027505595f7225c8cd723a9ca052d281ea128ff15"
     },
     "source/skills/pdf/SKILL.md": {
       "hash": "5153af1c832ef5b7ab9de60c72e5907d74b5e6987842755edcc3c57bdb97ef51",
-      "size": 7362
+      "size": 7362,
+      "blobSha": "5153af1c832ef5b7ab9de60c72e5907d74b5e6987842755edcc3c57bdb97ef51"
     },
     "source/skills/plan-writing/SKILL.md": {
       "hash": "ef566840d231a2321fa417153afdb30d4dc48a4fcfc113a29f3be1c95a20278a",
-      "size": 4451
+      "size": 4451,
+      "blobSha": "ef566840d231a2321fa417153afdb30d4dc48a4fcfc113a29f3be1c95a20278a"
     },
     "source/skills/ponytail/SKILL.md": {
       "hash": "61443920755b5c02e0d1946c9bb2cd552f4606fd261296033972b4bfa223c59a",
-      "size": 1839
+      "size": 1839,
+      "blobSha": "61443920755b5c02e0d1946c9bb2cd552f4606fd261296033972b4bfa223c59a"
     },
     "source/skills/pr-feedback/agents/openai.yaml": {
       "hash": "3bf863a8856d04a6a1c4f23b3aae6cbf5388544129662c55cc733c2d9c23bbbf",
-      "size": 45
+      "size": 45,
+      "blobSha": "3bf863a8856d04a6a1c4f23b3aae6cbf5388544129662c55cc733c2d9c23bbbf"
     },
     "source/skills/pr-feedback/evals/baseline.md": {
       "hash": "5977ef5611290f6561f3219be3dbb283e53f9ba6f66d19b94df3dcd91fce2125",
-      "size": 5001
+      "size": 5001,
+      "blobSha": "5977ef5611290f6561f3219be3dbb283e53f9ba6f66d19b94df3dcd91fce2125"
     },
     "source/skills/pr-feedback/evals/evals.json": {
       "hash": "e764706b7aaf004daad87d153eac487c0ee5e9be897ef973286b730ad2a3e20a",
-      "size": 3240
+      "size": 3240,
+      "blobSha": "e764706b7aaf004daad87d153eac487c0ee5e9be897ef973286b730ad2a3e20a"
     },
     "source/skills/pr-feedback/evals/final.md": {
       "hash": "9cb7cff000a93dbd6dda847d5acf6cc04ee972dfeeea410a65fb06ebef46940c",
-      "size": 2473
+      "size": 2473,
+      "blobSha": "9cb7cff000a93dbd6dda847d5acf6cc04ee972dfeeea410a65fb06ebef46940c"
     },
     "source/skills/pr-feedback/evals/README.md": {
       "hash": "5cc66dd26625cf00a5076b08eae826a064c85487cc6bfc02909cd044f0aa22ae",
-      "size": 1704
+      "size": 1704,
+      "blobSha": "5cc66dd26625cf00a5076b08eae826a064c85487cc6bfc02909cd044f0aa22ae"
     },
     "source/skills/pr-feedback/evals/rubric.md": {
       "hash": "72f08eb659d4a27407a6078593b16d241d9258676ebda143bd564a016ec7ad1d",
-      "size": 2113
+      "size": 2113,
+      "blobSha": "72f08eb659d4a27407a6078593b16d241d9258676ebda143bd564a016ec7ad1d"
     },
     "source/skills/pr-feedback/evals/test-cases.md": {
       "hash": "0cc3e62b0c32ba9122a70bfae17413afbc2a0143bd2dde0a2ac32af7f97779cc",
-      "size": 1856
+      "size": 1856,
+      "blobSha": "0cc3e62b0c32ba9122a70bfae17413afbc2a0143bd2dde0a2ac32af7f97779cc"
     },
     "source/skills/pr-feedback/SKILL.md": {
       "hash": "c0751cca3da14518e71f9198b009c5c7230069f602edb6f951f3c24740fa2bb5",
-      "size": 8205
+      "size": 8205,
+      "blobSha": "c0751cca3da14518e71f9198b009c5c7230069f602edb6f951f3c24740fa2bb5"
     },
     "source/skills/pr-review/SKILL.md": {
       "hash": "913683e7584b90978f0774bc1a097e2a91791b41f1d58554936706b2754f5834",
-      "size": 1934
+      "size": 1934,
+      "blobSha": "913683e7584b90978f0774bc1a097e2a91791b41f1d58554936706b2754f5834"
     },
     "source/skills/premortem/SKILL.md": {
       "hash": "ffc7c468ec65498f3d88ea866df5384793d7c2b0dd09206b55133ed89f302152",
-      "size": 2341
+      "size": 2341,
+      "blobSha": "ffc7c468ec65498f3d88ea866df5384793d7c2b0dd09206b55133ed89f302152"
     },
     "source/skills/project-bootstrap/SKILL.md": {
       "hash": "ab3b099c02994e122d47346be864f1875ab9c1b347ce0222e9ea667583e07a23",
-      "size": 3636
+      "size": 3636,
+      "blobSha": "ab3b099c02994e122d47346be864f1875ab9c1b347ce0222e9ea667583e07a23"
     },
     "source/skills/python/SKILL.md": {
       "hash": "e012c209db271f77f539cec48cf28609dd674371581561289f436d5f640dc227",
-      "size": 2708
+      "size": 2708,
+      "blobSha": "e012c209db271f77f539cec48cf28609dd674371581561289f436d5f640dc227"
     },
     "source/skills/python-venv/SKILL.md": {
       "hash": "d2adcf4c404fcb1f3006f109a7baf0673f9c7645a5efc96e6fe24089f4462db8",
-      "size": 1669
+      "size": 1669,
+      "blobSha": "d2adcf4c404fcb1f3006f109a7baf0673f9c7645a5efc96e6fe24089f4462db8"
     },
     "source/skills/pythonic-quality/SKILL.md": {
       "hash": "60c89a6d1ac72bd7526ac66cbbc8efdc0de1281dc69ed9f5b5e0f292dbc080b1",
-      "size": 1932
+      "size": 1932,
+      "blobSha": "60c89a6d1ac72bd7526ac66cbbc8efdc0de1281dc69ed9f5b5e0f292dbc080b1"
     },
     "source/skills/react-next/SKILL.md": {
       "hash": "a09271918d335321e4676ad685e512869a39a2d496b333fd7fe9e49ec1a5b1b9",
-      "size": 1985
+      "size": 1985,
+      "blobSha": "a09271918d335321e4676ad685e512869a39a2d496b333fd7fe9e49ec1a5b1b9"
     },
     "source/skills/receiving-code-review/SKILL.md": {
       "hash": "bda6f19ebd6d4ec043e448c8d233de8308f76b72230de2297b306bc49b8a6e93",
-      "size": 6527
+      "size": 6527,
+      "blobSha": "bda6f19ebd6d4ec043e448c8d233de8308f76b72230de2297b306bc49b8a6e93"
     },
     "source/skills/redteam/SKILL.md": {
       "hash": "7dec1a496d5101cba9ff07a475c067054f608eb059390cdc1207aaf2af0471b2",
-      "size": 2870
+      "size": 2870,
+      "blobSha": "7dec1a496d5101cba9ff07a475c067054f608eb059390cdc1207aaf2af0471b2"
     },
     "source/skills/refactoring/SKILL.md": {
       "hash": "5e6b1d16b717ece703d4a623246cccaa7e93447352e4b109127910ee116a680a",
-      "size": 6703
+      "size": 6703,
+      "blobSha": "5e6b1d16b717ece703d4a623246cccaa7e93447352e4b109127910ee116a680a"
     },
     "source/skills/release-notes/agents/openai.yaml": {
       "hash": "3bf863a8856d04a6a1c4f23b3aae6cbf5388544129662c55cc733c2d9c23bbbf",
-      "size": 45
+      "size": 45,
+      "blobSha": "3bf863a8856d04a6a1c4f23b3aae6cbf5388544129662c55cc733c2d9c23bbbf"
     },
     "source/skills/release-notes/assets/release-notes-template.md": {
       "hash": "d677013027b465274faf2e7994fdd8e15a8ca71fc0356e02afa2c7e9f4a1bf1e",
-      "size": 902
+      "size": 902,
+      "blobSha": "d677013027b465274faf2e7994fdd8e15a8ca71fc0356e02afa2c7e9f4a1bf1e"
     },
     "source/skills/release-notes/assets/session-summary-template.md": {
       "hash": "98956b9a139ad321f14d43b08ed6621223bb33fc05dad1ddd681230f60f618b7",
-      "size": 676
+      "size": 676,
+      "blobSha": "98956b9a139ad321f14d43b08ed6621223bb33fc05dad1ddd681230f60f618b7"
     },
     "source/skills/release-notes/evals/baseline.md": {
       "hash": "a4f7a5a130a6072af69a99bfda0f4651318c62da3715ed91c554ed66912138aa",
-      "size": 1198
+      "size": 1198,
+      "blobSha": "a4f7a5a130a6072af69a99bfda0f4651318c62da3715ed91c554ed66912138aa"
     },
     "source/skills/release-notes/evals/evals.json": {
       "hash": "679f75e4e08c45fe1998b934eaeae4d36a37ae28a4b13fe5888063375ae6affe",
-      "size": 3856
+      "size": 3856,
+      "blobSha": "679f75e4e08c45fe1998b934eaeae4d36a37ae28a4b13fe5888063375ae6affe"
     },
     "source/skills/release-notes/evals/final.md": {
       "hash": "895179675ba3123c600f6663481f338cd5fc9827b8bfd044a3a0a3a18b84edcc",
-      "size": 2668
+      "size": 2668,
+      "blobSha": "895179675ba3123c600f6663481f338cd5fc9827b8bfd044a3a0a3a18b84edcc"
     },
     "source/skills/release-notes/evals/README.md": {
       "hash": "e8be793e71a2b18421dbb02877ddd8489f589506736f7125b431120b3a9b1f5a",
-      "size": 1679
+      "size": 1679,
+      "blobSha": "e8be793e71a2b18421dbb02877ddd8489f589506736f7125b431120b3a9b1f5a"
     },
     "source/skills/release-notes/evals/rubric.md": {
       "hash": "1618e4a87615d64d95f79bc038fd3c6a7431edd048ea48d8262c2caee3ff71da",
-      "size": 1894
+      "size": 1894,
+      "blobSha": "1618e4a87615d64d95f79bc038fd3c6a7431edd048ea48d8262c2caee3ff71da"
     },
     "source/skills/release-notes/evals/test-cases.md": {
       "hash": "bc70c913c9f33be624548df654ec8257b9b1fc20849361f4c61c91a330248582",
-      "size": 2231
+      "size": 2231,
+      "blobSha": "bc70c913c9f33be624548df654ec8257b9b1fc20849361f4c61c91a330248582"
     },
     "source/skills/release-notes/references/examples.md": {
       "hash": "3f020622fbeea5bf595d1e57a6b2a46265ad546898a75f7fe7c40f16f44d82a2",
-      "size": 6004
+      "size": 6004,
+      "blobSha": "3f020622fbeea5bf595d1e57a6b2a46265ad546898a75f7fe7c40f16f44d82a2"
     },
     "source/skills/release-notes/SKILL.md": {
       "hash": "a0b942c2ad660e59a7c2b2ff8d7c6afcee43096d3d176d5c441da535480c1bf3",
-      "size": 9635
+      "size": 9635,
+      "blobSha": "a0b942c2ad660e59a7c2b2ff8d7c6afcee43096d3d176d5c441da535480c1bf3"
     },
     "source/skills/research/SKILL.md": {
       "hash": "70f4bd4902add297ae12a3bed00641567afd6523b529a282c828ab487da6d194",
-      "size": 2552
+      "size": 2552,
+      "blobSha": "70f4bd4902add297ae12a3bed00641567afd6523b529a282c828ab487da6d194"
     },
     "source/skills/retro/SKILL.md": {
       "hash": "4d31acbc9db7caf6edad82df02781a0384f866224fa0f6170eee7e4d7c03146d",
-      "size": 2313
+      "size": 2313,
+      "blobSha": "4d31acbc9db7caf6edad82df02781a0384f866224fa0f6170eee7e4d7c03146d"
     },
     "source/skills/rice/SKILL.md": {
       "hash": "90eb4016c90f4daf1fc851dc48dee6f40498060a99841439c7f2901c2cda0f6f",
-      "size": 2476
+      "size": 2476,
+      "blobSha": "90eb4016c90f4daf1fc851dc48dee6f40498060a99841439c7f2901c2cda0f6f"
     },
     "source/skills/ruby-rails/SKILL.md": {
       "hash": "f257e270547f4906d3fd64db33f4fa3b800f6902cb4ff38064bf7940c7bf42fc",
-      "size": 2943
+      "size": 2943,
+      "blobSha": "f257e270547f4906d3fd64db33f4fa3b800f6902cb4ff38064bf7940c7bf42fc"
     },
     "source/skills/rust/SKILL.md": {
       "hash": "17a0ed849ca0465f4138baaa33bb3f260cc9baffeeb8da94c563fb4c886c86d3",
-      "size": 2850
+      "size": 2850,
+      "blobSha": "17a0ed849ca0465f4138baaa33bb3f260cc9baffeeb8da94c563fb4c886c86d3"
     },
     "source/skills/security-audit/SKILL.md": {
       "hash": "775c35caa7ba96c1816d997c6a28436aea1fcf314d12e18feb2becba918cc209",
-      "size": 8055
+      "size": 8055,
+      "blobSha": "775c35caa7ba96c1816d997c6a28436aea1fcf314d12e18feb2becba918cc209"
     },
     "source/skills/senior-architect/SKILL.md": {
       "hash": "2874daffae28f77b4db0a0c2337fec401c40846e3fdf9ab306ea98494cc1c72f",
-      "size": 4186
+      "size": 4186,
+      "blobSha": "2874daffae28f77b4db0a0c2337fec401c40846e3fdf9ab306ea98494cc1c72f"
     },
     "source/skills/senior-data-scientist/SKILL.md": {
       "hash": "f267feb9439ec5c629c671654fb6efddf359bdb589a0415f51cfe760959fa96b",
-      "size": 5570
+      "size": 5570,
+      "blobSha": "f267feb9439ec5c629c671654fb6efddf359bdb589a0415f51cfe760959fa96b"
     },
     "source/skills/senior-devops/SKILL.md": {
       "hash": "e25fd2d434ff7d53d640e0e7e3b40cbabe50af839c8cab8f2c7d9d698225bd24",
-      "size": 4025
+      "size": 4025,
+      "blobSha": "e25fd2d434ff7d53d640e0e7e3b40cbabe50af839c8cab8f2c7d9d698225bd24"
     },
     "source/skills/senior-fullstack/SKILL.md": {
       "hash": "f83bd299249cfb063531f7bbee452797ec3c69d2696a87febdaee7e69a0e1c8d",
-      "size": 4037
+      "size": 4037,
+      "blobSha": "f83bd299249cfb063531f7bbee452797ec3c69d2696a87febdaee7e69a0e1c8d"
     },
     "source/skills/senior-ml-engineer/SKILL.md": {
       "hash": "24148e84e1a270ccfd6ddcfc54ed1ea411edbd1d88cffd4e20f351f64703e3b6",
-      "size": 5446
+      "size": 5446,
+      "blobSha": "24148e84e1a270ccfd6ddcfc54ed1ea411edbd1d88cffd4e20f351f64703e3b6"
     },
     "source/skills/senior-prompt-engineer/SKILL.md": {
       "hash": "ce51c4e141e489c97241f30d95dfc6edfdb7c89616b519552441b8592afbc6fb",
-      "size": 5484
+      "size": 5484,
+      "blobSha": "ce51c4e141e489c97241f30d95dfc6edfdb7c89616b519552441b8592afbc6fb"
     },
     "source/skills/senior-qa/SKILL.md": {
       "hash": "a351c6fdd76b56d178437504fd638057065f8530461f4f0ab66fd2530fa2e3dd",
-      "size": 4019
+      "size": 4019,
+      "blobSha": "a351c6fdd76b56d178437504fd638057065f8530461f4f0ab66fd2530fa2e3dd"
     },
     "source/skills/senior-security/SKILL.md": {
       "hash": "2aa195542a0da4399d62ea337d3c8ac08d5d6f89dd31406937bd0116b4809cd4",
-      "size": 4105
+      "size": 4105,
+      "blobSha": "2aa195542a0da4399d62ea337d3c8ac08d5d6f89dd31406937bd0116b4809cd4"
     },
     "source/skills/skill-creator/LICENSE.txt": {
       "hash": "5ca2920d4f56954100c8f365461aba7b6c6154da49734f7b2703d9275ad49d11",
-      "size": 1077
+      "size": 1077,
+      "blobSha": "5ca2920d4f56954100c8f365461aba7b6c6154da49734f7b2703d9275ad49d11"
     },
     "source/skills/skill-creator/references/output-patterns.md": {
       "hash": "6e8f902cf0b9914988ce4377bdd8df339957db59ef35c44f551fc6bff0c10c09",
-      "size": 1192
+      "size": 1192,
+      "blobSha": "6e8f902cf0b9914988ce4377bdd8df339957db59ef35c44f551fc6bff0c10c09"
     },
     "source/skills/skill-creator/references/workflows.md": {
       "hash": "428c13912d412b33a532f2c339bcf2507ad54ae5a14c6d18173cb4ba1e7606b0",
-      "size": 750
+      "size": 750,
+      "blobSha": "428c13912d412b33a532f2c339bcf2507ad54ae5a14c6d18173cb4ba1e7606b0"
     },
     "source/skills/skill-creator/scripts/init_skill.py": {
       "hash": "768836f52f139f2dce27101f9f006114b1c2e2295856fea47ef3cd36271c0751",
-      "size": 4264
+      "size": 4264,
+      "blobSha": "768836f52f139f2dce27101f9f006114b1c2e2295856fea47ef3cd36271c0751"
     },
     "source/skills/skill-creator/scripts/package_skill.py": {
       "hash": "4c73c5b32fb6f41b0fc70d49eaa86cd5c6de4bc19f817364b3e1981ae35161f5",
-      "size": 2367
+      "size": 2367,
+      "blobSha": "4c73c5b32fb6f41b0fc70d49eaa86cd5c6de4bc19f817364b3e1981ae35161f5"
     },
     "source/skills/skill-creator/scripts/quick_validate.py": {
       "hash": "db982b6c2af27e0bc0e234b34e7b1e6263bb919bffe21f8fb694031a930c43e4",
-      "size": 1700
+      "size": 1700,
+      "blobSha": "db982b6c2af27e0bc0e234b34e7b1e6263bb919bffe21f8fb694031a930c43e4"
     },
     "source/skills/skill-creator/SKILL.md": {
       "hash": "e9d94256164cc464d57f9e3725c64066911c3c850ca17e0521aa28808b8c5886",
-      "size": 18193
+      "size": 18193,
+      "blobSha": "e9d94256164cc464d57f9e3725c64066911c3c850ca17e0521aa28808b8c5886"
     },
     "source/skills/sql-migrations/SKILL.md": {
       "hash": "182a016f87238070d86ffa494db17b4aae8e73d4583b2620c7ca7cee0d633114",
-      "size": 1915
+      "size": 1915,
+      "blobSha": "182a016f87238070d86ffa494db17b4aae8e73d4583b2620c7ca7cee0d633114"
     },
     "source/skills/staging-fix/agents/openai.yaml": {
       "hash": "3bf863a8856d04a6a1c4f23b3aae6cbf5388544129662c55cc733c2d9c23bbbf",
-      "size": 45
+      "size": 45,
+      "blobSha": "3bf863a8856d04a6a1c4f23b3aae6cbf5388544129662c55cc733c2d9c23bbbf"
     },
     "source/skills/staging-fix/evals/baseline.md": {
       "hash": "06df2c185c6b9b25b39ca18c2012da451a625482266d130254565194f49fa2d6",
-      "size": 2955
+      "size": 2955,
+      "blobSha": "06df2c185c6b9b25b39ca18c2012da451a625482266d130254565194f49fa2d6"
     },
     "source/skills/staging-fix/evals/evals.json": {
       "hash": "db9330a6a26b432b1beea23a578d249d804cd9d95c3e625a1279fa4be59207f7",
-      "size": 2999
+      "size": 2999,
+      "blobSha": "db9330a6a26b432b1beea23a578d249d804cd9d95c3e625a1279fa4be59207f7"
     },
     "source/skills/staging-fix/evals/final.md": {
       "hash": "c3593042f1e45278a59ef090b5795830fafb22de00fc018fa9a50d5ac6bada61",
-      "size": 2533
+      "size": 2533,
+      "blobSha": "c3593042f1e45278a59ef090b5795830fafb22de00fc018fa9a50d5ac6bada61"
     },
     "source/skills/staging-fix/evals/README.md": {
       "hash": "d74a964a1c8b7c9cfab6bc9e5aeebeb898beb3bd4c8d177e186495e98e597311",
-      "size": 1570
+      "size": 1570,
+      "blobSha": "d74a964a1c8b7c9cfab6bc9e5aeebeb898beb3bd4c8d177e186495e98e597311"
     },
     "source/skills/staging-fix/evals/rubric.md": {
       "hash": "527c03f715676658a0bf8bd08c4bc0218725dda5b13bfdbf04720e59184d392f",
-      "size": 2162
+      "size": 2162,
+      "blobSha": "527c03f715676658a0bf8bd08c4bc0218725dda5b13bfdbf04720e59184d392f"
     },
     "source/skills/staging-fix/evals/test-cases.md": {
       "hash": "95db62d049ac4682a0211449963c6fbe5900d0b809e9cd877e1c6e52e8975cd8",
-      "size": 1908
+      "size": 1908,
+      "blobSha": "95db62d049ac4682a0211449963c6fbe5900d0b809e9cd877e1c6e52e8975cd8"
     },
     "source/skills/staging-fix/SKILL.md": {
       "hash": "67d0d0f9d91ec521898d97d34b4901086fd7b60c79d34b7fa1104c0dbd052325",
-      "size": 6578
+      "size": 6578,
+      "blobSha": "67d0d0f9d91ec521898d97d34b4901086fd7b60c79d34b7fa1104c0dbd052325"
     },
     "source/skills/subagent-driven-development/SKILL.md": {
       "hash": "5a7d1d0f8de96e0737db08804143811a3baaac1163e7efa20b6243b3fd086bc3",
-      "size": 10049
+      "size": 10049,
+      "blobSha": "5a7d1d0f8de96e0737db08804143811a3baaac1163e7efa20b6243b3fd086bc3"
     },
     "source/skills/swot/SKILL.md": {
       "hash": "93c39d96528c2bd7fe6cdddd5766bbd381fc24b8e7946a0be17d41b65e09c767",
-      "size": 2606
+      "size": 2606,
+      "blobSha": "93c39d96528c2bd7fe6cdddd5766bbd381fc24b8e7946a0be17d41b65e09c767"
     },
     "source/skills/systematic-debugging/SKILL.md": {
       "hash": "530855dfa2b10d5b9f92ac170fe41c5f8fbc4918957a564855b50a896ca625a2",
-      "size": 10180
+      "size": 10180,
+      "blobSha": "530855dfa2b10d5b9f92ac170fe41c5f8fbc4918957a564855b50a896ca625a2"
     },
     "source/skills/task-management/router.sh": {
       "hash": "54a67cd69b7319ac0bbd20eeca564449d45b0a06b1cd46ee77aea66c6e91f8c8",
-      "size": 2168
+      "size": 2168,
+      "blobSha": "54a67cd69b7319ac0bbd20eeca564449d45b0a06b1cd46ee77aea66c6e91f8c8"
     },
     "source/skills/task-management/scripts/migrate-schema.ts": {
       "hash": "a7463f285ed87ed7ae70dabe2a837f5a5e63c5f660d52691813f2ac9db3a0c76",
-      "size": 2150
+      "size": 2150,
+      "blobSha": "a7463f285ed87ed7ae70dabe2a837f5a5e63c5f660d52691813f2ac9db3a0c76"
     },
     "source/skills/task-management/scripts/task-cli.ts": {
       "hash": "7b7a043c28596ab1ec09f884152e1880979a8983d08e2d551c64254568d0abf1",
-      "size": 10866
+      "size": 10866,
+      "blobSha": "7b7a043c28596ab1ec09f884152e1880979a8983d08e2d551c64254568d0abf1"
     },
     "source/skills/task-management/SKILL.md": {
       "hash": "76a52e0037a7c2e88265af23eed4afbf37ac44aba37d44e05e530984f6becffe",
-      "size": 1696
+      "size": 1696,
+      "blobSha": "76a52e0037a7c2e88265af23eed4afbf37ac44aba37d44e05e530984f6becffe"
     },
     "source/skills/tdd-loop/evals/baseline.md": {
       "hash": "7199cb539db0f3d299a79f9cd8199666644b1a1d845a8ab6a295fa940b7284c5",
-      "size": 1004
+      "size": 1004,
+      "blobSha": "7199cb539db0f3d299a79f9cd8199666644b1a1d845a8ab6a295fa940b7284c5"
     },
     "source/skills/tdd-loop/evals/evals.json": {
       "hash": "a99a3b54fe014c3986192043c93a427967f6190ce82828223f45701cbd162c41",
-      "size": 4057
+      "size": 4057,
+      "blobSha": "a99a3b54fe014c3986192043c93a427967f6190ce82828223f45701cbd162c41"
     },
     "source/skills/tdd-loop/evals/final.md": {
       "hash": "0e39a0024d0af0e61486a4803a42317b65ba3cb950737a59dc61519efb407c3f",
-      "size": 3951
+      "size": 3951,
+      "blobSha": "0e39a0024d0af0e61486a4803a42317b65ba3cb950737a59dc61519efb407c3f"
     },
     "source/skills/tdd-loop/evals/README.md": {
       "hash": "c7736b16f82fd30df98c2be978b5ef90e8535735503089d768ce4c92b0c93646",
-      "size": 1669
+      "size": 1669,
+      "blobSha": "c7736b16f82fd30df98c2be978b5ef90e8535735503089d768ce4c92b0c93646"
     },
     "source/skills/tdd-loop/evals/rubric.md": {
       "hash": "5c4096e8dd7172740784f78aa991599107166857f1673aedc251d0291c756e5b",
-      "size": 1879
+      "size": 1879,
+      "blobSha": "5c4096e8dd7172740784f78aa991599107166857f1673aedc251d0291c756e5b"
     },
     "source/skills/tdd-loop/evals/test-cases.md": {
       "hash": "91d0529d5a602b373bcde1adfcf043836130df11660d7f63c11f83e90a5ea415",
-      "size": 2497
+      "size": 2497,
+      "blobSha": "91d0529d5a602b373bcde1adfcf043836130df11660d7f63c11f83e90a5ea415"
     },
     "source/skills/tdd-loop/references/summary-example.md": {
       "hash": "5c325074d8da51ee6ff540ca4057a44108b94b7ad05945450abcc6b7421ab373",
-      "size": 1123
+      "size": 1123,
+      "blobSha": "5c325074d8da51ee6ff540ca4057a44108b94b7ad05945450abcc6b7421ab373"
     },
     "source/skills/tdd-loop/references/test-commands.md": {
       "hash": "8d70c283563be8a2403abb867c2a9552fdb44e2b4ab4bc03ed7c7df9ec702ce0",
-      "size": 1701
+      "size": 1701,
+      "blobSha": "8d70c283563be8a2403abb867c2a9552fdb44e2b4ab4bc03ed7c7df9ec702ce0"
     },
     "source/skills/tdd-loop/SKILL.md": {
       "hash": "4ac018bdfe70a88fe0ca9e57a0c76e52196dd013224749eb2fd600ecfe2622d9",
-      "size": 8734
+      "size": 8734,
+      "blobSha": "4ac018bdfe70a88fe0ca9e57a0c76e52196dd013224749eb2fd600ecfe2622d9"
     },
     "source/skills/test-driven-development/SKILL.md": {
       "hash": "4f090e919b7310192864f1d046910c53fa7ca353f5cc2b8d07717c7a897f0183",
-      "size": 10238
+      "size": 10238,
+      "blobSha": "4f090e919b7310192864f1d046910c53fa7ca353f5cc2b8d07717c7a897f0183"
     },
     "source/skills/typescript/SKILL.md": {
       "hash": "b1cfecc98dadae6f77f0069a8e806753f88b3939f54c5bc7afb41dd09738622f",
-      "size": 2915
+      "size": 2915,
+      "blobSha": "b1cfecc98dadae6f77f0069a8e806753f88b3939f54c5bc7afb41dd09738622f"
     },
     "source/skills/using-git-worktrees/SKILL.md": {
       "hash": "b9f4a80b4369977e07b6f9b75618c2aa56687ef539442bf439f3ee976d1109c5",
-      "size": 5809
+      "size": 5809,
+      "blobSha": "b9f4a80b4369977e07b6f9b75618c2aa56687ef539442bf439f3ee976d1109c5"
     },
     "source/skills/ux-responsive/SKILL.md": {
       "hash": "e607aa37841eaa26a95e75698f5798d482287bd09192f46fe6b9d2e33590fd31",
-      "size": 2317
+      "size": 2317,
+      "blobSha": "e607aa37841eaa26a95e75698f5798d482287bd09192f46fe6b9d2e33590fd31"
     },
     "source/skills/verification-before-completion/SKILL.md": {
       "hash": "c35ac975d145f74d9f3668c1b035a3754d3c0f4edb491cc80a6a0265cfdf7749",
-      "size": 4340
+      "size": 4340,
+      "blobSha": "c35ac975d145f74d9f3668c1b035a3754d3c0f4edb491cc80a6a0265cfdf7749"
     },
     "source/skills/wiki-researcher/SKILL.md": {
       "hash": "36a3a0c725a6a1075f7fc1098fa6ce903f1d16fa92a5153217c0a84d6acbfbd5",
-      "size": 3707
+      "size": 3707,
+      "blobSha": "36a3a0c725a6a1075f7fc1098fa6ce903f1d16fa92a5153217c0a84d6acbfbd5"
     },
     "source/skills/writing-plans/SKILL.md": {
       "hash": "af774285e348139334ce303e05f6a2b9b6c65d131544343b1d3fe3445920fed7",
-      "size": 3380
+      "size": 3380,
+      "blobSha": "af774285e348139334ce303e05f6a2b9b6c65d131544343b1d3fe3445920fed7"
     },
     "source/skills/xlsx/SKILL.md": {
       "hash": "eef11f091ab6e9429f15e75cbe6e9d6c906a0b56aa2f151a16811fef16570efb",
-      "size": 10920
+      "size": 10920,
+      "blobSha": "eef11f091ab6e9429f15e75cbe6e9d6c906a0b56aa2f151a16811fef16570efb"
     },
     "source/VERSION": {
       "hash": "25b7ebe0bc0146e1effebca63a360038bcb4c115386acde18c32cf1333ec2267",
-      "size": 7
+      "size": 7,
+      "blobSha": "25b7ebe0bc0146e1effebca63a360038bcb4c115386acde18c32cf1333ec2267"
     },
     "scripts/build-config.mjs": {
       "hash": "ffe6f472ff8d9914e3be5a8c825cb3151724d52847a39146d7b58047208f8d29",
-      "size": 9248
+      "size": 9248,
+      "blobSha": "ffe6f472ff8d9914e3be5a8c825cb3151724d52847a39146d7b58047208f8d29"
     },
     "scripts/check.mjs": {
       "hash": "7277251be1aa8a46a7b104d85e2cbfe26864fe2498a8d1bbcb3ed09a4d2d4ea3",
-      "size": 1031
+      "size": 1031,
+      "blobSha": "7277251be1aa8a46a7b104d85e2cbfe26864fe2498a8d1bbcb3ed09a4d2d4ea3"
     },
     "scripts/doctor.mjs": {
       "hash": "effa5c07d02d0644e753324677473e92647b965b0959653d0e760a19c824b9d5",
-      "size": 3466
+      "size": 3466,
+      "blobSha": "effa5c07d02d0644e753324677473e92647b965b0959653d0e760a19c824b9d5"
     },
     "scripts/generate-manifest.mjs": {
       "hash": "166e06d2de465aa260380d9ae5b6a128adf1d257358128f6bc1b2afa944cf469",
-      "size": 2754
+      "size": 2754,
+      "blobSha": "166e06d2de465aa260380d9ae5b6a128adf1d257358128f6bc1b2afa944cf469"
     },
     "scripts/install.sh": {
       "hash": "0856844d5d498b36416667670e7cfded3f5c32dd810b11e3a835da59fc19fa1f",
-      "size": 3615
+      "size": 3615,
+      "blobSha": "0856844d5d498b36416667670e7cfded3f5c32dd810b11e3a835da59fc19fa1f"
     },
     "scripts/opencode-wrapper.sh": {
       "hash": "c38b6bc3e46a9e07448da025c404228c288a20a268b0917078468faa34357430",
-      "size": 3759
+      "size": 3759,
+      "blobSha": "c38b6bc3e46a9e07448da025c404228c288a20a268b0917078468faa34357430"
     },
     "scripts/providers.mjs": {
       "hash": "e543c9c0f68ba78c799434e7ddc4245e38b06ab9b84d424651244d57650b086d",
-      "size": 7243
+      "size": 7243,
+      "blobSha": "e543c9c0f68ba78c799434e7ddc4245e38b06ab9b84d424651244d57650b086d"
     },
     "scripts/proxy-bridge.mjs": {
       "hash": "387999925fddae561b9b263777e4476ac34433da704a3e8ea57449a1988aecc7",
-      "size": 8019
+      "size": 8019,
+      "blobSha": "387999925fddae561b9b263777e4476ac34433da704a3e8ea57449a1988aecc7"
     },
     "scripts/run-install-test.mjs": {
       "hash": "54147eed67d70441bef6ed08284baa54d6ad0758bea31d09f88d1f3b1d633321",
-      "size": 541
+      "size": 541,
+      "blobSha": "54147eed67d70441bef6ed08284baa54d6ad0758bea31d09f88d1f3b1d633321"
     },
     "scripts/sync-all-providers.sh": {
       "hash": "8883d7d943ec2aa9bad3ab7e627138b0e81b68bd646cc493ea3c85bfe9989d11",
-      "size": 3029
+      "size": 3029,
+      "blobSha": "8883d7d943ec2aa9bad3ab7e627138b0e81b68bd646cc493ea3c85bfe9989d11"
     },
     "scripts/sync-core.mjs": {
       "hash": "c419584213f8e314005438b672af72c31ba827cbd6b915aed558f90dfb9220c0",
-      "size": 14700
+      "size": 14700,
+      "blobSha": "c419584213f8e314005438b672af72c31ba827cbd6b915aed558f90dfb9220c0"
     },
     "scripts/sync-local-models.mjs": {
       "hash": "d7821822335921c4b80116a292b8cb33a26eac77f7256ec9b901ed048abf5b09",
-      "size": 222
+      "size": 222,
+      "blobSha": "d7821822335921c4b80116a292b8cb33a26eac77f7256ec9b901ed048abf5b09"
     },
     "scripts/sync-on-launch.mjs": {
       "hash": "33e01d81c821112133d234bf2f0266a79abfb3f206e970101a6093dc384409c7",
-      "size": 8852
+      "size": 8852,
+      "blobSha": "33e01d81c821112133d234bf2f0266a79abfb3f206e970101a6093dc384409c7"
     },
     "scripts/sync-on-launch.ps1": {
       "hash": "9506040e5b0cd22307ecb5ca044703992ebed8daecb7280bdf09c6fce98d2c3d",
-      "size": 1038
+      "size": 1038,
+      "blobSha": "9506040e5b0cd22307ecb5ca044703992ebed8daecb7280bdf09c6fce98d2c3d"
     },
     "scripts/sync-provider.mjs": {
       "hash": "364d1b9131f57faed227659d4724f1f7ef411ac94edbb1cf237c4c47090148c1",
-      "size": 2689
+      "size": 2689,
+      "blobSha": "364d1b9131f57faed227659d4724f1f7ef411ac94edbb1cf237c4c47090148c1"
     },
     "setup.bat": {
       "hash": "3b83bf441dd2b8d4e80b985382517d0c87c6dd706eca02403fe491440a082cd3",
-      "size": 12397
+      "size": 12397,
+      "blobSha": "3b83bf441dd2b8d4e80b985382517d0c87c6dd706eca02403fe491440a082cd3"
     },
     "setup.sh": {
       "hash": "ebec30abab2a8bf8078ee2d117487c885b326ec8b4f6b7bba1e46ce7270947d2",
-      "size": 9010
+      "size": 9010,
+      "blobSha": "ebec30abab2a8bf8078ee2d117487c885b326ec8b4f6b7bba1e46ce7270947d2"
     }
   }
 }

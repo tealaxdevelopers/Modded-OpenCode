@@ -143,7 +143,7 @@ if not exist "%target_dir%" (
   echo      Check permissions or run as administrator.
   goto :eof
 )
-for %%D in (skills agents commands instructions plugins agent) do (
+for %%D in (skills agents commands instructions agent) do (
   if not exist "%target_dir%\%%D" mkdir "%target_dir%\%%D" 2>nul
   if not exist "%target_dir%\%%D" (
     echo  [!] Error: cannot create directory %target_dir%\%%D
@@ -161,7 +161,6 @@ echo  [3/7] %L_S3%
 xcopy "%source_dir%\agents\*" "%target_dir%\agents\" /E /I /Y /Q >nul 2>nul
 xcopy "%source_dir%\commands\*" "%target_dir%\commands\" /E /I /Y /Q >nul 2>nul
 xcopy "%source_dir%\instructions\*" "%target_dir%\instructions\" /E /I /Y /Q >nul 2>nul
-xcopy "%source_dir%\plugins\*" "%target_dir%\plugins\" /E /I /Y /Q >nul 2>nul
 echo         OK
 
 echo  [4/7] %L_S4% (%addressing%, %L_LANG_WORD%)

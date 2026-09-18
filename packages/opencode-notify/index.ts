@@ -1,11 +1,11 @@
 // NOTE: message.finished is not in the official plugin event list (plugins.md).
 // If upstream removes this event, notification will stop working.
-// Fallback: poll session.status periodically.
+// Fallback: session.idle triggers if last message is assistant with no notification sent.
 import type { Plugin } from "@opencode-ai/plugin";
 import { execSync } from "child_process";
 import { platform } from "os";
 
-const PACKAGE_VERSION = "1.1.8";
+const PACKAGE_VERSION = "1.1.9";
 let lastNotify = 0;
 const COOLDOWN = 2000;
 
@@ -14,7 +14,7 @@ export const OpencodeNotifyPlugin: Plugin = async ({ client }) => {
     body: {
       service: "opencode-notify",
       level: "info",
-      message: `opencode-notify v${PACKAGE_VERSION} loaded Ã¢â‚¬â€ cross-platform notifications`,
+      message: `opencode-notify v${PACKAGE_VERSION} loaded — cross-platform notifications`,
     },
   });
 
@@ -31,6 +31,38 @@ export const OpencodeNotifyPlugin: Plugin = async ({ client }) => {
       const body = truncate(text, 200);
 
       sendNotification(title, body);
+    },
+
+    "session.idle": async (input, output) => {
+      const now = Date.now();
+      if (now - lastNotify < COOLDOWN) return;
+
+      try {
+        const sessionID = output.sessionID;
+        if (!sessionID) return;
+
+        const messages = output.messages;
+        if (!messages || messages.length === 0) return;
+
+        const lastMsg = messages[messages.length - 1];
+        if (!lastMsg || lastMsg.role !== "assistant") return;
+
+        const text =
+          typeof lastMsg.text === "string"
+            ? lastMsg.text
+            : typeof lastMsg.content === "string"
+              ? lastMsg.content
+              : "";
+        if (!text) return;
+
+        lastNotify = now;
+        const title = "OpenCode";
+        const body = truncate(text, 200);
+
+        sendNotification(title, body);
+      } catch {
+        // session.idle fallback failed silently — not critical
+      }
     },
   };
 };

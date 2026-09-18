@@ -44,7 +44,7 @@ chmod +x setup.sh scripts/*.sh
 
 | Plugin | Ne Yapar |
 |--------|----------|
-| **agents-opencode** | Sıkıştırma bağlamı enjeksiyonu, hassas dosya engelleme, versiyon env var'ı |
+| **agents-opencode** | Sıkıştırma bağlamı enjeksiyonu, versiyon env var'ı |
 | **auto-continue** | Boşta kalan / kopan oturumları otomatik devam ettirir (varsayılan açık) |
 | **openai-system-merge** | Katı OpenAI-uyumlu sunucularda çoklu system message hatasını düzeltir |
 | **update-checker** | Başlangıçta GitHub'dan yeni sürüm kontrol eder |
@@ -184,7 +184,6 @@ Her iki sihirbaz (`setup.bat` / `setup.sh`) aynı soruları sorar:
 | 3️⃣ Hitap | Agent sana nasıl hitap etsin? | varsayılan |
 | 4️⃣ GitHub API key(ler) | GitHub MCP için | atlanır, MCP kapalı |
 | 5️⃣ Brave API key | Web araması için | atlanır, arama kapalı |
-| 6️⃣ Ekstra entegrasyon | Özel provider menüsü | geç |
 
 Seçtiğin dil `rules.md` içindeki agent konuşma dilini belirler.
 

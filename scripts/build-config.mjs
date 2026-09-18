@@ -107,7 +107,12 @@ if (RULES_API) {
       const textTimeout = setTimeout(() => textController.abort(), 8000)
       let remoteArticle2
       try {
-        remoteArticle2 = await res.text()
+        remoteArticle2 = await Promise.race([
+          res.text(),
+          new Promise((_, reject) =>
+            setTimeout(() => reject(new Error("persona body read timeout")), 8000)
+          )
+        ])
       } finally {
         clearTimeout(textTimeout)
       }
@@ -212,29 +217,6 @@ if (env.HAS_GITHUB !== '1') {
 if (env.HAS_BRAVE === '1') {
   cfg = cfg.replace(/("brave-search"\s*:\s*\{[\s\S]*?"enabled":\s*)false/, '$1true')
 }
-// Custom provider injection (uses JSON.stringify to prevent injection)
-if (env.HAS_CUSTOM === '1' && env.OC_CBASE && env.OC_CMODEL) {
-  const base = env.OC_CBASE.trim().replace(/\/+$/, '')
-  const model = env.OC_CMODEL.trim()
-  const keyName = model.replace(/[^A-Za-z0-9._-]/g, '-').toLowerCase()
-  if (base && model) {
-    const providerObj = {
-      [keyName]: {
-        name: model,
-        npm: '@ai-sdk/openai-compatible',
-        options: {
-          baseURL: base,
-          apiKey: '{env:CUSTOM_LLM_API_KEY}'
-        },
-        models: {
-          [model]: {}
-        }
-      }
-    }
-    cfg = cfg.replace(/"provider"\s*:\s*\{\}/, '"provider": ' + JSON.stringify(providerObj, null, 2).split('\n').join('\n    '))
-  }
-}
-
 // validate — use proper JSONC parser from sync-core (handles strings correctly)
 try {
   JSON.parse(stripTrailingCommas(stripJsonComments(cfg)))
