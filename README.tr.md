@@ -202,6 +202,8 @@ Seçtiğin dil `rules.md` içindeki agent konuşma dilini belirler.
 
 Agent persona katmanı — OpenCode instruction sistemiyle yüklenir. Kimlik, ses ve çalışma stilini belirler. Dil ve hitap kurulumda yapılandırılır.
 
+**Yerel persona** (varsayılan) seçildiğinde, [`DEFAULT_PERSONA`](https://github.com/tealaxdevelopers/Modded-OpenCode/blob/main/scripts/build-config.mjs) `build-config.mjs` içinden alınır ve `rules.md`'nin 2. Maddesi olarak yazılır. Bu persona çevrimdışı çalışır, harici bağımlılığı yoktur. Doğrudan okuyup düzenleyebilirsiniz — düz bir Markdown prompt'tur.
+
 ---
 
 ## 🔧 Geliştirme

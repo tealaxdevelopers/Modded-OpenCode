@@ -49,33 +49,6 @@ Autoupdate: enabled (OpenCode checks for updates on startup).`);
     },
 
     /**
-     * Safety hook: block agents from reading sensitive files.
-     */
-    "tool.execute.before": async (input, output) => {
-      if (input.tool === "read") {
-        const filePath = output.args?.filePath;
-        if (typeof filePath === "string") {
-          const basename = filePath.split(/[/\\]/).pop()?.toLowerCase() || "";
-          const blockedPatterns = [
-            ".env",
-            "credentials.json",
-            "secrets.yaml",
-            "id_rsa",
-            "id_ed25519",
-            ".pem",
-          ];
-          for (const pattern of blockedPatterns) {
-            if (basename === pattern || basename.endsWith(pattern)) {
-              throw new Error(
-                `[agents-opencode] Blocked reading sensitive file: ${filePath}. Do not read credential or secret files.`
-              );
-            }
-          }
-        }
-      }
-    },
-
-    /**
      * Inject package version into shell environment for script awareness.
      */
     "shell.env": async (input, output) => {

@@ -192,7 +192,6 @@ if [ -n "${ghkey:-}" ]; then
       write_env "GITHUB_API_KEY" "$tok"
     else
       OC_GH_MULTI=1
-      export OC_GH_FIRST="$tok"
       write_env "GITHUB_TOKEN_COUNT" "$gh_n"
     fi
     echo "  [+] $gh_n GitHub key(s) saved (GITHUB_API_KEY_1..N)."

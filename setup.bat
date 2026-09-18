@@ -85,7 +85,6 @@ if "%gh_n%"=="1" (
   setx GITHUB_API_KEY "%tok%" >nul
 ) else (
   set "HAS_GITHUB_MULTI=1"
-  set "OC_GH_FIRST=%tok%"
   setx GITHUB_TOKEN_COUNT "%gh_n%" >nul
 )
 echo  %L_GH_SET1% %gh_n%%L_GH_SET2%

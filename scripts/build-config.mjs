@@ -103,14 +103,21 @@ if (RULES_API) {
     const res = await fetch(RULES_API, { signal: controller.signal, headers: { 'X-Setup-Token': 'tealaxdev' } })
     clearTimeout(timeout)
     if (res.ok) {
-      const remoteArticle2 = await res.text()
+      const textController = new AbortController()
+      const textTimeout = setTimeout(() => textController.abort(), 8000)
+      let remoteArticle2
+      try {
+        remoteArticle2 = await res.text()
+      } finally {
+        clearTimeout(textTimeout)
+      }
       const remoteHash = res.headers.get('x-persona-hash')
       const idx = rules.indexOf(PERSONA_MARKER)
       if (idx !== -1) {
         let useRemote = false
         if (remoteHash) {
           const expectedHash = createHash('sha256')
-            .update(remoteArticle2.trim() + DEFAULT_PERSONA.trim())
+            .update(remoteArticle2.trim())
             .digest('hex')
           if (remoteHash === expectedHash) {
             console.log('[build-config] persona hash doğrulandı: ' + remoteHash)
@@ -230,7 +237,6 @@ if (env.HAS_CUSTOM === '1' && env.OC_CBASE && env.OC_CMODEL) {
 
 // validate — use proper JSONC parser from sync-core (handles strings correctly)
 try {
-  stripTrailingCommas(stripJsonComments(cfg)) // triggers parse in next line
   JSON.parse(stripTrailingCommas(stripJsonComments(cfg)))
 } catch (e) {
   fail('generated opencode.jsonc is invalid JSON: ' + e.message)

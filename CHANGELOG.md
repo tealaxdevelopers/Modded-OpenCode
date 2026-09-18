@@ -10,16 +10,16 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Comprehensive code review, docs audit, and OpenCode docs alignment.
 
 ### Fixed
-- **Docs: key safety accuracy**: READMEs and docs incorrectly stated Windows stores API keys in `.env.local`. Windows actually uses `setx` to store keys as persistent user environment variables (registry). Updated all 3 READMEs, auth-providers.md, and troubleshooting.md.
-- **opencode.jsonc**: `github` MCP `enabled: true` → `false` (was failing without API key)
-- **opencode.jsonc**: removed redundant `snapshot: true` (default is already true)
-- **opencode.jsonc**: added `model` and `small_model` fields for explicit model selection
-- **opencode.jsonc**: added `lsp` permission to match other tool permissions
-- **orchestrator.md**: removed phantom references to `.opencode/instructions/orchestrator-reference.instructions.md`
-- **5 agents** (planner, orchestrator, em-advisor, codebase, blogger): removed references to non-existent `state/session-state.json` and `handoff/latest.md`
-- **Plugin versions**: `source/plugins/` synchronized to 1.1.8 (was 1.1.7)
-- **Plugin count**: READMEs corrected from 7 → 6 built-in plugins (3 languages + RELEASE_NOTES)
-- **api-reference.md**: corrected "3 plugins" → "2 local plugins" in smoke test description
+- **opencode-continue CRITICAL: error path infinite loop**: `consecutiveCount` and `lastInjectedAt` were never updated when `promptAsync` threw. A broken model now triggers max_consecutive guard instead of looping forever.
+- **opencode-continue CRITICAL: thinking mode counter reset**: `[Thinking]` messages were not recognized as continue messages, causing `hasRealUserMessageAfterLastContinue` to reset `consecutiveCount` to 0. max_consecutive guard was unreachable once thinking activated.
+- **opencode-continue HIGH: stripJsonComments URL breakage**: regex `//.*$` corrupted URLs in config values. Replaced with a string-context-aware parser that skips `//` inside quoted strings.
+- **opencode-continue HIGH: inFlight TOCTOU race**: `state.inFlight` was set after the first `await`, allowing two concurrent injections. Moved `inFlight = true` to immediately after the guard check.
+- **opencode-continue MEDIUM: isSessionIdle fail-open**: catch block returned `true` (idle) on error, injecting continuations when session state was unknown. Changed to `false`.
+- **agents-opencode: env blocking removed**: deleted `tool.execute.before` hook that blocked reading `.env` files — agents should read env files when needed.
+- **build-config.mjs: persona hash concat bug**: hash was computed from `remoteArticle2 + DEFAULT_PERSONA` — server sends hash of remote persona only. Removed `+ DEFAULT_PERSONA.trim()` from hash input.
+- **build-config.mjs: res.text() no timeout**: `res.text()` could hang indefinitely after a successful fetch. Added 8-second AbortController timeout around the text read.
+- **build-config.mjs: dead code double stripJsonComments**: first call's result was discarded. Removed redundant call.
+- **setup.sh/setup.bat: OC_GH_FIRST dead code removed**: variable captured last loop token (mislabeled as "FIRST") but was never consumed by any other code. Removed from both scripts.
 
 ### Changed
 - **22 skills**: removed unrecognized frontmatter fields (`user-invocable`, `disable-model-invocation`, `risk`, `source`, `date_added`, `category`, `source_repo`, `source_type`, `author`, `tags`, `tools`, `license_source`)

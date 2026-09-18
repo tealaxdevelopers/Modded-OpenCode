@@ -208,6 +208,8 @@ The language you pick sets the agent's conversation language in `rules.md`.
 
 Agent persona layer loaded through OpenCode's instruction system. Sets identity, voice, and working style. Language + addressing configured at setup time.
 
+When you choose **local persona** (default), the built-in [`DEFAULT_PERSONA`](https://github.com/tealaxdevelopers/Modded-OpenCode/blob/main/scripts/build-config.mjs) from `build-config.mjs` is used as Article 2 of `rules.md`. This persona works offline with no external dependencies. You can read and edit it directly — it's a plain Markdown prompt baked into the setup script.
+
 ---
 
 ## 🔧 Development

@@ -53,7 +53,34 @@ interface SessionState {
 }
 
 function stripJsonComments(text: string): string {
-  return text.replace(/\/\/.*$/gm, "").replace(/\/\*[\s\S]*?\*\//g, "")
+  let result = ""
+  let inString = false
+  let stringChar = ""
+  let i = 0
+  while (i < text.length) {
+    const ch = text[i]
+    if (inString) {
+      result += ch
+      if (ch === "\\" && i + 1 < text.length) { result += text[i + 1]; i += 2; continue }
+      if (ch === stringChar) inString = false
+      i++
+      continue
+    }
+    if (ch === '"' || ch === "'") { inString = true; stringChar = ch; result += ch; i++; continue }
+    if (ch === "/" && i + 1 < text.length && text[i + 1] === "/") {
+      while (i < text.length && text[i] !== "\n") i++
+      continue
+    }
+    if (ch === "/" && i + 1 < text.length && text[i + 1] === "*") {
+      i += 2
+      while (i < text.length - 1 && !(text[i] === "*" && text[i + 1] === "/")) i++
+      i += 2
+      continue
+    }
+    result += ch
+    i++
+  }
+  return result
 }
 
 function readFileConfig(directory: string): PluginConfig | null {
@@ -173,6 +200,7 @@ function hasRealUserMessageAfterLastContinue(
       .join("")
       .toLowerCase()
     if (text === continueText.toLowerCase()) return false
+    if (text.startsWith("[thinking]")) continue
     return true
   }
   return false
@@ -184,7 +212,7 @@ async function isSessionIdle(ctx: any, sessionID: string, directory: string): Pr
     const map = ((response as any)?.data ?? response ?? {}) as Record<string, unknown>
     return !map[sessionID]
   } catch {
-    return true
+    return false
   }
 }
 
@@ -207,6 +235,7 @@ const setup = async (ctx: any) => {
     const state = sessionStateStore.getState(sessionID)
     if (state.inFlight) return
     if (state.consecutiveCount >= config.max_consecutive) return
+    state.inFlight = true
 
     let messages: SessionMessage[] = []
     try {
@@ -231,7 +260,6 @@ const setup = async (ctx: any) => {
     const agent = assistantCtx.agent ?? resolveAgentFromUserMessages(messages)
     if (!(await isSessionIdle(ctx, sessionID, ctx.directory))) return
 
-    state.inFlight = true
     try {
       // Loop detection: if we've already continued 2+ times, switch to thinking mode
       // to prevent visible loop messages from reaching the user
@@ -270,7 +298,8 @@ const setup = async (ctx: any) => {
         }
       }
     } catch {
-      /* ignore */
+      state.consecutiveCount += 1
+      state.lastInjectedAt = Date.now()
     } finally {
       state.inFlight = false
     }
