@@ -47,6 +47,14 @@ echo.
 echo  %L_GH_INFO%
 
 :ask_ghkey
+REM --- setx'te mevcut GitHub key kontrolü ---
+set "EXISTING_GH="
+for /f "tokens=2*" %%A in ('reg query "HKCU\Environment" /v GITHUB_API_KEY 2^>nul') do set "EXISTING_GH=%%B"
+if defined EXISTING_GH (
+  echo  %L_KEY_GH_FOUND%
+  set "HAS_GITHUB=1"
+  goto ask_bravekey
+)
 set "ghkey="
 set /p "ghkey=  %L_GH_ASK%: "
 if "%ghkey%"=="" (
@@ -99,6 +107,14 @@ echo  %L_GH_SET1% %gh_n%%L_GH_SET2%
 goto ask_bravekey
 
 :ask_bravekey
+REM --- setx'te mevcut Brave key kontrolü ---
+set "EXISTING_BRAVE="
+for /f "tokens=2*" %%A in ('reg query "HKCU\Environment" /v BRAVE_API_KEY 2^>nul') do set "EXISTING_BRAVE=%%B"
+if defined EXISTING_BRAVE (
+  echo  %L_KEY_BRAVE_FOUND%
+  set "HAS_BRAVE=1"
+  goto install_start
+)
 echo.
 echo  %L_BRAVE_INFO%
 set "bravekey="
@@ -197,8 +213,6 @@ if "%OC_PERSONA_MODE%"=="remote" (echo    Persona: remote) else (echo    Persona
 echo  ============================================
 echo.
 echo  %L_RUN_HINT1%
-echo    start.cmd
-echo  %L_RUN_HINT2%
 echo    opencode
 echo.
 pause
@@ -246,7 +260,8 @@ set "L_DONE_HEAD=KURULUM TAMAMLANDI!"
 set "L_DONE_NOGH=GitHub MCP: kapali - key verilmedi"
 set "L_DONE_NOBRAVE=Brave arama: kapali - key verilmedi"
 set "L_RUN_HINT1=[*] Baslatmak icin:"
-set "L_RUN_HINT2=[*] ya da dogrudan:"
+set "L_KEY_GH_FOUND=[+] GitHub API key bulundu — otomatik aktif"
+set "L_KEY_BRAVE_FOUND=[+] Brave API key bulundu — otomatik aktif"
 goto :eof
 
 :lang_us
@@ -285,7 +300,8 @@ set "L_DONE_HEAD=SETUP COMPLETE!"
 set "L_DONE_NOGH=GitHub MCP: off - no key given"
 set "L_DONE_NOBRAVE=Brave search: off - no key given"
 set "L_RUN_HINT1=[*] To launch:"
-set "L_RUN_HINT2=[*] or directly:"
+set "L_KEY_GH_FOUND=[+] GitHub API key found — auto-activated"
+set "L_KEY_BRAVE_FOUND=[+] Brave API key found — auto-activated"
 goto :eof
 
 :lang_ru
@@ -324,5 +340,6 @@ set "L_DONE_HEAD=USTANOVKA ZAVERSHENA!"
 set "L_DONE_NOGH=GitHub MCP: vykl - klyuch ne dan"
 set "L_DONE_NOBRAVE=Brave poisk: vykl - klyuch ne dan"
 set "L_RUN_HINT1=[*] Zapusk:"
-set "L_RUN_HINT2=[*] ili napryamuyu:"
+set "L_KEY_GH_FOUND=[+] GitHub API key nayden — avtoaktivirovan"
+set "L_KEY_BRAVE_FOUND=[+] Brave API key nayden — avtoaktivirovan"
 goto :eof

@@ -169,46 +169,64 @@ echo "  $L_GH_INFO"
 HAS_GITHUB=""
 gh_n=0
 OC_GH_MULTI=""
-printf "  %s\n  " "$L_GH_ASK"
-read -r ghkey
-if [ -n "${ghkey:-}" ]; then
-  # Split by comma — compatible with bash 3.2+ (no mapfile needed)
-  OLD_IFS="$IFS"
-  IFS=','
-  set -f  # disable glob expansion — keys may contain *, ?, [
-  for tok in $ghkey; do
-    # trim leading/trailing whitespace
-    tok="$(echo "$tok" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
-    [ -z "$tok" ] && continue
-    gh_n=$((gh_n+1))
-    export "GITHUB_API_KEY_$gh_n=$tok"
-    write_env "GITHUB_API_KEY_$gh_n" "$tok"
-  done
-  set +f  # re-enable glob expansion
-  IFS="$OLD_IFS"
-  if [ "$gh_n" -gt 0 ]; then
-    HAS_GITHUB=1
-    if [ "$gh_n" -eq 1 ]; then
-      export GITHUB_API_KEY="$tok"
-      write_env "GITHUB_API_KEY" "$tok"
-    else
-      OC_GH_MULTI=1
-      write_env "GITHUB_TOKEN_COUNT" "$gh_n"
+# Mevcut .env.local'de GitHub key var mı kontrol et
+EXISTING_GH=""
+if [ -f "$ENV_LOCAL" ] && grep -q "GITHUB_API_KEY=" "$ENV_LOCAL" 2>/dev/null; then
+  EXISTING_GH=$(grep "GITHUB_API_KEY=" "$ENV_LOCAL" | head -1 | cut -d= -f2- | tr -d "'" | tr -d '"')
+fi
+if [ -n "$EXISTING_GH" ]; then
+  echo "  [+] GitHub API key bulundu — otomatik aktif"
+  HAS_GITHUB=1
+else
+  printf "  %s\n  " "$L_GH_ASK"
+  read -r ghkey
+  if [ -n "${ghkey:-}" ]; then
+    OLD_IFS="$IFS"
+    IFS=','
+    set -f
+    for tok in $ghkey; do
+      tok="$(echo "$tok" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
+      [ -z "$tok" ] && continue
+      gh_n=$((gh_n+1))
+      export "GITHUB_API_KEY_$gh_n=$tok"
+      write_env "GITHUB_API_KEY_$gh_n" "$tok"
+    done
+    set +f
+    IFS="$OLD_IFS"
+    if [ "$gh_n" -gt 0 ]; then
+      HAS_GITHUB=1
+      if [ "$gh_n" -eq 1 ]; then
+        export GITHUB_API_KEY="$tok"
+        write_env "GITHUB_API_KEY" "$tok"
+      else
+        OC_GH_MULTI=1
+        write_env "GITHUB_TOKEN_COUNT" "$gh_n"
+      fi
+      echo "  [+] $gh_n GitHub key(s) saved (GITHUB_API_KEY_1..N)."
     fi
-    echo "  [+] $gh_n GitHub key(s) saved (GITHUB_API_KEY_1..N)."
   fi
 fi
 
 # ---- Brave ----
-echo
-printf "  %s\n  " "$L_BRAVE_ASK"
-read -r bravekey
 HAS_BRAVE=""
-if [ -n "${bravekey:-}" ]; then
-  export BRAVE_API_KEY="$bravekey"
-  write_env "BRAVE_API_KEY" "$bravekey"
+# Mevcut .env.local'de Brave key var mı kontrol et
+EXISTING_BRAVE=""
+if [ -f "$ENV_LOCAL" ] && grep -q "BRAVE_API_KEY=" "$ENV_LOCAL" 2>/dev/null; then
+  EXISTING_BRAVE=$(grep "BRAVE_API_KEY=" "$ENV_LOCAL" | head -1 | cut -d= -f2- | tr -d "'" | tr -d '"')
+fi
+if [ -n "$EXISTING_BRAVE" ]; then
+  echo "  [+] Brave API key bulundu — otomatik aktif"
   HAS_BRAVE=1
-  echo "  [+] BRAVE_API_KEY saved."
+else
+  echo
+  printf "  %s\n  " "$L_BRAVE_ASK"
+  read -r bravekey
+  if [ -n "${bravekey:-}" ]; then
+    export BRAVE_API_KEY="$bravekey"
+    write_env "BRAVE_API_KEY" "$bravekey"
+    HAS_BRAVE=1
+    echo "  [+] BRAVE_API_KEY saved."
+  fi
 fi
 
 # Persist kit root for update-checker (npm packages can't find repo root via import.meta.url)
